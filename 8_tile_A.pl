@@ -7,12 +7,13 @@ move( [Empty|L], [T|L1], 1):-              % All arc costs are 1
 	swap(Empty, T, L, L1).             % Swap Empty and T in L giving L1
 
 swap(Empty, T, [T|L], [Empty|L]):-
-	d(Empty, T, 1).
+	d(Empty, T, 1).  % The distance between the two nodes has to be 1
 
 swap(Empty, T, [T1|L],[T1|L1]):-
 	swap(Empty, T, L, L1).
 
 
+% D is the Manh. distance between two squares
 d(X/Y, X1/Y1, D):-
 	dif(X, X1, Dx),
 	dif(Y, Y1, Dy),
@@ -25,7 +26,7 @@ dif(A, B, D):-
 	D is B-A.
 
 % Heuristic estimate h is the sum of distances of each tile
-% From its 'home' square pluis 3 times 'sequence' score
+% From its 'home' square plus 3 times 'sequence' score
 h([Empty|L], H):-
 	goal([Empty|G]),
 	totaldist(L, G, D),
@@ -51,8 +52,9 @@ seq([T1,T2|L],First, S):-
 seq([Last], First, S):-
 	score(Last,First, S).
 
-score( 2/2, _, 1):- !.
 
+% returns the heuristic estimate
+score( 2/2, _, 1):- !.
 score( 1/3, 2/3, 0) :- !.
 score( 2/3, 3/3, 0) :- !.
 score( 3/3, 3/2, 0) :- !.
@@ -61,7 +63,6 @@ score( 3/l, 2/l, 0) :- !.
 score( 2/l, 1/1, 0) :- !.
 score( 1/l, l/2, 0) :- !.
 score( 1/2, 1/3, 0) :- !.
-
 score(_,_,2).
 
 
@@ -93,43 +94,6 @@ showpos(_).
 %%%                  D is the depth of the node
 %%%                  F is the evaluation function value
 %%%                  A is the ancestor list for the node
-
-:- op(400,yfx,'#').    /* Node builder notation */
-
-solve(State,Soln) :- f_function(State,0,F),
-                     search([State#0#F#[]],S), reverse(S,Soln).
-
-f_function(State,D,F) :-
-	h(State,H),
-        F is D + H.
-
-search([State#_#_#Soln|_], Soln) :- goal(State).
-search([B|R],S) :- expand(B,Children),
-                   insert_all(Children,R,Open),
-                   search(Open,S).
-
-insert_all([F|R],Open1,Open3) :- insert(F,Open1,Open2),
-                                 insert_all(R,Open2,Open3).
-insert_all([],Open,Open).
-
-insert(B,Open,Open) :- repeat_node(B,Open), ! .
-insert(B,[C|R],[B,C|R]) :- cheaper(B,C), ! .
-insert(B,[B1|R],[B1|S]) :- insert(B,R,S), !.
-insert(B,[],[B]).
-
-repeat_node(P#_#_#_, [P#_#_#_|_]).
-
-cheaper( _#_#F1#_ , _#_#F2#_ ) :- F1 < F2.
-
-expand(State#D#_#S,All_My_Children) :-
-     bagof(Child#D1#F#[Move|S],
-           (D1 is D+1,
-             move(State,Child,Move),
-             f_function(Child,D1,F)),
-           All_My_Children).
-
-
-
 
 
 
