@@ -72,7 +72,7 @@ depthfirst(Path ,Node, Solution, N):-
 
 
 
-
+% Use this one, this way you can alter the depth in the command line
 
 depthfirst2(Node, [Node], _):-
 	goal(Node).

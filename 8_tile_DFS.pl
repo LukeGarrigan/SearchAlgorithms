@@ -1,39 +1,28 @@
-goal(1/2/3/4/5/6/7/8/0).
+goal([2/2,1/3,2/3,3/3,3/2,3/1,2/1,1/1,1/2]).
 
-left( A/0/C/D/E/F/H/I/J , 0/A/C/D/E/F/H/I/J ).
-left( A/B/C/D/0/F/H/I/J , A/B/C/0/D/F/H/I/J ).
-left( A/B/C/D/E/F/H/0/J , A/B/C/D/E/F/0/H/J ).
-left( A/B/0/D/E/F/H/I/J , A/0/B/D/E/F/H/I/J ).
-left( A/B/C/D/E/0/H/I/J , A/B/C/D/0/E/H/I/J ).
-left( A/B/C/D/E/F/H/I/0 , A/B/C/D/E/F/H/0/I ).
+% Empty can move to any of its neighbours which means that 'empty' and
+% its neighbour interchange their positions
 
-up( A/B/C/0/E/F/H/I/J , 0/B/C/A/E/F/H/I/J ).
-up( A/B/C/D/0/F/H/I/J , A/0/C/D/B/F/H/I/J ).
-up( A/B/C/D/E/0/H/I/J , A/B/0/D/E/C/H/I/J ).
-up( A/B/C/D/E/F/0/I/J , A/B/C/0/E/F/D/I/J ).
-up( A/B/C/D/E/F/H/0/J , A/B/C/D/0/F/H/E/J ).
-up( A/B/C/D/E/F/H/I/0 , A/B/C/D/E/0/H/I/F ).
+move( [Empty|L], [T|L1], 1):-              % All arc costs are 1
+	swap(Empty, T, L, L1).             % Swap Empty and T in L giving L1
 
-right( A/0/C/D/E/F/H/I/J , A/C/0/D/E/F/H/I/J ).
-right( A/B/C/D/0/F/H/I/J , A/B/C/D/F/0/H/I/J ).
-right( A/B/C/D/E/F/H/0/J , A/B/C/D/E/F/H/J/0 ).
-right( 0/B/C/D/E/F/H/I/J , B/0/C/D/E/F/H/I/J ).
-right( A/B/C/0/E/F/H/I/J , A/B/C/E/0/F/H/I/J ).
-right( A/B/C/D/E/F/0/I/J , A/B/C/D/E/F/I/0/J ).
+swap(Empty, T, [T|L], [Empty|L]):-
+	d(Empty, T, 1).
 
-down( A/B/C/0/E/F/H/I/J , A/B/C/H/E/F/0/I/J ).
-down( A/B/C/D/0/F/H/I/J , A/B/C/D/I/F/H/0/J ).
-down( A/B/C/D/E/0/H/I/J , A/B/C/D/E/J/H/I/0 ).
-down( 0/B/C/D/E/F/H/I/J , D/B/C/0/E/F/H/I/J ).
-down( A/0/C/D/E/F/H/I/J , A/E/C/D/0/F/H/I/J ).
-down( A/B/0/D/E/F/H/I/J , A/B/F/D/E/0/H/I/J ).
-
-move(P,C,left) :-  left(P,C).
-move(P,C,up) :-  up(P,C).
-move(P,C,right) :-  right(P,C).
-move(P,C,down) :-  down(P,C).
+swap(Empty, T, [T1|L],[T1|L1]):-
+	swap(Empty, T, L, L1).
 
 
+d(X/Y, X1/Y1, D):-
+	dif(X, X1, Dx),
+	dif(Y, Y1, Dy),
+	D is Dx+Dy.
+
+% Calucates the absolute difference
+dif(A, B, D):-
+	D is A-B,
+	D >= 0, !;
+	D is B-A.
 
 
 
