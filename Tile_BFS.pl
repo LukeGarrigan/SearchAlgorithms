@@ -52,7 +52,6 @@ conc([H|L1],L2,[H|L3]):-
 
 
 
-
 % solve( Start, Solution)  :-
 %  breadthfirst( [ [Start] | Z] - Z, Solution).
 

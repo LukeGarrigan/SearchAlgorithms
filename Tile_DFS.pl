@@ -1,4 +1,4 @@
-:- use_module(play_8_tile).
+:- use_module(tile_game).
 
 
 assertretract(X) :- assert(X).
