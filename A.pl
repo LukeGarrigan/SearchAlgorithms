@@ -103,3 +103,71 @@ repeat_node(P/_/_/_, [P/_/_/_|_]).
 cheaper(_/_/H1/_, _/_/H2/_):- H1 < H2.
 
 
+
+
+
+
+
+
+
+
+% An attempt at Pierres Implementation
+%
+%
+
+:- dynamic(closed/2).
+a_star(Node, Cost, Path):-
+	retractall(closed(_,_)),
+	seq(Node, Heuristic),
+	list_to_heap([Heuristic-[Node,nil]],Heap),
+	a_star_h(Heap,[Node1,Cost]),!,
+	create_path(Node1,Path1),
+	reverse(Path1, Path),
+	retractall(closed(_,_)).
+a_star(_,_,_):-
+	retractall(closed(_,_)),fail.
+
+
+a_star_h(Heap, [Node,Cost]):-
+	min_of_heap(Heap,Cost,[Node,Pred]),
+	goal(Node),
+	assert(closed(Node,Pred)).
+
+a_star_h(Heap,S):-
+	min_of_heap(Heap,_,[Node,_]),
+	closed(Node,_),
+	get_from_heap(Heap,_,_,Heap1),
+	a_star_h(Heap1,S).
+
+% Same situations as RBFS Cost is set to 1
+% 20 movements has trouble executing ( probably something to do with the
+% cost function )
+a_star_h(Heap,S):-
+	get_from_heap(Heap,PathLength,[Node,Pred],Heap1),
+	assert(closed(Node,Pred)),
+	findall([C,[NextNode,Node]],
+		(   move(Node,NextNode,_), not(closed(NextNode,_)),
+		    C is PathLength+1),
+		NewNodeCostAndPairs),
+	update_heap(Heap1, NewNodeCostAndPairs, Heap2),
+	a_star_h(Heap2, S).
+
+update_heap(Heap,[],Heap).
+update_heap(Heap, [[Cost,NodePair]|More], Heap2):-
+	add_to_heap(Heap,Cost,NodePair, Heap1),
+	update_heap(Heap1, More,Heap2).
+create_path(Node,[Node]):-
+	closed(Node,nil),!.
+create_path(Node,[Node|S]):-
+	closed(Node, Pred),
+	create_path(Pred,S).
+
+
+
+
+
+
+
+
+
+
