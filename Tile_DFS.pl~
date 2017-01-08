@@ -21,6 +21,7 @@ solve_10(X, MaxDepth):-
 
 solve_dfs(Node, MaxMoves, Solution ):-
 	dfs_depth(Node, 0, MaxMoves, Solution).
+	%print_list(Solution).
 
 % Performs DFS at current allowed number of moves
 dfs_depth(Node,NumMoves,_, Solution):-
@@ -54,6 +55,12 @@ dfs_id(Node, [Direction|Solution], NumMoves):-
 	Max1 is NumMoves -1,
 	assertretract(seennode(Node)),
 	dfs_id(Node1, Solution, Max1).
+
+% Just to print the direction it took
+print_list([]).
+print_list([Head|Tail]):-
+	write(Head), write(" "),
+	print_list(Tail).
 
 clear :-
 	retractall(seennode(_)).

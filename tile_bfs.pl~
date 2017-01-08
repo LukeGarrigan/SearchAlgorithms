@@ -2,13 +2,13 @@
 % simple type solve_20(X) as an example
 % Minimum number of moves to solve this puzzle is 20
 solve_20(X):-
-	solve_bfs_dl([3/1, 1/2, 1/1, 3/3, 1/3, 2/1, 2/2, 2/3, 3/2], X).
+	solve_bfs([3/1, 1/2, 1/1, 3/3, 1/3, 2/1, 2/2, 2/3, 3/2], X).
 
 solve_10(X):-
-        solve_bfs_dl([1/1, 1/2, 1/3, 2/3, 2/2, 3/3, 3/2, 2/1, 3/1], X).
+	solve_bfs([1/1, 1/2, 1/3, 2/3, 2/2, 3/3, 3/2, 2/1, 3/1], X).
 
 solve_2(X):-
-        solve_bfs_dl([3/3, 1/3, 2/3, 3/2, 1/2, 2/2, 3/1, 1/1, 2/1], X).
+	solve_bfs([3/3, 1/3, 2/3, 3/2, 1/2, 2/2, 3/1, 1/1, 2/1], X).
 
 :- use_module(tile_game).
 
@@ -57,7 +57,7 @@ brf_pq([[Node|Path]|OtherPaths], Solution):-
 	brf_pq(Paths,Solution).
 
 
-% BFSDL much faster but ERROR: Out of global stack for larger numbers
+% BFSDL
 solve_bfs_dl(Node, Solution):-
 	bfs_dl([[Node]|Z]-Z, Solution).
 
@@ -71,6 +71,7 @@ bfs_dl([[Node|Path]|OtherPaths]-Z, S):-
 	append_diff(OtherPaths-Z, DiffNewPaths, Paths),
 	not(empty_diff(Paths)),
 	bfs_dl(Paths,S).
+
 
 
 
