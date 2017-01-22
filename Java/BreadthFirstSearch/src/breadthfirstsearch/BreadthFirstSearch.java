@@ -36,7 +36,7 @@ public class BreadthFirstSearch {
         int[] puzzles = new int[]{1, 2, 3, 4, 5, 6, 7, 0, 8};
         int dist = manhattan(puzzle);
 
-        State initialState = new State(puzzle, 0, dist, null, "null");
+        State initialState = new State(puzzle, null, "null");
         QUEUE.add(initialState);
         State current = null;
         while (!QUEUE.isEmpty()) {
@@ -82,10 +82,10 @@ public class BreadthFirstSearch {
         float duration = (System.nanoTime() - startTime) / 1000000;
         System.out.println("Solved " + duration + " ms ");
         int count = 0;
-        while (currentState.getPrevious() != null) {
+        while (currentState.getPreviousState() != null) {
             count++;
             System.out.print(currentState.getDirection() + " ");
-            currentState = currentState.getPrevious();
+            currentState = currentState.getPreviousState();
         }
         System.out.println("\n" + count);
     }

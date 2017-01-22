@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package breadthfirstsearch;
+package depthfirstsearch;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -19,14 +20,16 @@ public class State {
     String direction;
     private ArrayList<State> neighbours;
 
+
     public State(int[] state, State previousState, String direction) {
         this.state = state;
-   
+        //this.visisted = false;
         this.previousState = previousState;
         this.direction = direction;
         this.neighbours = new ArrayList<>();
 
     }
+
 
     public void setState(int[] state) {
         this.state = state;
