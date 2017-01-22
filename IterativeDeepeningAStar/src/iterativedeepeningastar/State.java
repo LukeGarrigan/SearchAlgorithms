@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package astarflattened;
+package iterativedeepeningastar;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,6 +36,7 @@ public class State {
 
     // public State(int[] state, int g, int h, State previousState, String direction) {
     public void findNeighbours() {
+   
         //  this.neighbours = new ArrayList<>();
 
         //int[] movement = new int[9];
@@ -102,7 +103,7 @@ public class State {
                 break;
             }
         }
-   
+    
 //        System.out.println("CHECK");
 //        for (State neighb : neighbours) {
 //            System.out.println(Arrays.toString(neighb.getState()));
@@ -173,7 +174,6 @@ public class State {
     public float getGScore() {
         return this.g;
     }
-
 
     @Override
     public boolean equals(Object o) {

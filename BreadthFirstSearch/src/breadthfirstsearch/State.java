@@ -3,8 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package astarflattened;
-
+package breadthfirstsearch;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -102,7 +101,7 @@ public class State {
                 break;
             }
         }
-   
+       
 //        System.out.println("CHECK");
 //        for (State neighb : neighbours) {
 //            System.out.println(Arrays.toString(neighb.getState()));
