@@ -8,7 +8,9 @@ package astarflattened;
 import java.util.Timer;
 import java.util.ArrayList;
 import java.util.Arrays;
+import static java.util.Arrays.binarySearch;
 import java.util.TimerTask;
+import javafx.scene.chart.Axis;
 
 /**
  *
@@ -25,6 +27,7 @@ public class AStarFlattened {
     static ArrayList<State> CLOSEDSET = new ArrayList<>();
 
     public static void main(String[] args) {
+
         // TODO code application logic here
         Timer t = new Timer();
         // worlds most difficult sliding tile isntance ( 31 moves )
@@ -34,6 +37,8 @@ public class AStarFlattened {
 
         long startTime = System.nanoTime();
         int dist = manhattan(problemState);
+        LinearConflicts l = new LinearConflicts();
+       // int lin = l.linearConflict(problemState);
         State initialState = new State(problemState, 0, dist, null, "null");
 
         OPENSET.add(initialState);
@@ -47,6 +52,7 @@ public class AStarFlattened {
                     }
                 }
                 State currentState = OPENSET.get(winner);
+                System.out.println(Arrays.toString(currentState.getState()));
                 if (Arrays.equals(currentState.getState(), GOAL)) {
                     printPath(currentState, startTime);
                     break;
@@ -75,13 +81,14 @@ public class AStarFlattened {
                 }
             }
         }
-          System.exit(0);
+        System.exit(0);
     }
 
     public static int manhattan(int[] puzz) {
         //System.out.println(Arrays.toString(puzz));
         int total = 0;
         for (int i = 1; i < puzz.length; i++) {
+
             int expectedRow = (i - 1) / 3;
             int expectedCol = (i - 1) % 3;
             int num = 0;
@@ -99,7 +106,7 @@ public class AStarFlattened {
         return total;
     }
 
-    public static void printPath(State currentState, float startTime ) {
+    public static void printPath(State currentState, float startTime) {
         float duration = (System.nanoTime() - startTime) / 1000000;
         System.out.println("Solved " + duration + " ms ");
         int count = 0;

@@ -46,7 +46,7 @@ public class IterativeDeepeningAStar {
         while (true) {
 
             State t = search(currentState, 0, threshold);
-
+            SEENSTATES.add(t);
             if (Arrays.equals(t.getState(), GOAL)) {
                 float duration = (System.nanoTime() - startTime) / 1000000;
                 System.out.println("Solved " + duration + " ms ");
@@ -71,8 +71,8 @@ public class IterativeDeepeningAStar {
     public static State search(State currentState, float g, float threshold) {
         // setting the heuristic value for this state
         //  System.out.println(Arrays.toString(currentState.getState()));
-    
-        // System.out.println(Arrays.toString(currentState.getState()) + " " + threshold);
+
+        System.out.println(Arrays.toString(currentState.getState()) + " " + threshold);
         float h = manhattan(currentState.getState());
         currentState.setH(h);
         currentState.setG(g);
@@ -105,16 +105,16 @@ public class IterativeDeepeningAStar {
         State minState = null;
 
         for (State neighbour : successors) {
-
-            State t = search(neighbour, g + 1, threshold);
-            if (Arrays.equals(t.getState(), GOAL)) {
-                return neighbour;
-            }
-            if (t.getF() < min) {
-                min = t.getF();
-                minState = t;
-            }
-
+    
+                State t = search(neighbour, g + 1, threshold);
+                if (Arrays.equals(t.getState(), GOAL)) {
+                    return neighbour;
+                }
+                if (t.getF() < min) {
+                    min = t.getF();
+                    minState = t;
+                }
+            
         }
 
         return minState;
