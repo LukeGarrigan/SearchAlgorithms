@@ -34,12 +34,16 @@ public class BreadthFirstSearch {
         int[] problemState = new int[]{8, 6, 7, 2, 5, 4, 3, 0, 1};
         int[] puzzle = new int[]{2, 3, 5, 1, 4, 6, 0, 7, 8};
         int[] puzzles = new int[]{1, 2, 3, 4, 5, 6, 7, 0, 8};
-        int dist = manhattan(puzzle);
-
-        State initialState = new State(puzzle, null, "null");
+       
+        State initialState = new State(problemState, null, "null");
         QUEUE.add(initialState);
         State current = null;
+        int count = 0;
         while (!QUEUE.isEmpty()) {
+            count += 1;
+            if(count % 10000 ==0){
+                System.out.println(QUEUE.size() + " " +SET.size());
+            }
             current = QUEUE.remove();
             if (Arrays.equals(current.getState(), GOAL)) {
                 printPath(current, startTime);

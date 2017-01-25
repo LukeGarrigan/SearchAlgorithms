@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package depthfirstsearch;
+package dfs;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  *
@@ -14,23 +15,44 @@ import java.util.Arrays;
  */
 public class State {
 
-    int[] state;
-    float g, h, f;
-    State previousState;
-    String direction;
+    private int[] state;
+    private float g, h, f;
+    private State previousState;
+    private String direction;
     private ArrayList<State> neighbours;
-
+    private boolean visited;
 
     public State(int[] state, State previousState, String direction) {
         this.state = state;
-        //this.visisted = false;
+        //is.visited = false;
         this.previousState = previousState;
         this.direction = direction;
         this.neighbours = new ArrayList<>();
-
+        //  initialVisited();
     }
 
+    //private boolean contains(List<int[]> list, int[] arr) {
+    //     return list.stream().anyMatch(x -> Arrays.equals(x, arr));
+    // }
+    @Override
+    public String toString() {
+        return Arrays.toString(state);
+    }
 
+    public boolean isVisited() {
+        return this.visited;
+    }
+
+    public void setVisited(boolean vis) {
+        this.visited = vis;
+    }
+
+    //  private void initialVisited() {
+    //     if (contains(DFS.seenState, this.state)) {
+    //         visited = true;
+    //        System.out.println("HELLO");
+    //     }
+    //  }
     public void setState(int[] state) {
         this.state = state;
     }
@@ -103,9 +125,10 @@ public class State {
                     left[i] = left[i - 1];
                     left[i - 1] = temp;
 
-                    State newState = new State(left,this, "left");
-
-                    this.neighbours.add(newState);
+                    State newState = new State(left, this, "left");
+                    if (!DFS.seenState.contains(newState)) {
+                        this.neighbours.add(newState);
+                    }
                     //System.out.println("GONE LEFT" + "\n");
                     //System.out.println(Arrays.toString(newState.getState()));
                     //movement = state;
@@ -119,7 +142,9 @@ public class State {
                     right[i] = right[i + 1];
                     right[i + 1] = temp;
                     State newState = new State(right, this, "right");
-                    this.neighbours.add(newState);
+                    if (!DFS.seenState.contains(newState)) {
+                        this.neighbours.add(newState);
+                    }
 
                     // System.out.println("GONE RIGHT" + "\n");
                     //System.out.println(Arrays.toString(newState.getState()));
@@ -134,7 +159,9 @@ public class State {
                     up[i] = up[i - 3];
                     up[i - 3] = temp;
                     State newState = new State(up, this, "up");
-                    this.neighbours.add(newState);
+                    if (!DFS.seenState.contains(newState)) {
+                        this.neighbours.add(newState);
+                    }
                     // System.out.println("GONE UP" + "\n ");
                     // System.out.println(Arrays.toString(newState.getState()));
                     //movement = state;
@@ -146,8 +173,10 @@ public class State {
                     int temp = down[i];
                     down[i] = down[i + 3];
                     down[i + 3] = temp;
-                    State newState = new State(down,  this, "down");
-                    this.neighbours.add(newState);
+                    State newState = new State(down, this, "down");
+                    if (!DFS.seenState.contains(newState)) {
+                        this.neighbours.add(newState);
+                    }
                     // System.out.println(Arrays.toString(newState.getState()));
                     // System.out.println("GONE DOWN" + " \n");
                     // movement = state;
@@ -155,14 +184,13 @@ public class State {
                 break;
             }
         }
-       
+
 //        System.out.println("CHECK");
 //        for (State neighb : neighbours) {
 //            System.out.println(Arrays.toString(neighb.getState()));
 //        }
 //        System.out.println("CHECKED");
     }
-
 
     @Override
     public boolean equals(Object o) {
@@ -171,6 +199,6 @@ public class State {
 
     @Override
     public int hashCode() {
-        return state.hashCode();
+        return Arrays.hashCode(state);
     }
 }
