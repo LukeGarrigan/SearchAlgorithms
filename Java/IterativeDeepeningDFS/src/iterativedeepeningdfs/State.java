@@ -3,15 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package breadthfirstsearch;
+package iterativedeepeningdfs;
+
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
-/**
- *
- * @author Luke
- */
 public class State {
 
     int[] state;

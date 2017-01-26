@@ -31,55 +31,45 @@ public class BreadthFirstSearch {
         // TODO code application logic here
         Timer t = new Timer();
         float startTime = System.nanoTime();
-        int[] problemState = new int[]{8, 6, 7, 2, 5, 4, 3, 0, 1};
-        int[] puzzle = new int[]{2, 3, 5, 1, 4, 6, 0, 7, 8};
-        int[] puzzles = new int[]{1, 2, 3, 4, 5, 6, 7, 0, 8};
-       
-        State initialState = new State(problemState, null, "null");
+        int[] thirtyOneMoves = new int[]{8, 6, 7, 2, 5, 4, 3, 0, 1};
+        int[] tenMoves = new int[]{2, 3, 5, 1, 4, 6, 0, 7, 8};
+        int[] twentyFour = new int[]{8, 5, 1, 3, 4, 7, 0, 6, 2};
+        int[] oneMove = new int[]{1, 2, 3, 4, 5, 6, 7, 0, 8};
+
+        // Testing moves
+        int[] fiveMoves = new int[]{2, 0, 3, 1, 5, 6, 4, 7, 8};
+        int[] tenMovesTwo = new int[]{2, 3, 6, 1, 5, 8, 0, 4, 7};
+        int[] fifteenMoves = new int[]{3, 6, 8, 2, 5, 0, 1, 4, 7};
+        int[] twentyMoves = new int[]{0, 6, 8, 3, 5, 7, 2, 1, 4};
+
+        int[] eighteen = new int[]{6, 1, 3, 7, 0, 8, 5, 2, 4};
+        State initialState = new State(twentyMoves, null, "null");
         QUEUE.add(initialState);
         State current = null;
-        int count = 0;
+        int nodeCount = 0;
         while (!QUEUE.isEmpty()) {
-            count += 1;
-            if(count % 10000 ==0){
-                System.out.println(QUEUE.size() + " " +SET.size());
-            }
+            nodeCount = nodeCount + 1;
             current = QUEUE.remove();
             if (Arrays.equals(current.getState(), GOAL)) {
                 printPath(current, startTime);
                 break;
             }
+            SET.add(current);
+
             current.findNeighbours();
             ArrayList<State> neighbours = current.getNeighbours();
             for (State n : neighbours) {
                 if (!SET.contains(n)) {
                     SET.add(n);
-                    QUEUE.add(n);
-                }
-            }
-        }
-        System.exit(0);
-    }
 
-    public static int manhattan(int[] puzz) {
-        //System.out.println(Arrays.toString(puzz));
-        int total = 0;
-        for (int i = 1; i < puzz.length; i++) {
-            int expectedRow = (i - 1) / 3;
-            int expectedCol = (i - 1) % 3;
-            int num = 0;
-            for (int j = 0; j < puzz.length; j++) {
-                if (puzz[j] == i) {
-                    num = j + 1;
-                    break;
+                    if (!QUEUE.contains(n)) {
+                        QUEUE.add(n);
+                    }
                 }
             }
-            int numRow = (num - 1) / 3;
-            int numCol = (num - 1) % 3;
-            total += Math.abs(expectedRow - numRow)
-                    + Math.abs(expectedCol - numCol);
         }
-        return total;
+        System.out.println(nodeCount);
+        System.exit(0);
     }
 
     public static void printPath(State currentState, float startTime) {
