@@ -43,12 +43,12 @@ public class BreadthFirstSearch {
         int[] twentyMoves = new int[]{0, 6, 8, 3, 5, 7, 2, 1, 4};
 
         int[] eighteen = new int[]{6, 1, 3, 7, 0, 8, 5, 2, 4};
-        State initialState = new State(twentyMoves, null, "null");
+        State initialState = new State(tenMoves, null, "null");
         QUEUE.add(initialState);
         State current = null;
         int nodeCount = 0;
         while (!QUEUE.isEmpty()) {
-            nodeCount = nodeCount + 1;
+           
             current = QUEUE.remove();
             if (Arrays.equals(current.getState(), GOAL)) {
                 printPath(current, startTime);
@@ -59,6 +59,7 @@ public class BreadthFirstSearch {
             current.findNeighbours();
             ArrayList<State> neighbours = current.getNeighbours();
             for (State n : neighbours) {
+                 nodeCount = nodeCount + 1;
                 if (!SET.contains(n)) {
                     SET.add(n);
 
