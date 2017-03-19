@@ -8,6 +8,7 @@ package pdb;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -22,12 +23,14 @@ public class PDB {
     /**
      * @param args the command line arguments
      */
+    static Set<State> explored = new HashSet<State>();
+
     public static void main(String[] args) {
         // TODO code application logic here
         int[] startingState = {1, 2, 3, 4, 5, 6, 7, 8, 0};
-        State startingStatey = new State(startingState,0);
+        State startingStatey = new State(startingState, 0);
         Queue<State> q = new LinkedList<>();
-        Set<State> explored = new HashSet<State>();
+
         q.add(startingStatey);
         explored.add(startingStatey);
 
@@ -40,7 +43,20 @@ public class PDB {
                     q.add(neighbour);
                 }
             }
-            System.out.println(explored.size() + " "+  current.getNumberOfMoves());
+        }
+        // Now these values are stored in the explored 
+        // want to perform some heuristic search on them
+
+        // Step 1: retrieve the H value for a given configuration
+        int[] test = {0, 8, 5, 6, 4, 3, 7, 1, 2};
+        State pState = new State(test, 0);
+        for (State s : explored) {
+            if (s.equals(pState)) {
+                System.out.println(Arrays.toString(s.getState()) + " " + s.getH());
+                s.setG(0);
+                IDAStar ida = new IDAStar();
+                ida.depthFirstSearch(s, s.getH());
+            }
         }
 
     }
@@ -48,18 +64,28 @@ public class PDB {
     public static class State {
 
         private int[] state;
-        int numberOfMoves;
-        public State(int[] state, int numberOfMoves) {
+        float numberOfMoves;
+        float g;
+
+        public State(int[] state, float numberOfMoves) {
             this.state = state;
             this.numberOfMoves = numberOfMoves;
         }
 
-        public int getNumberOfMoves() {
+        public float getH() {
             return numberOfMoves;
         }
 
         public int[] getState() {
             return state;
+        }
+
+        public float getG() {
+            return g;
+        }
+
+        public void setG(float g) {
+            this.g = g;
         }
 
         public ArrayList<State> findNeighbours() {
@@ -73,7 +99,7 @@ public class PDB {
                         int temp = left[i];
                         left[i] = left[i - 1];
                         left[i - 1] = temp;
-                        State newState = new State(left, numberOfMoves+1);
+                        State newState = new State(left, numberOfMoves + 1);
                         neighbours.add(newState);
 
                     }
@@ -84,7 +110,7 @@ public class PDB {
                         int temp = right[i];
                         right[i] = right[i + 1];
                         right[i + 1] = temp;
-                        State newState = new State(right,numberOfMoves+1);
+                        State newState = new State(right, numberOfMoves + 1);
                         neighbours.add(newState);
 
                     }
@@ -95,7 +121,7 @@ public class PDB {
                         int temp = up[i];
                         up[i] = up[i - 3];
                         up[i - 3] = temp;
-                        State newState = new State(up,numberOfMoves+1);
+                        State newState = new State(up, numberOfMoves + 1);
                         neighbours.add(newState);
 
                     }
@@ -105,7 +131,7 @@ public class PDB {
                         int temp = down[i];
                         down[i] = down[i + 3];
                         down[i + 3] = temp;
-                        State newState = new State(down,numberOfMoves+1);
+                        State newState = new State(down, numberOfMoves + 1);
                         neighbours.add(newState);
 
                     }
