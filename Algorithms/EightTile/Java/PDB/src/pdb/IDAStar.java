@@ -16,7 +16,6 @@ public class IDAStar {
 
     private float nextCostBound;
     int[] GOAL = {1, 2, 3, 4, 5, 6, 7, 8, 0};
-
     public PDB.State depthFirstSearch(PDB.State current, float currentCostBound) {
         if (Arrays.equals(current.getState(), GOAL)) {
             return current;

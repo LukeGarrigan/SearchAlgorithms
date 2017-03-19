@@ -55,7 +55,8 @@ public class PDB {
                 System.out.println(Arrays.toString(s.getState()) + " " + s.getH());
                 s.setG(0);
                 IDAStar ida = new IDAStar();
-                ida.depthFirstSearch(s, s.getH());
+               // ida.depthFirstSearch(s, s.getH());
+                ida.resolve(s);
             }
         }
 
@@ -64,16 +65,16 @@ public class PDB {
     public static class State {
 
         private int[] state;
-        float numberOfMoves;
+        float h;
         float g;
-
-        public State(int[] state, float numberOfMoves) {
+        
+        public State(int[] state, float h) {
             this.state = state;
-            this.numberOfMoves = numberOfMoves;
+            this.h = h;
         }
 
         public float getH() {
-            return numberOfMoves;
+            return h;
         }
 
         public int[] getState() {
@@ -99,7 +100,7 @@ public class PDB {
                         int temp = left[i];
                         left[i] = left[i - 1];
                         left[i - 1] = temp;
-                        State newState = new State(left, numberOfMoves + 1);
+                        State newState = new State(left, h + 1);
                         neighbours.add(newState);
 
                     }
@@ -110,7 +111,7 @@ public class PDB {
                         int temp = right[i];
                         right[i] = right[i + 1];
                         right[i + 1] = temp;
-                        State newState = new State(right, numberOfMoves + 1);
+                        State newState = new State(right, h + 1);
                         neighbours.add(newState);
 
                     }
@@ -121,7 +122,7 @@ public class PDB {
                         int temp = up[i];
                         up[i] = up[i - 3];
                         up[i - 3] = temp;
-                        State newState = new State(up, numberOfMoves + 1);
+                        State newState = new State(up, h + 1);
                         neighbours.add(newState);
 
                     }
@@ -131,7 +132,7 @@ public class PDB {
                         int temp = down[i];
                         down[i] = down[i + 3];
                         down[i + 3] = temp;
-                        State newState = new State(down, numberOfMoves + 1);
+                        State newState = new State(down, h + 1);
                         neighbours.add(newState);
 
                     }
