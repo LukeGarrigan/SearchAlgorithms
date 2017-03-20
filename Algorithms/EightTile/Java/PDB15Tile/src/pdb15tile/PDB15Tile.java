@@ -7,10 +7,14 @@ package pdb15tile;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 import java.util.Set;
+import java.util.TreeSet;
 
 /**
  *
@@ -24,6 +28,10 @@ public class PDB15Tile {
     static Set<State> explored1 = new HashSet<State>();
     static Set<State> explored2 = new HashSet<State>();
     static Set<State> explored3 = new HashSet<State>();
+
+    static List<State> sortedList1;
+    static List<State> sortedList2;
+    static List<State> sortedList3;
     static int[] stored1 = {1, 5, 6, 9, 10, 13};
     static int[] stored2 = {7, 8, 11, 12, 14, 15};
     static int[] stored3 = {2, 3, 4};
@@ -38,24 +46,32 @@ public class PDB15Tile {
         State startingState1 = new State(pdb1);
         State startingState2 = new State(pdb2);
         State startingState3 = new State(pdb3);
-        // bfs(explored, startingState1);
-
         bfs(explored1, startingState1);
         bfs(explored2, startingState2);
         bfs(explored3, startingState3);
 
-        
+        sortedList1 = new ArrayList(explored1);
+        sortedList2 = new ArrayList(explored2);
+        sortedList3 = new ArrayList(explored3);
+        Collections.sort(sortedList1,
+                (o1, o2) -> Integer.compare(Math.round(o1.getH()), Math.round(o2.getH())));
+        Collections.sort(sortedList2,
+                (o1, o2) -> Integer.compare(Math.round(o1.getH()), Math.round(o2.getH())));
+
+        Collections.sort(sortedList3,
+                (o1, o2) -> Integer.compare(Math.round(o1.getH()), Math.round(o2.getH())));
+
         // timer 
-        int[] test = {1, 2, 3, 4, 5, 6, 7, 8, 10, 0, 11, 12, 9, 13, 14, 15};
-        
-     //   int[] state = {7, 10, 2, 3, 12, 14, 13, 6, 9, 4, 1, 8, 11, 0, 5, 15};
-        float h = getPDBHeuristic(test);
+        //int[] test = {1, 2, 3, 4, 5, 6, 7, 8, 10, 0, 11, 12, 9, 13, 14, 15};
+          int[] state = {7, 10, 2, 3, 12, 14, 13, 6, 9, 4, 1, 8, 11, 0, 5, 15};
+        float h = getPDBHeuristic(state);
         IDAStar ida = new IDAStar();
-        State s = new State(test);
+        State s = new State(state);
 
         s.setH(h);
         s.setG(0);
         ida.resolve(s);
+
     }
 
     public static float getPDBHeuristic(int[] currentState) {
@@ -70,7 +86,7 @@ public class PDB15Tile {
             //System.out.println(value);g
         }
 
-        for (State x : explored1) {
+        for (State x : sortedList1) {
             if (Arrays.equals(x.getState(), empty1)) {
                 total1 = x.getH();
                 break;
@@ -87,7 +103,7 @@ public class PDB15Tile {
 
         }
 
-        for (State x : explored2) {
+        for (State x : sortedList2) {
             if (Arrays.equals(x.getState(), empty2)) {
                 total2 = x.getH();
                 break;
@@ -104,7 +120,7 @@ public class PDB15Tile {
             //System.out.println(value);
         }
 
-        for (State x : explored3) {
+        for (State x : sortedList3) {
             if (Arrays.equals(x.getState(), empty3)) {
                 total3 = x.getH();
                 break;
@@ -141,7 +157,7 @@ public class PDB15Tile {
         }
     }
 
-    public static class State {
+    public static class State implements Comparator<State> {
 
         private int[] state;
         private float h;
@@ -237,6 +253,14 @@ public class PDB15Tile {
         public int hashCode() {
             return Arrays.hashCode(state);
         }
+
+        @Override
+        public int compare(State t, State t1) {
+            int first = Math.round(t.getH());
+            int second = Math.round(t1.getH());
+            return Integer.compare(first, second);
+        }
+
     }
 
 }
