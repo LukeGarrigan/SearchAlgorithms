@@ -27,9 +27,9 @@ public class SlidingTileProject {
         HeuristicFunction h = new Manhattan();
         HeuristicFunction l = new LinearConflict();
         IterativeDeepeningAStar ida = new IterativeDeepeningAStar(l);
-        int initialHeuristic = l.calculateHeuristic(fourtyMoves);
+        int initialHeuristic = l.calculateHeuristic(twentyFiveMoves);
 
-        State initialState = new State(fourtyMoves, 0, initialHeuristic, null, "null");
+        State initialState = new State(twentyFiveMoves, 0, initialHeuristic, null, "null");
         State goal = ida.resolve(initialState);
 
         System.out.println(Arrays.toString(goal.getState()));

@@ -33,7 +33,6 @@ public class PDB {
 
         q.add(startingStatey);
         explored.add(startingStatey);
-
         State current;
         while (!q.isEmpty()) {
             current = q.poll();
@@ -44,6 +43,7 @@ public class PDB {
                 }
             }
         }
+           System.out.println(explored.size());
         // Now these values are stored in the explored 
         // want to perform some heuristic search on them
 

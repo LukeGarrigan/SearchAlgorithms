@@ -35,34 +35,45 @@ public class PDB15Tile {
         int[] pdb2 = {0, 0, 0, 0, 0, 0, 7, 8, 0, 0, 11, 12, 0, 14, 15, 0};
         int[] pdb3 = {0, 2, 3, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
-        State startingState1 = new State(pdb1, 0);
-        State startingState2 = new State(pdb2, 0);
-        State startingState3 = new State(pdb3, 0);
+        State startingState1 = new State(pdb1);
+        State startingState2 = new State(pdb2);
+        State startingState3 = new State(pdb3);
         // bfs(explored, startingState1);
 
         bfs(explored1, startingState1);
         bfs(explored2, startingState2);
         bfs(explored3, startingState3);
 
-        int amountStored = explored1.size() + explored2.size() + explored3.size();
-        System.out.println("Amount stored " + amountStored);
+        
+        // timer 
+        int[] test = {1, 2, 3, 4, 5, 6, 7, 8, 10, 0, 11, 12, 9, 13, 14, 15};
+        
+     //   int[] state = {7, 10, 2, 3, 12, 14, 13, 6, 9, 4, 1, 8, 11, 0, 5, 15};
+        float h = getPDBHeuristic(test);
+        IDAStar ida = new IDAStar();
+        State s = new State(test);
 
+        s.setH(h);
+        s.setG(0);
+        ida.resolve(s);
+    }
+
+    public static float getPDBHeuristic(int[] currentState) {
         float total1 = 0, total2 = 0, total3 = 0;
-
-        int[] blar = {7, 10, 2, 3, 12, 14, 13, 6, 9, 4, 1, 8, 11, 0, 5, 15};
         /////////////////////////////////////////////////////////////////////
         //////////////////// For the first set//////////////////////////////
         /////////////////////////////////////////////////////////////////////
         int[] empty1 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
         for (int i = 0; i < stored1.length; i++) {
-            int value = getPatternPosition(stored1[i], blar);
+            int value = getPatternPosition(stored1[i], currentState);
             empty1[value] = stored1[i];
-            //System.out.println(value);
+            //System.out.println(value);g
         }
 
         for (State x : explored1) {
             if (Arrays.equals(x.getState(), empty1)) {
                 total1 = x.getH();
+                break;
             }
         }
 
@@ -71,7 +82,7 @@ public class PDB15Tile {
         /////////////////////////////////////////////////////////////////////
         int[] empty2 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
         for (int i = 0; i < stored2.length; i++) {
-            int value = getPatternPosition(stored2[i], blar);
+            int value = getPatternPosition(stored2[i], currentState);
             empty2[value] = stored2[i];
 
         }
@@ -79,6 +90,7 @@ public class PDB15Tile {
         for (State x : explored2) {
             if (Arrays.equals(x.getState(), empty2)) {
                 total2 = x.getH();
+                break;
             }
         }
 
@@ -87,7 +99,7 @@ public class PDB15Tile {
         /////////////////////////////////////////////////////////////////////
         int[] empty3 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
         for (int i = 0; i < stored3.length; i++) {
-            int value = getPatternPosition(stored3[i], blar);
+            int value = getPatternPosition(stored3[i], currentState);
             empty3[value] = stored3[i];
             //System.out.println(value);
         }
@@ -95,13 +107,11 @@ public class PDB15Tile {
         for (State x : explored3) {
             if (Arrays.equals(x.getState(), empty3)) {
                 total3 = x.getH();
+                break;
             }
         }
+        return total1 + total2 + total3;
 
-        IDAStar ida = new IDAStar();
-        State s = new State(blar, total1 + total2 + total3);
-        s.setG(0);
-        ida.resolve(s);
     }
 
     public static int getPatternPosition(int value, int[] tilesInPattern) {
@@ -137,9 +147,8 @@ public class PDB15Tile {
         private float h;
         private float g;
 
-        public State(int[] state, float h) {
+        public State(int[] state) {
             this.state = state;
-            this.h = h;
         }
 
         public void setH(float h) {
@@ -173,7 +182,8 @@ public class PDB15Tile {
                         int temp = left[i];
                         left[i] = left[i - 1];
                         left[i - 1] = temp;
-                        State newState = new State(left, h + 1);
+                        State newState = new State(left);
+                        newState.setH(h + 1);
                         neighbours.add(newState);
 
                     }
@@ -184,7 +194,8 @@ public class PDB15Tile {
                         int temp = right[i];
                         right[i] = right[i + 1];
                         right[i + 1] = temp;
-                        State newState = new State(right, h + 1);
+                        State newState = new State(right);
+                        newState.setH(h + 1);
                         neighbours.add(newState);
 
                     }
@@ -195,7 +206,8 @@ public class PDB15Tile {
                         int temp = up[i];
                         up[i] = up[i - 4];
                         up[i - 4] = temp;
-                        State newState = new State(up, h + 1);
+                        State newState = new State(up);
+                        newState.setH(h + 1);
                         neighbours.add(newState);
 
                     }
@@ -205,7 +217,8 @@ public class PDB15Tile {
                         int temp = down[i];
                         down[i] = down[i + 4];
                         down[i + 4] = temp;
-                        State newState = new State(down, h + 1);
+                        State newState = new State(down);
+                        newState.setH(h + 1);
                         neighbours.add(newState);
 
                     }

@@ -14,6 +14,7 @@ import java.util.Timer;
  * @author Luke
  */
 public class IterativeDeepeningAStar implements SearchAlgorithm, UseHeuristic {
+
     private HeuristicFunction heuristic;
     static int[] GOAL = new int[]{1, 2, 3, 4, 5, 6, 7, 8,
         9, 10, 11, 12, 13, 14, 15, 0};
@@ -23,11 +24,10 @@ public class IterativeDeepeningAStar implements SearchAlgorithm, UseHeuristic {
 
     static int statesExpanded = 0;
 
-    
-    public IterativeDeepeningAStar(HeuristicFunction heuristic){
+    public IterativeDeepeningAStar(HeuristicFunction heuristic) {
         this.heuristic = heuristic;
     }
-    
+
     public State depthFirstSearch(State current, float currentCostBound) {
         statesExpanded++;
         if (Arrays.equals(current.getState(), GOAL)) {
@@ -39,8 +39,8 @@ public class IterativeDeepeningAStar implements SearchAlgorithm, UseHeuristic {
             Manhattan m = new Manhattan();
             float li = heuristic.calculateHeuristic(next.getState());
             next.setH(li);
+             System.out.println(Arrays.toString(next.getState()) + " " + next.getH());
             float value = next.getG() + next.getH();
-
             if (value <= currentCostBound) {
                 State result = depthFirstSearch(next, currentCostBound);
                 if (result != null) {
@@ -50,10 +50,10 @@ public class IterativeDeepeningAStar implements SearchAlgorithm, UseHeuristic {
         }
         return null;
     }
-    
+
     @Override
     public State resolve(State start) {
-         // should already have heuristic because the initial state
+        // should already have heuristic because the initial state
         nextCostBound = start.getH();
         State solution = null;
 
@@ -69,5 +69,5 @@ public class IterativeDeepeningAStar implements SearchAlgorithm, UseHeuristic {
     public void setHeuristic(HeuristicFunction h) {
         this.heuristic = h;
     }
-    
+
 }
