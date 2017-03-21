@@ -37,12 +37,14 @@ public class IterativeDeepeningAStar {
         int[] sixtyMoves = new int[]{8, 14, 1, 5, 7, 12, 15, 6, 0, 11, 10, 9, 13, 2, 3, 4}; 
         int[] sixtyFiveMoves = new int[]{11, 14, 9, 15, 7, 2, 8, 13, 3, 0, 5, 6, 12, 1, 10, 4};
         
+        int[] state = {7, 10, 2, 3, 12, 14, 13, 6, 9, 4, 1, 8, 11, 0, 5, 15};
+        
         LinearConflicts lin = new LinearConflicts();
-        float li = lin.linearConflict(thirtyFiveMoves);
+        float li = lin.linearConflict(fifteenMoves);
        
         IDAStar id = new IDAStar();
         double startTime = System.nanoTime();
-        State initialState = new State(thirtyFiveMoves, 0, li, null, "null");
+        State initialState = new State(fifteenMoves, 0, li, null, "null");
         State goal = id.IDAStar(initialState);
         printPath(goal,startTime);
 

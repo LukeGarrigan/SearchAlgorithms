@@ -22,7 +22,7 @@ public class IDAStar {
     LinearConflicts l = new LinearConflicts();
     // gets created when IDAStar is invoked
     Timer t = new Timer();
-    
+
     static int statesExpanded = 0;
 
     public State IDAStar(State start) {
@@ -50,6 +50,7 @@ public class IDAStar {
             Manhattan m = new Manhattan();
             float li = l.linearConflict(next.getState());
             next.setH(li);
+            System.out.println(Arrays.toString(next.getState()) + " " + next.getH());
             float value = next.getG() + next.getH();
 
             if (value <= currentCostBound) {
@@ -61,8 +62,6 @@ public class IDAStar {
         }
         return null;
     }
-
- 
 
     public ArrayList<State> findNeighbours(State currentState) {
 

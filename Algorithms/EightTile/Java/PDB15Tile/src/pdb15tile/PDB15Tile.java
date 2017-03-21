@@ -14,7 +14,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.Set;
-import java.util.TreeSet;
 
 /**
  *
@@ -25,9 +24,9 @@ public class PDB15Tile {
     /**
      * @param args the command line arguments
      */
-    static Set<State> explored1 = new HashSet<State>();
-    static Set<State> explored2 = new HashSet<State>();
-    static Set<State> explored3 = new HashSet<State>();
+    static Set<State> explored1 = new HashSet<>();
+    static Set<State> explored2 = new HashSet<>();
+    static Set<State> explored3 = new HashSet<>();
 
     static List<State> sortedList1;
     static List<State> sortedList2;
@@ -43,13 +42,19 @@ public class PDB15Tile {
         int[] pdb2 = {0, 0, 0, 0, 0, 0, 7, 8, 0, 0, 11, 12, 0, 14, 15, 0};
         int[] pdb3 = {0, 2, 3, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
-        State startingState1 = new State(pdb1);
-        State startingState2 = new State(pdb2);
-        State startingState3 = new State(pdb3);
+        State startingState1 = new State(pdb1, "null", 15);
+        State startingState2 = new State(pdb2, "null", 15);
+        State startingState3 = new State(pdb3, "null", 15);
         bfs(explored1, startingState1);
+        System.out.println(explored1.size());
         bfs(explored2, startingState2);
+        System.out.println(explored2.size());
         bfs(explored3, startingState3);
+        System.out.println(explored3.size());
 
+        // for (State x : explored3) {
+        //    System.out.println(Arrays.toString(x.getState()) + "  zeroPos: " + x.getZeroPosition());
+        //}
         sortedList1 = new ArrayList(explored1);
         sortedList2 = new ArrayList(explored2);
         sortedList3 = new ArrayList(explored3);
@@ -62,11 +67,14 @@ public class PDB15Tile {
                 (o1, o2) -> Integer.compare(Math.round(o1.getH()), Math.round(o2.getH())));
 
         // timer 
+        System.out.println("Start");
+        int[] fifteenMoves = new int[]{5, 1, 2, 3, 9, 7, 0, 4, 13, 6, 10, 8, 14, 15, 11, 12};
         //int[] test = {1, 2, 3, 4, 5, 6, 7, 8, 10, 0, 11, 12, 9, 13, 14, 15};
-          int[] state = {7, 10, 2, 3, 12, 14, 13, 6, 9, 4, 1, 8, 11, 0, 5, 15};
+        int[] state = {7, 10, 2, 3, 12, 14, 13, 6, 9, 4, 1, 8, 11, 0, 5, 15};
+        int[] sixtyFiveMoves = new int[]{11, 14, 9, 15, 7, 2, 8, 13, 3, 0, 5, 6, 12, 1, 10, 4};
         float h = getPDBHeuristic(state);
         IDAStar ida = new IDAStar();
-        State s = new State(state);
+        State s = new State(state, "null", 6);
 
         s.setH(h);
         s.setG(0);
@@ -75,7 +83,7 @@ public class PDB15Tile {
     }
 
     public static float getPDBHeuristic(int[] currentState) {
-        float total1 = 0, total2 = 0, total3 = 0;
+        float total = 0;
         /////////////////////////////////////////////////////////////////////
         //////////////////// For the first set//////////////////////////////
         /////////////////////////////////////////////////////////////////////
@@ -88,7 +96,7 @@ public class PDB15Tile {
 
         for (State x : sortedList1) {
             if (Arrays.equals(x.getState(), empty1)) {
-                total1 = x.getH();
+                total += x.getH();
                 break;
             }
         }
@@ -105,7 +113,7 @@ public class PDB15Tile {
 
         for (State x : sortedList2) {
             if (Arrays.equals(x.getState(), empty2)) {
-                total2 = x.getH();
+                total += x.getH();
                 break;
             }
         }
@@ -122,11 +130,11 @@ public class PDB15Tile {
 
         for (State x : sortedList3) {
             if (Arrays.equals(x.getState(), empty3)) {
-                total3 = x.getH();
+                total += x.getH();
                 break;
             }
         }
-        return total1 + total2 + total3;
+        return total;
 
     }
 
@@ -147,11 +155,10 @@ public class PDB15Tile {
         State current;
         while (!q.isEmpty()) {
             current = q.poll();
-            for (State neighbour : current.findNeighbours()) {
+            for (State neighbour : current.findNeighbours2()) {
                 if (!emptySet.contains(neighbour)) {
                     emptySet.add(neighbour);
                     q.add(neighbour);
-
                 }
             }
         }
@@ -159,12 +166,16 @@ public class PDB15Tile {
 
     public static class State implements Comparator<State> {
 
+        private int zeroPosition;
         private int[] state;
         private float h;
         private float g;
+        private String direction;
 
-        public State(int[] state) {
+        public State(int[] state, String direction, int zeroPosition) {
             this.state = state;
+            this.direction = direction;
+            this.zeroPosition = zeroPosition;
         }
 
         public void setH(float h) {
@@ -187,60 +198,131 @@ public class PDB15Tile {
             this.g = g;
         }
 
+        public String getDirection() {
+            return direction;
+        }
+
+        public int getZeroPosition() {
+            return zeroPosition;
+        }
+
+        public void setDirection(String direction) {
+            this.direction = direction;
+        }
+
+        public void setState(int[] state) {
+            this.state = state;
+        }
+
         public ArrayList<State> findNeighbours() {
+
+            ArrayList<State> neighbours = new ArrayList<>();
+            //for (int i = 0; i < state.length; i++) {
+            //if (state[i] == 0) {
+            if (zeroPosition % 4 != 0 && !direction.equals("right")) {
+                int[] left = new int[16];
+                System.arraycopy(state, 0, left, 0, left.length);
+                int temp = left[zeroPosition];
+                left[zeroPosition] = left[zeroPosition - 1];
+                left[zeroPosition - 1] = temp;
+                State newState = new State(left, "left", zeroPosition - 1);
+                newState.setH(this.h + 1);
+                neighbours.add(newState);
+
+            }
+            if (zeroPosition % 4 != 3 && !direction.equals("left")) {
+                int[] right = new int[16];
+                System.arraycopy(state, 0, right, 0, right.length);
+
+                int temp = right[zeroPosition];
+                right[zeroPosition] = right[zeroPosition + 1];
+                right[zeroPosition + 1] = temp;
+                State newState = new State(right, "right", zeroPosition + 1);
+                newState.setH(this.h + 1);
+                neighbours.add(newState);
+
+            }
+            if (zeroPosition > 3 && !direction.equals("down")) {
+
+                int[] up = new int[16];
+                System.arraycopy(state, 0, up, 0, up.length);
+                int temp = up[zeroPosition];
+                up[zeroPosition] = up[zeroPosition - 4];
+                up[zeroPosition - 4] = temp;
+                State newState = new State(up, "up", zeroPosition - 4);
+                newState.setH(this.h + 1);
+                neighbours.add(newState);
+
+            }
+            if (zeroPosition < 12 && !direction.equals("up")) {
+                int[] down = new int[16];
+                System.arraycopy(state, 0, down, 0, down.length);
+                int temp = down[zeroPosition];
+                down[zeroPosition] = down[zeroPosition + 4];
+                down[zeroPosition + 4] = temp;
+                State newState = new State(down, "down", zeroPosition + 4);
+                newState.setH(this.h + 1);
+                neighbours.add(newState);
+
+            }
+            // }
+            return neighbours;
+        }
+
+        public ArrayList<State> findNeighbours2() {
 
             ArrayList<State> neighbours = new ArrayList<>();
             for (int i = 0; i < state.length; i++) {
                 if (state[i] == 0) {
-                    if (i % 4 != 0) {
+                    if (i % 4 != 0 && !direction.equals("right")) {
                         int[] left = new int[16];
                         System.arraycopy(state, 0, left, 0, left.length);
                         int temp = left[i];
                         left[i] = left[i - 1];
                         left[i - 1] = temp;
-                        State newState = new State(left);
-                        newState.setH(h + 1);
+                        State newState = new State(left, "left", i - 1);
+                        newState.setH(this.h + 1);
                         neighbours.add(newState);
 
                     }
-                    if (i % 4 != 3) {
+                    if (i % 4 != 3 && !direction.equals("left")) {
                         int[] right = new int[16];
                         System.arraycopy(state, 0, right, 0, right.length);
 
                         int temp = right[i];
                         right[i] = right[i + 1];
                         right[i + 1] = temp;
-                        State newState = new State(right);
-                        newState.setH(h + 1);
+                        State newState = new State(right, "right", i + 1);
+                        newState.setH(this.h + 1);
                         neighbours.add(newState);
 
                     }
-                    if (i > 3) {
+                    if (i > 3 && !direction.equals("down")) {
 
                         int[] up = new int[16];
                         System.arraycopy(state, 0, up, 0, up.length);
                         int temp = up[i];
                         up[i] = up[i - 4];
                         up[i - 4] = temp;
-                        State newState = new State(up);
-                        newState.setH(h + 1);
+                        State newState = new State(up, "up", i - 4);
+                        newState.setH(this.h + 1);
                         neighbours.add(newState);
 
                     }
-                    if (i < 12) {
+                    if (i < 12 && !direction.equals("up")) {
                         int[] down = new int[16];
                         System.arraycopy(state, 0, down, 0, down.length);
                         int temp = down[i];
                         down[i] = down[i + 4];
                         down[i + 4] = temp;
-                        State newState = new State(down);
-                        newState.setH(h + 1);
+                        State newState = new State(down, "down", i + 4);
+                        newState.setH(this.h + 1);
                         neighbours.add(newState);
 
                     }
-
                 }
             }
+            // }
             return neighbours;
         }
 

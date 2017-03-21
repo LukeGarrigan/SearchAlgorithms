@@ -30,7 +30,7 @@ public class IDAStar {
             next.setG(current.getG()+1);
             next.setH(h);
             float value = next.getG() + next.getH();
-            System.out.println(Arrays.toString(next.getState()) + " " + next.getH());
+            //System.out.println(Arrays.toString(next.getState()) + " " + next.getH());
             if (value <= currentCostBound) {
                 PDB15Tile.State result = depthFirstSearch(next, currentCostBound);
                 if (result != null) {
