@@ -25,7 +25,7 @@ public class IDAStar {
         }
 
         for (PDB15Tile.State next : current.findNeighbours()) {
-            float h = PDB15Tile.getPDBHeuristic(next.getState());
+            float h = PDB15Tile.getPDBHeuristic2(next.getState());
           
             next.setG(current.getG()+1);
             next.setH(h);

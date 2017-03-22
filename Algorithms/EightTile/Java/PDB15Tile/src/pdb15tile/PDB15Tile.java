@@ -35,6 +35,10 @@ public class PDB15Tile {
     static int[] stored2 = {7, 8, 11, 12, 14, 15};
     static int[] stored3 = {2, 3, 4};
 
+    static float[][][] three = new float[16][16][16];
+    static float[][][][][][] six = new float[16][16][16][16][16][16];
+    static float[][][][][][] six2 = new float[16][16][16][16][16][16];
+
     public static void main(String[] args) {
         // TODO code application logic here
         //int[] wholeSet = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 0};
@@ -45,16 +49,24 @@ public class PDB15Tile {
         State startingState1 = new State(pdb1, "null", 15);
         State startingState2 = new State(pdb2, "null", 15);
         State startingState3 = new State(pdb3, "null", 15);
-        bfs(explored1, startingState1);
-        System.out.println(explored1.size());
-        bfs(explored2, startingState2);
-        System.out.println(explored2.size());
-        bfs(explored3, startingState3);
-        System.out.println(explored3.size());
+        System.out.println(stored3.length);
+        bfs2(three, startingState3, stored3);
+        bfs2(six, startingState1, stored1);
+        bfs2(six2, startingState2, stored2);
 
+        int count = 0;
+
+        System.out.println(count);
+
+        //bfs(explored1, startingState1);
+        //System.out.println(explored1.size());
+        //bfs(explored2, startingState2);
+        //System.out.println(explored2.size());
+        //bfs(explored3, startingState3);
         // for (State x : explored3) {
         //    System.out.println(Arrays.toString(x.getState()) + "  zeroPos: " + x.getZeroPosition());
         //}
+       /*
         sortedList1 = new ArrayList(explored1);
         sortedList2 = new ArrayList(explored2);
         sortedList3 = new ArrayList(explored3);
@@ -65,21 +77,114 @@ public class PDB15Tile {
 
         Collections.sort(sortedList3,
                 (o1, o2) -> Integer.compare(Math.round(o1.getH()), Math.round(o2.getH())));
-
+        */
         // timer 
         System.out.println("Start");
         int[] fifteenMoves = new int[]{5, 1, 2, 3, 9, 7, 0, 4, 13, 6, 10, 8, 14, 15, 11, 12};
         //int[] test = {1, 2, 3, 4, 5, 6, 7, 8, 10, 0, 11, 12, 9, 13, 14, 15};
         int[] state = {7, 10, 2, 3, 12, 14, 13, 6, 9, 4, 1, 8, 11, 0, 5, 15};
         int[] sixtyFiveMoves = new int[]{11, 14, 9, 15, 7, 2, 8, 13, 3, 0, 5, 6, 12, 1, 10, 4};
-        float h = getPDBHeuristic(state);
+        float h = getPDBHeuristic2(sixtyFiveMoves);
         IDAStar ida = new IDAStar();
-        State s = new State(state, "null", 6);
+        State s = new State(sixtyFiveMoves, "null", 6);
 
         s.setH(h);
         s.setG(0);
         ida.resolve(s);
+        
+    }
 
+    public static void bfs2(float[][][][][][] six, State s, int[] storedNums) {
+        Queue<State> q = new LinkedList<>();
+        int position = getPatternPosition(storedNums[0], s.getState());
+        int position1 = getPatternPosition(storedNums[1], s.getState());
+        int position2 = getPatternPosition(storedNums[2], s.getState());
+        int position3 = getPatternPosition(storedNums[3], s.getState());
+        int position4 = getPatternPosition(storedNums[4], s.getState());
+        int position5 = getPatternPosition(storedNums[5], s.getState());
+        six[position][position1][position2][position3][position4][position5] = 0;
+        q.add(s);
+        State current;
+        while (!q.isEmpty()) {
+            current = q.poll();
+            for (State neighbour : current.findNeighbours2()) {
+                int pos = getPatternPosition(storedNums[0], neighbour.getState());
+                int pos1 = getPatternPosition(storedNums[1], neighbour.getState());
+                int pos2 = getPatternPosition(storedNums[2], neighbour.getState());
+                int pos3 = getPatternPosition(storedNums[3], neighbour.getState());
+                int pos4 = getPatternPosition(storedNums[4], neighbour.getState());
+                int pos5 = getPatternPosition(storedNums[5], neighbour.getState());
+                if (six[pos][pos1][pos2][pos3][pos4][pos5] == 0.0) {
+                    six[pos][pos1][pos2][pos3][pos4][pos5] = neighbour.getH();
+                    q.add(neighbour);
+                }
+
+            }
+        }
+    }
+
+    public static void bfs2(float[][][] three, State s, int[] storedNums) {
+        Queue<State> q = new LinkedList<>();
+        int position = getPatternPosition(storedNums[0], s.getState());
+        int position1 = getPatternPosition(storedNums[1], s.getState());
+        int position2 = getPatternPosition(storedNums[2], s.getState());
+        three[position][position1][position2] = 0;
+        q.add(s);
+        State current;
+        while (!q.isEmpty()) {
+            current = q.poll();
+            for (State neighbour : current.findNeighbours2()) {
+                int pos = getPatternPosition(storedNums[0], neighbour.getState());
+                int pos1 = getPatternPosition(storedNums[1], neighbour.getState());
+                int pos2 = getPatternPosition(storedNums[2], neighbour.getState());
+                if (three[pos][pos1][pos2] == 0.0) {
+                    three[pos][pos1][pos2] = neighbour.getH();
+                    q.add(neighbour);
+                }
+
+            }
+        }
+    }
+
+    public static void bfs(Set<State> emptySet, State s) {
+        Queue<State> q = new LinkedList<>();
+        q.add(s);
+        emptySet.add(s);
+        State current;
+        while (!q.isEmpty()) {
+            current = q.poll();
+            for (State neighbour : current.findNeighbours2()) {
+                if (!emptySet.contains(neighbour)) {
+                    emptySet.add(neighbour);
+                    q.add(neighbour);
+                }
+            }
+        }
+    }
+
+    public static float getPDBHeuristic2(int[] currentState) {
+        float total = 0;
+        int[] temp = new int[3];
+        for (int i = 0; i < stored3.length; i++) {
+            int value = getPatternPosition(stored3[i], currentState);
+            temp[i] = value;
+        }
+        total += three[temp[0]][temp[1]][temp[2]];
+
+        int[] temp2 = new int[6];
+        for (int i = 0; i < stored1.length; i++) {
+            int value = getPatternPosition(stored1[i], currentState);
+            temp2[i] = value;
+        }
+        total += six[temp2[0]][temp2[1]][temp2[2]][temp2[3]][temp2[4]][temp2[5]];
+
+        int[] temp3 = new int[6];
+        for (int i = 0; i < stored2.length; i++) {
+            int value = getPatternPosition(stored2[i], currentState);
+            temp3[i] = value;
+        }
+        total += six2[temp3[0]][temp3[1]][temp3[2]][temp3[3]][temp3[4]][temp3[5]];
+        return total;
     }
 
     public static float getPDBHeuristic(int[] currentState) {
@@ -146,22 +251,6 @@ public class PDB15Tile {
             }
         }
         return -1; //not found
-    }
-
-    public static void bfs(Set<State> emptySet, State s) {
-        Queue<State> q = new LinkedList<>();
-        q.add(s);
-        emptySet.add(s);
-        State current;
-        while (!q.isEmpty()) {
-            current = q.poll();
-            for (State neighbour : current.findNeighbours2()) {
-                if (!emptySet.contains(neighbour)) {
-                    emptySet.add(neighbour);
-                    q.add(neighbour);
-                }
-            }
-        }
     }
 
     public static class State implements Comparator<State> {
