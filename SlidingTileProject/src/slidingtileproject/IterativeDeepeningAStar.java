@@ -39,7 +39,7 @@ public class IterativeDeepeningAStar implements SearchAlgorithm, UseHeuristic {
             Manhattan m = new Manhattan();
             float li = heuristic.calculateHeuristic(next.getState());
             next.setH(li);
-             System.out.println(Arrays.toString(next.getState()) + " " + next.getH());
+            // System.out.println(Arrays.toString(next.getState()) + " " + next.getH());
             float value = next.getG() + next.getH();
             if (value <= currentCostBound) {
                 State result = depthFirstSearch(next, currentCostBound);
