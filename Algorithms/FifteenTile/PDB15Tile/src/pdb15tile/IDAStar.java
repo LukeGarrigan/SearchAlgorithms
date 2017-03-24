@@ -19,6 +19,7 @@ public class IDAStar {
 
     CalculatePDBHeuristic pdb = new CalculatePDBHeuristic();
 
+   
     public PDB15Tile.State depthFirstSearch(PDB15Tile.State current, int currentCostBound) {
         if (Arrays.equals(current.getState(), GOAL)) {
             System.out.println("GOALL");
@@ -27,7 +28,6 @@ public class IDAStar {
 
         for (PDB15Tile.State next : current.findNeighbours()) {
             int h = pdb.calculate(next.getState());
-
             next.setG(current.getG() + 1);
             next.setH(h);
             int value = next.getG() + next.getH();

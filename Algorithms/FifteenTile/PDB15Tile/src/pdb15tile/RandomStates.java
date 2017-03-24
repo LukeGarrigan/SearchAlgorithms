@@ -27,12 +27,10 @@ public class RandomStates {
                 array[i] = array[randomPosition];
                 array[randomPosition] = temp;
             }
-
             if (isSolvable(array)) {
                 int[] t = array.clone();
                 testValues.add(t);
             }
-
         }
         return testValues;
     }

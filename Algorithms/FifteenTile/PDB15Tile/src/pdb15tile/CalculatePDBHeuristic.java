@@ -25,6 +25,7 @@ public class CalculatePDBHeuristic {
     private int[][][] three;
     private int[][][][][][] six;
     private int[][][][][][] six2;
+    private boolean dataRead = false;
 
     public CalculatePDBHeuristic() {
         this.six2 = new int[16][16][16][16][16][16];
@@ -37,13 +38,16 @@ public class CalculatePDBHeuristic {
     }
 
     public void getStoredFiles() throws IOException, ClassNotFoundException {
-        ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("PDB_3_1"));
-        ObjectInputStream inputStream1 = new ObjectInputStream(new FileInputStream("PDB_6_1"));
-        ObjectInputStream inputStream2 = new ObjectInputStream(new FileInputStream("PDB_6_2"));
-        three = (int[][][]) inputStream.readObject();
-        six = (int[][][][][][]) inputStream1.readObject();
-        six2 = (int[][][][][][]) inputStream2.readObject();
-        System.out.println("Files stored");
+        if (dataRead == false) {
+            ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("PDB_3_1"));
+            ObjectInputStream inputStream1 = new ObjectInputStream(new FileInputStream("PDB_6_1"));
+            ObjectInputStream inputStream2 = new ObjectInputStream(new FileInputStream("PDB_6_2"));
+            three = (int[][][]) inputStream.readObject();
+            six = (int[][][][][][]) inputStream1.readObject();
+            six2 = (int[][][][][][]) inputStream2.readObject();
+            dataRead = true;
+            System.out.println("Files stored");
+        }
     }
 
     public int calculate(int[] currentState) {

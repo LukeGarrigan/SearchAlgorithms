@@ -37,16 +37,7 @@ public class PDB15Tile {
         State startingState1 = new State(pdb1, "null", 15);
         State startingState2 = new State(pdb2, "null", 15);
         State startingState3 = new State(pdb3, "null", 15);
-        //CreatePDB c = new CreatePDB();
-        //c.bfs2(six, startingState1, stored1);
-        //c.bfs2(six2, startingState2, stored2);
-        //c.bfs2(three, startingState3, stored3);
-
-        //c.sendSixToFile(six, "PDB_6_1");
-        //c.sendSixToFile(six2, "PDB_6_2");
-        //c.sendThreeToFile(three, "PDB_3_1");
         System.out.println("Start");
-
         int[] fifteenMoves = new int[]{5, 1, 2, 3, 9, 7, 0, 4, 13, 6, 10, 8, 14, 15, 11, 12};
         //int[] test = {1, 2, 3, 4, 5, 6, 7, 8, 10, 0, 11, 12, 9, 13, 14, 15};
         int[] state = {7, 10, 2, 3, 12, 14, 13, 6, 9, 4, 1, 8, 11, 0, 5, 15};
@@ -55,17 +46,23 @@ public class PDB15Tile {
 
         RandomStates r = new RandomStates();
         ArrayList<int[]> testStates = r.RandomizeArray(fourtyMoves);
+        IDAStar ida = new IDAStar();
 
-        for (int[] x : testStates) {
-            System.out.println(Arrays.toString(x));
+        for (int[] testState : testStates) {
+            int zeroPos = 0;
+            for (int i = 0; i < testState.length; i++) {
+                if (testState[i] == 0) {
+                    zeroPos = i;
+                    System.out.println(zeroPos);
+                }
+            }
+            System.out.println(r.isSolvable(testState));
+            System.out.println(Arrays.toString(testState));
+            State s = new State(testState, "null", zeroPos);
+            s.setG(0);
+            ida.resolve(s);
         }
 
-        // CalculatePDBHeuristic pdbH = new CalculatePDBHeuristic();
-        //int h = pdbH.calculate(fourtyMoves);
-        //IDAStar ida = new IDAStar();
-        //State s = new State(fourtyMoves, "null", 2);
-        //s.setG(0);
-        //        ida.resolve(s);
     }
 
     public static class State implements Comparator<State> {
