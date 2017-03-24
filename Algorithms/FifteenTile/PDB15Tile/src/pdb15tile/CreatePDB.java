@@ -17,30 +17,6 @@ import java.util.Queue;
  */
 public class CreatePDB {
 
-    public void bfs2(int[][][][][][] six, PDB15Tile.State s, int[] storedNums) {
-        Queue<PDB15Tile.State> q = new LinkedList<>();
-        int[] positions = new int[storedNums.length];
-        for (int i = 0; i < storedNums.length; i++) {
-            positions[i] = getPatternPosition(storedNums[i], s.getState());
-        }
-        six[positions[0]][positions[1]][positions[2]][positions[3]][positions[4]][positions[5]] = 0;
-        q.add(s);
-        PDB15Tile.State current;
-        while (!q.isEmpty()) {
-            current = q.poll();
-            for (PDB15Tile.State neighbour : current.findNeighbours2()) {
-                for (int i = 0; i < storedNums.length; i++) {
-                    positions[i] = getPatternPosition(storedNums[i], neighbour.getState());
-                }
-                if (six[positions[0]][positions[1]][positions[2]][positions[3]][positions[4]][positions[5]] == 0) {
-                    six[positions[0]][positions[1]][positions[2]][positions[3]][positions[4]][positions[5]] = neighbour.getH();
-                    q.add(neighbour);
-                }
-            }
-        }
-
-    }
-
     public void bfs2(int[][][] three, PDB15Tile.State s, int[] storedNums) {
         Queue<PDB15Tile.State> q = new LinkedList<>();
         int[] positions = new int[storedNums.length];
@@ -58,6 +34,30 @@ public class CreatePDB {
                 }
                 if (three[positions[0]][positions[1]][positions[2]] == 0) {
                     three[positions[0]][positions[1]][positions[2]] = neighbour.getH();
+                    q.add(neighbour);
+                }
+            }
+        }
+
+    }
+
+    public void bfs2(int[][][][][][] six, PDB15Tile.State s, int[] storedNums) {
+        Queue<PDB15Tile.State> q = new LinkedList<>();
+        int[] positions = new int[storedNums.length];
+        for (int i = 0; i < storedNums.length; i++) {
+            positions[i] = getPatternPosition(storedNums[i], s.getState());
+        }
+        six[positions[0]][positions[1]][positions[2]][positions[3]][positions[4]][positions[5]] = 0;
+        q.add(s);
+        PDB15Tile.State current;
+        while (!q.isEmpty()) {
+            current = q.poll();
+            for (PDB15Tile.State neighbour : current.findNeighbours2()) {
+                for (int i = 0; i < storedNums.length; i++) {
+                    positions[i] = getPatternPosition(storedNums[i], neighbour.getState());
+                }
+                if (six[positions[0]][positions[1]][positions[2]][positions[3]][positions[4]][positions[5]] == 0) {
+                    six[positions[0]][positions[1]][positions[2]][positions[3]][positions[4]][positions[5]] = neighbour.getH();
                     q.add(neighbour);
                 }
             }

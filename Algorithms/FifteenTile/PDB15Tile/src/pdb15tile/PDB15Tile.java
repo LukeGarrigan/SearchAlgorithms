@@ -45,7 +45,7 @@ public class PDB15Tile {
         int[] fourtyMoves = new int[]{6, 7, 0, 11, 1, 5, 10, 4, 14, 13, 15, 2, 9, 8, 3, 12};
 
         RandomStates r = new RandomStates();
-        ArrayList<int[]> testStates = r.RandomizeArray(fourtyMoves);
+        ArrayList<int[]> testStates = r.RandomizeArray(fourtyMoves, 100);
         IDAStar ida = new IDAStar();
 
         for (int[] testState : testStates) {
