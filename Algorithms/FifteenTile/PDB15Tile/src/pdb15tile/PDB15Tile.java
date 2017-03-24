@@ -27,8 +27,6 @@ public class PDB15Tile {
     /**
      * @param args the command line arguments
      */
-
-
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         // TODO code application logic here
         //int[] wholeSet = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 0};
@@ -47,9 +45,6 @@ public class PDB15Tile {
         //c.sendSixToFile(six, "PDB_6_1");
         //c.sendSixToFile(six2, "PDB_6_2");
         //c.sendThreeToFile(three, "PDB_3_1");
-
-      
-
         System.out.println("Start");
 
         int[] fifteenMoves = new int[]{5, 1, 2, 3, 9, 7, 0, 4, 13, 6, 10, 8, 14, 15, 11, 12};
@@ -57,19 +52,21 @@ public class PDB15Tile {
         int[] state = {7, 10, 2, 3, 12, 14, 13, 6, 9, 4, 1, 8, 11, 0, 5, 15};
         int[] sixtyFiveMoves = new int[]{11, 14, 9, 15, 7, 2, 8, 13, 3, 0, 5, 6, 12, 1, 10, 4};
         int[] fourtyMoves = new int[]{6, 7, 0, 11, 1, 5, 10, 4, 14, 13, 15, 2, 9, 8, 3, 12};
-        
-        
-        CalculatePDBHeuristic pdbH = new CalculatePDBHeuristic();
-        
-        int h = pdbH.calculate(fourtyMoves);
-        IDAStar ida = new IDAStar();
-        State s = new State(fourtyMoves, "null", 2);
-        s.setG(0);
-        ida.resolve(s);
 
+        RandomStates r = new RandomStates();
+        ArrayList<int[]> testStates = r.RandomizeArray(fourtyMoves);
+
+        for (int[] x : testStates) {
+            System.out.println(Arrays.toString(x));
+        }
+
+        // CalculatePDBHeuristic pdbH = new CalculatePDBHeuristic();
+        //int h = pdbH.calculate(fourtyMoves);
+        //IDAStar ida = new IDAStar();
+        //State s = new State(fourtyMoves, "null", 2);
+        //s.setG(0);
+        //        ida.resolve(s);
     }
-
-   
 
     public static class State implements Comparator<State> {
 
