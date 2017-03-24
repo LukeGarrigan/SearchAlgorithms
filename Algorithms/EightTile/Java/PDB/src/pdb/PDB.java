@@ -39,18 +39,17 @@ public class PDB {
 
         int[] test = {0, 8, 5, 6, 4, 3, 7, 1, 2};
         RandomStates t = new RandomStates();
-        ArrayList<int[]> testStates = t.RandomizeArray(test, 1000);
+        ArrayList<int[]> testStates = t.RandomizeArray(test, 100000);
+        long startTime = System.currentTimeMillis();
         for (int[] states : testStates) {
             State pState = new State(states, 0);
             pState.setG(0);
             IDAStar id = new IDAStar();
-            long startTime = System.currentTimeMillis();
             id.resolve(pState);
-            long stopTime = System.currentTimeMillis();
-            float elapsedTime = stopTime - startTime;
-            System.out.println(elapsedTime / 1000 + " Seconds");
         }
-
+        long stopTime = System.currentTimeMillis();
+        float elapsedTime = stopTime - startTime;
+        System.out.println(elapsedTime / 1000 + " Seconds");
         // HERE ARE TESTS FOR USING AN ARRAYLIST RATHER THAN SPARSE INDEXING
         /*
         
@@ -146,9 +145,10 @@ public class PDB {
             this.h = h;
         }
 
-        public void setH(int h){
+        public void setH(int h) {
             this.h = h;
         }
+
         public int getH() {
             return h;
         }
