@@ -39,7 +39,7 @@ public class PDB {
 
         int[] test = {0, 8, 5, 6, 4, 3, 7, 1, 2};
         RandomStates t = new RandomStates();
-        ArrayList<int[]> testStates = t.RandomizeArray(test, 100000);
+        ArrayList<int[]> testStates = t.RandomizeArray(test, 10000);
         long startTime = System.currentTimeMillis();
         for (int[] states : testStates) {
             State pState = new State(states, 0);
@@ -50,43 +50,6 @@ public class PDB {
         long stopTime = System.currentTimeMillis();
         float elapsedTime = stopTime - startTime;
         System.out.println(elapsedTime / 1000 + " Seconds");
-        // HERE ARE TESTS FOR USING AN ARRAYLIST RATHER THAN SPARSE INDEXING
-        /*
-        
-            
-        /*
-        Queue<State> q = new LinkedList<>();
-
-        q.add(startingStatey);
-        explored.add(startingStatey);
-        State current;
-        while (!q.isEmpty()) {
-            current = q.poll();
-            for (State neighbour : current.findNeighbours()) {
-                if (!explored.contains(neighbour)) {
-                    explored.add(neighbour);
-                    q.add(neighbour);
-                }
-            }
-        }
-         // Now these values are stored in the explored 
-        // want to perform some heuristic search on them
-        // Step 1: retrieve the H value for a given configuration
-        for (int[] states : testStates) {
-            State pState = new State(states, 0);
-            for (State s : explored) {
-                if (s.equals(pState)) {
-                    s.setG(0);
-                    IDAStar ida = new IDAStar();
-                    long startTime = System.currentTimeMillis();
-                    ida.resolve(s);
-                    long stopTime = System.currentTimeMillis();
-                    float elapsedTime = stopTime - startTime;
-                    System.out.println(elapsedTime / 1000 + " Seconds");
-                }
-            }
-        }
-         */
     }
 
     public static int calculate(int[] currentState) {
