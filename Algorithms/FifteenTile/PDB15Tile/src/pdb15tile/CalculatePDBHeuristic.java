@@ -25,7 +25,6 @@ public class CalculatePDBHeuristic {
     private int[][][] three;
     private int[][][][][][] six;
     private int[][][][][][] six2;
-    private boolean dataRead = false;
 
     public CalculatePDBHeuristic() {
         this.six2 = new int[16][16][16][16][16][16];
@@ -38,16 +37,14 @@ public class CalculatePDBHeuristic {
     }
 
     public void getStoredFiles() throws IOException, ClassNotFoundException {
-        if (dataRead == false) {
-            ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("PDB_3_1"));
-            ObjectInputStream inputStream1 = new ObjectInputStream(new FileInputStream("PDB_6_1"));
-            ObjectInputStream inputStream2 = new ObjectInputStream(new FileInputStream("PDB_6_2"));
-            three = (int[][][]) inputStream.readObject();
-            six = (int[][][][][][]) inputStream1.readObject();
-            six2 = (int[][][][][][]) inputStream2.readObject();
-            dataRead = true;
-            System.out.println("Files stored");
-        }
+
+        ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("PDB_3_1"));
+        ObjectInputStream inputStream1 = new ObjectInputStream(new FileInputStream("PDB_6_1"));
+        ObjectInputStream inputStream2 = new ObjectInputStream(new FileInputStream("PDB_6_2"));
+        three = (int[][][]) inputStream.readObject();
+        six = (int[][][][][][]) inputStream1.readObject();
+        six2 = (int[][][][][][]) inputStream2.readObject();
+
     }
 
     public int calculate(int[] currentState) {
@@ -83,5 +80,21 @@ public class CalculatePDBHeuristic {
             }
         }
         return -1; //not found
+    }
+
+    public int calculateManhattan(int[] puzz) {
+        int total = 0;
+        for (int j = 0; j < puzz.length; j++) {
+            int i = puzz[j];
+            if (i != 0) {
+                int expectedRow = (i - 1) / 3;
+                int expectedCol = (i - 1) % 3;
+                int numRow = j / 3;
+                int numCol = j % 3;
+                total += Math.abs(expectedRow - numRow)
+                        + Math.abs(expectedCol - numCol);
+            }
+        }
+        return total;
     }
 }

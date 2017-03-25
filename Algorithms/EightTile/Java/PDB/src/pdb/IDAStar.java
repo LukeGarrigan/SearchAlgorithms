@@ -23,21 +23,8 @@ public class IDAStar {
         }
 
         for (PDB.State next : current.findNeighbours()) {
-            // we need to find the actual next value
-            /*
-            for (PDB.State s : explored) {
-                if (s.equals(next)) {
-                    next = s;
-                }
-            }
-             */
             next.setH(PDB.calculate(next.getState()));
             next.setG(current.getG() + 1);
-            //System.out.println(Arrays.toString(next.getState()) + " H: " + next.getH() + " G: " + next.getG());
-
-            //Manhattan m = new Manhattan();
-            //float li = heuristic.calculateHeuristic(next.getState());
-            //next.setH(li);
             int value = next.getG() + next.getH();
 
             if (value <= currentCostBound) {

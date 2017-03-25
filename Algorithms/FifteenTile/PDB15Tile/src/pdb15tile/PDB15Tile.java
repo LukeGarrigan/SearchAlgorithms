@@ -30,14 +30,29 @@ public class PDB15Tile {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         // TODO code application logic here
         //int[] wholeSet = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 0};
-        int[] pdb1 = {1, 0, 0, 0, 5, 6, 0, 0, 9, 10, 0, 0, 13, 0, 0, 0};
+        /*
+        CreatePDB create = new CreatePDB();
+        int[] pdb1 = new int[]{1, 0, 0, 0, 5, 6, 0, 0, 9, 10, 0, 0, 13, 0, 0, 0};
+        int[] storedNums1 = new int[]{1, 5, 6, 9, 10, 13};
+        int[][][][][][] six1 = new int[16][16][16][16][16][16];
+        State s = new State(pdb1, "null", 0);
+        s.setH(0);
+        create.bfs2(six1, s, storedNums1,"PDB_6_1");
         int[] pdb2 = {0, 0, 0, 0, 0, 0, 7, 8, 0, 0, 11, 12, 0, 14, 15, 0};
+        int[] storedNums2 = new int[]{7, 8, 11, 12, 14, 15};
+        int[][][][][][] six2 = new int[16][16][16][16][16][16];
+        State ss = new State(pdb2, "null", 0);
+        ss.setH(0);
+        create.bfs2(six2, ss, storedNums2, "PDB_6_2");
         int[] pdb3 = {0, 2, 3, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+        int[] storedNums3 = new int[]{2, 3, 4};
+        int[][][] three = new int[16][16][16];
+        State sss = new State(pdb3, "null", 0);
+        sss.setH(0);
+        create.bfs2(three, sss, storedNums3, "PDB_3_1");
+        System.out.println("Stored!!");
 
-        State startingState1 = new State(pdb1, "null", 15);
-        State startingState2 = new State(pdb2, "null", 15);
-        State startingState3 = new State(pdb3, "null", 15);
-        System.out.println("Start");
+        */
         int[] fifteenMoves = new int[]{5, 1, 2, 3, 9, 7, 0, 4, 13, 6, 10, 8, 14, 15, 11, 12};
         //int[] test = {1, 2, 3, 4, 5, 6, 7, 8, 10, 0, 11, 12, 9, 13, 14, 15};
         int[] state = {7, 10, 2, 3, 12, 14, 13, 6, 9, 4, 1, 8, 11, 0, 5, 15};
@@ -47,22 +62,36 @@ public class PDB15Tile {
         RandomStates r = new RandomStates();
         ArrayList<int[]> testStates = r.RandomizeArray(fourtyMoves, 100);
         IDAStar ida = new IDAStar();
-
+        /*
+        int zeroPos = 0;
+        for (int i = 0; i < sixtyFiveMoves.length; i++) {
+            if (sixtyFiveMoves[i] == 0) {
+                zeroPos = i;
+            }
+        }
+        State statey = new State(sixtyFiveMoves, "null", zeroPos);
+        s.setG(0);
+        ida.resolve(statey);
+        */
         for (int[] testState : testStates) {
             int zeroPos = 0;
             for (int i = 0; i < testState.length; i++) {
                 if (testState[i] == 0) {
                     zeroPos = i;
-                    System.out.println(zeroPos);
                 }
             }
-            System.out.println(r.isSolvable(testState));
             System.out.println(Arrays.toString(testState));
             State s = new State(testState, "null", zeroPos);
             s.setG(0);
+            long startTime = System.currentTimeMillis();
             ida.resolve(s);
-        }
+            long endTime = System.currentTimeMillis();
+            float elapsedTime = endTime - startTime;
+            System.out.println("Time Taken(s): " + elapsedTime / 1000);
+            System.out.println("");
 
+        }
+        
     }
 
     public static class State implements Comparator<State> {
