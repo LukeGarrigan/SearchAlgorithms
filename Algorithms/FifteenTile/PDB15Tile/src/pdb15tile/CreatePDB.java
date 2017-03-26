@@ -39,7 +39,7 @@ public class CreatePDB {
                 }
             }
         }
-        sendThreeToFile(three, fileName);
+        serializeArrayToFile(three, fileName);
     }
 
     public void bfs2(int[][][][][][] six, PDB15Tile.State s, int[] storedNums, String fileName) throws IOException {
@@ -68,7 +68,7 @@ public class CreatePDB {
             }
 
         }
-        sendSixToFile(six, fileName);
+        serializeArrayToFile(six, fileName);
     }
 
     public void bfs2(int[][][][][][][] seven, PDB15Tile.State s, int[] storedNums, String fileName) throws IOException {
@@ -97,11 +97,11 @@ public class CreatePDB {
             }
 
         }
-        sendSevenToFile(seven, fileName);
+        serializeArrayToFile(seven, fileName);
     }
 
     public void bfs2(int[][][][][][][][] eight, PDB15Tile.State s, int[] storedNums, String fileName) throws IOException {
-        int count =0;
+        int count = 0;
         Queue<PDB15Tile.State> q = new LinkedList<>();
         int[] positions = new int[storedNums.length];
         for (int i = 0; i < storedNums.length; i++) {
@@ -126,13 +126,12 @@ public class CreatePDB {
                 }
 
             }
-            if(count%100000==0){
+            if (count % 100000 == 0) {
                 System.out.println(count);
             }
-            
-            
+
         }
-        sendEightToFile(eight, fileName);
+        serializeArrayToFile(eight, fileName);
     }
 
     public int getPatternPosition(int value, int[] tilesInPattern) {
@@ -145,24 +144,13 @@ public class CreatePDB {
         return -1; //not found
     }
 
-    public void sendEightToFile(int[][][][][][][][] eight, String filename) throws IOException {
+    public void serializeArrayToFile(Object array, String filename) throws IOException {
+        if (!array.getClass().isArray()) {
+            throw new IllegalArgumentException("Cannot serialize non-array object " + array.toString());
+        }
         ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(filename));
-        outputStream.writeObject(eight);
+        outputStream.writeObject(array);
     }
 
-    public void sendSevenToFile(int[][][][][][][] seven, String filename) throws IOException {
-        ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(filename));
-        outputStream.writeObject(seven);
-    }
-
-    public void sendSixToFile(int[][][][][][] six, String filename) throws IOException {
-        ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(filename));
-        outputStream.writeObject(six);
-    }
-
-    public void sendThreeToFile(int[][][] three, String filename) throws IOException {
-        ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(filename));
-        outputStream.writeObject(three);
-    }
 
 }
