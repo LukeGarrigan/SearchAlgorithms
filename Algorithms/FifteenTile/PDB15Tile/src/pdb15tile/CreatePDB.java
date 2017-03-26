@@ -66,25 +66,73 @@ public class CreatePDB {
                 }
 
             }
-      
+
         }
-      sendSixToFile(six, fileName);
-        /*
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
-                for (int k = 0; k < 10; k++) {
-                    for (int l = 0; l < 10; l++) {
-                        for (int m = 0; m < 10; m++) {
-                            for (int n = 0; n < 10; n++) {
-                                System.out.println(six[i][j][k][l][m][n]);
-                            }
-                        }
-                    }
+        sendSixToFile(six, fileName);
+    }
+
+    public void bfs2(int[][][][][][][] seven, PDB15Tile.State s, int[] storedNums, String fileName) throws IOException {
+        Queue<PDB15Tile.State> q = new LinkedList<>();
+        int[] positions = new int[storedNums.length];
+        for (int i = 0; i < storedNums.length; i++) {
+            positions[i] = getPatternPosition(storedNums[i], s.getState());
+        }
+        seven[positions[0]][positions[1]][positions[2]][positions[3]][positions[4]][positions[5]][positions[6]] = 0;
+        q.add(s);
+        PDB15Tile.State current;
+        while (!q.isEmpty()) {
+            current = q.poll();
+            // System.out.println(Arrays.toString(current.getState()));
+            for (PDB15Tile.State neighbour : current.findNeighbours2()) {
+                // System.out.println(Arrays.toString(neighbour.getState()));
+                for (int i = 0; i < storedNums.length; i++) {
+                    positions[i] = getPatternPosition(storedNums[i], neighbour.getState());
                 }
+                //System.out.println(six[positions[0]][positions[1]][positions[2]][positions[3]][positions[4]][positions[5]]);
+                if (seven[positions[0]][positions[1]][positions[2]][positions[3]][positions[4]][positions[5]][positions[6]] == 0) {
+                    seven[positions[0]][positions[1]][positions[2]][positions[3]][positions[4]][positions[5]][positions[6]] = neighbour.getH();
+                    q.add(neighbour);
+                }
+
             }
 
         }
-         */
+        sendSevenToFile(seven, fileName);
+    }
+
+    public void bfs2(int[][][][][][][][] eight, PDB15Tile.State s, int[] storedNums, String fileName) throws IOException {
+        int count =0;
+        Queue<PDB15Tile.State> q = new LinkedList<>();
+        int[] positions = new int[storedNums.length];
+        for (int i = 0; i < storedNums.length; i++) {
+            positions[i] = getPatternPosition(storedNums[i], s.getState());
+        }
+        eight[positions[0]][positions[1]][positions[2]][positions[3]][positions[4]][positions[5]][positions[6]][positions[7]] = 0;
+        q.add(s);
+        PDB15Tile.State current;
+        while (!q.isEmpty()) {
+            current = q.poll();
+            // System.out.println(Arrays.toString(current.getState()));
+            for (PDB15Tile.State neighbour : current.findNeighbours2()) {
+                // System.out.println(Arrays.toString(neighbour.getState()));
+                for (int i = 0; i < storedNums.length; i++) {
+                    positions[i] = getPatternPosition(storedNums[i], neighbour.getState());
+                }
+                //System.out.println(six[positions[0]][positions[1]][positions[2]][positions[3]][positions[4]][positions[5]]);
+                if (eight[positions[0]][positions[1]][positions[2]][positions[3]][positions[4]][positions[5]][positions[6]][positions[7]] == 0) {
+                    eight[positions[0]][positions[1]][positions[2]][positions[3]][positions[4]][positions[5]][positions[6]][positions[7]] = neighbour.getH();
+                    q.add(neighbour);
+                    count++;
+                }
+
+            }
+            if(count%100000==0){
+                System.out.println(count);
+            }
+            
+            
+        }
+        sendEightToFile(eight, fileName);
     }
 
     public int getPatternPosition(int value, int[] tilesInPattern) {
@@ -95,6 +143,16 @@ public class CreatePDB {
             }
         }
         return -1; //not found
+    }
+
+    public void sendEightToFile(int[][][][][][][][] eight, String filename) throws IOException {
+        ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(filename));
+        outputStream.writeObject(eight);
+    }
+
+    public void sendSevenToFile(int[][][][][][][] seven, String filename) throws IOException {
+        ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(filename));
+        outputStream.writeObject(seven);
     }
 
     public void sendSixToFile(int[][][][][][] six, String filename) throws IOException {

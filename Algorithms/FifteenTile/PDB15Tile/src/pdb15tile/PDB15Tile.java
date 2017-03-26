@@ -30,6 +30,14 @@ public class PDB15Tile {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         // TODO code application logic here
         //int[] wholeSet = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 0};
+        CreatePDB create = new CreatePDB();
+        int[] pdb1 = new int[]{1, 0, 0, 0, 5, 6, 0, 0, 9, 10, 11, 12, 13, 0, 0, 0};
+        int[] storedNums1 = new int[]{1, 5, 6, 9, 10, 11,12, 13};
+        int[][][][][][][][] seven = new int[16][16][16][16][16][16][16][16];
+        State s = new State(pdb1, "null", 0);
+        s.setH(0);
+        create.bfs2(seven, s, storedNums1, "PDB_8_1");
+
         /*
         CreatePDB create = new CreatePDB();
         int[] pdb1 = new int[]{1, 0, 0, 0, 5, 6, 0, 0, 9, 10, 0, 0, 13, 0, 0, 0};
@@ -37,7 +45,8 @@ public class PDB15Tile {
         int[][][][][][] six1 = new int[16][16][16][16][16][16];
         State s = new State(pdb1, "null", 0);
         s.setH(0);
-        create.bfs2(six1, s, storedNums1,"PDB_6_1");
+        create.bfs2(six1, s, storedNums1, "PDB_6_1");
+
         int[] pdb2 = {0, 0, 0, 0, 0, 0, 7, 8, 0, 0, 11, 12, 0, 14, 15, 0};
         int[] storedNums2 = new int[]{7, 8, 11, 12, 14, 15};
         int[][][][][][] six2 = new int[16][16][16][16][16][16];
@@ -51,8 +60,8 @@ public class PDB15Tile {
         sss.setH(0);
         create.bfs2(three, sss, storedNums3, "PDB_3_1");
         System.out.println("Stored!!");
-
-        */
+         */
+ /*
         int[] fifteenMoves = new int[]{5, 1, 2, 3, 9, 7, 0, 4, 13, 6, 10, 8, 14, 15, 11, 12};
         //int[] test = {1, 2, 3, 4, 5, 6, 7, 8, 10, 0, 11, 12, 9, 13, 14, 15};
         int[] state = {7, 10, 2, 3, 12, 14, 13, 6, 9, 4, 1, 8, 11, 0, 5, 15};
@@ -72,7 +81,7 @@ public class PDB15Tile {
         State statey = new State(sixtyFiveMoves, "null", zeroPos);
         s.setG(0);
         ida.resolve(statey);
-        */
+       
         for (int[] testState : testStates) {
             int zeroPos = 0;
             for (int i = 0; i < testState.length; i++) {
@@ -91,7 +100,7 @@ public class PDB15Tile {
             System.out.println("");
 
         }
-        
+         */
     }
 
     public static class State implements Comparator<State> {
