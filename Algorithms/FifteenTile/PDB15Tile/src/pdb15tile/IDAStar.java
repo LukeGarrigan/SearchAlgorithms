@@ -18,10 +18,12 @@ public class IDAStar {
     int[] GOAL = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 0};
     int statesExpanded = 0;
     CalculatePDBHeuristic pdb = new CalculatePDBHeuristic();
-    
+    int patternCount =0;
+    int manCount =0;
     public IDAStar() throws IOException, ClassNotFoundException {
         System.out.println("Loading Pattern Database..");
         pdb.getStoredFiles();
+        System.out.println("Done");
     }
     
     public PDB15Tile.State depthFirstSearch(PDB15Tile.State current, int currentCostBound) {
@@ -33,8 +35,10 @@ public class IDAStar {
         }
         
         for (PDB15Tile.State next : current.findNeighbours()) {
-            int h = pdb.calculate(next.getState());
-            //System.out.println("Pattern Heuristic: " + h + " Manhattan Heuristic: " + pdb.calculateManhattan(next.getState()));
+            int h = pdb.calculate663(next.getState());
+          //  patternCount = h+patternCount;
+           // manCount += pdb.calculateManhattan(next.getState());
+           // System.out.println("Pattern Heuristic: " + pdb.calculate771(next.getState()) + " Manhattan Heuristic: " + pdb.calculateManhattan(next.getState()));
             
             next.setG(current.getG() + 1);
             next.setH(h);
@@ -52,7 +56,7 @@ public class IDAStar {
     
     public PDB15Tile.State resolve(PDB15Tile.State start) {
         // should already have heuristic because the initial state
-        int h = pdb.calculate(start.getState());
+        int h = pdb.calculate663(start.getState());
         start.setH(h);
         nextCostBound = start.getH();
         PDB15Tile.State solution = null;

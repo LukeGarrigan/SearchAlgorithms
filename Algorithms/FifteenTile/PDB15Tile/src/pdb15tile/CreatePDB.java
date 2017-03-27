@@ -18,6 +18,34 @@ import java.util.Queue;
  */
 public class CreatePDB {
 
+    public void bfs2(int[] one, PDB15Tile.State s, int[] storedNums, String fileName) throws IOException {
+        Queue<PDB15Tile.State> q = new LinkedList<>();
+        int[] positions = new int[storedNums.length];
+        for (int i = 0; i < storedNums.length; i++) {
+            positions[i] = getPatternPosition(storedNums[i], s.getState());
+        }
+        one[positions[0]] = 0;
+        q.add(s);
+        PDB15Tile.State current;
+        while (!q.isEmpty()) {
+            current = q.poll();
+            // System.out.println(Arrays.toString(current.getState()));
+            for (PDB15Tile.State neighbour : current.findNeighbours2()) {
+                // System.out.println(Arrays.toString(neighbour.getState()));
+                for (int i = 0; i < storedNums.length; i++) {
+                    positions[i] = getPatternPosition(storedNums[i], neighbour.getState());
+                }
+                if (one[positions[0]] == 0) {
+                    one[positions[0]] = neighbour.getH();
+                    q.add(neighbour);
+                }
+
+            }
+
+        }
+        serializeArrayToFile(one, fileName);
+    }
+
     public void bfs2(int[][][] three, PDB15Tile.State s, int[] storedNums, String fileName) throws IOException {
         Queue<PDB15Tile.State> q = new LinkedList<>();
         int[] positions = new int[storedNums.length];
@@ -29,7 +57,9 @@ public class CreatePDB {
         PDB15Tile.State current;
         while (!q.isEmpty()) {
             current = q.poll();
+            // System.out.println(Arrays.toString(current.getState()));
             for (PDB15Tile.State neighbour : current.findNeighbours2()) {
+                // System.out.println(Arrays.toString(neighbour.getState()));
                 for (int i = 0; i < storedNums.length; i++) {
                     positions[i] = getPatternPosition(storedNums[i], neighbour.getState());
                 }
@@ -37,7 +67,9 @@ public class CreatePDB {
                     three[positions[0]][positions[1]][positions[2]] = neighbour.getH();
                     q.add(neighbour);
                 }
+
             }
+
         }
         serializeArrayToFile(three, fileName);
     }
@@ -129,7 +161,6 @@ public class CreatePDB {
             if (count % 100000 == 0) {
                 System.out.println(count);
             }
-
         }
         serializeArrayToFile(eight, fileName);
     }
@@ -151,6 +182,5 @@ public class CreatePDB {
         ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(filename));
         outputStream.writeObject(array);
     }
-
 
 }
