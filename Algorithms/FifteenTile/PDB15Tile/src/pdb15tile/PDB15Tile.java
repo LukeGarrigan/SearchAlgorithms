@@ -23,7 +23,6 @@ import java.util.Set;
  * @author Luke
  */
 public class PDB15Tile {
-
     /**
      * @param args the command line arguments
      */
@@ -53,51 +52,49 @@ public class PDB15Tile {
         State sss = new State(pdb3, "null", 0);
         s.setH(0);
         create.bfs2(one, sss, storedNums3, "PDB_1_1");
-       */
+         */
 
-        /*
+        
         CreatePDB create = new CreatePDB();
-        int[] pdb1 = new int[]{1, 0, 0, 0, 5, 6, 0, 0, 9, 10, 0, 0, 13, 0, 0, 0};
-        int[] storedNums1 = new int[]{1, 5, 6, 9, 10, 13};
-        int[][][][][][] six1 = new int[16][16][16][16][16][16];
+        byte[] pdb1 = new byte[]{1, 0, 0, 0, 5, 6, 0, 0, 9, 10, 0, 0, 13, 0, 0, 0};
+        byte[] storedNums1 = new byte[]{1, 5, 6, 9, 10, 13};
+        byte[][][][][][] six1 = new byte[16][16][16][16][16][16];
+        byte zero = 0;
         State s = new State(pdb1, "null", 0);
-        s.setH(0);
+        s.setH(zero);
         create.bfs2(six1, s, storedNums1, "PDB_6_1");
 
-        int[] pdb2 = {0, 0, 0, 0, 0, 0, 7, 8, 0, 0, 11, 12, 0, 14, 15, 0};
-        int[] storedNums2 = new int[]{7, 8, 11, 12, 14, 15};
-        int[][][][][][] six2 = new int[16][16][16][16][16][16];
+        byte[] pdb2 = {0, 0, 0, 0, 0, 0, 7, 8, 0, 0, 11, 12, 0, 14, 15, 0};
+        byte[] storedNums2 = new byte[]{7, 8, 11, 12, 14, 15};
+        byte[][][][][][] six2 = new byte[16][16][16][16][16][16];
         State ss = new State(pdb2, "null", 0);
-        ss.setH(0);
+        ss.setH(zero);
         create.bfs2(six2, ss, storedNums2, "PDB_6_2");
          
          
        // CreatePDB create = new CreatePDB();
-        int[] pdb3 = {0, 2, 3, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-        int[] storedNums3 = new int[]{2, 3, 4};
-        int[][][] three = new int[16][16][16];
+        byte[] pdb3 = {0, 2, 3, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+        byte[] storedNums3 = new byte[]{2, 3, 4};
+        byte[][][] three = new byte[16][16][16];
         State sss = new State(pdb3, "null", 0);
-        sss.setH(0);
+        sss.setH(zero);
         create.bfs2(three, sss, storedNums3, "PDB_3_1");
         System.out.println("Stored!!");
-
-        */
         
         
-        int[] fifteenMoves = new int[]{5, 1, 2, 3, 9, 7, 0, 4, 13, 6, 10, 8, 14, 15, 11, 12};
-        int[] state = {7, 10, 2, 3, 12, 14, 13, 6, 9, 4, 1, 8, 11, 0, 5, 15};
-        int[] sixtyFiveMoves = new int[]{11, 14, 9, 15, 7, 2, 8, 13, 3, 0, 5, 6, 12, 1, 10, 4};
-        int[] fourtyMoves = new int[]{6, 7, 0, 11, 1, 5, 10, 4, 14, 13, 15, 2, 9, 8, 3, 12};
-
+        byte[] fourtyMoves = new byte[]{6, 7, 0, 11, 1, 5, 10, 4, 14, 13, 15, 2, 9, 8, 3, 12};
         RandomStates r = new RandomStates();
-        ArrayList<int[]> testStates = r.RandomizeArray(fourtyMoves, 100);
+        ArrayList<byte[]> testStates = r.RandomizeArray(fourtyMoves, 100);
+   
+        
         IDAStar ida = new IDAStar();
 
-        for (int[] testState : testStates) {
-            int zeroPos = 0;
-            for (int i = 0; i < testState.length; i++) {
+        for (byte[] testState : testStates) {
+            byte zeroPos = 0;
+            for (byte i = 0; i < testState.length; i++) {
                 if (testState[i] == 0) {
                     zeroPos = i;
+                    System.out.println(zeroPos);
                 }
             }
             System.out.println(Arrays.toString(testState));
@@ -109,34 +106,33 @@ public class PDB15Tile {
             float elapsedTime = endTime - startTime;
             System.out.println("Time Taken(s): " + elapsedTime / 1000);
             System.out.println("");
-
         }
-       
+
     }
 
     public static class State implements Comparator<State> {
 
         private int zeroPosition;
-        private int[] state;
-        private int h;
+        private byte[] state;
+        private byte h;
         private int g;
         private String direction;
-
-        public State(int[] state, String direction, int zeroPosition) {
+        
+        public State(byte[] state, String direction, int zeroPosition) {
             this.state = state;
             this.direction = direction;
             this.zeroPosition = zeroPosition;
         }
 
         public void setH(int h) {
-            this.h = h;
+            this.h = (byte) h;
         }
 
-        public int getH() {
+        public byte getH() {
             return h;
         }
 
-        public int[] getState() {
+        public byte[] getState() {
             return state;
         }
 
@@ -160,58 +156,58 @@ public class PDB15Tile {
             this.direction = direction;
         }
 
-        public void setState(int[] state) {
+        public void setState(byte[] state) {
             this.state = state;
         }
 
         public ArrayList<State> findNeighbours() {
-
+            byte increment = 1;
             ArrayList<State> neighbours = new ArrayList<>();
             //for (int i = 0; i < state.length; i++) {
             //if (state[i] == 0) {
             if (zeroPosition % 4 != 0 && !direction.equals("right")) {
-                int[] left = new int[16];
+                byte[] left = new byte[16];
                 System.arraycopy(state, 0, left, 0, left.length);
-                int temp = left[zeroPosition];
+                byte temp = left[zeroPosition];
                 left[zeroPosition] = left[zeroPosition - 1];
                 left[zeroPosition - 1] = temp;
                 State newState = new State(left, "left", zeroPosition - 1);
-                newState.setH(this.h + 1);
+                newState.setH(this.h +1);
                 neighbours.add(newState);
 
             }
             if (zeroPosition % 4 != 3 && !direction.equals("left")) {
-                int[] right = new int[16];
+                byte[] right = new byte[16];
                 System.arraycopy(state, 0, right, 0, right.length);
 
-                int temp = right[zeroPosition];
+                byte temp = right[zeroPosition];
                 right[zeroPosition] = right[zeroPosition + 1];
                 right[zeroPosition + 1] = temp;
                 State newState = new State(right, "right", zeroPosition + 1);
-                newState.setH(this.h + 1);
+                newState.setH(this.h +1);
                 neighbours.add(newState);
 
             }
             if (zeroPosition > 3 && !direction.equals("down")) {
 
-                int[] up = new int[16];
+                byte[] up = new byte[16];
                 System.arraycopy(state, 0, up, 0, up.length);
-                int temp = up[zeroPosition];
+                byte temp = up[zeroPosition];
                 up[zeroPosition] = up[zeroPosition - 4];
                 up[zeroPosition - 4] = temp;
                 State newState = new State(up, "up", zeroPosition - 4);
-                newState.setH(this.h + 1);
+                newState.setH(this.h +1);
                 neighbours.add(newState);
 
             }
             if (zeroPosition < 12 && !direction.equals("up")) {
-                int[] down = new int[16];
+                byte[] down = new byte[16];
                 System.arraycopy(state, 0, down, 0, down.length);
-                int temp = down[zeroPosition];
+                byte temp = down[zeroPosition];
                 down[zeroPosition] = down[zeroPosition + 4];
                 down[zeroPosition + 4] = temp;
                 State newState = new State(down, "down", zeroPosition + 4);
-                newState.setH(this.h + 1);
+                newState.setH(this.h +1);
                 neighbours.add(newState);
 
             }
@@ -225,48 +221,48 @@ public class PDB15Tile {
             for (int i = 0; i < state.length; i++) {
                 if (state[i] == 0) {
                     if (i % 4 != 0 && !direction.equals("right")) {
-                        int[] left = new int[16];
+                        byte[] left = new byte[16];
                         System.arraycopy(state, 0, left, 0, left.length);
-                        int temp = left[i];
+                        byte temp = left[i];
                         left[i] = left[i - 1];
                         left[i - 1] = temp;
                         State newState = new State(left, "left", i - 1);
-                        newState.setH(this.h + 1);
+                        newState.setH(this.h +1);
                         neighbours.add(newState);
 
                     }
                     if (i % 4 != 3 && !direction.equals("left")) {
-                        int[] right = new int[16];
+                        byte[] right = new byte[16];
                         System.arraycopy(state, 0, right, 0, right.length);
 
-                        int temp = right[i];
+                        byte temp = right[i];
                         right[i] = right[i + 1];
                         right[i + 1] = temp;
                         State newState = new State(right, "right", i + 1);
-                        newState.setH(this.h + 1);
+                        newState.setH(this.h +1);
                         neighbours.add(newState);
 
                     }
                     if (i > 3 && !direction.equals("down")) {
 
-                        int[] up = new int[16];
+                        byte[] up = new byte[16];
                         System.arraycopy(state, 0, up, 0, up.length);
-                        int temp = up[i];
+                        byte temp = up[i];
                         up[i] = up[i - 4];
                         up[i - 4] = temp;
                         State newState = new State(up, "up", i - 4);
-                        newState.setH(this.h + 1);
+                        newState.setH(this.h +1);
                         neighbours.add(newState);
 
                     }
                     if (i < 12 && !direction.equals("up")) {
-                        int[] down = new int[16];
+                        byte[] down = new byte[16];
                         System.arraycopy(state, 0, down, 0, down.length);
-                        int temp = down[i];
+                        byte temp = down[i];
                         down[i] = down[i + 4];
                         down[i + 4] = temp;
                         State newState = new State(down, "down", i + 4);
-                        newState.setH(this.h + 1);
+                        newState.setH(this.h +1);
                         neighbours.add(newState);
 
                     }

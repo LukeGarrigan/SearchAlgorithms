@@ -15,31 +15,31 @@ import java.util.Random;
  */
 public class RandomStates {
 
-    public ArrayList<int[]> RandomizeArray(int[] array, int amount) {
+    public ArrayList<byte[]> RandomizeArray(byte[] array, int amount) {
         // Random number generator			
-        ArrayList<int[]> testValues = new ArrayList<>();
+        ArrayList<byte[]> testValues = new ArrayList<>();
         while (testValues.size() < amount) {
             for (int i = 0; i < array.length; i++) {
                 Random rgen = new Random();
                 int randomPosition = rgen.nextInt(array.length);
 
-                int temp = array[i];
+                byte temp = array[i];
                 array[i] = array[randomPosition];
                 array[randomPosition] = temp;
             }
             if (isSolvable(array)) {
-                int[] t = array.clone();
+                byte[] t = array.clone();
                 testValues.add(t);
             }
         }
         return testValues;
     }
 
-    public boolean isSolvable(int[] puzzle) {
-        int parity = 0;
+    public boolean isSolvable(byte[] puzzle) {
+        byte parity = 0;
         int gridWidth = (int) Math.sqrt(puzzle.length);
-        int row = 0; // the current row we are on
-        int blankRow = 0; // the row with the blank tile
+        byte row = 0; // the current row we are on
+        byte blankRow = 0; // the row with the blank tile
 
         for (int i = 0; i < puzzle.length; i++) {
             if (i % gridWidth == 0) { // advance to next row

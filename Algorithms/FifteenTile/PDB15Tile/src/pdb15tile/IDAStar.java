@@ -15,7 +15,7 @@ import java.util.Arrays;
 public class IDAStar {
     
     private int nextCostBound;
-    int[] GOAL = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 0};
+    byte[] GOAL = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 0};
     int statesExpanded = 0;
     CalculatePDBHeuristic pdb = new CalculatePDBHeuristic();
     int patternCount =0;
@@ -35,7 +35,9 @@ public class IDAStar {
         }
         
         for (PDB15Tile.State next : current.findNeighbours()) {
-            int h = pdb.calculate663(next.getState());
+            byte h = pdb.calculate663(next.getState());
+            
+           // System.out.println(h);
           //  patternCount = h+patternCount;
            // manCount += pdb.calculateManhattan(next.getState());
            // System.out.println("Pattern Heuristic: " + pdb.calculate771(next.getState()) + " Manhattan Heuristic: " + pdb.calculateManhattan(next.getState()));
@@ -56,7 +58,7 @@ public class IDAStar {
     
     public PDB15Tile.State resolve(PDB15Tile.State start) {
         // should already have heuristic because the initial state
-        int h = pdb.calculate663(start.getState());
+        byte h = pdb.calculate663(start.getState());
         start.setH(h);
         nextCostBound = start.getH();
         PDB15Tile.State solution = null;

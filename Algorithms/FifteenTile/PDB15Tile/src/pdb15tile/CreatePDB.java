@@ -18,9 +18,9 @@ import java.util.Queue;
  */
 public class CreatePDB {
 
-    public void bfs2(int[] one, PDB15Tile.State s, int[] storedNums, String fileName) throws IOException {
+    public void bfs2(byte[] one, PDB15Tile.State s, byte[] storedNums, String fileName) throws IOException {
         Queue<PDB15Tile.State> q = new LinkedList<>();
-        int[] positions = new int[storedNums.length];
+        byte[] positions = new byte[storedNums.length];
         for (int i = 0; i < storedNums.length; i++) {
             positions[i] = getPatternPosition(storedNums[i], s.getState());
         }
@@ -46,9 +46,9 @@ public class CreatePDB {
         serializeArrayToFile(one, fileName);
     }
 
-    public void bfs2(int[][][] three, PDB15Tile.State s, int[] storedNums, String fileName) throws IOException {
+    public void bfs2(byte[][][] three, PDB15Tile.State s, byte[] storedNums, String fileName) throws IOException {
         Queue<PDB15Tile.State> q = new LinkedList<>();
-        int[] positions = new int[storedNums.length];
+        byte[] positions = new byte[storedNums.length];
         for (int i = 0; i < storedNums.length; i++) {
             positions[i] = getPatternPosition(storedNums[i], s.getState());
         }
@@ -60,7 +60,7 @@ public class CreatePDB {
             // System.out.println(Arrays.toString(current.getState()));
             for (PDB15Tile.State neighbour : current.findNeighbours2()) {
                 // System.out.println(Arrays.toString(neighbour.getState()));
-                for (int i = 0; i < storedNums.length; i++) {
+                for (byte i = 0; i < storedNums.length; i++) {
                     positions[i] = getPatternPosition(storedNums[i], neighbour.getState());
                 }
                 if (three[positions[0]][positions[1]][positions[2]] == 0) {
@@ -74,7 +74,7 @@ public class CreatePDB {
         serializeArrayToFile(three, fileName);
     }
 
-    public void bfs2(int[][][][][][] six, PDB15Tile.State s, int[] storedNums, String fileName) throws IOException {
+    public void bfs2(byte[][][][][][] six, PDB15Tile.State s, byte[] storedNums, String fileName) throws IOException {
         Queue<PDB15Tile.State> q = new LinkedList<>();
         int[] positions = new int[storedNums.length];
         for (int i = 0; i < storedNums.length; i++) {
@@ -103,9 +103,9 @@ public class CreatePDB {
         serializeArrayToFile(six, fileName);
     }
 
-    public void bfs2(int[][][][][][][] seven, PDB15Tile.State s, int[] storedNums, String fileName) throws IOException {
+    public void bfs2(byte[][][][][][][] seven, PDB15Tile.State s, byte[] storedNums, String fileName) throws IOException {
         Queue<PDB15Tile.State> q = new LinkedList<>();
-        int[] positions = new int[storedNums.length];
+        byte[] positions = new byte[storedNums.length];
         for (int i = 0; i < storedNums.length; i++) {
             positions[i] = getPatternPosition(storedNums[i], s.getState());
         }
@@ -132,11 +132,11 @@ public class CreatePDB {
         serializeArrayToFile(seven, fileName);
     }
 
-    public void bfs2(int[][][][][][][][] eight, PDB15Tile.State s, int[] storedNums, String fileName) throws IOException {
+    public void bfs2(byte[][][][][][][][] eight, PDB15Tile.State s, byte[] storedNums, String fileName) throws IOException {
         int count = 0;
         Queue<PDB15Tile.State> q = new LinkedList<>();
-        int[] positions = new int[storedNums.length];
-        for (int i = 0; i < storedNums.length; i++) {
+        byte[] positions = new byte[storedNums.length];
+        for (byte i = 0; i < storedNums.length; i++) {
             positions[i] = getPatternPosition(storedNums[i], s.getState());
         }
         eight[positions[0]][positions[1]][positions[2]][positions[3]][positions[4]][positions[5]][positions[6]][positions[7]] = 0;
@@ -165,9 +165,9 @@ public class CreatePDB {
         serializeArrayToFile(eight, fileName);
     }
 
-    public int getPatternPosition(int value, int[] tilesInPattern) {
-        for (int i = 0; i < 16; i++) {
-            int tile = tilesInPattern[i];
+    public byte getPatternPosition(byte value, byte[] tilesInPattern) {
+        for (byte i = 0; i < 16; i++) {
+            byte tile = tilesInPattern[i];
             if (tile == value) {
                 return i;
             }
