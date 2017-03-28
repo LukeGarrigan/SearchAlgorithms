@@ -30,31 +30,31 @@ public class PDB15Tile {
         // TODO code application logic here
         //int[] wholeSet = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 0};
 
-        /*
+        
         CreatePDB create = new CreatePDB();
-        int[] pdb1 = new int[]{1, 2, 3, 4, 0, 6, 7, 8, 0, 0, 0, 0, 0, 0, 0, 0};
-        int[] storedNums1 = new int[]{1, 2, 3, 4, 6, 7, 8};
-        int[][][][][][][] seven = new int[16][16][16][16][16][16][16];
+        byte[] pdb1 = new byte[]{1, 2, 3, 4, 0, 6, 7, 8, 0, 0, 0, 0, 0, 0, 0, 0};
+        byte[] storedNums1 = new byte[]{1, 2, 3, 4, 6, 7, 8};
+        byte[][][][][][][] seven = new byte[16][16][16][16][16][16][16];
         State s = new State(pdb1, "null", 0);
         s.setH(0);
         create.bfs2(seven, s, storedNums1, "PDB_7_1");
 
-        int[] pdb2 = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 9, 10, 11, 12, 13, 14, 15, 0};
-        int[] storedNums2 = new int[]{9, 10, 11, 12, 13, 14, 15};
-        int[][][][][][][] seven2 = new int[16][16][16][16][16][16][16];
+        byte[] pdb2 = new byte[]{0, 0, 0, 0, 0, 0, 0, 0, 9, 10, 11, 12, 13, 14, 15, 0};
+        byte[] storedNums2 = new byte[]{9, 10, 11, 12, 13, 14, 15};
+        byte[][][][][][][] seven2 = new byte[16][16][16][16][16][16][16];
         State ss = new State(pdb2, "null", 0);
         s.setH(0);
         create.bfs2(seven2, ss, storedNums2, "PDB_7_2");
 
-        int[] pdb3 = new int[]{0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-        int[] storedNums3 = new int[]{5};
-        int[] one = new int[16];
+        byte[] pdb3 = new byte[]{0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+        byte[] storedNums3 = new byte[]{5};
+        byte[] one = new byte[16];
         State sss = new State(pdb3, "null", 0);
         s.setH(0);
         create.bfs2(one, sss, storedNums3, "PDB_1_1");
-         */
-
         
+
+        /*
         CreatePDB create = new CreatePDB();
         byte[] pdb1 = new byte[]{1, 0, 0, 0, 5, 6, 0, 0, 9, 10, 0, 0, 13, 0, 0, 0};
         byte[] storedNums1 = new byte[]{1, 5, 6, 9, 10, 13};
@@ -80,7 +80,7 @@ public class PDB15Tile {
         sss.setH(zero);
         create.bfs2(three, sss, storedNums3, "PDB_3_1");
         System.out.println("Stored!!");
-        
+        */
         
         byte[] fourtyMoves = new byte[]{6, 7, 0, 11, 1, 5, 10, 4, 14, 13, 15, 2, 9, 8, 3, 12};
         RandomStates r = new RandomStates();
@@ -161,7 +161,7 @@ public class PDB15Tile {
         }
 
         public ArrayList<State> findNeighbours() {
-            byte increment = 1;
+
             ArrayList<State> neighbours = new ArrayList<>();
             //for (int i = 0; i < state.length; i++) {
             //if (state[i] == 0) {
@@ -172,7 +172,6 @@ public class PDB15Tile {
                 left[zeroPosition] = left[zeroPosition - 1];
                 left[zeroPosition - 1] = temp;
                 State newState = new State(left, "left", zeroPosition - 1);
-                newState.setH(this.h +1);
                 neighbours.add(newState);
 
             }
@@ -184,7 +183,6 @@ public class PDB15Tile {
                 right[zeroPosition] = right[zeroPosition + 1];
                 right[zeroPosition + 1] = temp;
                 State newState = new State(right, "right", zeroPosition + 1);
-                newState.setH(this.h +1);
                 neighbours.add(newState);
 
             }
@@ -196,7 +194,6 @@ public class PDB15Tile {
                 up[zeroPosition] = up[zeroPosition - 4];
                 up[zeroPosition - 4] = temp;
                 State newState = new State(up, "up", zeroPosition - 4);
-                newState.setH(this.h +1);
                 neighbours.add(newState);
 
             }
@@ -207,7 +204,6 @@ public class PDB15Tile {
                 down[zeroPosition] = down[zeroPosition + 4];
                 down[zeroPosition + 4] = temp;
                 State newState = new State(down, "down", zeroPosition + 4);
-                newState.setH(this.h +1);
                 neighbours.add(newState);
 
             }
