@@ -22,9 +22,8 @@ import java.util.Set;
 public class Towers {
 
     public static int[][] towers;
-    public static int poles = 3;
+    public static int poles = 4;
     public static int discs;
-    public static int moves = 0;
     public static int[][] goal;
 
     public static void main(String[] args) {
@@ -32,50 +31,46 @@ public class Towers {
         Scanner scanner = new Scanner(System.in);
 
         discs = scanner.nextInt();
+        scanner.close();
         towers = new int[discs][poles];
         goal = new int[discs][poles];
         // place the discs on the left-most pole (column)
         for (int disc = 0; disc < discs; disc++) {
             towers[disc][0] = (disc * 2) + 1;
         }
-        printTowers(towers);
-        //solveTowers(discs, 0, 2);
+        State intialState = new State(towers);
         for (int disc = 0; disc < discs; disc++) {
             goal[disc][2] = (disc * 2) + 1;
         }
-
-        //moveDisc(0, 2);
-        // moveDisc(0, 2);
-        bfs2();
-        scanner.close();
-        System.out.println("Number of moves: " + moves);
+        State goalState = new State(goal);
+        bfs2(intialState, goalState);
     }
 
-    /**
-     * Complete this recursive method to solve the Towers of Hanoi
-     *
-     * @param numDiscs - number of discs in the problem
-     * @param startPole - pole the discs start on (zero based)
-     * @param endPole - pole the discs end on (zero based)
-     */
-    public static void solveTowers(int numDiscs, int startPole, int endPole) {
-
-    }
-
-    public static void bfs2() {
-        Queue<int[][]> q = new LinkedList<>();
-        Set<int[][]> seen = new HashSet<>();
-        q.add(towers);
-        seen.add(towers);
+    public static void bfs2(State intialState, State goalState) {
+        Queue<State> q = new LinkedList<>();
+        Set<State> seen = new HashSet<>();
+        q.add(intialState);
+        seen.add(intialState);
         while (!q.isEmpty()) {
-            int[][] current = q.poll();
-            if (Arrays.equals(current, goal)) {
-                System.out.println("WE MADE IT!");
-                break;
+            State current = q.poll();
+            if (current.equals(goalState)) {
+                System.out.println("Found the goal state");
+                System.out.println("Moves: " + current.getG());
+                State previous = current.getPrevious();
+                while(previous !=null){
+                    printTowers(previous.getState());
+                    previous = previous.getPrevious();
+                }
             }
-
-            for (int[][] x : findLegalMoves(current)) {
-                if (!seen.contains(x)) {
+            for (State x : findLegalMoves(current)) {
+                //   System.out.println(Arrays.deepToString(x.getState()));
+                boolean beenSeen = false;
+                for (State val : seen) {
+                    if (x.equals(val)) {
+                        beenSeen = true;
+                    }
+                }
+                if (beenSeen == false) {
                     q.add(x);
                     seen.add(x);
                 }
@@ -84,17 +79,16 @@ public class Towers {
 
     }
 
-    public static ArrayList<int[][]> findLegalMoves(int[][] towers) {
+    public static ArrayList<State> findLegalMoves(State towers) {
         // loop through all the poles 
         // and moves the top discs 
-        ArrayList<int[][]> legalMoves = new ArrayList<>();
+        ArrayList<State> legalMoves = new ArrayList<>();
         for (int pole = 0; pole < poles; pole++) {
             for (int disc = 0; disc < discs; disc++) {
-                if (towers[disc][pole] != 0) {
-                    System.out.println("Top disc " + towers[disc][pole]);
+                if (towers.getState()[disc][pole] != 0) {
                     for (int i = 0; i < poles; i++) {
                         if (i != pole) {
-                            int[][] blar = move(pole, i, towers);
+                            State blar = move(pole, i, towers);
                             legalMoves.add(blar);
                         }
                     }
@@ -106,13 +100,12 @@ public class Towers {
         return legalMoves;
     }
 
-    public static int[][] move(int fromPole, int toPole, int[][] towerss) {
-        int length = towerss.length;
-        int[][] pole = new int[length][towerss[0].length];
+    public static State move(int fromPole, int toPole, State towerss) {
+        int length = towerss.getState().length;
+        int[][] pole = new int[length][towerss.getState()[0].length];
         for (int i = 0; i < length; i++) {
-            System.arraycopy(towerss[i], 0, pole[i], 0, towerss[i].length);
+            System.arraycopy(towerss.getState()[i], 0, pole[i], 0, towerss.getState()[i].length);
         }
-
         int disc = 0;
         // finds the top disc of the current pole
         while (disc < discs && pole[disc][fromPole] == 0) {
@@ -131,18 +124,21 @@ public class Towers {
         if (newDisc < discs) {
             if (pole[newDisc][toPole] > temp) {
                 pole[--newDisc][toPole] = temp;
-                moves++;
-                printTowers(pole);
-                return pole;
+                // printTowers(pole);
+                State s = new State(pole);
+                s.setG(towerss.getG() + 1);
+                s.setPrevious(towerss);
+                return s;
             } else {
                 pole[disc][fromPole] = temp;
-                return pole;
+                return towerss;
             }
         } else {
             pole[--newDisc][toPole] = temp;
-            moves++;
-            printTowers(pole);
-            return pole;
+            State s = new State(pole);
+            s.setG(towerss.getG() + 1);
+            s.setPrevious(towerss);
+            return s;
         }
 
     }
