@@ -22,16 +22,11 @@ import java.util.Set;
 public class Towers {
 
     public static int[][] towers;
-    public static int poles = 4;
-    public static int discs;
+    public static int poles = 3;
+    public static int discs = 3;
     public static int[][] goal;
 
     public static void main(String[] args) {
-        System.out.print("Enter number of discs: ");
-        Scanner scanner = new Scanner(System.in);
-
-        discs = scanner.nextInt();
-        scanner.close();
         towers = new int[discs][poles];
         goal = new int[discs][poles];
         // place the discs on the left-most pole (column)
@@ -39,11 +34,18 @@ public class Towers {
             towers[disc][0] = (disc * 2) + 1;
         }
         State intialState = new State(towers);
+         System.out.println(Arrays.deepToString(intialState.getState()));
         for (int disc = 0; disc < discs; disc++) {
             goal[disc][2] = (disc * 2) + 1;
         }
         State goalState = new State(goal);
-        bfs2(intialState, goalState);
+        
+        ArrayList<State> x = findLegalMoves(intialState);
+        for(State s: x){
+            System.out.println(Arrays.deepToString(s.getState()));
+        }
+        
+       // bfs2(intialState, goalState);
     }
 
     public static void bfs2(State intialState, State goalState) {
