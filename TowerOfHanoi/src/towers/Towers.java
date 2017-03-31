@@ -16,17 +16,41 @@ import java.util.Scanner;
 import java.util.Set;
 
 /**
- *
+ * Solves the TOH problem in the minimum number of moves.
+ * 
  * @author Luke
+ * @version 1.0
  */
 public class Towers {
 
+    /**
+     * Represents the starting state of the puzzle
+     */
     public static int[][] towers;
+
+    /**
+     * Number of poles used
+     */
     public static int poles = 3;
+
+    /**
+     * Number of discs used
+     */
     public static int discs = 3;
+
+    /**
+     * Represents the goal state
+     */
     public static int[][] goal;
 
+    /**
+     * Initializes the starting and goal states and runs the breadth-first
+     * -search algorithm.
+     * 
+     * @param args
+     */
     public static void main(String[] args) {
+        // assigns the disc and pole parameters
         towers = new int[discs][poles];
         goal = new int[discs][poles];
         // place the discs on the left-most pole (column)
@@ -34,21 +58,26 @@ public class Towers {
             towers[disc][0] = (disc * 2) + 1;
         }
         State intialState = new State(towers);
-         System.out.println(Arrays.deepToString(intialState.getState()));
+        
+        // places the discs on the right-most pole (column) 
         for (int disc = 0; disc < discs; disc++) {
             goal[disc][2] = (disc * 2) + 1;
         }
         State goalState = new State(goal);
         
-        ArrayList<State> x = findLegalMoves(intialState);
-        for(State s: x){
-            System.out.println(Arrays.deepToString(s.getState()));
-        }
-        
-       // bfs2(intialState, goalState);
+        // runs the search algorithm
+        bfs(intialState, goalState);
     }
 
-    public static void bfs2(State intialState, State goalState) {
+    /**
+     * Performs the breadth-first search algorithm for finding to goal state 
+     * from the initial state in the minimum number of moves. This will also be 
+     * used to create the pattern databases, performed on the goal state.
+     * 
+     * @param intialState
+     * @param goalState
+     */
+    public static void bfs(State intialState, State goalState) {
         Queue<State> q = new LinkedList<>();
         Set<State> seen = new HashSet<>();
         q.add(intialState);
@@ -59,13 +88,14 @@ public class Towers {
                 System.out.println("Found the goal state");
                 System.out.println("Moves: " + current.getG());
                 State previous = current.getPrevious();
-                while(previous !=null){
+                while (previous != null) {
                     printTowers(previous.getState());
                     previous = previous.getPrevious();
                 }
             }
+            // finds all the legal moves from current position and adds the 
+            // ones not already seen to the queue
             for (State x : findLegalMoves(current)) {
-                //   System.out.println(Arrays.deepToString(x.getState()));
                 boolean beenSeen = false;
                 for (State val : seen) {
                     if (x.equals(val)) {
@@ -78,9 +108,15 @@ public class Towers {
                 }
             }
         }
-
     }
 
+    /**
+     * Given a current state, finds all legal moves from that given state and
+     * returns them in an ArrayList.
+     * 
+     * @param towers represents the current State
+     * @return 
+     */
     public static ArrayList<State> findLegalMoves(State towers) {
         // loop through all the poles 
         // and moves the top discs 
@@ -102,6 +138,14 @@ public class Towers {
         return legalMoves;
     }
 
+    /**
+     * Moves the top disc from one pole to another and updates the config.
+     * 
+     * @param fromPole the initial pole with the disc to be moved
+     * @param toPole the pole which will contain the disc
+     * @param towerss the object which will be updated with the new config
+     * @return the updated State 
+     */
     public static State move(int fromPole, int toPole, State towerss) {
         int length = towerss.getState().length;
         int[][] pole = new int[length][towerss.getState()[0].length];
@@ -146,7 +190,9 @@ public class Towers {
     }
 
     /**
-     * Prints the towers
+     * Prints the towers in a pretty format.
+     * 
+     * @param towers
      */
     public static void printTowers(int[][] towers) {
         System.out.println();
@@ -160,7 +206,7 @@ public class Towers {
     }
 
     /**
-     * Pads the width of the disc for printing
+     * Pads the width of the disc for printing.
      *
      * @param disc - the disc number (1 to 4 if there are 4 discs)
      * @return - padded string for pretty printing

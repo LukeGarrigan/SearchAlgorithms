@@ -62,7 +62,7 @@ public class TowersTest {
         State goalState = new State(goal);
 
         // running the test
-        Towers.bfs2(intialState, goalState);
+        Towers.bfs(intialState, goalState);
     }
 
     /**
