@@ -30,7 +30,7 @@ public class PDB15Tile {
         // TODO code application logic here
         //int[] wholeSet = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 0};
 
-        
+        /*
         CreatePDB create = new CreatePDB();
         byte[] pdb1 = new byte[]{1, 2, 3, 4, 0, 6, 7, 8, 0, 0, 0, 0, 0, 0, 0, 0};
         byte[] storedNums1 = new byte[]{1, 2, 3, 4, 6, 7, 8};
@@ -52,7 +52,7 @@ public class PDB15Tile {
         State sss = new State(pdb3, "null", 0);
         s.setH(0);
         create.bfs2(one, sss, storedNums3, "PDB_1_1");
-        
+        */
 
         /*
         CreatePDB create = new CreatePDB();
@@ -82,6 +82,10 @@ public class PDB15Tile {
         System.out.println("Stored!!");
         */
         
+        Fringe f = new Fringe();
+        f.createFringe();
+        
+        /*
         byte[] fourtyMoves = new byte[]{6, 7, 0, 11, 1, 5, 10, 4, 14, 13, 15, 2, 9, 8, 3, 12};
         RandomStates r = new RandomStates();
         ArrayList<byte[]> testStates = r.RandomizeArray(fourtyMoves, 100);
@@ -107,7 +111,7 @@ public class PDB15Tile {
             System.out.println("Time Taken(s): " + elapsedTime / 1000);
             System.out.println("");
         }
-
+        */
     }
 
     public static class State implements Comparator<State> {

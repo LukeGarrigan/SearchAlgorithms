@@ -17,7 +17,7 @@ import java.util.Set;
 
 /**
  * Solves the TOH problem in the minimum number of moves.
- * 
+ *
  * @author Luke
  * @version 1.0
  */
@@ -31,12 +31,12 @@ public class Towers {
     /**
      * Number of poles used
      */
-    public static int poles = 3;
+    public static int poles = 4;
 
     /**
      * Number of discs used
      */
-    public static int discs = 3;
+    public static int discs = 7;
 
     /**
      * Represents the goal state
@@ -46,7 +46,7 @@ public class Towers {
     /**
      * Initializes the starting and goal states and runs the breadth-first
      * -search algorithm.
-     * 
+     *
      * @param args
      */
     public static void main(String[] args) {
@@ -58,22 +58,22 @@ public class Towers {
             towers[disc][0] = (disc * 2) + 1;
         }
         State intialState = new State(towers);
-        
+
         // places the discs on the right-most pole (column) 
         for (int disc = 0; disc < discs; disc++) {
             goal[disc][2] = (disc * 2) + 1;
         }
         State goalState = new State(goal);
-        
+
         // runs the search algorithm
         bfs(intialState, goalState);
     }
 
     /**
-     * Performs the breadth-first search algorithm for finding to goal state 
-     * from the initial state in the minimum number of moves. This will also be 
+     * Performs the breadth-first search algorithm for finding to goal state
+     * from the initial state in the minimum number of moves. This will also be
      * used to create the pattern databases, performed on the goal state.
-     * 
+     *
      * @param intialState
      * @param goalState
      */
@@ -86,12 +86,14 @@ public class Towers {
             State current = q.poll();
             if (current.equals(goalState)) {
                 System.out.println("Found the goal state");
-                System.out.println("Moves: " + current.getG());
                 State previous = current.getPrevious();
                 while (previous != null) {
                     printTowers(previous.getState());
                     previous = previous.getPrevious();
                 }
+                System.out.println("Moves: " + current.getG());
+                System.out.println("Number of states: " + seen.size());
+
             }
             // finds all the legal moves from current position and adds the 
             // ones not already seen to the queue
@@ -113,9 +115,9 @@ public class Towers {
     /**
      * Given a current state, finds all legal moves from that given state and
      * returns them in an ArrayList.
-     * 
+     *
      * @param towers represents the current State
-     * @return 
+     * @return
      */
     public static ArrayList<State> findLegalMoves(State towers) {
         // loop through all the poles 
@@ -140,11 +142,11 @@ public class Towers {
 
     /**
      * Moves the top disc from one pole to another and updates the config.
-     * 
+     *
      * @param fromPole the initial pole with the disc to be moved
      * @param toPole the pole which will contain the disc
      * @param towerss the object which will be updated with the new config
-     * @return the updated State 
+     * @return the updated State
      */
     public static State move(int fromPole, int toPole, State towerss) {
         int length = towerss.getState().length;
@@ -191,7 +193,7 @@ public class Towers {
 
     /**
      * Prints the towers in a pretty format.
-     * 
+     *
      * @param towers
      */
     public static void printTowers(int[][] towers) {
