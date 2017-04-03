@@ -5,23 +5,25 @@
  */
 package towers;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
 /**
  * Represents a given configuration of the Tower Of Hanoi puzzle.
- * 
- * @version 1.0 
+ *
+ * @version 1.0
  * @author Luke
  */
-public class State {
+public class State implements Serializable {
 
     private int[][] state;
     private int g;
     private State previous;
+    private int h;
 
     /**
      * A configuration of TOH
-     * 
+     *
      * @param state
      */
     public State(int[][] state) {
@@ -29,10 +31,10 @@ public class State {
     }
 
     /**
-     * Returns the previous configuration, so the State before the current,
-     * this allows for counting the number of moves and also pretty printing
-     * and visualizing process.
-     * 
+     * Returns the previous configuration, so the State before the current, this
+     * allows for counting the number of moves and also pretty printing and
+     * visualizing process.
+     *
      * @return
      */
     public State getPrevious() {
@@ -42,7 +44,7 @@ public class State {
     /**
      * When the new State is created it is important to assign the current State
      * to the previous - setPrevious(this) for example
-     * 
+     *
      * @param previous
      */
     public void setPrevious(State previous) {
@@ -50,7 +52,7 @@ public class State {
     }
 
     /**
-     * 
+     *
      * @return the current configuration of the puzzle
      */
     public int[][] getState() {
@@ -58,11 +60,28 @@ public class State {
     }
 
     /**
-     * 
-     * @param state Sets the current state of the puzzle 
+     *
+     * @param state Sets the current state of the puzzle
      */
     public void setState(int[][] state) {
         this.state = state;
+    }
+
+    /**
+     *
+     * @param h sets the estimate number of moves to the goal state
+     */
+    public void setH(int h) {
+        this.h = h;
+    }
+
+    /**
+     *
+     * @param h
+     * @return the estimate number of moves to the goal state
+     */
+    public int getH() {
+        return this.h;
     }
 
     /**
