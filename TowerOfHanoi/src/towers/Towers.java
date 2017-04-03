@@ -5,7 +5,11 @@
  */
 package towers;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -36,12 +40,14 @@ public class Towers {
     /**
      * Number of discs used
      */
-    public static int discs = 7;
+    public static int discs = 6;
 
     /**
      * Represents the goal state
      */
     public static int[][] goal;
+
+    private static HashSet<State> one;
 
     /**
      * Initializes the starting and goal states and runs the breadth-first
@@ -49,7 +55,7 @@ public class Towers {
      *
      * @param args
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // assigns the disc and pole parameters
         towers = new int[discs][poles];
         goal = new int[discs][poles];
@@ -66,7 +72,72 @@ public class Towers {
         State goalState = new State(goal);
 
         // runs the search algorithm
-        bfs(intialState, goalState);
+        createPDB(goalState);
+
+        try {
+            ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("pdb7discs"));
+            one = (HashSet<State>) inputStream.readObject();
+        } catch (Exception ex) {
+        }
+        System.out.println("Solving");
+        idastar(intialState, goalState);
+
+    }
+
+    public static int getHeuristic(State s) {
+        for (State x : one) {
+            if (x.equals(s)) {
+                return x.getH();
+            }
+        }
+        return 0;
+    }
+
+    public static State idastar(State start, State goalState) {
+        int h = getHeuristic(start);
+        start.setH(h);
+        int nextCostBound;
+        nextCostBound = start.getH();
+        State solution = null;
+
+        while (solution == null) {
+            int currentCostBound = nextCostBound;
+            solution = depthFirstSearch(start, currentCostBound, goalState);
+            nextCostBound += 2;
+        }
+        return solution;
+    }
+
+    public static State depthFirstSearch(State current, int currentCostBound, State goalState) {
+        if (current.equals(goalState)) {
+            System.out.println("Found the goal state");
+            State previous = current.getPrevious();
+            while (previous != null) {
+                printTowers(previous.getState());
+                previous = previous.getPrevious();
+            }
+            System.out.println("Moves: " + current.getG());
+
+        }
+
+        for (State next : findLegalMoves(current)) {
+            int h = getHeuristic(next);
+            // System.out.println(h);
+            // patternCount = h+patternCount;
+            //manCount += pdb.calculateManhattan(next.getState());
+            // System.out.println("Pattern Heuristic: " + patternCount+ " Manhattan Heuristic: " +manCount);
+            next.setG(current.getG() + 1);
+            next.setH(h);
+            int value = next.getG() + next.getH();
+            //System.out.println(Arrays.toString(next.getState()) + " " + next.getH());
+            if (value <= currentCostBound) {
+                State result = depthFirstSearch(next, currentCostBound, goalState);
+                if (result != null) {
+                    return result;
+                }
+            }
+        }
+        return null;
     }
 
     /**
@@ -109,7 +180,57 @@ public class Towers {
                     seen.add(x);
                 }
             }
+
         }
+    }
+
+    public static void createPDB(State goalState) throws IOException {
+        Queue<State> q = new LinkedList<>();
+        Set<State> seen = new HashSet<>();
+        q.add(goalState);
+        seen.add(goalState);
+        int heuristic = 0;
+        goalState.setH(0);
+        while (!q.isEmpty()) {
+            State current = q.poll();
+            // finds all the legal moves from current position and adds the 
+            // ones not already seen to the queue
+            for (State x : findLegalMoves(current)) {
+                boolean beenSeen = false;
+                x.setH(current.getH() + 1);
+                for (State val : seen) {
+                    if (x.equals(val)) {
+                        beenSeen = true;
+                    }
+                }
+                if (beenSeen == false) {
+                    q.add(x);
+                    seen.add(x);
+                }
+            }
+            if (seen.size() % 1000 == 0) {
+                System.out.println(seen.size());
+            }
+        }
+
+        try {
+            FileOutputStream fos = new FileOutputStream("pdb7discs");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(seen); // write MenuArray to ObjectOutputStream
+            oos.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        //serializeArrayToFile(seen, "pdb7");
+    }
+
+    public static void serializeArrayToFile(Object array, String filename) throws IOException {
+        if (!array.getClass().isArray()) {
+            throw new IllegalArgumentException("Cannot serialize non-array object " + array.toString());
+        }
+        ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(filename));
+        outputStream.writeObject(array);
     }
 
     /**
