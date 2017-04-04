@@ -49,6 +49,11 @@ public class Towers {
 
     private static HashSet<State> one;
 
+    public static State goalState;
+    public static State initialState;
+
+    public static int nextCostBound;
+
     /**
      * Initializes the starting and goal states and runs the breadth-first
      * -search algorithm.
@@ -63,24 +68,39 @@ public class Towers {
         for (int disc = 0; disc < discs; disc++) {
             towers[disc][0] = (disc * 2) + 1;
         }
-        State intialState = new State(towers);
+        initialState = new State(towers);
 
         // places the discs on the right-most pole (column) 
         for (int disc = 0; disc < discs; disc++) {
-            goal[disc][2] = (disc * 2) + 1;
+            goal[disc][3] = (disc * 2) + 1;
         }
-        State goalState = new State(goal);
+        goalState = new State(goal);
 
         // runs the search algorithm
         createPDB(goalState);
 
         try {
-            ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("pdb7discs"));
+            ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("pdb7"));
             one = (HashSet<State>) inputStream.readObject();
         } catch (Exception ex) {
         }
         System.out.println("Solving");
-        idastar(intialState, goalState);
+        System.out.println("Initial State:");
+        System.out.println(Arrays.deepToString(initialState.getState()));
+        printTowers(initialState.getState());
+
+        System.out.println("Goal State:");
+        System.out.println(Arrays.deepToString(goalState.getState()));
+        printTowers(goalState.getState());
+        //bfs(intialState,goalState);
+        idastar(initialState);
+
+        for (State x : one) {
+            if (x.getH() == 0) {
+                printTowers(x.getState());
+                System.out.println(x.getH());
+            }
+        }
 
     }
 
@@ -93,22 +113,22 @@ public class Towers {
         return 0;
     }
 
-    public static State idastar(State start, State goalState) {
+    public static State idastar(State start) {
         int h = getHeuristic(start);
         start.setH(h);
-        int nextCostBound;
+        start.setG(0);
         nextCostBound = start.getH();
         State solution = null;
 
         while (solution == null) {
             int currentCostBound = nextCostBound;
-            solution = depthFirstSearch(start, currentCostBound, goalState);
+            solution = depthFirstSearch(start, currentCostBound);
             nextCostBound += 2;
         }
         return solution;
     }
 
-    public static State depthFirstSearch(State current, int currentCostBound, State goalState) {
+    public static State depthFirstSearch(State current, int currentCostBound) {
         if (current.equals(goalState)) {
             System.out.println("Found the goal state");
             State previous = current.getPrevious();
@@ -120,18 +140,17 @@ public class Towers {
 
         }
 
-        for (State next : findLegalMoves(current)) {
+        ArrayList<State> legalMoves = findLegalMoves(current);
+        for (State next : legalMoves) {
             int h = getHeuristic(next);
-            // System.out.println(h);
-            // patternCount = h+patternCount;
-            //manCount += pdb.calculateManhattan(next.getState());
-            // System.out.println("Pattern Heuristic: " + patternCount+ " Manhattan Heuristic: " +manCount);
             next.setG(current.getG() + 1);
             next.setH(h);
+            System.out.println("Current G : " + current.getG() + " Current H : " + current.getH());
+            System.out.println("Next G : " + next.getG() + " Next H : " + next.getH());
+            System.out.println("");
             int value = next.getG() + next.getH();
-            //System.out.println(Arrays.toString(next.getState()) + " " + next.getH());
             if (value <= currentCostBound) {
-                State result = depthFirstSearch(next, currentCostBound, goalState);
+                State result = depthFirstSearch(next, currentCostBound);
                 if (result != null) {
                     return result;
                 }
@@ -189,32 +208,29 @@ public class Towers {
         Set<State> seen = new HashSet<>();
         q.add(goalState);
         seen.add(goalState);
-        int heuristic = 0;
         goalState.setH(0);
         while (!q.isEmpty()) {
             State current = q.poll();
             // finds all the legal moves from current position and adds the 
             // ones not already seen to the queue
             for (State x : findLegalMoves(current)) {
+
                 boolean beenSeen = false;
-                x.setH(current.getH() + 1);
                 for (State val : seen) {
                     if (x.equals(val)) {
                         beenSeen = true;
                     }
                 }
                 if (beenSeen == false) {
+                    x.setH(current.getH() + 1);
                     q.add(x);
                     seen.add(x);
                 }
             }
-            if (seen.size() % 1000 == 0) {
-                System.out.println(seen.size());
-            }
         }
 
         try {
-            FileOutputStream fos = new FileOutputStream("pdb7discs");
+            FileOutputStream fos = new FileOutputStream("pdb7");
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(seen); // write MenuArray to ObjectOutputStream
             oos.close();
@@ -250,7 +266,11 @@ public class Towers {
                     for (int i = 0; i < poles; i++) {
                         if (i != pole) {
                             State blar = move(pole, i, towers);
-                            legalMoves.add(blar);
+                            // makes sure it doesn't create a new object
+                            // which is just going back on itself
+                            if (!blar.equals(towers.getPrevious())) {
+                                legalMoves.add(blar);
+                            }
                         }
                     }
                     break;
