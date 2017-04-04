@@ -17,9 +17,9 @@ import java.util.Arrays;
 public class State implements Serializable {
 
     private int[][] state;
-    private int g;
-    private State previous;
-    private int h;
+    private int g = 0;
+    private State previous = null;
+    private int h = -1;
 
     /**
      * A configuration of TOH
@@ -49,6 +49,7 @@ public class State implements Serializable {
      */
     public void setPrevious(State previous) {
         this.previous = previous;
+        this.g = previous.getG() + 1;
     }
 
     /**
@@ -65,6 +66,10 @@ public class State implements Serializable {
      */
     public void setState(int[][] state) {
         this.state = state;
+    }
+
+    public void setHForPDB() {
+        this.h = previous.getH() + 1;
     }
 
     /**
