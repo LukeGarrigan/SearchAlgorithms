@@ -46,12 +46,12 @@ public class Towers {
      * Represents the goal state
      */
     public static int[][] goal;
-
+    
     private static HashSet<State> one;
-
+    
     public static State goalState;
     public static State initialState;
-
+    
     public static int nextCostBound;
 
     /**
@@ -78,7 +78,7 @@ public class Towers {
 
         // runs the search algorithm
         createPDB(goalState);
-
+        
         try {
             ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("pdb7"));
             one = (HashSet<State>) inputStream.readObject();
@@ -88,38 +88,33 @@ public class Towers {
         System.out.println("Initial State:");
         System.out.println(Arrays.deepToString(initialState.getState()));
         printTowers(initialState.getState());
-
+        
         System.out.println("Goal State:");
         System.out.println(Arrays.deepToString(goalState.getState()));
         printTowers(goalState.getState());
-        //bfs(intialState,goalState);
-        idastar(initialState);
-
-        for (State x : one) {
-            if (x.getH() == 0) {
-                printTowers(x.getState());
-                System.out.println(x.getH());
-            }
-        }
+        bfs(initialState, goalState);
+        //idastar(initialState);
 
     }
-
+    
     public static int getHeuristic(State s) {
         for (State x : one) {
             if (x.equals(s)) {
+                s.setH(x.getH());
+                // System.out.println("H: " + s.getH() + " G: " + s.getG());
                 return x.getH();
             }
         }
         return 0;
     }
-
+    
     public static State idastar(State start) {
         int h = getHeuristic(start);
         start.setH(h);
         start.setG(0);
         nextCostBound = start.getH();
         State solution = null;
-
+        
         while (solution == null) {
             int currentCostBound = nextCostBound;
             solution = depthFirstSearch(start, currentCostBound);
@@ -127,23 +122,20 @@ public class Towers {
         }
         return solution;
     }
-
+    
     public static State depthFirstSearch(State current, int currentCostBound) {
         if (current.equals(goalState)) {
             System.out.println("Found the goal state");
             State previous = current.getPrevious();
-            while (previous != null) {
-                printTowers(previous.getState());
-                previous = previous.getPrevious();
-            }
+            //  while (previous != null) {
+            //     printTowers(previous.getState());
+            //    previous = previous.getPrevious();
+            //}
             System.out.println("Moves: " + current.getG());
-
+            return current;
         }
-
-        ArrayList<State> legalMoves = findLegalMoves(current);
-        for (State next : legalMoves) {
+        for (State next : findLegalMoves(current)) {
             int h = getHeuristic(next);
-            next.setG(current.getG() + 1);
             next.setH(h);
             System.out.println("Current G : " + current.getG() + " Current H : " + current.getH());
             System.out.println("Next G : " + next.getG() + " Next H : " + next.getH());
@@ -183,7 +175,6 @@ public class Towers {
                 }
                 System.out.println("Moves: " + current.getG());
                 System.out.println("Number of states: " + seen.size());
-
             }
             // finds all the legal moves from current position and adds the 
             // ones not already seen to the queue
@@ -199,10 +190,10 @@ public class Towers {
                     seen.add(x);
                 }
             }
-
+            
         }
     }
-
+    
     public static void createPDB(State goalState) throws IOException {
         Queue<State> q = new LinkedList<>();
         Set<State> seen = new HashSet<>();
@@ -214,7 +205,7 @@ public class Towers {
             // finds all the legal moves from current position and adds the 
             // ones not already seen to the queue
             for (State x : findLegalMoves(current)) {
-
+                x.setHForPDB();
                 boolean beenSeen = false;
                 for (State val : seen) {
                     if (x.equals(val)) {
@@ -222,13 +213,12 @@ public class Towers {
                     }
                 }
                 if (beenSeen == false) {
-                    x.setH(current.getH() + 1);
                     q.add(x);
                     seen.add(x);
                 }
             }
         }
-
+        
         try {
             FileOutputStream fos = new FileOutputStream("pdb7");
             ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -240,7 +230,7 @@ public class Towers {
 
         //serializeArrayToFile(seen, "pdb7");
     }
-
+    
     public static void serializeArrayToFile(Object array, String filename) throws IOException {
         if (!array.getClass().isArray()) {
             throw new IllegalArgumentException("Cannot serialize non-array object " + array.toString());
@@ -248,6 +238,8 @@ public class Towers {
         ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(filename));
         outputStream.writeObject(array);
     }
+
+
 
     /**
      * Given a current state, finds all legal moves from that given state and
@@ -276,7 +268,7 @@ public class Towers {
                     break;
                 }
             }
-
+            
         }
         return legalMoves;
     }
@@ -300,10 +292,10 @@ public class Towers {
         while (disc < discs && pole[disc][fromPole] == 0) {
             disc++;
         }
-
+        
         int temp = pole[disc][fromPole];
         pole[disc][fromPole] = 0;
-
+        
         int newDisc = 0;
         // finds the top position of the new pole
         while (newDisc < discs && pole[newDisc][toPole] == 0) {
@@ -329,7 +321,7 @@ public class Towers {
             s.setPrevious(towerss);
             return s;
         }
-
+        
     }
 
     /**
@@ -357,7 +349,7 @@ public class Towers {
     public static String pad(int disc) {
         // pad string with spaces
         int columnWidth = (discs * 2) + 2;
-
+        
         String output = "";
         if (disc == 0) {
             output = "|";
