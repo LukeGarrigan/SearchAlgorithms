@@ -1,0 +1,13 @@
+﻿
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch is up-to-date with 'origin/master'.
+#
+# Changes to be committed:
+#	modified:   TowerOfHanoi/build/classes/towers/State.class
+#	modified:   TowerOfHanoi/build/classes/towers/Towers.class
+#	modified:   TowerOfHanoi/src/towers/State.java
+#	modified:   TowerOfHanoi/src/towers/Towers.java
+#
+

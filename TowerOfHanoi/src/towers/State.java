@@ -49,7 +49,9 @@ public class State implements Serializable {
      */
     public void setPrevious(State previous) {
         this.previous = previous;
-        this.g = previous.getG() + 1;
+        if (previous != null) {
+            this.g = this.previous.getG() + 1;
+        }
     }
 
     /**
