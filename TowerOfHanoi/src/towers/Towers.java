@@ -46,12 +46,25 @@ public class Towers {
      * Represents the goal state
      */
     public static int[][] goal;
-    
+
+    /**
+     * Will contain all of the goal states for the pdb
+     */
     private static HashSet<State> one;
-    
+
+    /**
+     * Represents the goal as a State
+     */
     public static State goalState;
+
+    /**
+     * Represents the initial as a State
+     */
     public static State initialState;
-    
+
+    /**
+     * The cost for the ida traversal
+     */
     public static int nextCostBound;
 
     /**
@@ -59,6 +72,7 @@ public class Towers {
      * -search algorithm.
      *
      * @param args
+     * @throws java.io.IOException
      */
     public static void main(String[] args) throws IOException {
         // assigns the disc and pole parameters
@@ -78,7 +92,8 @@ public class Towers {
 
         // runs the search algorithm
         createPDB(goalState);
-        
+        System.out.println("Created");
+
         try {
             ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("pdb7"));
             one = (HashSet<State>) inputStream.readObject();
@@ -88,15 +103,22 @@ public class Towers {
         System.out.println("Initial State:");
         System.out.println(Arrays.deepToString(initialState.getState()));
         printTowers(initialState.getState());
-        
+
         System.out.println("Goal State:");
         System.out.println(Arrays.deepToString(goalState.getState()));
         printTowers(goalState.getState());
-        bfs(initialState, goalState);
-        //idastar(initialState);
 
+        //bfs(initialState, goalState);
+        idastar(initialState);
     }
-    
+
+    /**
+     * Returns the heuristic value taken from the pattern database by looking
+     * through all the values in the pdb and finding the state
+     *
+     * @param s
+     * @return
+     */
     public static int getHeuristic(State s) {
         for (State x : one) {
             if (x.equals(s)) {
@@ -107,14 +129,22 @@ public class Towers {
         }
         return 0;
     }
-    
+
+    /**
+     * Performs the iterative deepening a star heuristic search algorithm, using
+     * a pattern database which is called from a file
+     *
+     * @param start
+     * @return
+     */
     public static State idastar(State start) {
         int h = getHeuristic(start);
         start.setH(h);
         start.setG(0);
         nextCostBound = start.getH();
         State solution = null;
-        
+        System.out.println("Initial H " + h);
+
         while (solution == null) {
             int currentCostBound = nextCostBound;
             solution = depthFirstSearch(start, currentCostBound);
@@ -122,26 +152,37 @@ public class Towers {
         }
         return solution;
     }
-    
+
+    /**
+     * Performs the depth first search traversal to a specified boundary, which
+     * is incremented accordingly
+     *
+     * @param current
+     * @param currentCostBound
+     * @return
+     */
     public static State depthFirstSearch(State current, int currentCostBound) {
         if (current.equals(goalState)) {
             System.out.println("Found the goal state");
             State previous = current.getPrevious();
-            //  while (previous != null) {
-            //     printTowers(previous.getState());
-            //    previous = previous.getPrevious();
-            //}
+            while (previous != null) {
+                printTowers(previous.getState());
+                previous = previous.getPrevious();
+            }
             System.out.println("Moves: " + current.getG());
             return current;
         }
-        for (State next : findLegalMoves(current)) {
+        ArrayList<State> neigbours= findLegalMoves(current);
+        for (State next : neigbours) {
             int h = getHeuristic(next);
             next.setH(h);
             System.out.println("Current G : " + current.getG() + " Current H : " + current.getH());
             System.out.println("Next G : " + next.getG() + " Next H : " + next.getH());
             System.out.println("");
+            printTowers(next.getState());
             int value = next.getG() + next.getH();
             if (value <= currentCostBound) {
+                System.out.println("Next Iter");
                 State result = depthFirstSearch(next, currentCostBound);
                 if (result != null) {
                     return result;
@@ -190,10 +231,17 @@ public class Towers {
                     seen.add(x);
                 }
             }
-            
+
         }
     }
-    
+
+    /**
+     * Creates the pattern database for TOH. Using a Breadth-first search
+     * traversal from the goal state.
+     *
+     * @param goalState
+     * @throws IOException
+     */
     public static void createPDB(State goalState) throws IOException {
         Queue<State> q = new LinkedList<>();
         Set<State> seen = new HashSet<>();
@@ -218,7 +266,7 @@ public class Towers {
                 }
             }
         }
-        
+
         try {
             FileOutputStream fos = new FileOutputStream("pdb7");
             ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -228,18 +276,7 @@ public class Towers {
             ex.printStackTrace();
         }
 
-        //serializeArrayToFile(seen, "pdb7");
     }
-    
-    public static void serializeArrayToFile(Object array, String filename) throws IOException {
-        if (!array.getClass().isArray()) {
-            throw new IllegalArgumentException("Cannot serialize non-array object " + array.toString());
-        }
-        ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(filename));
-        outputStream.writeObject(array);
-    }
-
-
 
     /**
      * Given a current state, finds all legal moves from that given state and
@@ -260,7 +297,8 @@ public class Towers {
                             State blar = move(pole, i, towers);
                             // makes sure it doesn't create a new object
                             // which is just going back on itself
-                            if (!blar.equals(towers.getPrevious())) {
+
+                            if (!blar.equals(towers.getPrevious()) && !blar.equals(towers)) {
                                 legalMoves.add(blar);
                             }
                         }
@@ -268,7 +306,7 @@ public class Towers {
                     break;
                 }
             }
-            
+
         }
         return legalMoves;
     }
@@ -292,10 +330,10 @@ public class Towers {
         while (disc < discs && pole[disc][fromPole] == 0) {
             disc++;
         }
-        
+
         int temp = pole[disc][fromPole];
         pole[disc][fromPole] = 0;
-        
+
         int newDisc = 0;
         // finds the top position of the new pole
         while (newDisc < discs && pole[newDisc][toPole] == 0) {
@@ -305,9 +343,7 @@ public class Towers {
         if (newDisc < discs) {
             if (pole[newDisc][toPole] > temp) {
                 pole[--newDisc][toPole] = temp;
-                // printTowers(pole);
                 State s = new State(pole);
-                s.setG(towerss.getG() + 1);
                 s.setPrevious(towerss);
                 return s;
             } else {
@@ -317,11 +353,9 @@ public class Towers {
         } else {
             pole[--newDisc][toPole] = temp;
             State s = new State(pole);
-            s.setG(towerss.getG() + 1);
             s.setPrevious(towerss);
             return s;
         }
-        
     }
 
     /**
@@ -349,7 +383,7 @@ public class Towers {
     public static String pad(int disc) {
         // pad string with spaces
         int columnWidth = (discs * 2) + 2;
-        
+
         String output = "";
         if (disc == 0) {
             output = "|";
