@@ -40,7 +40,7 @@ public class Towers {
     /**
      * Number of discs used
      */
-    public static int discs = 6;
+    public static int discs = 8;
 
     /**
      * Represents the goal state
@@ -91,7 +91,7 @@ public class Towers {
         goalState = new State(goal);
 
         // runs the search algorithm
-        createPDB(goalState);
+        //createPDB(goalState);
         System.out.println("Created");
 
         try {
