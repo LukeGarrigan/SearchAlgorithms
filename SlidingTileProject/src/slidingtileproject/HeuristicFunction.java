@@ -10,5 +10,8 @@ package slidingtileproject;
  * @author Luke
  */
 public interface HeuristicFunction {
-    public int calculateHeuristic(int[] state);
+
+    public int calculateHeuristic(State state);
+
+    public float calculateSingleHeuristic(State next);
 }

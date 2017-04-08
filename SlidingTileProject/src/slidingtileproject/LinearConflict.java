@@ -12,14 +12,15 @@ package slidingtileproject;
 public class LinearConflict extends Manhattan {
 
     @Override
-    public int calculateHeuristic(int[] puzz) {
-        int heuristic = super.calculateHeuristic(puzz); //To change body of generated methods, choose Tools | Templates.
+    public int calculateHeuristic(State puzz) {
+        int heuristic = super.calculateHeuristic(puzz);
         heuristic += linearVerticalConflict(puzz);
         heuristic += linearHorizontalConflict(puzz);
         return heuristic;
     }
 
-    private int linearVerticalConflict(int[] state) {
+    private int linearVerticalConflict(State s) {
+        int state[] = s.getState();
         int dimension = 4;
         int linearConflict = 0;
         int count = 0;
@@ -47,8 +48,8 @@ public class LinearConflict extends Manhattan {
         return linearConflict;
     }
 
-    private int linearHorizontalConflict(int[] state) {
-
+    private int linearHorizontalConflict(State s) {
+        int[] state = s.getState();
         int dimension = 4;
         int linearConflict = 0;
 //        int[][] newState = {
