@@ -32,7 +32,7 @@ public class SlidingTileProject {
         IterativeDeepeningAStar ida = new IterativeDeepeningAStar(h);
         
         //int initialHeuristic = l.calculateHeuristic(quickTest);
-        State initialState = new State(thirtyMoves, 0, 0, null, "null");
+        State initialState = new State(thirtyFiveMoves, 0, 0, null, "null");
         int intialHeuristic = h.calculateHeuristic(initialState);
         initialState.setH(intialHeuristic);
         

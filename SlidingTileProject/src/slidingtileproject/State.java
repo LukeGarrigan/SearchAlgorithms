@@ -21,7 +21,6 @@ public class State {
     private int zeroPosition;
     private int movedPosition;
     private int[] heuristicArray;
-    private int heuristicEstimate;
 
     public State(int[] state, float g, float h, State previousState, String direction) {
         this.state = state;
@@ -34,7 +33,7 @@ public class State {
         } else {
             // first state so we need to find zero position
             this.zeroPosition = findZeroPosition();
-       }
+        }
     }
 
     public int findZeroPosition() {
@@ -46,14 +45,6 @@ public class State {
             }
         }
         return position;
-    }
-
-    public int getHeuristicEstimate() {
-        return heuristicEstimate;
-    }
-
-    public void setHeuristicEstimate(int heuristicEstimate) {
-        this.heuristicEstimate = heuristicEstimate;
     }
 
     public int[] getHeuristicArray() {
@@ -154,10 +145,8 @@ public class State {
             left[zeroPosition] = left[zeroPosition - 1];
             left[zeroPosition - 1] = temp;
             State newState = new State(left, 0, h, this, "left");
-            newState.setZeroPosition(zeroPosition - 1);
-            // the moved position is always set to the previous position of 
-            // the zero 
             newState.setMovedPosition(zeroPosition);
+            newState.setZeroPosition(zeroPosition - 1);
             neighbours.add(newState);
 
         }
@@ -169,11 +158,12 @@ public class State {
             right[zeroPosition] = right[zeroPosition + 1];
             right[zeroPosition + 1] = temp;
             State newState = new State(right, 0, h, this, "right");
-            newState.setZeroPosition(zeroPosition + 1);
             newState.setMovedPosition(zeroPosition);
+            newState.setZeroPosition(zeroPosition + 1);
             neighbours.add(newState);
 
         }
+        // GOING UP
         if (zeroPosition > 3 && !direction.equals("down")) {
 
             int[] up = new int[16];
@@ -182,11 +172,12 @@ public class State {
             up[zeroPosition] = up[zeroPosition - 4];
             up[zeroPosition - 4] = temp;
             State newState = new State(up, 0, h, this, "up");
-            newState.setZeroPosition(zeroPosition - 4);
             newState.setMovedPosition(zeroPosition);
+            newState.setZeroPosition(zeroPosition - 4);
             neighbours.add(newState);
 
         }
+        // GOING DOWN
         if (zeroPosition < 12 && !direction.equals("up")) {
             int[] down = new int[16];
             System.arraycopy(state, 0, down, 0, down.length);
@@ -194,10 +185,9 @@ public class State {
             down[zeroPosition] = down[zeroPosition + 4];
             down[zeroPosition + 4] = temp;
             State newState = new State(down, 0, h, this, "down");
-            newState.setZeroPosition(zeroPosition + 4);
             newState.setMovedPosition(zeroPosition);
+            newState.setZeroPosition(zeroPosition + 4);
             neighbours.add(newState);
-
         }
         // }
         return neighbours;
@@ -265,5 +255,23 @@ public class State {
     @Override
     public int hashCode() {
         return state.hashCode();
+    }
+
+    public void printHeuristicArray() {
+        for (int i = 0; i < heuristicArray.length; i++) {
+            System.out.print(heuristicArray[i] + " ");
+            if ((i + 1) % 4 == 0) {
+                System.out.println();
+            }
+        }
+    }
+
+    public void printState() {
+        for (int i = 0; i < state.length; i++) {
+            System.out.print(state[i] + " ");
+            if ((i + 1) % 4 == 0) {
+                System.out.println();
+            }
+        }
     }
 }
