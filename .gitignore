@@ -85,5 +85,10 @@ Temporary Items
 /Towers/nbproject/private/
 /Towers/build/
 /RubiksCube/nbproject/private/
+<<<<<<< HEAD
 /TowerOfHanoi/dist/
 /SlidingTileProject/dist/
+=======
+/TowerOfHanoi/dist/
+>>>>>>> 2aa6f56e87ec89e5714663404b932d7881785a36
+/Algorithms/FifteenTile/PDB15Tile/build/
