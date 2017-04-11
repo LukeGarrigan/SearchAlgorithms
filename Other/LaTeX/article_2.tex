@@ -1,0 +1,186 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Journal Article
+% LaTeX Template
+% Version 1.4 (15/5/16)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Frits Wenneker (http://www.howtotex.com) with extensive modifications by
+% Vel (vel@LaTeXTemplates.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[twoside,twocolumn]{article}
+
+\usepackage{blindtext} % Package to generate dummy text throughout this template 
+
+\usepackage[sc]{mathpazo} % Use the Palatino font
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\linespread{1.05} % Line spacing - Palatino needs more space between lines
+\usepackage{microtype} % Slightly tweak font spacing for aesthetics
+
+\usepackage[english]{babel} % Language hyphenation and typographical rules
+
+\usepackage[hmarginratio=1:1,top=32mm,columnsep=20pt]{geometry} % Document margins
+\usepackage[hang, small,labelfont=bf,up,textfont=it,up]{caption} % Custom captions under/above floats in tables or figures
+\usepackage{booktabs} % Horizontal rules in tables
+
+\usepackage{lettrine} % The lettrine is the first enlarged letter at the beginning of the text
+
+\usepackage{enumitem} % Customized lists
+\setlist[itemize]{noitemsep} % Make itemize lists more compact
+
+\usepackage{abstract} % Allows abstract customization
+\renewcommand{\abstractnamefont}{\normalfont\bfseries} % Set the "Abstract" text to bold
+\renewcommand{\abstracttextfont}{\normalfont\small\itshape} % Set the abstract itself to small italic text
+
+\usepackage{titlesec} % Allows customization of titles
+\renewcommand\thesection{\Roman{section}} % Roman numerals for the sections
+\renewcommand\thesubsection{\roman{subsection}} % roman numerals for subsections
+\titleformat{\section}[block]{\large\scshape\centering}{\thesection.}{1em}{} % Change the look of the section titles
+\titleformat{\subsection}[block]{\large}{\thesubsection.}{1em}{} % Change the look of the section titles
+
+\usepackage{fancyhdr} % Headers and footers
+\pagestyle{fancy} % All pages have headers and footers
+\fancyhead{} % Blank out the default header
+\fancyfoot{} % Blank out the default footer
+\fancyfoot[RO,LE]{\thepage} % Custom footer text
+
+\usepackage{titling} % Customizing the title section
+
+\usepackage{hyperref} % For hyperlinks in the PDF
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\setlength{\droptitle}{-4\baselineskip} % Move the title up
+
+
+\title{Design, Implementation and Evaluation of a Robust Speech Recognition System} % Article title
+\author{%
+\textsc{Luke M. Garrigan   Shane J. Sturgeon }
+\thanks{A thank you or further information} 
+\\[1ex] % Your name
+\normalsize University of East Anglia \\ % Your institution
+\normalsize \href{mailto:john@smith.com}{800086495   100082588    } % Your email address
+%\and % Uncomment if 2 authors are required, duplicate these 4 lines if more
+%\textsc{Jane Smith}\thanks{Corresponding author} \\[1ex] % Second author's name
+%\normalsize University of Utah \\ % Second author's institution
+%\normalsize \href{mailto:jane@smith.com}{jane@smith.com} % Second author's email address
+}
+\renewcommand{\maketitlehookd}{%
+\begin{abstract}
+\noindent
+In this paper we investigate various parameters and techniques to build a robust speech recogniser. We experiment with numerous approaches to speech collection, feature extraction, acoustic modelling and noise compensation. More specifically, adjusting methods for recording the data with a multitude of equipment, name ordering and sample rate. We test the performances of  Linear frequency cepstral coefficients (LFCC) and Mel-frequency cepstral coefficients (MFCC) under a number of scenarios, and find that although not as widely used as MFCC, LFCC  is as robust as when babble noise is added. (Linear versus Mel Frequency Cepstral Coefficients for Speaker Recognition). We add noise and babble to our model and test different methods of noise compensation such as spectral subtraction and Wiener Filter. We also add noise to our training data to test the speech models on noisy speech. The software was modelled around 22 names: Daniel, Peyton, Peter, Owen, Dan, Justinas, Luke, Samuel, Brandon, Meron, Louise, Wazzy, Edward, James, Michael, Shane, Jamie, Berk, Marcio, Will, Oliver, Sam. 
+\end{abstract}
+}
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+% Print the title
+\maketitle
+
+%----------------------------------------------------------------------------------------
+%	ARTICLE CONTENTS
+%----------------------------------------------------------------------------------------
+
+\section{Introduction}
+
+The aim of this work is to examine the best techniques available for an accurate speech recognition system with the use of a combination of programs. MATLAB is used  for implementing feature extraction and noise compensation. SFS (Speech Filing System) is used for annotating the audio and HTK (Hidden Markov Model Toolkit) for the development of the speech recogniser by building and manipulating hidden Markov models.
+
+%------------------------------------------------
+
+\section{Speech Collection}
+When recording data to train the speech recognition model, we recorded each name 20 times in a row. The speech was captured in a quiet room with a sensitive microphone to pick up on the clarity of speech and eliminate the majority of noise. It was decided that the recorded speech should be as clean as possible so that noise could be added to the recordings for alternate tests  at a later date.
+The sampling rate of the speech was recorded at  44Khz allowing for down sampling to the requirements specification of certain experiments. After all training data had been collected we then recorded all the testing speech, this consisted of all 22 names spoken consecutively. In particular, we recorded the testing data in no explicit order; so the 22 names were scrambled and then spoken. This process was completed 20 times. We recorded the testing data in this manner in the hope of grasping a more detailed representation of how accurate the training model is.
+Once the training model had been tested, we further implemented additional training data  into the model in the hope of improving the recognition of the system. We did this by recording each name a further 10 times and testing the results against a set test model, then recorded a further 10 names and documented the results. See 6. For further details
+
+\subsection{Annotation Methodology}
+After all data had been recorded it had to be labeled to inform HTK of when individual names were being spoken for training and creating confusion matrices. Annotation of the speech utterances were completed with the program SFS, this allowed us to label the beginning and end of each name. The beginning of all the .wav files were annotated with sil which represents silence followed by the next name and sil again once the name utterance had ended.
+In figure 1 the green annotation line represents the beginning of the name utterance Edward and the blue line represents the end of the name utterance and the beginning of the silence.
+
+
+Maecenas sed ultricies felis. Sed imperdiet dictum arcu a egestas. 
+\begin{itemize}
+\item Donec dolor arcu, rutrum id molestie in, viverra sed diam
+\item Curabitur feugiat
+\item turpis sed auctor facilisis
+\item arcu eros accumsan lorem, at posuere mi diam sit amet tortor
+\item Fusce fermentum, mi sit amet euismod rutrum
+\item sem lorem molestie diam, iaculis aliquet sapien tortor non nisi
+\item Pellentesque bibendum pretium aliquet
+\end{itemize}
+\blindtext % Dummy text
+
+Text requiring further explanation\footnote{Example footnote}.
+
+%------------------------------------------------
+
+\section{Results}
+
+\begin{table}
+\caption{Example table}
+\centering
+\begin{tabular}{llr}
+\toprule
+\multicolumn{2}{c}{Name} \\
+\cmidrule(r){1-2}
+First name & Last Name & Grade \\
+\midrule
+John & Doe & $7.5$ \\
+Richard & Miles & $2$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\blindtext % Dummy text
+
+\begin{equation}
+\label{eq:emc}
+e = mc^2
+\end{equation}
+
+\blindtext % Dummy text
+
+%------------------------------------------------
+
+\section{Discussion}
+
+\subsection{Subsection One}
+
+A statement requiring citation \cite{Figueredo:2009dg}.
+\blindtext % Dummy text
+
+\subsection{Subsection Two}
+
+\blindtext % Dummy text
+
+%----------------------------------------------------------------------------------------
+%	REFERENCE LIST
+%----------------------------------------------------------------------------------------
+
+\begin{thebibliography}{99} % Bibliography - this is intentionally simple in this template
+
+\bibitem[Figueredo and Wolf, 2009]{Figueredo:2009dg}
+Figueredo, A.~J. and Wolf, P. S.~A. (2009).
+\newblock Assortative pairing and life history strategy - a cross-cultural
+  study.
+\newblock {\em Human Nature}, 20:317--330.
+ 
+\end{thebibliography}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}

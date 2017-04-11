@@ -1,0 +1,7 @@
+\contentsline {section}{\numberline {1}Introduction}{5}{section.1}
+\contentsline {section}{\numberline {2}The structure of the document}{5}{section.2}
+\contentsline {subsection}{\numberline {2.1}The preamble}{6}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Your document}{7}{subsection.2.2}
+\contentsline {section}{\numberline {3}Producing tables and figures}{8}{section.3}
+\contentsline {section}{\numberline {4}Producing a Gantt chart}{13}{section.4}
+\contentsline {section}{\numberline {A}Code for the ``Cats'' figure}{16}{appendix.A}

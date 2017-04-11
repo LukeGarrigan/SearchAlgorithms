@@ -1,0 +1,43 @@
+% Document for tutorial 4
+\documentclass[12pt]{scrartcl}
+\title{Tables and figures}
+\author{John Doe}
+\begin{document}
+\maketitle
+
+A simple table:
+\begin{center}
+	\begin{tabular}{clr}
+		centred & left & right \\
+		C & L & R \\
+		111 & 222 & 333
+	\end{tabular}
+\end{center}
+
+
+A simple table:
+\begin{center}
+	\begin{tabular}{clr} \hline
+		centred & left & right \\ \hline\hline
+		C & L & R \\
+		111 & 222 & 333 \\ \hline
+	\end{tabular}
+\end{center}
+
+\begin{center}
+	\begin{tabular}{|l|r|r|r|r|} \cline{2-5}
+		\multicolumn{1}{c}{} & \multicolumn{2}{|c|}{CPU} &
+		\multicolumn{2}{|c|}{Iteration} \\ \hline
+		Test problem & average & maximum & average & maximum \\
+		\hline \hline
+		Norwich100 & 10.1 & 121.2 & 212 & 2333 \\
+		London123 & 7.2 & 61.3 & 110 & 650 \\
+		\hline
+	\end{tabular}
+\end{center}
+
+
+\end{document}
+
+
+

@@ -1,0 +1,72 @@
+\begin{thebibliography}{}
+
+\bibitem[Borrajo et~al., 2014]{DBLP:journals/aicom/BorrajoFKLLRS14}
+Borrajo, D., Felner, A., Korf, R.~E., Likhachev, M., {Linares L{\'{o}}pez}, C.,
+  Ruml, W., and Sturtevant, N.~R. (2014).
+\newblock The fifth annual symposium on combinatorial search.
+\newblock {\em {AI} Commun.}, 27(4):327--328.
+
+\bibitem[Brewka, 1996]{DBLP:journals/ker/Brewka96}
+Brewka, G. (1996).
+\newblock \emph{Artificial intelligence - a modern approach} by stuart russell
+  and peter norvig, prentice hall. series in artificial intelligence, englewood
+  cliffs, {NJ}.
+\newblock {\em Knowledge Eng. Review}, 11(1):78--79.
+
+\bibitem[Felner, 2015]{DBLP:conf/socs/Felner15}
+Felner, A. (2015).
+\newblock Position paper: The collapse macro in best-first search algorithms
+  and an iterative variant of {RBFS}.
+\newblock In Lelis, L. and Stern, R., editors, {\em Proceedings of the Eighth
+  Annual Symposium on Combinatorial Search, {SOCS} 2015, 11-13 June 2015, Ein
+  Gedi, the Dead Sea, Israel.}, pages 28--34. {AAAI} Press.
+
+\bibitem[Felner et~al., 2011]{DBLP:journals/corr/abs-1107-0050}
+Felner, A., Hanan, S., and Korf, R.~E. (2011).
+\newblock Additive pattern database heuristics.
+\newblock {\em CoRR}, abs/1107.0050.
+
+\bibitem[Hatem et~al., 2015]{Hatem:2015:RBS:2887007.2887167}
+Hatem, M., Kiesel, S., and Ruml, W. (2015).
+\newblock Recursive best-first search with bounded overhead.
+\newblock In {\em Proceedings of the Twenty-Ninth AAAI Conference on Artificial
+  Intelligence}, AAAI'15, pages 1151--1157. AAAI Press.
+
+\bibitem[Korf, 1995]{DBLP:journals/mima/Korf95}
+Korf, R.~E. (1995).
+\newblock Heuristic evaluation functions in artificial intelligence search
+  algorithms.
+\newblock {\em Minds and Machines}, 5(4):489--498.
+
+\bibitem[Linnert et~al., 2014]{DBLP:conf/ccgrid/LinnertSB14}
+Linnert, B., Schneider, J., and Burchard, L. (2014).
+\newblock Mapping algorithms optimizing the overall manhattan distance for
+  pre-occupied cluster computers in sla-based grid environments.
+\newblock In {\em 14th {IEEE/ACM} International Symposium on Cluster, Cloud and
+  Grid Computing, CCGrid 2014, Chicago, IL, USA, May 26-29, 2014}, pages
+  132--140.
+
+\bibitem[Meissner and Brzykcy, 2011]{DBLP:conf/otm/MeissnerB11}
+Meissner, A. and Brzykcy, G. (2011).
+\newblock Reasoning with the depth-first iterative deepening strategy in the
+  dlog system.
+\newblock In Meersman, R., Dillon, T.~S., and Herrero, P., editors, {\em On the
+  Move to Meaningful Internet Systems: {OTM} 2011 Workshops - Confederated
+  International Workshops and Posters: {EI2N+NSF} ICE, ICSP+INBAST, ISDE, ORM,
+  OTMA, SWWS+MONET+SeDeS, and {VADER} 2011, Hersonissos, Crete, Greece, October
+  17-21, 2011. Proceedings}, volume 7046 of {\em Lecture Notes in Computer
+  Science}, pages 504--513. Springer.
+
+\bibitem[Newell, 1972]{Newell:1972:HPS:1095704}
+Newell, A. (1972).
+\newblock {\em Human Problem Solving}.
+\newblock Prentice-Hall, Inc., Upper Saddle River, NJ, USA.
+
+\bibitem[Sokolova and van Beek, 2014]{DBLP:conf/ai/2014}
+Sokolova, M. and van Beek, P., editors (2014).
+\newblock {\em Advances in Artificial Intelligence - 27th Canadian Conference
+  on Artificial Intelligence, Canadian {AI} 2014, Montr{\'{e}}al, QC, Canada,
+  May 6-9, 2014. Proceedings}, volume 8436 of {\em Lecture Notes in Computer
+  Science}. Springer.
+
+\end{thebibliography}

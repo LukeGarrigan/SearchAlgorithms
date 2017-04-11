@@ -1,0 +1,30 @@
+\begin{thebibliography}{}
+
+\bibitem[Hatem et~al., 2015]{DBLP:conf/aaai/HatemKR15}
+Hatem, M., Kiesel, S., and Ruml, W. (2015).
+\newblock Recursive best-first search with bounded overhead.
+\newblock In {\em Proceedings of the Twenty-Ninth {AAAI} Conference on
+  Artificial Intelligence, January 25-30, 2015, Austin, Texas, {USA.}}, pages
+  1151--1157.
+
+\bibitem[Korf, 1993]{DBLP:journals/ai/Korf93}
+Korf, R.~E. (1993).
+\newblock Linear-space best-first search.
+\newblock {\em Artif. Intell.}, 62(1):41--78.
+
+\bibitem[Korf and Felner, 2002]{DBLP:journals/ai/KorfF02}
+Korf, R.~E. and Felner, A. (2002).
+\newblock Disjoint pattern database heuristics.
+\newblock {\em Artif. Intell.}, 134(1-2):9--22.
+
+\bibitem[Korf et~al., 2001]{DBLP:journals/ai/KorfRE01}
+Korf, R.~E., Reid, M., and Edelkamp, S. (2001).
+\newblock Time complexity of iterative-deepening-a\({}^{\mbox{*}}\).
+\newblock {\em Artif. Intell.}, 129(1-2):199--218.
+
+\bibitem[Nordhoff and Lammich, 2012]{DBLP:journals/afp/NordhoffL12}
+Nordhoff, B. and Lammich, P. (2012).
+\newblock Dijkstra's shortest path algorithm.
+\newblock {\em Archive of Formal Proofs}, 2012.
+
+\end{thebibliography}
