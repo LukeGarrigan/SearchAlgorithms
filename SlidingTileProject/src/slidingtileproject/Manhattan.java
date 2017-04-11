@@ -43,7 +43,7 @@ public class Manhattan implements HeuristicFunction {
     }
 
     @Override
-    public float calculateSingleHeuristic(State s) {
+    public int calculateSingleHeuristic(State s) {
    
         //float currentHeuristic = s.getH();
         //System.out.println(" Current H" + currentHeuristic);
@@ -75,7 +75,7 @@ public class Manhattan implements HeuristicFunction {
         heuristics[zeroPosition] = 0;
         // float total = currentHeuristic + newHeuristicValue - temp;
 
-        float total1 = 0;
+        int total1 = 0;
         for (int i = 0; i < heuristics.length; i++) {
             total1 += heuristics[i];
         }

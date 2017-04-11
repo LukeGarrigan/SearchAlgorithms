@@ -13,5 +13,5 @@ public interface HeuristicFunction {
 
     public int calculateHeuristic(State state);
 
-    public float calculateSingleHeuristic(State next);
+    public int calculateSingleHeuristic(State next);
 }

@@ -36,7 +36,7 @@ public class IterativeDeepeningAStar implements SearchAlgorithm, UseHeuristic {
 
         for (State next : current.findNeighbours()) {
             next.setG(current.getG() + 1);
-            float li = heuristic.calculateSingleHeuristic(next);
+            float li = heuristic.calculateHeuristic(next);
             //float li = heuristic.calculateHeuristic(next);
 
             next.setH(li);

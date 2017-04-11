@@ -13,7 +13,16 @@ public class LinearConflict extends Manhattan {
 
     @Override
     public int calculateHeuristic(State puzz) {
-        int heuristic = super.calculateHeuristic(puzz);
+        int heuristic = 0;
+
+        // if there is a previous then we don't need to recalculate the 
+        // entire heuristics for each element, so there already is an existing
+        // array which contains the heuristic estimates
+        if (puzz.getPrevious() != null) {
+            heuristic = super.calculateSingleHeuristic(puzz);
+        } else {
+            heuristic = super.calculateHeuristic(puzz);
+        }
         heuristic += linearVerticalConflict(puzz);
         heuristic += linearHorizontalConflict(puzz);
         return heuristic;
@@ -52,12 +61,6 @@ public class LinearConflict extends Manhattan {
         int[] state = s.getState();
         int dimension = 4;
         int linearConflict = 0;
-//        int[][] newState = {
-//            {state[0], state[1], state[2], state[3]},
-//            {state[4], state[5], state[6], state[7]},
-//            {state[8], state[9], state[10], state[11]},
-//            {state[12], state[13], state[14], state[15]}
-//        };
         int count = 0;
         for (int column = 0; column < dimension; column++) {
             int max = -1;

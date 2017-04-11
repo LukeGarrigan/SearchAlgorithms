@@ -31,10 +31,12 @@ public class SlidingTileProject {
         int[] quickTest = new int[]{2, 9, 14, 0, 4, 7, 5, 6, 15, 1, 3, 13, 10, 11, 12, 8};
 
         HeuristicFunction h = new Manhattan();
-        IterativeDeepeningAStar ida = new IterativeDeepeningAStar(h);
+        HeuristicFunction l = new LinearConflict();
+        IterativeDeepeningAStar ida = new IterativeDeepeningAStar(l);
 
-        State initialState = new State(fiftyMoves, 0, 0, null, "null");
-        int intialHeuristic = h.calculateHeuristic(initialState);
+        State initialState = new State(sixtyFiveMoves, 0, 0, null, "null");
+        int intialHeuristic = l.calculateHeuristic(initialState);
+        
         initialState.setH(intialHeuristic);
 
         System.out.println("");
