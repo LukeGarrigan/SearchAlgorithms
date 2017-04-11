@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2016.10.3)  11 APR 2017 11:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2016.10.3)  11 APR 2017 11:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1321,24 +1321,49 @@ Package subfloat Warning: Numbers of floats not counted:
 (subfloat)                Please switch on countmax or remove the code using
 (subfloat)                the counter then..
 
+) (c:/texlive/2016/texmf-dist/tex/latex/algorithms/algorithm.sty
+Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating enviro
+nment
+\@float@every@algorithm=\toks42
+\c@algorithm=\count289
+)
+(c:/texlive/2016/texmf-dist/tex/latex/algorithmicx/algpseudocode.sty
+Package: algpseudocode 
+
+(c:/texlive/2016/texmf-dist/tex/latex/algorithmicx/algorithmicx.sty
+Package: algorithmicx 2005/04/27 v1.2 Algorithmicx
+
+Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
+\c@ALG@line=\count290
+\c@ALG@rem=\count291
+\c@ALG@nested=\count292
+\ALG@tlm=\skip90
+\ALG@thistlm=\skip91
+\c@ALG@Lnr=\count293
+\c@ALG@blocknr=\count294
+\c@ALG@storecount=\count295
+\c@ALG@tmpcounter=\count296
+\ALG@tmplength=\skip92
+)
+Document Style - pseudocode environments for use with the `algorithmicx' style
 ) (./Dissertation.aux)
 \openout1 = `Dissertation.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 111.
-LaTeX Font Info:    ... okay on input line 111.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 111.
-LaTeX Font Info:    ... okay on input line 111.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 111.
-LaTeX Font Info:    ... okay on input line 111.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 111.
-LaTeX Font Info:    ... okay on input line 111.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 111.
-LaTeX Font Info:    ... okay on input line 111.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 111.
-LaTeX Font Info:    ... okay on input line 111.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 111.
-LaTeX Font Info:    ... okay on input line 111.
-LaTeX Font Info:    Try loading font information for T1+ptm on input line 111.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 117.
+LaTeX Font Info:    ... okay on input line 117.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 117.
+LaTeX Font Info:    ... okay on input line 117.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 117.
+LaTeX Font Info:    ... okay on input line 117.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 117.
+LaTeX Font Info:    ... okay on input line 117.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 117.
+LaTeX Font Info:    ... okay on input line 117.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 117.
+LaTeX Font Info:    ... okay on input line 117.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 117.
+LaTeX Font Info:    ... okay on input line 117.
+LaTeX Font Info:    Try loading font information for T1+ptm on input line 117.
  (c:/texlive/2016/texmf-dist/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 )
@@ -1378,17 +1403,17 @@ File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 
 (c:/texlive/2016/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count289
+\scratchcounter=\count297
 \scratchdimen=\dimen312
 \scratchbox=\box73
-\nofMPsegments=\count290
-\nofMParguments=\count291
-\everyMPshowfont=\toks42
-\MPscratchCnt=\count292
+\nofMPsegments=\count298
+\nofMParguments=\count299
+\everyMPshowfont=\toks43
+\MPscratchCnt=\count300
 \MPscratchDim=\dimen313
-\MPnumerator=\count293
-\makeMPintoPDFobject=\count294
-\everyMPtoPDFconversion=\toks43
+\MPnumerator=\count301
+\makeMPintoPDFobject=\count302
+\everyMPtoPDFconversion=\toks44
 ) (c:/texlive/2016/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -1407,7 +1432,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 \AtBeginShipoutBox=\box74
-Package hyperref Info: Link coloring OFF on input line 111.
+Package hyperref Info: Link coloring OFF on input line 117.
 
 (c:/texlive/2016/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -1415,11 +1440,11 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 (c:/texlive/2016/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count295
+\c@section@level=\count303
 )
-LaTeX Info: Redefining \ref on input line 111.
-LaTeX Info: Redefining \pageref on input line 111.
-LaTeX Info: Redefining \nameref on input line 111.
+LaTeX Info: Redefining \ref on input line 117.
+LaTeX Info: Redefining \pageref on input line 117.
+LaTeX Info: Redefining \nameref on input line 117.
 
 (./Dissertation.out) (./Dissertation.out)
 \@outlinefile=\write4
@@ -1432,7 +1457,7 @@ Package caption Info: threeparttable package is loaded.
 Package caption Info: End \AtBeginDocument code.
 
 ABD: EverySelectfont initializing macros
-LaTeX Info: Redefining \selectfont on input line 111.
+LaTeX Info: Redefining \selectfont on input line 117.
 
 (c:/texlive/2016/texmf-dist/tex/latex/beamer/translator/dicts/translator-basic-
 dictionary/translator-basic-dictionary-English.dict
@@ -1447,83 +1472,83 @@ File: siunitx-abbreviations.cfg 2016/09/02 v2.6s siunitx: Abbreviated units
 )
 ABD: EveryShipout initializing macros
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <20.74> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 111.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 117.
  [1{c:/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
 ]
-\c@lstlisting=\count296
+\c@lstlisting=\count304
 
 
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
 ick labels; missing features). Consider writing \pgfplotsset{compat=1.14} into 
 your preamble.
- on input line 111.
+ on input line 117.
 
-\c__siunitx_mathsf_int=\count297
+\c__siunitx_mathsf_int=\count305
 LaTeX Font Info:    Try loading font information for OT1+ztmcm on input line 11
-1.
+7.
 (c:/texlive/2016/texmf-dist/tex/latex/psnfss/ot1ztmcm.fd
 File: ot1ztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ztmcm.
 )
 LaTeX Font Info:    Try loading font information for OML+ztmcm on input line 11
-1.
+7.
 
 (c:/texlive/2016/texmf-dist/tex/latex/psnfss/omlztmcm.fd
 File: omlztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ztmcm.
 )
 LaTeX Font Info:    Try loading font information for OMS+ztmcm on input line 11
-1.
+7.
 
 (c:/texlive/2016/texmf-dist/tex/latex/psnfss/omsztmcm.fd
 File: omsztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/ztmcm.
 )
 LaTeX Font Info:    Try loading font information for OMX+ztmcm on input line 11
-1.
+7.
 
 (c:/texlive/2016/texmf-dist/tex/latex/psnfss/omxztmcm.fd
 File: omxztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMX/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 111.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 117.
 
 
 (c:/texlive/2016/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 111.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 117.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 111.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 117.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 111.
-\c__siunitx_mathtt_int=\count298
-LaTeX Font Info:    Try loading font information for T1+phv on input line 114.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 117.
+\c__siunitx_mathtt_int=\count306
+LaTeX Font Info:    Try loading font information for T1+phv on input line 120.
 
 (c:/texlive/2016/texmf-dist/tex/latex/psnfss/t1phv.fd
 File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
 )
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 10.79993pt on input line 114.
+(Font)              scaled to size 10.79993pt on input line 120.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <12> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 114.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 120.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 10.79993pt on input line 114.
+(Font)              scaled to size 10.79993pt on input line 120.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <17.28> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 114.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 120.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 15.55188pt on input line 114.
+(Font)              scaled to size 15.55188pt on input line 120.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 124.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 130.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 12.9599pt on input line 124.
+(Font)              scaled to size 12.9599pt on input line 130.
 
-Overfull \hbox (0.44618pt too wide) in paragraph at lines 129--130
+Overfull \hbox (0.44618pt too wide) in paragraph at lines 135--136
 \T1/ptm/m/n/12 Continuously cre-at-ing new two-dimensional ar-rays for neigh-bo
 ur-ing states be-came quite
  []
 
 
-Overfull \hbox (35.34608pt too wide) in paragraph at lines 143--143
+Overfull \hbox (35.34608pt too wide) in paragraph at lines 149--149
 []\T1/pcr/m/n/12 public State(int moves, byte[] composition, int zeroPosition) 
 {[] 
  []
@@ -1531,162 +1556,154 @@ Overfull \hbox (35.34608pt too wide) in paragraph at lines 143--143
 [2] <moves.jpg, id=122, 401.5pt x 258.9675pt>
 File: moves.jpg Graphic file (type jpg)
  <use moves.jpg>
-Package pdftex.def Info: moves.jpg used on input line 148.
+Package pdftex.def Info: moves.jpg used on input line 154.
 (pdftex.def)             Requested size: 209.12686pt x 134.8891pt.
  [3 <./moves.jpg>] [4]
-Runaway argument?
-! Paragraph ended before \begin was complete.
-<to be read again> 
-                   \par 
-l.205 
-      
-I suspect you've forgotten a `}', causing me to apply this
-control sequence to too much text. How can we recover?
-My plan is to forget the whole thing and hope for the best.
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
+put line 214.
+LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 214.
 
-
-Overfull \hbox (20.94609pt too wide) in paragraph at lines 234--234
+Overfull \hbox (20.94609pt too wide) in paragraph at lines 264--264
 []    \T1/pcr/m/n/12 for (int depth = 0; depth < Integer.MAX_VALUE; depth++) {[
 ] 
  []
 
 [5]
-Overfull \hbox (20.94609pt too wide) in paragraph at lines 234--234
+Overfull \hbox (20.94609pt too wide) in paragraph at lines 264--264
 []    \T1/pcr/m/n/12 if (depth == 0 && Arrays.equals(node.getState(), GOAL)) {[
 ] 
  []
 
 
-Overfull \hbox (13.7461pt too wide) in paragraph at lines 234--234
+Overfull \hbox (13.7461pt too wide) in paragraph at lines 264--264
 []        \T1/pcr/m/n/12 // and performs the limited search on each neighbour[]
  
  []
 
 
-Overfull \hbox (85.74606pt too wide) in paragraph at lines 234--234
+Overfull \hbox (85.74606pt too wide) in paragraph at lines 264--264
 []                \T1/pcr/m/n/12 System.out.println(Arrays.toString(found.getSt
 ate()));[] 
  []
 
-[6] <consistent.jpg, id=154, 401.5pt x 401.5pt>
+[6] [7] <consistent.jpg, id=162, 401.5pt x 401.5pt>
 File: consistent.jpg Graphic file (type jpg)
  <use consistent.jpg>
-Package pdftex.def Info: consistent.jpg used on input line 274.
+Package pdftex.def Info: consistent.jpg used on input line 304.
 (pdftex.def)             Requested size: 167.29893pt x 167.29941pt.
- [7]
-[8 <./consistent.jpg>]
-Overfull \hbox (13.7461pt too wide) in paragraph at lines 339--339
+
+[8 <./consistent.jpg>] [9]
+Overfull \hbox (13.7461pt too wide) in paragraph at lines 369--369
 []        \T1/pcr/m/n/12 for (int column = 0; column < dimension; column++) {[]
  
  []
 
-[9] <linear.jpg, id=175, 505.89pt x 171.64125pt>
+<linear.jpg, id=176, 505.89pt x 171.64125pt>
 File: linear.jpg Graphic file (type jpg)
  <use linear.jpg>
-Package pdftex.def Info: linear.jpg used on input line 348.
+Package pdftex.def Info: linear.jpg used on input line 378.
 (pdftex.def)             Requested size: 376.4258pt x 127.71704pt.
- [10 <./linear.jpg>]
-Overfull \hbox (78.54607pt too wide) in paragraph at lines 396--396
+ [10]
+Overfull \hbox (78.54607pt too wide) in paragraph at lines 426--426
 []            \T1/pcr/m/n/12 if (OPENSET.get(i).getF() < OPENSET.get(winner).ge
 tF()) {[] 
  []
 
 
-Overfull \hbox (6.5461pt too wide) in paragraph at lines 396--396
+Overfull \hbox (6.5461pt too wide) in paragraph at lines 426--426
 []        \T1/pcr/m/n/12 if (Arrays.equals(currentState.getState(), GOAL)) {[] 
 
  []
 
 
-Overfull \hbox (164.94603pt too wide) in paragraph at lines 396--396
+Overfull \hbox (164.94603pt too wide) in paragraph at lines 426--426
 []            \T1/pcr/m/n/12 printPath(currentState, startTime); // prints out 
 path and time taken[] 
  []
 
 
-Overfull \hbox (85.74606pt too wide) in paragraph at lines 396--396
+Overfull \hbox (85.74606pt too wide) in paragraph at lines 426--426
 []        \T1/pcr/m/n/12 ArrayList<State> neighbours =  currentState.findNeighb
 ours();;[] 
  []
 
-
-Overfull \hbox (71.34607pt too wide) in paragraph at lines 396--396
+[11 <./linear.jpg>]
+Overfull \hbox (71.34607pt too wide) in paragraph at lines 426--426
 []                \T1/pcr/m/n/12 neighbour.setF(neighbour.getG() + neighbour.ge
 tH());[] 
  []
 
-[11]
+[12]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 405.
+(caption)                particular \caption on input line 435.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (18.70624pt too wide) in paragraph at lines 406--420
+Overfull \hbox (18.70624pt too wide) in paragraph at lines 436--450
  [] 
  []
 
-[12] [13]
-Overfull \hbox (20.94609pt too wide) in paragraph at lines 492--492
+[13] [14]
+Overfull \hbox (20.94609pt too wide) in paragraph at lines 522--522
 []        \T1/pcr/m/n/12 solution = depthFirstSearch(start, currentCostBound);[
 ] 
  []
 
 
-Overfull \hbox (85.74606pt too wide) in paragraph at lines 492--492
+Overfull \hbox (85.74606pt too wide) in paragraph at lines 522--522
 []\T1/pcr/m/n/12 public State depthFirstSearch(State current, float currentCost
 Bound) {[] 
  []
 
 
-Overfull \hbox (71.34607pt too wide) in paragraph at lines 492--492
+Overfull \hbox (71.34607pt too wide) in paragraph at lines 522--522
 []            \T1/pcr/m/n/12 State result = depthFirstSearch(next, currentCostB
 ound);[] 
  []
 
-[14]
 
 Package caption Warning: \captionsetup{type*=...} or \captionof
-(caption)                outside box or environment on input line 498.
+(caption)                outside box or environment on input line 528.
 See the caption package documentation for explanation.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 498.
+(caption)                particular \caption on input line 528.
 See the caption package documentation for explanation.
 
-[15]
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 580.
+[15] [16]
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 610.
 
  (c:/texlive/2016/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 580.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 610.
 
-<parity.jpg, id=215, 379.4175pt x 98.3675pt>
+<parity.jpg, id=221, 379.4175pt x 98.3675pt>
 File: parity.jpg Graphic file (type jpg)
  <use parity.jpg>
-Package pdftex.def Info: parity.jpg used on input line 591.
+Package pdftex.def Info: parity.jpg used on input line 621.
 (pdftex.def)             Requested size: 250.95477pt x 65.06381pt.
- [16]
-<fringe.jpg, id=225, 200.75pt x 200.75pt>
+ [17 <./parity.jpg>] <fringe.jpg, id=231, 200.75pt x 200.75pt>
 File: fringe.jpg Graphic file (type jpg)
  <use fringe.jpg>
-Package pdftex.def Info: fringe.jpg used on input line 621.
+Package pdftex.def Info: fringe.jpg used on input line 651.
 (pdftex.def)             Requested size: 125.47739pt x 125.48068pt.
- [17 <./parity.jpg>]
-<fringe15.jpg, id=234, 301.125pt x 301.125pt>
+ [18 <./fringe.jpg>] <fringe15.jpg, id=240, 301.125pt x 301.125pt>
 File: fringe15.jpg Graphic file (type jpg)
  <use fringe15.jpg>
-Package pdftex.def Info: fringe15.jpg used on input line 639.
+Package pdftex.def Info: fringe15.jpg used on input line 669.
 (pdftex.def)             Requested size: 146.39134pt x 146.39464pt.
- [18 <./fringe.jpg>] <15tile.jpg, id=241, 602.25pt x 271.0125pt>
+ [19 <./fringe15.jpg>] <15tile.jpg, id=248, 602.25pt x 271.0125pt>
 File: 15tile.jpg Graphic file (type jpg)
  <use 15tile.jpg>
-Package pdftex.def Info: 15tile.jpg used on input line 652.
+Package pdftex.def Info: 15tile.jpg used on input line 682.
 (pdftex.def)             Requested size: 376.4258pt x 169.39893pt.
- [19 <./fringe15.jpg> <./15tile.jpg>] [20] (./Dissertation.bbl) [21
+
+[20 <./15tile.jpg>] [21] (./Dissertation.bbl) [22
 
 ]
 *geometry* verbose mode - [ newgeometry ] result:
@@ -1721,39 +1738,37 @@ Package pdftex.def Info: 15tile.jpg used on input line 652.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 718.
 
 (c:/texlive/texmf-local/tex/base/cmpreport/marksheetprogress.tex
-Underfull \hbox (badness 10000) in paragraph at lines 718--25
+Underfull \hbox (badness 10000) in paragraph at lines 748--25
 
  []
 
 
-Overfull \hbox (3.34485pt too wide) in paragraph at lines 718--25
+Overfull \hbox (3.34485pt too wide) in paragraph at lines 748--25
 []
  []
 
-) [22
+) [23
 
 
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 718.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 718.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 748.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 748.
  (./Dissertation.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 718.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 718.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 748.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 748.
 Package rerunfilecheck Info: File `Dissertation.out' has not changed.
 (rerunfilecheck)             Checksum: B0C16CE4926AAF7455D207E1B0345AAB;1759.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 718.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 748.
  ) 
 Here is how much of TeX's memory you used:
- 44171 strings out of 493013
- 1018678 string characters out of 6136993
+ 44723 strings out of 493013
+ 1026881 string characters out of 6136993
  1270889 words of memory out of 5000000
- 46993 multiletter control sequences out of 15000+600000
- 57065 words of font info for 82 fonts, out of 8000000 for 9000
+ 47529 multiletter control sequences out of 15000+600000
+ 71715 words of font info for 90 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  80i,13n,103p,10410b,2074s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/texlive/2016/texm
@@ -1765,10 +1780,10 @@ c:/texlive/2016/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2016/te
 xmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2016/texmf-dist/fonts/typ
 e1/urw/times/utmr8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/times/utmri
 8a.pfb>
-Output written on Dissertation.pdf (22 pages, 465141 bytes).
+Output written on Dissertation.pdf (23 pages, 467110 bytes).
 PDF statistics:
- 310 PDF objects out of 1000 (max. 8388607)
- 267 compressed objects within 3 object streams
- 72 named destinations out of 1000 (max. 500000)
+ 317 PDF objects out of 1000 (max. 8388607)
+ 273 compressed objects within 3 object streams
+ 74 named destinations out of 1000 (max. 500000)
  248 words of extra memory for PDF output out of 10000 (max. 10000000)
 

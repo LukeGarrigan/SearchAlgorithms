@@ -22,6 +22,12 @@
 \usepackage{rotating}
 \usepackage{subfloat}
 
+% packages for algorithms
+\usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+
+
 
 
 %\setkeys{Gin}{draft}
@@ -200,8 +206,32 @@ Depth-first search is not the preferred algorithm for solving the sliding-tile p
   
 \subsection{Depth-First Search Iterative Deepening}
 Depth-First Iterative-Deepening (DFID) is an extension of depth-first search, it combines breadth-first search's completeness and depth-first search's space efficiency. DFID has a maximum depth, so it searches all possibilities up to a certain depth and if it doesn't find the goal state it increases the search depth. DFID performs depth-first search to depth one, then starts over and executes a depth-first search to depth two and continues deeper and deeper until a solution is found. The complexity of DFID is only O(d) where d is the depth, this is because at a given point it is executing only a depth-first search and saving only a stack of nodes. DFID ensures that the shortest path to the goal state will be found as does breadth-first search. \citep{DBLP:conf/otm/MeissnerB11}.
+\makeatletter
+\def\BState{\State\hskip-\ALG@thistlm}
+\makeatother
 
-\begin 
+\begin{algorithm}
+	\caption{My algorithm}\label{euclid}
+	\begin{algorithmic}[1]
+		\Procedure{MyProcedure}{}
+		\State $\textit{stringlen} \gets \text{length of }\textit{string}$
+		\State $i \gets \textit{patlen}$
+		\BState \emph{top}:
+		\If {$i > \textit{stringlen}$} \Return false
+		\EndIf
+		\State $j \gets \textit{patlen}$
+		\BState \emph{loop}:
+		\If {$\textit{string}(i) = \textit{path}(j)$}
+		\State $j \gets j-1$.
+		\State $i \gets i-1$.
+		\State \textbf{goto} \emph{loop}.
+		\State \textbf{close};
+		\EndIf
+		\State $i \gets i+\max(\textit{delta}_1(\textit{string}(i)),\textit{delta}_2(j))$.
+		\State \textbf{goto} \emph{top}.
+		\EndProcedure
+	\end{algorithmic}
+\end{algorithm}
 
 
 

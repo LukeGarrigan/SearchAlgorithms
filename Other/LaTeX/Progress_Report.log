@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2016.10.3)  9 FEB 2017 22:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2016.10.3)  11 APR 2017 11:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -757,7 +757,7 @@ Package: subcaption 2016/05/22 v1.1-161 Sub-captions (AR)
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'cmpfigure' with sig. 'o m' on line 208.
+. Defining environment 'cmpfigure' with sig. 'o m' on line 210.
 .................................................
 
 (c:/texlive/2016/texmf-dist/tex/latex/etoolbox/etoolbox.sty
@@ -1740,7 +1740,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 714.
 Here is how much of TeX's memory you used:
  44171 strings out of 493013
  1018741 string characters out of 6136993
- 1270890 words of memory out of 5000000
+ 1270892 words of memory out of 5000000
  46993 multiletter control sequences out of 15000+600000
  57065 words of font info for 82 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1754,7 +1754,7 @@ c:/texlive/2016/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2016/te
 xmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2016/texmf-dist/fonts/typ
 e1/urw/times/utmr8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/times/utmri
 8a.pfb>
-Output written on Progress_Report.pdf (22 pages, 465131 bytes).
+Output written on Progress_Report.pdf (22 pages, 465141 bytes).
 PDF statistics:
  310 PDF objects out of 1000 (max. 8388607)
  267 compressed objects within 3 object streams
