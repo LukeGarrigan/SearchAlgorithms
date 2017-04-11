@@ -5,6 +5,7 @@
  */
 package slidingtileproject;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -32,17 +33,18 @@ public class SlidingTileProject {
         HeuristicFunction h = new Manhattan();
         IterativeDeepeningAStar ida = new IterativeDeepeningAStar(h);
 
-        State initialState = new State(quickTest, 0, 0, null, "null");
+        State initialState = new State(fiftyMoves, 0, 0, null, "null");
         int intialHeuristic = h.calculateHeuristic(initialState);
         initialState.setH(intialHeuristic);
 
+        System.out.println("");
         double startTime = System.currentTimeMillis();
         State goal = ida.resolve(initialState);
         double endTime = System.currentTimeMillis();
         double elapsedTime = endTime - startTime;
         System.out.println(elapsedTime / 1000 + "(s)");
         System.out.println(Arrays.toString(goal.getState()));
-
+        
     }
 
 }

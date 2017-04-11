@@ -38,15 +38,13 @@ public class Manhattan implements HeuristicFunction {
 
         state.setHeuristicArray(heuristicArray);
         System.out.println("");
-        state.printHeuristicArray();
+       // state.printHeuristicArray();
         return total;
     }
 
     @Override
     public float calculateSingleHeuristic(State s) {
-        System.out.println("STATE");
-        s.printState();
-        System.out.println("");
+   
         //float currentHeuristic = s.getH();
         //System.out.println(" Current H" + currentHeuristic);
         int[] heuristics = s.getHeuristicArray();
@@ -82,7 +80,7 @@ public class Manhattan implements HeuristicFunction {
             total1 += heuristics[i];
         }
         s.setHeuristicArray(heuristics);
-        s.printHeuristicArray();
+        //s.printHeuristicArray();
         return total1;
 
     }

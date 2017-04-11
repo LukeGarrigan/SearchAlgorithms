@@ -147,6 +147,10 @@ public class State {
             State newState = new State(left, 0, h, this, "left");
             newState.setMovedPosition(zeroPosition);
             newState.setZeroPosition(zeroPosition - 1);
+
+            int[] newHeuristicArray = new int[16];
+            System.arraycopy(heuristicArray, 0, newHeuristicArray, 0, newHeuristicArray.length);
+            newState.setHeuristicArray(newHeuristicArray);
             neighbours.add(newState);
 
         }
@@ -160,6 +164,11 @@ public class State {
             State newState = new State(right, 0, h, this, "right");
             newState.setMovedPosition(zeroPosition);
             newState.setZeroPosition(zeroPosition + 1);
+
+            int[] newHeuristicArray = new int[16];
+            System.arraycopy(heuristicArray, 0, newHeuristicArray, 0, newHeuristicArray.length);
+            newState.setHeuristicArray(newHeuristicArray);
+
             neighbours.add(newState);
 
         }
@@ -174,6 +183,11 @@ public class State {
             State newState = new State(up, 0, h, this, "up");
             newState.setMovedPosition(zeroPosition);
             newState.setZeroPosition(zeroPosition - 4);
+
+            int[] newHeuristicArray = new int[16];
+            System.arraycopy(heuristicArray, 0, newHeuristicArray, 0, newHeuristicArray.length);
+            newState.setHeuristicArray(newHeuristicArray);
+
             neighbours.add(newState);
 
         }
@@ -187,6 +201,11 @@ public class State {
             State newState = new State(down, 0, h, this, "down");
             newState.setMovedPosition(zeroPosition);
             newState.setZeroPosition(zeroPosition + 4);
+            
+            int[] newHeuristicArray = new int[16];
+            System.arraycopy(heuristicArray, 0, newHeuristicArray, 0, newHeuristicArray.length);
+            newState.setHeuristicArray(newHeuristicArray);
+
             neighbours.add(newState);
         }
         // }
