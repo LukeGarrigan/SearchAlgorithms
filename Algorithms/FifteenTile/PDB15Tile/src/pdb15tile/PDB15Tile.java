@@ -82,10 +82,10 @@ public class PDB15Tile {
         System.out.println("Stored!!");
         */
         
-        Fringe f = new Fringe();
-        f.createFringe();
+       // Fringe f = new Fringe();
+      //  f.createFringe();
         
-        /*
+     
         byte[] fourtyMoves = new byte[]{6, 7, 0, 11, 1, 5, 10, 4, 14, 13, 15, 2, 9, 8, 3, 12};
         RandomStates r = new RandomStates();
         ArrayList<byte[]> testStates = r.RandomizeArray(fourtyMoves, 100);
@@ -111,7 +111,7 @@ public class PDB15Tile {
             System.out.println("Time Taken(s): " + elapsedTime / 1000);
             System.out.println("");
         }
-        */
+      
     }
 
     public static class State implements Comparator<State> {

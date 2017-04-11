@@ -40,7 +40,7 @@ public class IterativeDeepeningAStar implements SearchAlgorithm, UseHeuristic {
             float li = heuristic.calculateHeuristic(next);
 
             next.setH(li);
-<<<<<<< HEAD
+
             System.out.println(next.getDirection());
             if (li != lis) {
                 System.out.println(">...................>");
@@ -48,10 +48,6 @@ public class IterativeDeepeningAStar implements SearchAlgorithm, UseHeuristic {
             System.out.println("Actual: " + li + " Single: " + lis);
             // next.setH(li);
             //System.out.println("");
-            //System.out.println(Arrays.toString(next.getState()) + " " + next.getH());
-=======
-            // System.out.println(Arrays.toString(next.getState()) + " " + next.getH());
->>>>>>> 2aa6f56e87ec89e5714663404b932d7881785a36
             float value = next.getG() + next.getH();
             if (value <= currentCostBound) {
                 State result = depthFirstSearch(next, currentCostBound);
