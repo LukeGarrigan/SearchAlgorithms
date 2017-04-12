@@ -38,6 +38,7 @@ public class IterativeDeepeningAStar implements SearchAlgorithm, UseHeuristic {
             next.setG(current.getG() + 1);
             float li = heuristic.calculateHeuristic(next);
             //float li = heuristic.calculateHeuristic(next);
+            //float li = heuristic.calculateHeuristic(next);
             next.setH(li);
             float value = next.getG() + next.getH();
             if (value <= currentCostBound) {

@@ -28,36 +28,31 @@ public class SlidingTileProject {
         int[] sixtyFiveMoves = new int[]{11, 14, 9, 15, 7, 2, 8, 13, 3, 0, 5, 6, 12, 1, 10, 4};
         int[] quickTest = new int[]{2, 9, 14, 0, 4, 7, 5, 6, 15, 1, 3, 13, 10, 11, 12, 8};
 
+        int[] hundredSixtyOneAccordingToMan = {10, 13, 15, 11, 3, 7, 5, 1, 8, 0, 14, 4, 9, 2, 12, 6};
         HeuristicFunction h = new Manhattan();
         HeuristicFunction l = new LinearConflict();
+        HeuristicFunction s = new SequenceAlign();
 
-        State initialState = new State(sixtyFiveMoves, 0, 0, null, "null");
-        int intialHeuristic = l.calculateHeuristic(initialState);
-        initialState.setH(intialHeuristic);
-
+        // State stt = new State(hundredSixtyOneAccordingToMan, 0, 0, null, "null");
+        // System.out.println(h.calculateHeuristic(stt));
         int[] fourtyMoves = new int[]{6, 7, 0, 11, 1, 5, 10, 4, 14, 13, 15, 2, 9, 8, 3, 12};
         RandomStates r = new RandomStates();
         ArrayList<int[]> testStates = r.RandomizeArray(fourtyMoves, 100);
-        IterativeDeepeningAStar ida = new IterativeDeepeningAStar(l);
+        IterativeDeepeningAStar ida = new IterativeDeepeningAStar(s);
 
         for (int[] testState : testStates) {
-            byte zeroPos = 0;
-            for (byte i = 0; i < testState.length; i++) {
-                if (testState[i] == 0) {
-                    zeroPos = i;
-                }
-            }
             System.out.println(Arrays.toString(testState));
             State st = new State(testState, 0, 0, null, "null");
             // State st = new State(testState, "null", zeroPos);
             st.setG(0);
             long startTime = System.currentTimeMillis();
-            st.setH(l.calculateHeuristic(st));
+            st.setH(s.calculateHeuristic(st));
             State goalState = ida.resolve(st);
             long endTime = System.currentTimeMillis();
             float elapsedTime = endTime - startTime;
             System.out.println("Time Taken(s): " + elapsedTime / 1000);
             System.out.println("Number Moves: " + goalState.getG());
+
             System.out.println("");
 
         }

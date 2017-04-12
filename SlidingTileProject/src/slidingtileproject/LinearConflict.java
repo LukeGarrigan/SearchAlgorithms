@@ -5,6 +5,8 @@
  */
 package slidingtileproject;
 
+import java.util.Arrays;
+
 /**
  *
  * @author Luke
@@ -19,12 +21,17 @@ public class LinearConflict extends Manhattan {
         // entire heuristics for each element, so there already is an existing
         // array which contains the heuristic estimates
         if (puzz.getPrevious() != null) {
-            heuristic = super.calculateSingleHeuristic(puzz);
+            heuristic += super.calculateSingleHeuristic(puzz);
         } else {
-            heuristic = super.calculateHeuristic(puzz);
+
+            heuristic += super.calculateHeuristic(puzz);
         }
+        System.out.println("Just man " + heuristic);
+
         heuristic += linearVerticalConflict(puzz);
         heuristic += linearHorizontalConflict(puzz);
+
+        System.out.println("With " + heuristic);
         return heuristic;
     }
 
