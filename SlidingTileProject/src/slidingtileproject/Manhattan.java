@@ -37,50 +37,38 @@ public class Manhattan implements HeuristicFunction {
         }
 
         state.setHeuristicArray(heuristicArray);
-        System.out.println("");
-       // state.printHeuristicArray();
+        // state.printHeuristicArray();
         return total;
     }
 
     @Override
     public int calculateSingleHeuristic(State s) {
-   
+
         //float currentHeuristic = s.getH();
         //System.out.println(" Current H" + currentHeuristic);
         int[] heuristics = s.getHeuristicArray();
         int movedPosition = s.getMovedPosition();
         int movedTile = s.getState()[movedPosition];
         int zeroPosition = s.getZero();
-
-        float currentHeuristic = s.getH();
-
         // Calculates the heuristic for just the tile that was moved
         int expectedRow = (movedTile - 1) / 4;
         int expectedCol = (movedTile - 1) % 4;
         int numRow = movedPosition / 4;
         int numCol = movedPosition % 4;
+        int heuristic = (int) s.getH();
+
+        int temp = heuristic - heuristics[zeroPosition];
+
         int newHeuristicValue = Math.abs(expectedRow - numRow)
                 + Math.abs(expectedCol - numCol);
-
-        // this should be zero because this the tile must have moved into the zero
-        // position
-        //int temp = heuristics[zeroPosition];
-        // float before = 0;
-        // for (int i = 0; i < heuristics.length; i++) {
-        //     before += heuristics[i];
-        //  }
-        //System.out.println("BEFORE " + before);
-        //System.out.println(newHeuristicValue + temp);
         heuristics[movedPosition] = newHeuristicValue;
         heuristics[zeroPosition] = 0;
-        // float total = currentHeuristic + newHeuristicValue - temp;
+        int total1 = temp + newHeuristicValue;
+        //for (int i = 0; i < heuristics.length; i++) {
+        //    total1 += heuristics[i];
+        // }
 
-        int total1 = 0;
-        for (int i = 0; i < heuristics.length; i++) {
-            total1 += heuristics[i];
-        }
         s.setHeuristicArray(heuristics);
-        //s.printHeuristicArray();
         return total1;
 
     }

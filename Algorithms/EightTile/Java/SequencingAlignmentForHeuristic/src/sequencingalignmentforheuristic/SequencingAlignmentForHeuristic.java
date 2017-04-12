@@ -17,7 +17,7 @@ public class SequencingAlignmentForHeuristic {
     public static void main(String[] args) {
         // TODO code application logic here
         int[] goal = {1, 2, 3};
-        int[] test = {1, 3, 2,};
+        int[] test = {1, 3, 2};
         // The penalties to apply
         int gap = 1, substitution = 1, match = 0;
 
