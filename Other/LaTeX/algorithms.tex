@@ -1,0 +1,158 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Change the option between square brackets
+% depending on the document you have to write:
+%
+% proposal    for the initial proposal
+% review      for the literature review
+% progress    for the progress report
+% final       for the final report
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[progress]{cmpreport}
+\makeatletter
+\input{t1pcr.fd}
+\makeatother
+\setlength{\footnotesep}{3ex}
+\usepackage{listings}
+\usepackage{pgfplots}
+% Some package I am using. You may not need them
+%
+\usepackage{rotating}
+\usepackage{subfloat}
+
+% packages for algorithms
+\usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+
+\usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+
+
+
+%\setkeys{Gin}{draft}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%  Fill in the fields with:
+%
+%  your project title
+%  your name
+%  your registration number
+%  your supervisor's name
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{File for the algorithms}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% The author's name is ignored if the following command 
+% is not present in the document
+%
+% Before submitting a PDF of your final report to the 
+% project database you may comment out the command
+% if you are worried about lack of anonimity.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\author{Luke Garrigan}
+
+
+\registration{100086495}
+\supervisor{Dr Pierre Chardaire}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Fill in the field with your module code.
+% this should be:
+%
+% for BIS            -> CMP-6012Y
+% for BUSINESS STATS -> CMP-6028Y
+% for other students -> CMP-6013Y
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ccode{CMP-6012Y}
+
+
+\summary{
+}
+
+\acknowledgements{
+
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% If you do not want a list of figures and a list of tables
+% to appear after the table of content then uncomment this line 
+%
+% Note that the class file contains code to avoid
+% producing an empty list section (e.g list of figures) if the 
+% list is empty (i.e. no figure in document).
+%
+% The command also prevents inserting a list of figures or tables 
+% anywhere else in the document
+%
+% Some supervisors think that a report should not contain these
+% lists. Please ask your supervisor's opinion.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\nolist,
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Comment out if you want your list of figures and list of
+% tables on two or more pages, in particular if the lists do not fit 
+% on a single page.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\onePageLists
+
+\begin{document}
+	
+	
+	\section{Introduction}
+
+	
+
+	\makeatletter
+	\def\BState{\State\hskip-\ALG@thistlm}
+	\makeatother
+	%this changes the style of the comments 
+	%\algrenewcommand{\algorithmiccomment}[1]{\hskip3em$\rightarrow$ #1}
+	
+	\begin{algorithm}
+		\caption{Manhattan Distance}\label{Manhattan Distance}
+		\begin{algorithmic}[1]
+			\Procedure{ManDist}{$state$}	\Comment{The current puzzle configuration }
+			\State$total\gets 0$
+			\State$puzzleLength\gets sizeOf(state)$
+			\State$dimensions\gets \sqrt{puzzleLength}$
+			\For{$i\gets 1, puzzleLength$}	\Comment{Loops through each tile of the puzzle}
+				\State $tileValue\gets state[i]$
+				\State $expectedRow\gets \dfrac{(tileValue -1)}{dimensions}$
+				\State $expectedCol\gets (tileValue -1)\bmod dimensions$
+				\State $rowNum \gets \dfrac{i}{dimensions}$
+				\State $rowNum\gets i \bmod dimensions$
+				\State $total\gets total \texttt{+} \mid{expectedRow-rowNum}\mid\texttt{+}\mid{expectedCol-colNum}\mid$
+			\EndFor
+			\State \textbf{return} $total$\Comment{The heuristic is the total}
+			\EndProcedure
+		\end{algorithmic}
+	\end{algorithm}
+	
+	
+	
+	\begin{algorithm}
+		\caption{Iterative Deepening A Star}\label{IDAStar}
+		\begin{algorithmic}[1]
+			\Procedure{IDAStar}{$state$}
+			\State$bound\gets currentHeuristic(state)$ 
+			\EndProcedure
+		\end{algorithmic}
+    \end{algorithm}
+	
+	
+\end{document}
+

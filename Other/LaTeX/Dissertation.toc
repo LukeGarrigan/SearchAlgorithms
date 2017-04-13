@@ -1,0 +1,25 @@
+\contentsline {section}{\numberline {1}Introduction}{4}{section.1}
+\contentsline {section}{\numberline {2}Program Architecture}{4}{section.2}
+\contentsline {subsection}{\numberline {2.1}Initial Implementation}{4}{subsection.2.1}
+\contentsline {section}{\numberline {3}Brute-Force Search}{5}{section.3}
+\contentsline {subsection}{\numberline {3.1}Breadth-First Search}{5}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Depth-First Search}{6}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Depth-First Search Iterative Deepening}{7}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Evaluation Of Brute-Force Searches}{9}{subsection.3.4}
+\contentsline {section}{\numberline {4}Heuristic Search}{10}{section.4}
+\contentsline {subsection}{\numberline {4.1}Admissible Heuristics}{11}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Consistent Heuristics}{11}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Heuristic Evaluation Functions}{12}{subsection.4.3}
+\contentsline {subsubsection}{\numberline {4.3.1}Manhattan Distance}{12}{subsubsection.4.3.1}
+\contentsline {subsubsection}{\numberline {4.3.2}Linear Conflict Heuristic}{13}{subsubsection.4.3.2}
+\contentsline {subsection}{\numberline {4.4}A* Algorithm}{14}{subsection.4.4}
+\contentsline {subsubsection}{\numberline {4.4.1}Linear Conflict Or Manhattan Distance}{17}{subsubsection.4.4.1}
+\contentsline {section}{\numberline {5}Fifteen Tile Puzzle}{18}{section.5}
+\contentsline {subsection}{\numberline {5.1}Iterative Deepening A*}{19}{subsection.5.1}
+\contentsline {section}{\numberline {6}Pattern Databases}{22}{section.6}
+\contentsline {subsection}{\numberline {6.1}Solvability Of Tile Games}{22}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}Non-Additive Pattern Databases}{23}{subsection.6.2}
+\contentsline {subsubsection}{\numberline {6.2.1}Non-Additive Pattern Database Limitations}{24}{subsubsection.6.2.1}
+\contentsline {subsection}{\numberline {6.3}Statically-Partitioned Additive Database Heuristics}{25}{subsection.6.3}
+\contentsline {section}{\numberline {7}Gantt Chart}{27}{section.7}
+\contentsline {section}{References}{28}{section*.16}

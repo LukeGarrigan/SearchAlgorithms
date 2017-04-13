@@ -10,7 +10,7 @@
 % 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\documentclass[progress]{cmpreport}
+\documentclass[final]{cmpreport}
 \makeatletter
 \input{t1pcr.fd}
 \makeatother
@@ -42,7 +42,7 @@
 %  your supervisor's name
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title{Progress Report- Investigating The Use Of Intelligent Search In AI For Solving Problems Efficiently}
+\title{Investigating The Use Of Intelligent Search In AI For Solving Problems Efficiently}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -73,18 +73,22 @@
 
 
 \summary{
-This document explains how to use the class file \texttt{cmpreport.cls} to write your reports.
-The class file has been designed to simplify your life; many things are done for you. As a consequence
-some commands presented here are specific to the class file whether they are new commands or customized versions
-of commonly known \LaTeX\ commands.
+A classic example in the AI literature of pathfinding problems are the sliding-tiles puzzles such as the $3\times3$ Eight Puzzle, the $4\times4$ 15 puzzle and the $5\times5$ twenty-four puzzle. The Eight Puzzle consists of a $3\times3$ grid with 8 numbered square tiles and 1 blank. The blank is used to slide other tiles in which are horizontally or vertically adjacent into that position in an attempt to reach the goal state. The objective of the puzzle is to move the tiles from a set composition to a goal configuration, which is with the numbers in ascending order from 1 to 8.
+The sliding-tile puzzle is exclusively targeted throughout the following literature. 
+
+A search algorithm is a series of steps that can be used to find the location or the path of a desired state. In most scenarios there will be additional constraints that will need to be fulfilled such as the time taken to reach the desired state, memory availability, maximum number of moves.
+
+In this progress report the main focus was to implement and test algorithms for finding the goal state of the sliding tile puzzle in the minimum number of moves, with the prospect of scalability in mind. In doing so I'd sought out to find and identify the major flaws of varying search algorithms and seek methods to adhere to these pitfalls. 
 }
 
 \acknowledgements{
-This section is used to acknowledge whoever's support and contribution.
-The command that introduces it is ignored in the project proposal, literature review and progress report. It is used in the
-final report,  but  is not compulsory. If you do not
-have an acknowledgements command in your preamble then there
-won't be any acknowledgement section in the document produced. \emph{Abstract} and \emph{Acknowledgements} sections should fit on the same page. 
+	
+I would like to thank my supervisor, Dr. Pierre Chardaire, for his patience, guidance
+and advice he has provided throughout my final year.
+
+ I have been extremely lucky to have
+a supervisor who cared so much about my work, and who responded to my questions and queries so
+promptly.
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -118,12 +122,7 @@ won't be any acknowledgement section in the document produced. \emph{Abstract} a
 
 
 \section{Introduction}
-A classic example in the AI literature of pathfinding problems are the sliding-tiles puzzles such as the $3\times3$ Eight Puzzle, the $4\times4$ 15 puzzle and the $5\times5$ twenty-four puzzle. The Eight Puzzle consists of a $3\times3$ grid with 8 numbered square tiles and 1 blank. The blank is used to slide other tiles in which are horizontally or vertically adjacent into that position in an attempt to reach the goal state. The objective of the puzzle is to move the tiles from a set composition to a goal configuration, which is with the numbers in ascending order from 1 to 8.
-The sliding-tile puzzle is exclusively targeted throughout the following literature. 
 
-A search algorithm is a series of steps that can be used to find the location or the path of a desired state. In most scenarios there will be additional constraints that will need to be fulfilled such as the time taken to reach the desired state, memory availability, maximum number of moves.
-
- In this progress report the main focus was to implement and test algorithms for finding the goal state of the sliding tile puzzle in the minimum number of moves, with the prospect of scalability in mind. In doing so I'd sought out to find and identify the major flaws of varying search algorithms and seek methods to adhere to these pitfalls. 
  
 \section{Program Architecture}
 I have written depth-first search, breadth-first search, iterative deepening depth-first search and A* in a multitude of languages such as Prolog, PHP and Python, this paper however shows the findings of the search algorithms exclusively written in Java. 
@@ -213,7 +212,7 @@ Depth-First Iterative-Deepening (DFID) is an extension of depth-first search, it
 \begin{algorithm}
 	\caption{Depth-First Search Iterative Deepening}\label{euclid}
 	\begin{algorithmic}[1]
-		\Procedure{IDDFS}{}
+		\Procedure{IDDFS(State startingState)}{}
 		\State $\textit{stringlen} \gets \text{length of }\textit{string}$
 		\State $i \gets \textit{patlen}$
 		\BState \emph{top}:
