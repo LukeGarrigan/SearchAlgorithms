@@ -127,31 +127,136 @@
 		\begin{algorithmic}[1]
 			\Procedure{ManDist}{$state$}	\Comment{The current puzzle configuration }
 			\State$total\gets 0$
-			\State$puzzleLength\gets sizeOf(state)$
+			\State$puzzleLength\gets state.size()$
 			\State$dimensions\gets \sqrt{puzzleLength}$
 			\For{$i\gets 1, puzzleLength$}	\Comment{Loops through each tile of the puzzle}
 				\State $tileValue\gets state[i]$
-				\State $expectedRow\gets \dfrac{(tileValue -1)}{dimensions}$
-				\State $expectedCol\gets (tileValue -1)\bmod dimensions$
-				\State $rowNum \gets \dfrac{i}{dimensions}$
+				\State $expectedRow\gets (tileValue -1)\div dimensions$
+				\State $expectedCol\gets (tileValue -1)\mod dimensions$
+				\State $rowNum \gets i\div dimensions$
 				\State $rowNum\gets i \bmod dimensions$
 				\State $total\gets total \texttt{+} \mid{expectedRow-rowNum}\mid\texttt{+}\mid{expectedCol-colNum}\mid$
 			\EndFor
 			\State \textbf{return} $total$\Comment{The heuristic is the total}
 			\EndProcedure
 		\end{algorithmic}
-	\end{algorithm}
+	\end{algorithm}
+
 	
 	
 	
 	\begin{algorithm}
 		\caption{Iterative Deepening A Star}\label{IDAStar}
 		\begin{algorithmic}[1]
+			
+			\State $state$ \Comment The current puzzle configuration
+			\State $g(state)$ \Comment The cost to reach the current state
+			\State $h(state)$ \Comment Estimated cost of the cheapest path from state to goal
+			\State $neighbours(state)$ \Comment Expands possible moves from current state ordered by g + h
+			\Statex
 			\Procedure{IDAStar}{$state$}
-			\State$bound\gets currentHeuristic(state)$ 
+				\State$bound\gets h(state)$ 
+				\State$solution\gets null$
+				\While{$solution==null$}\Comment{Loops until a solution is found}
+					\State $ solution \gets dfs(state, bound)$	\Comment Performs a bounded depth-first search 
+					\State $bound\gets bound \texttt{+} 1$ 
+				\EndWhile\label{}
+				\State \textbf{return} $solution$
+			\EndProcedure
+			\Statex
+			\Procedure{dfs}{$state, bound$}
+		    \If{$state == goal$}
+				\State \textbf{return} $state$\Comment{Found the goal state}
+			\EndIf	
+			\For{$neighbour \textbf{ in } neighbours(state)$}	
+				\State $f \gets g(neighbour) + h(neighbour)$ \Comment Estimated cost of the cheapest path
+				\If{$f \leq bound$}
+					\State $result \gets dfs(next, f)$
+					\If{$result \not= null$}
+					\State  \textbf{return} $result$
+						
+					\EndIf
+					
+				\EndIf
+			\EndFor
+			\EndProcedure
+			
+		\end{algorithmic}
+    \end{algorithm}
+
+	
+		
+	\begin{algorithm}
+		\caption{Breadth-First Search}\label{BFS}
+		\begin{algorithmic}[1]
+			\Procedure{BFS}{$state$}
+			\State $s \gets \textit{empty set}$
+			\State $q \gets \textit{empty queue}$
+			\State $q.add(state)$
+			\State $q.enqueue(state)$
+			\While{$q.size() > 0$}
+				\State $currentState \gets q.dequeue()$
+				\If {$currentState == goal$}
+					\State \textbf{return} $current$
+				\EndIf
+				\For{$neighbour \textbf{ in } neighbours(currentState)$}	
+					\If{$neighbour \text{ is not in } s$}
+						\State $s.add(neighbour)$
+						\State $q.enqueue(neighbour)$
+					\EndIf
+					
+				\EndFor
+			\EndWhile
 			\EndProcedure
 		\end{algorithmic}
-    \end{algorithm}
+	\end{algorithm}
+
+
+
+	\begin{algorithm}
+		\caption{Is Current State Solvable}\label{Solvable}
+		\begin{algorithmic}[1]
+				\Procedure{IsSolvable}{state}
+					\State $stateLength \gets state.size()$
+					\State 	$gridWidth \gets \sqrt{stateLength}$
+					\State $row \gets 0$ \Comment The current row we are on
+					\State $blankRow \gets 0$ \Comment The row with the blank tile
+					
+					\For{$i\gets 1, puzzleLength$}
+						\If{$i \bmod gridWidth ==0 $}
+							\State $row\texttt{++}$	
+						\EndIf	
+						\If{$state[i] == 0$}
+							\State	$blankRow \gets row$
+							\State \textbf{continue}
+						\EndIf
+						
+						\For{$j\gets i \texttt{+} 1, puzzleLength$}
+							\If{$state[i] > state[j] \textbf{ and } state[i] \not= 0$ }
+								\State $parity\texttt{++}$	
+							
+							\EndIf
+						\EndFor
+					\EndFor
+					
+					\If{$gridWidth \bmod 2 == 0$}
+						\If{$blankRow \bmod 2 ==0$}
+							\State \textbf{return} $parity \bmod 2 == 0$
+						\Else
+							\State \textbf{return} $parity \bmod 2 \not= 0$
+						\EndIf
+						
+					\Else 
+						\State \textbf{return} $parity \bmod 2 == 0$
+					\EndIf
+				\EndProcedure
+		\end{algorithmic}	
+	\end{algorithm}	
+
+
+
+
+	
 	
 	
 \end{document}
