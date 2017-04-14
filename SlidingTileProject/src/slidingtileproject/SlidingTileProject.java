@@ -37,21 +37,21 @@ public class SlidingTileProject {
         // System.out.println(h.calculateHeuristic(stt));
         int[] fourtyMoves = new int[]{6, 7, 0, 11, 1, 5, 10, 4, 14, 13, 15, 2, 9, 8, 3, 12};
         RandomStates r = new RandomStates();
-        ArrayList<int[]> testStates = r.RandomizeArray(fourtyMoves, 100);
-        IterativeDeepeningAStar ida = new IterativeDeepeningAStar(s);
+        ArrayList<int[]> testStates = r.RandomizeArray(fourtyMoves, 5);
 
+        IterativeDeepeningAStar ida = new IterativeDeepeningAStar(l);
         for (int[] testState : testStates) {
             System.out.println(Arrays.toString(testState));
             State st = new State(testState, 0, 0, null, "null");
-            // State st = new State(testState, "null", zeroPos);
             st.setG(0);
             long startTime = System.currentTimeMillis();
-            st.setH(s.calculateHeuristic(st));
+            st.setH(l.calculateHeuristic(st));
             State goalState = ida.resolve(st);
+           // float goalState = ida.resolve1(st);
             long endTime = System.currentTimeMillis();
             float elapsedTime = endTime - startTime;
             System.out.println("Time Taken(s): " + elapsedTime / 1000);
-            System.out.println("Number Moves: " + goalState.getG());
+            System.out.println("GOAL : " + goalState);
 
             System.out.println("");
 

@@ -26,12 +26,9 @@ public class LinearConflict extends Manhattan {
 
             heuristic += super.calculateHeuristic(puzz);
         }
-        System.out.println("Just man " + heuristic);
-
         heuristic += linearVerticalConflict(puzz);
         heuristic += linearHorizontalConflict(puzz);
 
-        System.out.println("With " + heuristic);
         return heuristic;
     }
 

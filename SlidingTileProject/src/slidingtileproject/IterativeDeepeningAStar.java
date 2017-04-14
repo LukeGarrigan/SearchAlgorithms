@@ -22,14 +22,11 @@ public class IterativeDeepeningAStar implements SearchAlgorithm, UseHeuristic {
     private float nextCostBound;
     // gets created when IDAStar is invoked
 
-    static int statesExpanded = 0;
-
     public IterativeDeepeningAStar(HeuristicFunction heuristic) {
         this.heuristic = heuristic;
     }
 
     public State depthFirstSearch(State current, float currentCostBound) {
-        statesExpanded++;
         if (Arrays.equals(current.getState(), GOAL)) {
             return current;
         }
@@ -65,8 +62,43 @@ public class IterativeDeepeningAStar implements SearchAlgorithm, UseHeuristic {
         return solution;
     }
 
+    public float resolve1(State state) {
+        float bound = state.getH();
+        while (bound != -1) {
+            bound = dfs(state, bound);
+            System.out.println(bound);
+        }
+        return bound;
+    }
+
+    public float dfs(State state, float bound) {
+        float f = state.getG() + state.getH();
+
+        // no need to check if it has a higher bound
+        if (f > bound) {
+            return f;
+        }
+        if (state.getH() < 1) {
+            System.out.println("Moves taken " + state.getG());
+            return -1;
+        }
+        float min = Float.MAX_VALUE;
+        for (State next : state.findNeighbours()) {
+
+            next.setG(state.getG() + 1);
+            float li = heuristic.calculateHeuristic(next);
+            next.setH(li);
+            float temp = dfs(next, bound);
+            if (temp < min) {
+                min = temp;
+            }
+        }
+        return min;
+    }
+
     @Override
-    public void setHeuristic(HeuristicFunction h) {
+    public void setHeuristic(HeuristicFunction h
+    ) {
         this.heuristic = h;
     }
 

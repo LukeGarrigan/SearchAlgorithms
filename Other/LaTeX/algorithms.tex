@@ -152,37 +152,41 @@
 			\State $state$ \Comment The current puzzle configuration
 			\State $g(state)$ \Comment The cost to reach the current state
 			\State $h(state)$ \Comment Estimated cost of the cheapest path from state to goal
+			\State $f(state) \gets g(state)+h(state)$
 			\State $neighbours(state)$ \Comment Expands possible moves from current state ordered by g + h
 			\Statex
 			\Procedure{IDAStar}{$state$}
-				\State$bound\gets h(state)$ 
-				\State$solution\gets null$
-				\While{$solution==null$}\Comment{Loops until a solution is found}
-					\State $ solution \gets dfs(state, bound)$	\Comment Performs a bounded depth-first search 
-					\State $bound\gets bound \texttt{+} 1$ 
+				\State $bound \gets f(state)$
+				\While{ \textbf{ not } solved}\Comment{Loops until a solution is found}
+					\State $ bound \gets DFS(state, bound)$	\Comment Performs a bounded depth-first search 
 				\EndWhile\label{}
-				\State \textbf{return} $solution$
 			\EndProcedure
 			\Statex
+			
 			\Procedure{dfs}{$state, bound$}
-		    \If{$state == goal$}
-				\State \textbf{return} $state$\Comment{Found the goal state}
+		    \If{$f(state) > bound$}
+				\State \textbf{return} $f(state)$
 			\EndIf	
+			
+			\If{$h(state) == 0$} \Comment No more moves needed to reach goal state
+				\State \textbf{return} $solved$
+			\EndIf
+			\State $min \gets \infty$	
 			\For{$neighbour \textbf{ in } neighbours(state)$}	
-				\State $f \gets g(neighbour) + h(neighbour)$ \Comment Estimated cost of the cheapest path
-				\If{$f \leq bound$}
-					\State $result \gets dfs(next, f)$
-					\If{$result \not= null$}
-					\State  \textbf{return} $result$
-						
-					\EndIf
-					
+				\State $temp \gets DFS(neighbour, bound)$
+				
+				\If{$temp < min}$
+					\State $min \gets temp $
 				\EndIf
 			\EndFor
+			\State \textbf{return} $min$\Comment{Returns the smallest of the neighbours}
 			\EndProcedure
 			
 		\end{algorithmic}
     \end{algorithm}
+
+
+
 
 	
 		
