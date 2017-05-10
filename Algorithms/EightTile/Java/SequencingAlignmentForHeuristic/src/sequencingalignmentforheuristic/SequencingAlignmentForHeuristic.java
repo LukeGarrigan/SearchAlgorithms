@@ -18,15 +18,17 @@ public class SequencingAlignmentForHeuristic {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        int[] goal = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 0};
-        int[] test = {5, 0, 2, 1, 7, 6, 8, 3, 9, 10, 15, 4, 13, 14, 11, 12};
 
+        int[] test = {4, 2, 1, 5, 7, 6, 8, 9, 10, 3};
+        int[] goal = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        sequenceAlign(test, goal);
+
+        /*
         // Splits up the arrays and performs the sequence alignment
         int sizeOfNewArrays = (int) Math.sqrt(goal.length);
         System.out.println(sizeOfNewArrays);
         int incrementer = 0;
         int total = 0;
-
         // this does it for the horizontal values
         for (int i = 1; i <= sizeOfNewArrays; i++) {
             int[] testSection = new int[sizeOfNewArrays];
@@ -61,6 +63,7 @@ public class SequencingAlignmentForHeuristic {
         }
 
         System.out.println(total + "\n");
+         */
     }
 
     public static int sequenceAlign(int[] goal, int[] test) {
@@ -87,6 +90,13 @@ public class SequencingAlignmentForHeuristic {
                 opt[i][j] = Math.min(Math.min(scoreDiag, scoreLeft), scoreUp);
             }
         }
+        for (int i = 0; i <= goal.length; i++) {
+            for (int j = 0; j <= test.length; j++) {
+                System.out.print(opt[i][j] + "\t");
+            }
+            System.out.println();
+        }
+
         return opt[goal.length][test.length];
     }
 }

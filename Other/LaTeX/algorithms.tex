@@ -27,9 +27,6 @@
 \usepackage{algorithm}
 \usepackage[noend]{algpseudocode}
 
-\usepackage{amsmath}
-\usepackage{algorithm}
-\usepackage[noend]{algpseudocode}
 
 
 
@@ -91,7 +88,7 @@
 % producing an empty list section (e.g list of figures) if the 
 % list is empty (i.e. no figure in document).
 %
-% The command also prevents inserting a list of figures or tables 
+% The d also prevents inserting a list of figures or tables 
 % anywhere else in the document
 %
 % Some supervisors think that a report should not contain these
@@ -121,6 +118,71 @@
 	\makeatother
 	%this changes the style of the comments 
 	%\algrenewcommand{\algorithmiccomment}[1]{\hskip3em$\rightarrow$ #1}
+    \begin{algorithm}
+		\caption{DFS}\label{dfs}
+		\begin{algorithmic}[1]
+			\State $visited \gets emptySet$
+			\Procedure{DFS}{$state$}
+				\If{$state = goal$}
+					\State \textbf{return} state
+				\EndIf
+					\For{$neighbour \textbf{ in } neighbours(state)$}
+					\If{$neighbour \textbf{ not in } visited$}
+						\State	$DFS(neighbour)$
+					\EndIf
+					\EndFor
+					\State $visited.add(state)$
+			\EndProcedure
+		\end{algorithmic}
+	\end{algorithm}
+	
+	
+	
+	
+			
+	\begin{algorithm}
+		\caption{A*}\label{Astar}
+		\begin{algorithmic}[1]
+			\State $g(state)$ \Comment The cost to reach the current state
+			\State $h(state)$ \Comment Estimated cost of the cheapest path from state to goal
+			\State $f(state) \gets g(state)+h(state)$
+			\State $neighbours(state)$ \Comment Expands possible moves from current state ordered by g + h
+			
+			\Procedure{AStar}{$startState$}
+			\State $closedSet \gets \textit{empty set}$
+			\State $openSet \gets \textit{empty set}$
+			\State $openSet.add(startState)$
+			\While{$openSet \textbf{ is not } empty$}
+				\State $currentState \gets null$
+				\For{$state \textbf{ in } openSet$}
+					\If{$f(state) < f(currentState)$}
+					\State $currentState \gets state$
+					\EndIf
+				\EndFor
+					\State $openSet.remove(currentState)$
+					\State $closedSet.add(currentState)$
+					\If {$currentState = goal$}
+					\State \textbf{return} $currentState$
+					\EndIf
+					\For{$neighbour \textbf{ in } neighbours(currentState)$}	
+					\If{$neighbour \textbf{ not in } closedSet$}
+						\If{$neighbour \textbf{ in } openSet$}
+							\If{$g(currentState) < g(neighbour)$} 
+							\State$g(neighbour) \gets g(currentState)$
+							\EndIf	
+						\Else
+							\State $openSet.add(neighbour)$	
+						\EndIf
+					\EndIf
+				
+			\EndFor
+			\EndWhile
+			\EndProcedure
+		\end{algorithmic}
+	\end{algorithm}
+	
+	
+	
 	
 	\begin{algorithm}
 		\caption{Manhattan Distance}\label{Manhattan Distance}
@@ -168,7 +230,7 @@
 				\State \textbf{return} $f(state)$
 			\EndIf	
 			
-			\If{$h(state) == 0$} \Comment No more moves needed to reach goal state
+			\If{$h(state) = 0$} \Comment No more moves needed to reach goal state
 				\State \textbf{return} $solved$
 			\EndIf
 			\State $min \gets \infty$	
@@ -200,7 +262,7 @@
 			\State $q.enqueue(state)$
 			\While{$q.size() > 0$}
 				\State $currentState \gets q.dequeue()$
-				\If {$currentState == goal$}
+				\If {$currentState = goal$}
 					\State \textbf{return} $current$
 				\EndIf
 				\For{$neighbour \textbf{ in } neighbours(currentState)$}	
@@ -221,43 +283,65 @@
 		\caption{Is Current State Solvable}\label{Solvable}
 		\begin{algorithmic}[1]
 				\Procedure{IsSolvable}{state}
-					\State $stateLength \gets state.size()$
-					\State 	$gridWidth \gets \sqrt{stateLength}$
-					\State $row \gets 0$ \Comment The current row we are on
-					\State $blankRow \gets 0$ \Comment The row with the blank tile
-					
+					\State $puzzleLength \gets state.size()$
+					\State 	$gridWidth \gets \sqrt{puzzleLength}$
+					\State $blankRowEven \gets true$
 					\For{$i\gets 1, puzzleLength$}
-						\If{$i \bmod gridWidth ==0 $}
-							\State $row\texttt{++}$	
-						\EndIf	
-						\If{$state[i] == 0$}
-							\State	$blankRow \gets row$
-							\State \textbf{continue}
-						\EndIf
-						
-						\For{$j\gets i \texttt{+} 1, puzzleLength$}
-							\If{$state[i] > state[j] \textbf{ and } state[i] \not= 0$ }
-								\State $parity\texttt{++}$	
-							
+						\If{$state[i] =0$}
+							\State $blankRowEven \gets (i / gridWidth) \bmod 2 = 0$
+							\State $\textbf{continue} $
+						\For{$j\gets i + 1, puzzleLength$}
+							\If{$state[i] > state[j] \textbf{ and } state[j] \not= 0 $}
+								\State $parity \gets !parity$
 							\EndIf
 						\EndFor
+						\EndIf 
 					\EndFor
 					
-					\If{$gridWidth \bmod 2 == 0$}
-						\If{$blankRow \bmod 2 ==0$}
-							\State \textbf{return} $parity \bmod 2 == 0$
-						\Else
-							\State \textbf{return} $parity \bmod 2 \not= 0$
-						\EndIf
-						
-					\Else 
-						\State \textbf{return} $parity \bmod 2 == 0$
+					\If{$gridWidth \bmod 2 = 0 \textbf{ and } blankRowEven$}
+							\State \textbf{return} $!parity$
 					\EndIf
+					\State \textbf{return} $parity$
+					
 				\EndProcedure
 		\end{algorithmic}	
 	\end{algorithm}	
 
 
+		\begin{algorithm}
+		\caption{Iterative Deepening Depth-First Search}\label{Solvable}
+		\begin{algorithmic}[1]
+			
+			\State $goal$ \Comment the completed goal state of the puzzle
+			\Statex
+			\Procedure{iddfs}{state}
+			\For{$depth \gets 0, \infty$}
+				\State$ found \gets DLS(state, depth)$
+				\If{$found \not= null$}
+						\State \textbf{return} $found$
+				\EndIf
+			\EndFor
+			\EndProcedure
+			
+		    \Procedure{dls}{state, depth}
+		    \If{$depth =0 \textbf{ and } state = goal$ }
+			    \State \textbf{return} $found$
+			\EndIf
+			
+			\If{$depth > 0$}
+				\For{$neighbour \textbf{ in } neighbours(state)$}	
+					\State $found \gets DLS(neighbour, depth-1)$
+						\If{$found \not= null$}
+							\State$return found$
+						\EndIf
+				\EndFor
+			\EndIf 
+			\State \textbf{return} $null$
+			\EndProcedure
+		\end{algorithmic}	
+	\end{algorithm}	
+
+	
 
 
 	

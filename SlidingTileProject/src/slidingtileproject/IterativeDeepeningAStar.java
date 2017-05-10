@@ -34,8 +34,6 @@ public class IterativeDeepeningAStar implements SearchAlgorithm, UseHeuristic {
         for (State next : current.findNeighbours()) {
             next.setG(current.getG() + 1);
             float li = heuristic.calculateHeuristic(next);
-            //float li = heuristic.calculateHeuristic(next);
-            //float li = heuristic.calculateHeuristic(next);
             next.setH(li);
             float value = next.getG() + next.getH();
             if (value <= currentCostBound) {
@@ -66,25 +64,22 @@ public class IterativeDeepeningAStar implements SearchAlgorithm, UseHeuristic {
         float bound = state.getH();
         while (bound != -1) {
             bound = dfs(state, bound);
-            System.out.println(bound);
         }
         return bound;
     }
 
     public float dfs(State state, float bound) {
         float f = state.getG() + state.getH();
-
         // no need to check if it has a higher bound
         if (f > bound) {
             return f;
         }
         if (state.getH() < 1) {
             System.out.println("Moves taken " + state.getG());
-            return -1;
+            return -412414;
         }
         float min = Float.MAX_VALUE;
         for (State next : state.findNeighbours()) {
-
             next.setG(state.getG() + 1);
             float li = heuristic.calculateHeuristic(next);
             next.setH(li);

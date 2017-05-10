@@ -46,8 +46,8 @@ public class SlidingTileProject {
             st.setG(0);
             long startTime = System.currentTimeMillis();
             st.setH(l.calculateHeuristic(st));
-            State goalState = ida.resolve(st);
-           // float goalState = ida.resolve1(st);
+            //State goalState = ida.resolve(st);
+            float goalState = ida.resolve1(st);
             long endTime = System.currentTimeMillis();
             float elapsedTime = endTime - startTime;
             System.out.println("Time Taken(s): " + elapsedTime / 1000);

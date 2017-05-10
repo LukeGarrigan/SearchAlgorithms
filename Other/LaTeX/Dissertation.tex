@@ -42,7 +42,7 @@
 %  your supervisor's name
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title{Investigating The Use Of Intelligent Search In AI For Solving Problems Efficiently}
+\title{AI search algorithms for the solution of puzzles}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -73,20 +73,13 @@
 
 
 \summary{
-A classic example in the AI literature of pathfinding problems are the sliding-tiles puzzles such as the $3\times3$ Eight Puzzle, the $4\times4$ 15 puzzle and the $5\times5$ twenty-four puzzle. The Eight Puzzle consists of a $3\times3$ grid with 8 numbered square tiles and 1 blank. The blank is used to slide other tiles in which are horizontally or vertically adjacent into that position in an attempt to reach the goal state. The objective of the puzzle is to move the tiles from a set composition to a goal configuration, which is with the numbers in ascending order from 1 to 8.
-The sliding-tile puzzle is exclusively targeted throughout the following literature. 
 
-A search algorithm is a series of steps that can be used to find the location or the path of a desired state. In most scenarios there will be additional constraints that will need to be fulfilled such as the time taken to reach the desired state, memory availability, maximum number of moves.
 
-In this progress report the main focus was to implement and test algorithms for finding the goal state of the sliding tile puzzle in the minimum number of moves, with the prospect of scalability in mind. In doing so I'd sought out to find and identify the major flaws of varying search algorithms and seek methods to adhere to these pitfalls. 
 }
 
 \acknowledgements{
 	
-I would like to thank my supervisor, Dr. Pierre Chardaire, for his patience, guidance
-and advice he has provided throughout my final year.
-
- I have been extremely lucky to have
+FIrstly, I would like to express my sincere gratitude to my advisor Dr. Pierre Chardaire for the patience, guidance, wisdom and brilliance he has provided throughout my final year. I have been extremely lucky to have
 a supervisor who cared so much about my work, and who responded to my questions and queries so
 promptly.
 }
@@ -121,31 +114,29 @@ promptly.
 \begin{document}
 
 
+
 \section{Introduction}
 
+
+
+ A search algorithm is a series of steps that can be used to find the location or the path of a desired state. In most scenarios there will be additional constraints that will need to be fulfilled such as the time taken to reach the desired state, memory availability, maximum number of moves. This paper shows experimental results of numerous search algorithms for specific problem domains such as the sliding-tile puzzle, Towers of Hanoi and the Rubik's cube.
+
+ A classic example in the AI literature of pathfinding problems are the sliding-tiles puzzles such as the $3\times3$ Eight Puzzle, the $4\times4$ fifteen puzzle and the $5\times5$ twenty-four puzzle. The Eight Puzzle consists of a $3\times3$ grid with eight numbered square tiles and one blank. The blank is used to slide other tiles in which are horizontally or vertically adjacent into that position in an attempt to reach the goal state. The objective is to rearrange the tiles from some random configuration to a specified goal configuration usually with the numbers in ascending order.
  
+ The Towers of Hanoi puzzle consists of $3$ pegs and $n$ discs all of varying sizes. The discs are initially stacked on the left peg in decreasing order of size with the largest on the bottom. The task is to move all discs from the initial peg to the goal peg without violating two constraints: Only the top disc of any peg can be moved and a larger disc can never be placed on top of a smaller disc. For the $3$ peg problem a simple recursive algorithm can be used to find the solution in the minimum number of moves, however, for the $4$ peg problem (TOH4) the recursive algorithm doesn't find the goal state optimally. The recursive algorithm works by initially moving the $n-1$ smallest discs to the intermediate peg, then moving the $n-1$ largest disc to the goal peg, then move the $n-1$ smallest discs from the intermediate peg to the goal peg. Finding shortest path with this algorithm is not possible with TOH4 because there are two intermediate pegs rather than one and without priori there is no way to determine which peg should be used over the other. This implies the use of systematic search to find the optimal path.
+ 
+ 
+ 
+
+ 
+
+
+\section{Relevant Literature}
+
 \section{Program Architecture}
-I have written depth-first search, breadth-first search, iterative deepening depth-first search and A* in a multitude of languages such as Prolog, PHP and Python, this paper however shows the findings of the search algorithms exclusively written in Java. 
+
 \subsection{Initial Implementation}
-Originally I deemed it wise to represent the states of the sliding tile puzzle as a two dimensional array as this way I would always know which row and column a given value was in and finding the possible moves from that point would be trivial:
-\begin{verbatim}
-	int[] goalState ={{1,2,3},{4,5,6},{7,8,0}};
-\end{verbatim}
-Continuously creating new two-dimensional arrays for neighbouring states became quite costly so I adapted the code to adhere to one dimension. 
-\begin{verbatim}
-int[] goalState ={1,2,3,4,5,6,7,8,0};
-\end{verbatim}
 
-The State class contains the array of the current configuration of the state which is used to compare against the  desired goal state. A Node object of it's parent is stored, which allows us to find the path taken to arrive at the goal node by looping through each Node until there are no more existing parents thus having reached the initial node. The direction is stored to be outputted when the goal Node is found.     
-
-\begin{verbatim}
-public State(int moves, byte[] composition, int zeroPosition) {
-    this.moves = moves;
-    this.composition = composition;
-    this.zeroPosition = zeroPosition;
-}
-
-\end{verbatim}
 When a node is being expanded it is necessary to find its neighbours. Neighbours for the sliding-tile puzzle represent the possible moves from the current configuration, each state has a minimum of 2 neighbours and a maximum of 4. Figure 1 shows the possible moves from current state and how the direction variable would be stored ready for output. 
 
 \begin{figure}[ht]
@@ -160,9 +151,9 @@ When a node is being expanded it is necessary to find its neighbours. Neighbours
 Brute-force search is a general problem-solving technique that consists of systematically enumerating all the possible options for a given solution and checking to see whether that given option satisfies the problem's statement. All that is required to execute a brute-force is some legal operators, an initial state and an acknowledged goal state. 
 
 \subsection{Breadth-First Search}
-Breadth-first search expands the nodes in a tree in the order of their given distance from the root, so it expands all the neighbouring nodes before going to the next level of the tree. Because the algorithm doesn't trawl to the deeper levels of the tree without first expanding the lower levels, it ensures the finding of the shortest path. The amount of time used by breadth-first search is linear to the number of nodes expanded, since each node can be generated in constant time, and is a function of the branching factor $b$ and the solution depth $d$. Since the number of nodes at level $d$ is $b^d$, the total number of nodes generated in the worst case is $O(b^d)$. \citep{DBLP:journals/mima/Korf95}.
+Breadth-first search expands the nodes in a tree in the order of their given distance from the root, so it expands all the neighbouring nodes before going to the next level of the tree. The algorithm doesn't trawl to the deeper levels of the tree without first expanding the lower levels thus ensures the finding of the shortest path. The amount of time used by breadth-first search is linear to the number of nodes expanded, since each node can be generated in constant time, and is a function of the branching factor $b$ and the solution depth $d$. Since the number of nodes at level $d$ is $b^d$, the total number of nodes generated in the worst case is $O(b^d)$. \citep{DBLP:journals/mima/Korf95}.
 
-The initial algorithm I implemented to solve the 8-tile puzzle was the breadth-first search as it guarantees to find the solution in minimal steps. The space requirement of breadth-first search is it's largest deficiency. The 8-tile has a search space of $9!/2=181,400$ with a maximum number of 31 moves to solve. In terms of practicality, with larger problem states such as the 15-tile puzzle a breadth-first search will exhaust the available memory rather quickly with its $16!/2 = 10,461,394,944,000$ search space and a maximum number of 80 moves to solve.
+The initial algorithm implemented to solve the 8-tile puzzle was the breadth-first search as it guarantees to find the solution in minimal steps. The space requirement of breadth-first search is it's largest deficiency. The 8-tile has a search space of $9!/2=181,400$ with a maximum number of 31 moves to solve. In terms of practicality, with larger problem states such as the 15-tile puzzle a breadth-first search will exhaust the available memory rather quickly with its $16!/2 = 10,461,394,944,000$ search space and a maximum number of 80 moves to solve.
 
 Table 1 shows the results of the breadth-first search algorithm in the 8-tile puzzle. The algorithm was tested on states of varying complexity from a minimum of 5 moves to solve, to  a minimum of 20. As established, breadth-first search finds the optimal solution to a goal state with the minimum number of moves. As the difficulty of the initial puzzle state increases the number of nodes expanded increases exponentially along with the time taken. This proves the previously stated theory that the number of nodes generated in the worst case is $O(b^d)$.
 
@@ -180,14 +171,55 @@ Table 1 shows the results of the breadth-first search algorithm in the 8-tile pu
 	\end{center}
 \end{table}
 
+	\begin{algorithm}
+	\caption{Breadth-First Search}\label{BFS}
+	\begin{algorithmic}[1]
+		\Procedure{BFS}{$state$}
+		\State $s \gets \textit{empty set}$
+		\State $q \gets \textit{empty queue}$
+		\State $q.add(state)$
+		\State $q.enqueue(state)$
+		\While{$q.size() > 0$}
+		\State $currentState \gets q.dequeue()$
+		\If {$currentState = goal$}
+		\State \textbf{return} $current$
+		\EndIf
+		\For{$neighbour \textbf{ in } neighbours(currentState)$}	
+		\If{$neighbour \text{ is not in } s$}
+		\State $s.add(neighbour)$
+		\State $q.enqueue(neighbour)$
+		\EndIf
+		
+		\EndFor
+		\EndWhile
+		\EndProcedure
+	\end{algorithmic}
+\end{algorithm}
 
 
 \subsection{Depth-First Search}
 Depth-first search (DFS) addresses the limitations of breadth-first by always generating next a child of the deepest unexpanded node. Breadth-first search manages the list as a first-in first-out queue, whereas depth-first search treats the list as a last-in first-out stack. Depth-first search is implemented recursively, with the recursion stack taking the place of an explicit node stack. Given a starting state, depth-first search stores all the unvisited children of that state in a stack. It then removes the top state from the stack and adds all of the removed states children to the stack. Depth first search generates a long sequence of moves, only ever reconsidering a move when it reaches the end of a stack, this can become a serious problem given a graph of significant size and there's only one solution, as it may end up exploring the entire graph on a single DFS path only to find the solution after looking at each node. Worse, if the graph is infinite the search might not terminate.
 
+\begin{algorithm}
+	\caption{DFS}\label{dfs}
+	\begin{algorithmic}[1]
+		\State $visited \gets emptySet$
+		\Procedure{DFS}{$state$}
+		\If{$state = goal$}
+		\State \textbf{return} state
+		\EndIf
+		\For{$neighbour \textbf{ in } neighbours(state)$}
+		\If{$neighbour \textbf{ not in } visited$}
+		\State	$DFS(neighbour)$
+		\EndIf
+		\EndFor
+		\State $visited.add(state)$
+		\EndProcedure
+	\end{algorithmic}
+\end{algorithm}
 
 
-Depth-first search is not the preferred algorithm for solving the sliding-tile puzzle especially with the goal of solving the puzzle in the minimum number of moves, it would be more preferred in an implementation which has goals in every path. I decided to implement the algorithm regardless to analyse whether the results match expectation. Table 2 displays the results of the depth-first search implementation, there is no real noticeable pattern in the data apart from they are consistently inconsistent. The results prove that the algorithm doesn't find the goal state in the minimum number of moves which further confirms that DFS should not be used in the sliding-tile problem. 
+Depth-first search is not the preferred algorithm for solving the sliding-tile puzzle especially with the goal of solving the puzzle in the minimum number of moves, it would be more preferred in an implementation which has goals in every path. The algorithm was implemented regardless to analyse whether the results match expectation. Table 2 displays the results of the depth-first search implementation, there is no real noticeable pattern in the data apart from they are consistently inconsistent. The results prove that the algorithm doesn't find the goal state in the minimum number of moves which further confirms that DFS should not be used in the sliding-tile problem. 
 
 \begin{table}[ht]
 	\caption{Depth-First Search Analysis: 8-Tile}
@@ -209,58 +241,37 @@ Depth-First Iterative-Deepening (DFID) is an extension of depth-first search, it
 \def\BState{\State\hskip-\ALG@thistlm}
 \makeatother
 
-\begin{algorithm}
-	\caption{Depth-First Search Iterative Deepening}\label{euclid}
+
+
+	\begin{algorithm}
+	\caption{Iterative Deepening Depth-First Search}\label{Solvable}
 	\begin{algorithmic}[1]
-		\Procedure{IDDFS(State startingState)}{}
-		\State $\textit{stringlen} \gets \text{length of }\textit{string}$
-		\State $i \gets \textit{patlen}$
-		\BState \emph{top}:
-		\If {$i > \textit{stringlen}$} \Return false
+		\Procedure{iddfs}{state}
+		\For{$depth \gets 0, \infty$}
+		\State$ found \gets DLS(state, depth)$
+		\If{$found \not= null$}
+		\State \textbf{return} $found$
 		\EndIf
-		\State $j \gets \textit{patlen}$
-		\BState \emph{loop}:
-		\If {$\textit{string}(i) = \textit{path}(j)$}
-		\State $j \gets j-1$.
-		\State $i \gets i-1$.
-		\State \textbf{goto} \emph{loop}.
-		\State \textbf{close};
-		\EndIf
-		\State $i \gets i+\max(\textit{delta}_1(\textit{string}(i)),\textit{delta}_2(j))$.
-		\State \textbf{goto} \emph{top}.
+		\EndFor
 		\EndProcedure
-	\end{algorithmic}
-\end{algorithm}
-
-
-
-\begin{verbatim}	
-public void IDDFS(State root) {
-// Keep on looping until a goal state is found
-    for (int depth = 0; depth < Integer.MAX_VALUE; depth++) {
-        State found = DLS(root, depth);
-        if (found != null) {
-            System.out.println("Goal found");
-        }
-    }
-}
-public State DLS(State node, int depth) {
-    if (depth == 0 && Arrays.equals(node.getState(), GOAL)) {
-        return node;
-    }
-    if (depth > 0) {
-        // finds the neighbours then loops through each
-        // and performs the limited search on each neighbour
-        for (State neighbour : node.findNeighbours()) {
-            State found = DLS(neighbour, depth - 1);
-            if (found != null) {
-                System.out.println(Arrays.toString(found.getState()));
-                return found;
-            }
-        }
-    }
-    return null
-\end{verbatim}
+		
+		\Procedure{dls}{state, depth}
+		\If{$depth =0 \textbf{ and } state = goal$ }
+		\State \textbf{return} $found$
+		\EndIf
+		
+		\If{$depth > 0$}
+		\For{$neighbour \textbf{ in } neighbours(state)$}	
+		\State $found \gets DLS(neighbour, depth-1)$
+		\If{$found \not= null$}
+		\State$return found$
+		\EndIf
+		\EndFor
+		\EndIf 
+		\State \textbf{return} $null$
+		\EndProcedure
+	\end{algorithmic}	
+\end{algorithm}	
 
 Although DFID maintains the advantage of requiring a comparable supply of memory as depth-first search and doesn't get caught in infinite loops, DFID's time taken to find a solution is vast and generally longer than both depth-first search and breadth-first search, this is because it has to expand the same states multiple times. Table 3 are the results for DFID with the depth preset to the minimum number of moves required to solve the puzzle state. It is clear that the number of nodes expanded is far greater in comparison with breadth-first search shown in Table 1.
 
@@ -288,7 +299,7 @@ Depth-first iterative deepening is beneficial as it avoids infinite cycling, it 
 
 
 \section{Heuristic Search} \label{sec1}
-In order to improve the search efficiency I decided to adopt some heuristic functions. A heuristic is a method that might not always find the best solution but it will guarantee to find a good solution in a reasonable time. The idea behind a heuristic function is that it sacrifices the completeness in order to increase efficiency. They are usually utilised in solutions in which may take infinite time or a very long time to compute. \citep{DBLP:conf/ai/2014}. 
+In order to improve the search efficiency heuristic functions were used. A heuristic is a method that might not always find the best solution but it will guarantee to find a good solution in a reasonable time. The idea behind a heuristic function is that it sacrifices the completeness in order to increase efficiency. They are usually utilised in solutions in which may take infinite time or a very long time to compute. \citep{DBLP:conf/ai/2014}. 
 
 
 \subsection{Admissible Heuristics}
@@ -317,28 +328,29 @@ A common heuristic function for the sliding-tile puzzle is called Manhattan dist
 
 
 Heuristic evaluation functions estimate the actual cost with very little computational power, thus very compelling. The complexity of the Manhattan Distance is proportional to the number of tiles between the initial state and the goal state. Most heuristic functions are lower bounds on the actual cost deeming them admissible. The Manhattan distance is a lower bound for the number of moves required to solve an occurrence of the sliding-tile puzzle, since every tile must move at least as many times as its distance to its goal position. \citep{DBLP:conf/ccgrid/LinnertSB14}.
+	
+\begin{algorithm}
+	\caption{Manhattan Distance}\label{Manhattan Distance}
+	\begin{algorithmic}[1]
+		\Procedure{ManDist}{$state$}	\Comment{The current puzzle configuration }
+		\State$total\gets 0$
+		\State$puzzleLength\gets state.size()$
+		\State$dimensions\gets \sqrt{puzzleLength}$
+		\For{$i\gets 1, puzzleLength$}	\Comment{Loops through each tile of the puzzle}
+		\State $tileValue\gets state[i]$
+		\State $expectedRow\gets (tileValue -1)\div dimensions$
+		\State $expectedCol\gets (tileValue -1)\mod dimensions$
+		\State $rowNum \gets i\div dimensions$
+		\State $rowNum\gets i \bmod dimensions$
+		\State $total\gets total \texttt{+} \mid{expectedRow-rowNum}\mid\texttt{+}\mid{expectedCol-colNum}\mid$
+		\EndFor
+		\State \textbf{return} $total$\Comment{The heuristic is the total}
+		\EndProcedure
+	\end{algorithmic}
+\end{algorithm}
 
-\begin{verbatim}
-public int manhattan(int[] puzz) {
-int total = 0;
-for (int i = 1; i < puzz.length; i++) {
-    int expectedRow = (i - 1) / 3;
-    int expectedCol = (i - 1) % 3;
-    int num = 0;
-        for (int j = 0; j < puzz.length; j++) {
-            if (puzz[j] == i) {
-            num = j + 1;
-            break;
-        }    
-    }
-    int numRow = (num - 1) / 3;
-    int numCol = (num - 1) % 3;
-    total += Math.abs(expectedRow - numRow)
-    + Math.abs(expectedCol - numCol);
-    }
-    return total;
-}
-\end{verbatim}
+
+
 \subsubsection{Linear Conflict Heuristic}
 Linear Conflict is somewhat similar to Manhattan distance in regards to the sum of the displacement of each each tile, however it also recognises that given two tiles which are both correctly placed in their desired row/column but they are in the wrong order, one of these tiles will have to move out of the row/column in order to let the other pass. If there is a linear conflict then an extra two moves will be added to the total sum as the tile which must move, has to transition out of the row/column and then back into it's desired position.
 
@@ -367,8 +379,6 @@ private int linearVerticalConflict(int[] state) {
 }
 \end{verbatim}
 
-Above is the code I wrote in order to calculate the linear conflict of the rows, I then took the sum of the linear conflict of this and the columns as the total heuristic value for the given state. The algorithm loops through the columns and the rows, finding the value and checks whether it is in it's goal row. If it is in it's goal row it then checks whether it is greater than the current maximum because if it is not then the previous value is greater, thus they are in the wrong order; as the sliding tile goal state is ascending. 
-
 Figure 2 displays a visual example of how the linear conflict is working. The initial state shows the first row to be reversed meaning values 1,2 and 3 are positioned 3,2 and 1. When looping through the values the $max$ is compared to 3, as 3 is greater than -1 $max$ is now 3. For value 2 it is not larger than the current $max$ 3 so a linear conflict has happened thus 2 is added to the total, value 1 is also not larger than 3 thus another two is added to the total heuristic value.
 
 
@@ -386,45 +396,48 @@ A* search is a combination of lowest-cost-first and best-first searches that con
 
 The A* algorithm uses $cost(p)$, the cost of the path found, as well as the heuristic function $h(p)$, the estimated path cost from the end of $p$ to the goal. As A* uses admissible heuristic it will always find solutions in the order of their cost. \citep{DBLP:journals/ker/Brewka96}.  A* uses breadth-first traversal thus uses large chunks of memory in comparison to applications that use depth-first traversal. The performance of A* is also heavily reliant on the accuracy of the heuristic.
 
-\begin{verbatim}
-OPENSET.add(initialState);
-while (OPENSET.isEmpty() == false) {
-    if (OPENSET.size() > 0) {
-        int winner = 0;
-        for (int i = 0; i < OPENSET.size(); i++) {
-            if (OPENSET.get(i).getF() < OPENSET.get(winner).getF()) {
-            winner = i;
-            }
-        }
-        State currentState = OPENSET.get(winner);
-        if (Arrays.equals(currentState.getState(), GOAL)) {
-            printPath(currentState, startTime); // prints out path and time taken
-            break;
-        }
-        OPENSET.remove(currentState);
-        CLOSEDSET.add(currentState);
-        ArrayList<State> neighbours =  currentState.findNeighbours();;
-        for (int i = 0; i < neighbours.size(); i++) {
-            State neighbour = neighbours.get(i);
-            if (!CLOSEDSET.contains(neighbour)) {
-                float tempG = currentState.getG() + 1;
-                if (OPENSET.contains(neighbour)) {
-                    if (tempG < neighbour.getG()) {
-                        neighbour.setG(tempG);
-                    }
-                } else {
-                   neighbour.setG(tempG);
-                   OPENSET.add(neighbour);
-                }
-                int man = manhattan(neighbour.getState());
-                neighbour.setH(man);
-                neighbour.setF(neighbour.getG() + neighbour.getH());
-           }
-       }
-  }
-\end{verbatim}
+	\begin{algorithm}
+	\caption{A*}\label{Astar}
+	\begin{algorithmic}[1]
+		\State $g(state)$ \Comment The cost to reach the current state
+		\State $h(state)$ \Comment Estimated cost of the cheapest path from state to goal
+		\State $f(state) \gets g(state)+h(state)$
+		\State $neighbours(state)$ \Comment Expands possible moves from current state ordered by g + h
+		
+		\Procedure{AStar}{$startState$}
+		\State $closedSet \gets \textit{empty set}$
+		\State $openSet \gets \textit{empty set}$
+		\State $openSet.add(startState)$
+		\While{$openSet \textbf{ is not } empty$}
+		\State $currentState \gets null$
+		\For{$state \textbf{ in } openSet$}
+		\If{$f(state) < f(currentState)$}
+		\State $currentState \gets state$
+		\EndIf
+		\EndFor
+		\State $openSet.remove(currentState)$
+		\State $closedSet.add(currentState)$
+		\If {$currentState = goal$}
+		\State \textbf{return} $currentState$
+		\EndIf
+		\For{$neighbour \textbf{ in } neighbours(currentState)$}	
+		\If{$neighbour \textbf{ not in } closedSet$}
+		\If{$neighbour \textbf{ in } openSet$}
+		\If{$g(currentState) < g(neighbour)$} 
+		\State$g(neighbour) \gets g(currentState)$
+		\EndIf	
+		\Else
+		\State $openSet.add(neighbour)$	
+		\EndIf
+		\EndIf
+		
+		\EndFor
+		\EndWhile
+		\EndProcedure
+	\end{algorithmic}
+\end{algorithm}
 
-The implementation I made for the A* algorithm works by initially declaring an empty $OPENSET$ and an empty $CLOSEDSET$ which are both  $ArrayList$s of the $State$ object. The commencing $State$ is added to the $OPENSET$, the $OPENSET$ is then looped through to find the $State$ with the smallest $F$ value, which is assigned to the $winner$ variable. The $currentState$ is then assigned to the State which contains that smallest $F$ value, this is then checked against the $GOAL$ state to check whether it is the solution. If it isn't a goal state it is removed from the $OPENSET$ and added to the $CLOSEDSET$ because we don't want to expand the same $State$ again.
+The implementation for the A* algorithm works by initially declaring an empty $OPENSET$ and an empty $CLOSEDSET$ which are both  $ArrayList$s of the $State$ object. The commencing $State$ is added to the $OPENSET$, the $OPENSET$ is then looped through to find the $State$ with the smallest $F$ value, which is assigned to the $winner$ variable. The $currentState$ is then assigned to the State which contains that smallest $F$ value, this is then checked against the $GOAL$ state to check whether it is the solution. If it isn't a goal state it is removed from the $OPENSET$ and added to the $CLOSEDSET$ because we don't want to expand the same $State$ again.
 The neighbours for the $currentState$ are then found and looped through. If the neighbour is not in the $CLOSEDSET$ it hasn't been expanded, the $G$ value is assigned to the neighbour which is just the $currentStates$'s $G+1$, as in the sliding tile puzzle a tile can only move one position at a time. It then checks whether the neighbour is in the $OPENSET$ as there's a chance we got to this neighbour more optimally than the previous path, if so it reassigns the values. The $F$ value is then calculated for the neighbour by adding the $G$ and the $H$ value, the program then repeats the process.
 
 
@@ -476,7 +489,7 @@ My tests displayed in Table 4 show that A* search with the linear conflict heuri
 \section{Fifteen Tile Puzzle}
 I initially tested the A* Manhattan distance and the A* linear conflict on the fifteen tile puzzle, however could only get results for puzzle states which require a small number of moves to find the goal. The reasoning for the lack of results is the large amount of States that the $CLOSEDSET$ has to store. 
 
-A* uses breadth-first traversal thus the number of states that are stored increases exponentially with depth. I needed to find an algorithm which would require less memory but still have the benefits of a heuristic search. This is similar to the previous scenario when considering how to reduce the memory used in breadth-first by taking depth-first search's memory used as inspiration.
+A* uses breadth-first traversal thus the number of states that are stored increases exponentially with depth. Finding an algorithm which would require less memory but still have the benefits of a heuristic search was necessary. This is similar to the previous scenario when considering how to reduce the memory used in breadth-first by taking depth-first search's memory used as inspiration.
 
 The memory used by Depth-first iterative deepening is linear with respect to the depth. In theory DFID could be used to solve the 15-puzzle without running out of memory, however taking the results found in Table 3, the time taken to reach the goal state for any random instance of the fifteen tile puzzle would be unreasonable.
 
@@ -487,38 +500,47 @@ Iterative-deepening-A* (IDA*) eradicates the memory complication of A* by using 
 
 If IDA* has searched all states lower than the current maximum without finding the goal state then it increases the maximum to the lowest value of the discarded states and begins the search again. The goal state is admissible, the current maximum cost will never be higher than the lowest cost solution, thus IDA* with an admissible heuristic will always find the lowest cost solution.  IDA* searches many nodes multiple times thus is slower than A*. Hence, A* should be used on smaller applications that aren't going to have memory issues.
 
-\begin{verbatim}
+	
+\begin{algorithm}
+	\caption{Iterative Deepening A Star}\label{IDAStar}
+	\begin{algorithmic}[1]
+		
+		\State $state$ \Comment The current puzzle configuration
+		\State $g(state)$ \Comment The cost to reach the current state
+		\State $h(state)$ \Comment Estimated cost of the cheapest path from state to goal
+		\State $f(state) \gets g(state)+h(state)$
+		\State $neighbours(state)$ \Comment Expands possible moves from current state ordered by g + h
+		\Statex
+		\Procedure{IDAStar}{$state$}
+		\State $bound \gets f(state)$
+		\While{ \textbf{ not } solved}\Comment{Loops until a solution is found}
+		\State $ bound \gets DFS(state, bound)$	\Comment Performs a bounded depth-first search 
+		\EndWhile\label{}
+		\EndProcedure
+		\Statex
+		
+		\Procedure{dfs}{$state, bound$}
+		\If{$f(state) > bound$}
+		\State \textbf{return} $f(state)$
+		\EndIf	
+		
+		\If{$h(state) = 0$} \Comment No more moves needed to reach goal state
+		\State \textbf{return} $solved$
+		\EndIf
+		\State $min \gets \infty$	
+		\For{$neighbour \textbf{ in } neighbours(state)$}	
+		\State $temp \gets DFS(neighbour, bound)$
+		
+		\If{$temp < min}$
+		\State $min \gets temp $
+		\EndIf
+		\EndFor
+		\State \textbf{return} $min$\Comment{Returns the smallest of the neighbours}
+		\EndProcedure
+		
+	\end{algorithmic}
+\end{algorithm}
 
-public State IDAStar(State start) {
-    nextCostBound = start.getH();
-    State solution = null;
-    while (solution == null) {
-        float currentCostBound = nextCostBound;
-        solution = depthFirstSearch(start, currentCostBound);
-        nextCostBound += 2;
-    }
-    return solution;
-}
-public State depthFirstSearch(State current, float currentCostBound) {
-    if (Arrays.equals(current.getState(), GOAL)) {
-       return current;
-    }
-    for (State next : findNeighbours(current)) {
-        next.setG(current.getG() + 1);
-        float li = l.linearConflict(next.getState());
-        next.setH(li);
-        float value = next.getG() + next.getH();
-        if (value <= currentCostBound) {
-            State result = depthFirstSearch(next, currentCostBound);
-            if (result != null) {
-                return result;
-            }
-        }
-    }
-    return null;
-}
-
-\end{verbatim}
 
 The Java implementation of the IDA* algorithm above begins by initially retrieving the $H$ value of the $start$ node as it has already been set during object creation. The code then loops through until a solution is returned from the $depthFirstSearch()$ method that isn't null, thus the goal node. The float $currentCostBound$ is assigned to $nextCostBound$ and used to perform the depth-first search to that threshold, the bound is increased each time. 
 
@@ -595,7 +617,7 @@ if(value <= currentCostBound)
 
 On the final iteration of IDA* the cost threshold is equal to $c$, the cost of an optimal solution.\citep{DBLP:journals/ai/KorfRE01}.
 
-The results I gathered shown in Table 6 and Figure 4 further compliment the findings of the contrast in efficiency of the two heuristics Manhattan distance and Linear conflict. With the number of states expanded increasing the time taken to find the goal state increases and thus the difference between the linear conflict and Manhattan Distance widens.
+The results gathered show that in Table 6 and Figure 4 further compliment the findings of the contrast in efficiency of the two heuristics Manhattan distance and Linear conflict. With the number of states expanded increasing the time taken to find the goal state increases and thus the difference between the linear conflict and Manhattan Distance widens.
 
 
 \section{Pattern Databases}
@@ -622,21 +644,34 @@ There are 3 rules we must adhere to: \citep{WinNT}
 	\caption{Puzzle Parity}
 \end{figure}
 
-Here is some code I wrote to calculate the sum of the inversions in an array, from this we can determine whether it is solvable by following the guidelines above.
-\begin{verbatim}
-static int getInvCount(int arr[]) {
-    int inv_count = 0;
-    for (int i = 0; i < arr.length - 1; i++) {
-        for (int j = i + 1; j < arr.length; j++) {
-            if (arr[i] > arr[j]) {
-                inv_count++;
-            }
-        }
-   }
-   return inv_count;
-}
-\end{verbatim}
-
+Here is some code written to calculate the sum of the inversions in an array, from this we can determine whether it is solvable by following the guidelines above.
+	\begin{algorithm}
+	\caption{Is Current State Solvable}\label{Solvable}
+	\begin{algorithmic}[1]
+		\Procedure{IsSolvable}{state}
+		\State $puzzleLength \gets state.size()$
+		\State 	$gridWidth \gets \sqrt{puzzleLength}$
+		\State $blankRowEven \gets true$
+		\For{$i\gets 1, puzzleLength$}
+		\If{$state[i] =0$}
+		\State $blankRowEven \gets (i / gridWidth) \bmod 2 = 0$
+		\State $\textbf{continue} $
+		\For{$j\gets i + 1, puzzleLength$}
+		\If{$state[i] > state[j] \textbf{ and } state[j] \not= 0 $}
+		\State $parity \gets !parity$
+		\EndIf
+		\EndFor
+		\EndIf 
+		\EndFor
+		
+		\If{$gridWidth \bmod 2 = 0 \textbf{ and } blankRowEven$}
+		\State \textbf{return} $!parity$
+		\EndIf
+		\State \textbf{return} $parity$
+		
+		\EndProcedure
+	\end{algorithmic}	
+\end{algorithm}	
 
 \subsection{Non-Additive Pattern Databases}
 A Pattern Database stores a collection of solutions to sub-problems that much be achieved to solve the overall problem. They are admissible heuristic functions implemented as lookup tables that store the lengths of optimal solutions for sub-problem instances. \citep{DBLP:journals/jair/FelnerKMH07}.
@@ -671,9 +706,9 @@ Scalability is another issue regarding non-additive pattern databases. Take Figu
 \end{figure}
 
 \subsection{Statically-Partitioned Additive Database Heuristics}
-In order to develop a statically-partitioned additive database for the sliding tile puzzle, I partitioned the tiles into disjoint groups, meaning each tile is placed in a group and only appears in that group. The same method as explained in 6.2 for finding all the states was computed for each subset; a breadth-first search from the goal state with all possible configurations of each tile in the disjoint groups and the number of moves required to get to the goal state. For a particular state in the search, for each position of the tiles an index was computed for the corresponding row in the database, then I retrieved the number of moves required to solve the tiles in that group and added this value to each value of the other disjoint groups. The summed total of these values will always be equal to or larger than the Manhattan distance of the state as it considers the interactions between tiles within a given subset.	
+In order to develop a statically-partitioned additive database for the sliding tile puzzle, the tiles were partitioned into disjoint groups, meaning each tile is placed in a group and only appears in that group. The same method as explained in 6.2 for finding all the states was computed for each subset; a breadth-first search from the goal state with all possible configurations of each tile in the disjoint groups and the number of moves required to get to the goal state. For a particular state in the search, for each position of the tiles an index was computed for the corresponding row in the database, then retrieved the number of moves required to solve the tiles in that group and added this value to each value of the other disjoint groups. The summed total of these values will always be equal to or larger than the Manhattan distance of the state as it considers the interactions between tiles within a given subset.	
 
-I initially chose to implement the 6-6-3 partitioning as I hypothesised it will be the best compromise between speed and memory in comparison with other possible solutions, Figure 8 shows the partitioning. The first two images display the fifteen tile with the subsets comprising of 6 tiles, $2\times(16!/(16-6)!)= 11531520$ states to be stored, the final subset requires $16!/(16-3)!=3360$ states stored that's a total of $11534880$ rows in the database. 
+I initially chose to implement the 6-6-3 partitioning as hypothesised it will be the best compromise between speed and memory in comparison with other possible solutions, Figure 8 shows the partitioning. The first two images display the fifteen tile with the subsets comprising of 6 tiles, $2\times(16!/(16-6)!)= 11531520$ states to be stored, the final subset requires $16!/(16-3)!=3360$ states stored that's a total of $11534880$ rows in the database. 
 
 
 \begin{figure}[ht]
@@ -683,53 +718,6 @@ I initially chose to implement the 6-6-3 partitioning as I hypothesised it will 
 	\caption{6-6-3 Partioning}
 \end{figure}
 
-
-
-\section{Gantt Chart}
-	\begin{sideways}
-		\newganttchartelement{voidbar}{
-			voidbar/.style={
-				draw=black,
-				top color=black!25,
-				bottom color=black!23
-		}}
-		\begin{ganttchart}[x unit=0.40cm, vgrid, title label font=\scriptsize,
-			canvas/.style={draw=black, dotted}]{1}{23}
-			\gantttitle{Project schedule shown for e-vision week numbers
-				and semester week numbers}{23} \\
-			\gantttitlelist{21,...,42}{1}\\
-			\gantttitle{CB}{4}
-			\gantttitlelist{1,...,10}{1}
-			\gantttitle{EB}{4}
-			\gantttitlelist{11,...,14}{1}\\
-			
-			
-			%the elements, bars and milestones, are identified as elem0, elem1, etc
-			
-			%elem1
-			\ganttbar{Sliding-tile implementation}{1}{4}     \\  %elem0  
-			\ganttbar{Progress Report}{3}{5}    \\  %elem1 
-			\ganttbar{Rubik's Cube Implementation}{5}{7}              \\  %elem2     
-			\ganttbar{Additive Database Heuristic Cube }{8}{12}         \\
-			\ganttbar{Evaluate Results}{10}{12}         \\
-			\ganttbar{Experiments}{11}{13}  \\
-	
-			\ganttbar{Code delivery}{13}{22}                \\%elem3
-			\ganttbar{Final report writing}{15}{22}                \\
-			\ganttbar{Inspection preparation}{18}{22}                \\
-			
-			
-			\ganttlink{elem0}{elem2}
-		    \ganttlink{elem0}{elem1}
-			\ganttlink{elem2}{elem3}
-			\ganttlink{elem3}{elem4}
-			\ganttlink{elem4}{elem5}
-			\ganttlink{elem5}{elem6}
-			\ganttlink{elem6}{elem7}
-			\ganttlink{elem7}{elem8}
-
-		\end{ganttchart}
-	\end{sideways}
 
 
 \clearpage
