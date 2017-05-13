@@ -7,50 +7,48 @@ Repeated entry---line 181 of file bibfile.bib
  : @article{DBLP:journals/corr/abs-1107-0050
  :                                          ,
 I'm skipping whatever remains of this entry
-Warning--entry type for "WinNT" isn't style-file defined
---line 551 of file bibfile.bib
 A bad cross reference---entry "DBLP:conf/ccgrid/LinnertSB14"
 refers to entry "DBLP:conf/ccgrid/2014", which doesn't exist
 Warning--I didn't find a database entry for "DBLP:conf/ccgrid/2014"
-You've used 10 entries,
+You've used 8 entries,
             1935 wiz_defined-function locations,
-            548 strings with 6120 characters,
-and the built_in function-call counts, 4082 in all, are:
-= -- 411
-> -- 149
-< -- 10
-+ -- 47
-- -- 47
-* -- 345
-:= -- 692
-add.period$ -- 30
-call.type$ -- 10
-change.case$ -- 71
-chr.to.int$ -- 10
-cite$ -- 10
-duplicate$ -- 165
-empty$ -- 293
-format.name$ -- 63
-if$ -- 811
+            538 strings with 5778 characters,
+and the built_in function-call counts, 3505 in all, are:
+= -- 354
+> -- 128
+< -- 7
++ -- 41
+- -- 41
+* -- 298
+:= -- 588
+add.period$ -- 25
+call.type$ -- 8
+change.case$ -- 59
+chr.to.int$ -- 8
+cite$ -- 8
+duplicate$ -- 138
+empty$ -- 254
+format.name$ -- 53
+if$ -- 701
 int.to.chr$ -- 1
 int.to.str$ -- 0
 missing$ -- 8
-newline$ -- 51
-num.names$ -- 33
-pop$ -- 61
+newline$ -- 43
+num.names$ -- 26
+pop$ -- 49
 preamble$ -- 1
-purify$ -- 72
+purify$ -- 59
 quote$ -- 0
-skip$ -- 126
+skip$ -- 108
 stack$ -- 0
-substring$ -- 303
-swap$ -- 31
-text.length$ -- 4
+substring$ -- 279
+swap$ -- 28
+text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 60
+type$ -- 48
 warning$ -- 0
-while$ -- 37
+while$ -- 33
 width$ -- 0
-write$ -- 130
+write$ -- 108
 (There were 2 error messages)

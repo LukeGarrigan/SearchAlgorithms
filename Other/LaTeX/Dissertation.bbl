@@ -52,16 +52,4 @@ Meissner, A. and Brzykcy, G. (2011).
   17-21, 2011. Proceedings}, volume 7046 of {\em Lecture Notes in Computer
   Science}, pages 504--513. Springer.
 
-\bibitem[Ryan, 2004]{WinNT}
-Ryan, M. (2004).
-\newblock {Solvability Of Tile Games}the university of birmingham school of
-  computer science.
-
-\bibitem[Sokolova and van Beek, 2014]{DBLP:conf/ai/2014}
-Sokolova, M. and van Beek, P., editors (2014).
-\newblock {\em Advances in Artificial Intelligence - 27th Canadian Conference
-  on Artificial Intelligence, Canadian {AI} 2014, Montr{\'{e}}al, QC, Canada,
-  May 6-9, 2014. Proceedings}, volume 8436 of {\em Lecture Notes in Computer
-  Science}. Springer.
-
 \end{thebibliography}

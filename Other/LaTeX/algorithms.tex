@@ -118,6 +118,29 @@
 	\makeatother
 	%this changes the style of the comments 
 	%\algrenewcommand{\algorithmiccomment}[1]{\hskip3em$\rightarrow$ #1}
+	
+	    \begin{algorithm}
+		\caption{DFS}\label{Linear Conflict}
+		\begin{algorithmic}[1]
+			\State $visited \gets emptySet$
+			\Procedure{DFS}{$state$}
+			\If{$state = goal$}
+			\State \textbf{return} state
+			\EndIf
+			\For{$neighbour \textbf{ in } neighbours(state)$}
+			\If{$neighbour \textbf{ not in } visited$}
+			\State	$DFS(neighbour)$
+			\EndIf
+			\EndFor
+			\State $visited.add(state)$
+			\EndProcedure
+		\end{algorithmic}
+	\end{algorithm}
+	
+	
+	
+	
+	
     \begin{algorithm}
 		\caption{DFS}\label{dfs}
 		\begin{algorithmic}[1]

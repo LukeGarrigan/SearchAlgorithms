@@ -1,25 +1,27 @@
-\contentsline {section}{\numberline {1}Introduction}{4}{section.1}
-\contentsline {section}{\numberline {2}Relevant Literature}{5}{section.2}
-\contentsline {section}{\numberline {3}Program Architecture}{5}{section.3}
-\contentsline {subsection}{\numberline {3.1}Initial Implementation}{5}{subsection.3.1}
-\contentsline {section}{\numberline {4}Brute-Force Search}{5}{section.4}
-\contentsline {subsection}{\numberline {4.1}Breadth-First Search}{6}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}Depth-First Search}{6}{subsection.4.2}
-\contentsline {subsection}{\numberline {4.3}Depth-First Search Iterative Deepening}{7}{subsection.4.3}
-\contentsline {subsection}{\numberline {4.4}Evaluation Of Brute-Force Searches}{10}{subsection.4.4}
-\contentsline {section}{\numberline {5}Heuristic Search}{11}{section.5}
-\contentsline {subsection}{\numberline {5.1}Admissible Heuristics}{11}{subsection.5.1}
-\contentsline {subsection}{\numberline {5.2}Consistent Heuristics}{11}{subsection.5.2}
-\contentsline {subsection}{\numberline {5.3}Heuristic Evaluation Functions}{11}{subsection.5.3}
-\contentsline {subsubsection}{\numberline {5.3.1}Manhattan Distance}{11}{subsubsection.5.3.1}
-\contentsline {subsubsection}{\numberline {5.3.2}Linear Conflict Heuristic}{12}{subsubsection.5.3.2}
-\contentsline {subsection}{\numberline {5.4}A* Algorithm}{14}{subsection.5.4}
-\contentsline {subsubsection}{\numberline {5.4.1}Linear Conflict Or Manhattan Distance}{15}{subsubsection.5.4.1}
-\contentsline {section}{\numberline {6}Fifteen Tile Puzzle}{17}{section.6}
-\contentsline {subsection}{\numberline {6.1}Iterative Deepening A*}{18}{subsection.6.1}
-\contentsline {section}{\numberline {7}Pattern Databases}{22}{section.7}
-\contentsline {subsection}{\numberline {7.1}Solvability Of Tile Games}{22}{subsection.7.1}
-\contentsline {subsection}{\numberline {7.2}Non-Additive Pattern Databases}{23}{subsection.7.2}
-\contentsline {subsubsection}{\numberline {7.2.1}Non-Additive Pattern Database Limitations}{24}{subsubsection.7.2.1}
-\contentsline {subsection}{\numberline {7.3}Statically-Partitioned Additive Database Heuristics}{25}{subsection.7.3}
-\contentsline {section}{References}{27}{section*.16}
+\contentsline {section}{\numberline {1}Introduction}{5}{section.1}
+\contentsline {section}{\numberline {2}Relevant Literature}{6}{section.2}
+\contentsline {section}{\numberline {3}Preliminaries}{6}{section.3}
+\contentsline {subsection}{\numberline {3.1}Solvability Of Tile Games}{6}{subsection.3.1}
+\contentsline {section}{\numberline {4}Brute-Force Search}{7}{section.4}
+\contentsline {subsection}{\numberline {4.1}Completeness and Optimality}{7}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Breadth-First Search}{7}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Depth-First Search}{8}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.4}Depth-First Search Iterative Deepening}{11}{subsection.4.4}
+\contentsline {subsection}{\numberline {4.5}Evaluation Of Brute-Force Searches}{12}{subsection.4.5}
+\contentsline {section}{\numberline {5}Heuristic Search}{13}{section.5}
+\contentsline {subsection}{\numberline {5.1}Admissible Heuristics}{13}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}Consistent Heuristics}{13}{subsection.5.2}
+\contentsline {subsection}{\numberline {5.3}Heuristic Evaluation Functions}{14}{subsection.5.3}
+\contentsline {subsubsection}{\numberline {5.3.1}Manhattan Distance}{14}{subsubsection.5.3.1}
+\contentsline {subsubsection}{\numberline {5.3.2}Linear Conflict Heuristic}{14}{subsubsection.5.3.2}
+\contentsline {subsection}{\numberline {5.4}A* Algorithm}{15}{subsection.5.4}
+\contentsline {subsubsection}{\numberline {5.4.1}Manhattan Distance and Linear Conflict}{18}{subsubsection.5.4.1}
+\contentsline {section}{\numberline {6}Fifteen Tile Puzzle}{19}{section.6}
+\contentsline {subsection}{\numberline {6.1}Iterative Deepening A*}{20}{subsection.6.1}
+\contentsline {section}{\numberline {7}Pattern Databases}{23}{section.7}
+\contentsline {subsection}{\numberline {7.1}Non-Additive Pattern Databases}{23}{subsection.7.1}
+\contentsline {subsubsection}{\numberline {7.1.1}Non-Additive Pattern Database Limitations}{24}{subsubsection.7.1.1}
+\contentsline {subsection}{\numberline {7.2}Statically-Partitioned Additive Database Heuristics}{25}{subsection.7.2}
+\contentsline {section}{\numberline {8}Program Architecture}{26}{section.8}
+\contentsline {subsection}{\numberline {8.1}Initial Implementation}{26}{subsection.8.1}
+\contentsline {section}{References}{28}{section*.18}
