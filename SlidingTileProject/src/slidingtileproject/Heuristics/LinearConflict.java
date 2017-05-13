@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package slidingtileproject;
+package slidingtileproject.Heuristics;
 
 import java.util.Arrays;
+import slidingtileproject.State;
 
 /**
  *
@@ -34,7 +35,7 @@ public class LinearConflict extends Manhattan {
 
     private int linearVerticalConflict(State s) {
         int state[] = s.getState();
-        int dimension = 4;
+        int dimension = (int) Math.sqrt(state.length);
         int linearConflict = 0;
         int count = 0;
         for (int row = 0; row < dimension; row++) {
@@ -63,7 +64,7 @@ public class LinearConflict extends Manhattan {
 
     private int linearHorizontalConflict(State s) {
         int[] state = s.getState();
-        int dimension = 4;
+        int dimension = (int) Math.sqrt(state.length);
         int linearConflict = 0;
         int count = 0;
         for (int column = 0; column < dimension; column++) {

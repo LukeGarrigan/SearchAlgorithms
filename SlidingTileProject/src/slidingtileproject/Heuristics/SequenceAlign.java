@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package slidingtileproject;
+package slidingtileproject.Heuristics;
 
+import slidingtileproject.Heuristics.Manhattan;
 import java.util.Arrays;
+import slidingtileproject.State;
 
 /**
  *

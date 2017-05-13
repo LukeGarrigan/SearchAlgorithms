@@ -10,45 +10,45 @@ I'm skipping whatever remains of this entry
 A bad cross reference---entry "DBLP:conf/ccgrid/LinnertSB14"
 refers to entry "DBLP:conf/ccgrid/2014", which doesn't exist
 Warning--I didn't find a database entry for "DBLP:conf/ccgrid/2014"
-You've used 8 entries,
+You've used 14 entries,
             1935 wiz_defined-function locations,
-            538 strings with 5778 characters,
-and the built_in function-call counts, 3505 in all, are:
-= -- 354
-> -- 128
-< -- 7
-+ -- 41
-- -- 41
-* -- 298
-:= -- 588
-add.period$ -- 25
-call.type$ -- 8
-change.case$ -- 59
-chr.to.int$ -- 8
-cite$ -- 8
-duplicate$ -- 138
-empty$ -- 254
-format.name$ -- 53
-if$ -- 701
+            573 strings with 6921 characters,
+and the built_in function-call counts, 5987 in all, are:
+= -- 597
+> -- 229
+< -- 11
++ -- 79
+- -- 75
+* -- 505
+:= -- 1011
+add.period$ -- 43
+call.type$ -- 14
+change.case$ -- 105
+chr.to.int$ -- 14
+cite$ -- 14
+duplicate$ -- 235
+empty$ -- 430
+format.name$ -- 95
+if$ -- 1189
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 8
-newline$ -- 43
-num.names$ -- 26
-pop$ -- 49
+missing$ -- 15
+newline$ -- 73
+num.names$ -- 44
+pop$ -- 95
 preamble$ -- 1
-purify$ -- 59
+purify$ -- 106
 quote$ -- 0
-skip$ -- 108
+skip$ -- 180
 stack$ -- 0
-substring$ -- 279
-swap$ -- 28
-text.length$ -- 3
+substring$ -- 459
+swap$ -- 43
+text.length$ -- 4
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 48
+type$ -- 82
 warning$ -- 0
-while$ -- 33
+while$ -- 54
 width$ -- 0
-write$ -- 108
+write$ -- 184
 (There were 2 error messages)

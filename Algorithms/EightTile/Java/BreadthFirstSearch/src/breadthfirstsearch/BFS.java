@@ -193,6 +193,9 @@ public class BFS {
         }
         return null;
     }
+    
+    
+    
 
     public static ArrayList<State> RandomizeArray(int[] array, int amount) {
         // Random number generator			

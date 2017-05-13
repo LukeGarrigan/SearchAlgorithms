@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package slidingtileproject;
+package slidingtileproject.Heuristics;
 
 import java.util.Arrays;
+import slidingtileproject.State;
 
 /**
  *
@@ -41,7 +42,6 @@ public class Manhattan implements HeuristicFunction {
         return total;
     }
 
-    @Override
     public int calculateSingleHeuristic(State s) {
 
         //float currentHeuristic = s.getH();

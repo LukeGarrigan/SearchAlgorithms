@@ -1,5 +1,11 @@
 \begin{thebibliography}{}
 
+\bibitem[Borrajo et~al., 2014]{DBLP:journals/aicom/BorrajoFKLLRS14}
+Borrajo, D., Felner, A., Korf, R.~E., Likhachev, M., {Linares L{\'{o}}pez}, C.,
+  Ruml, W., and Sturtevant, N.~R. (2014).
+\newblock The fifth annual symposium on combinatorial search.
+\newblock {\em {AI} Commun.}, 27(4):327--328.
+
 \bibitem[Brewka, 1996]{DBLP:journals/ker/Brewka96}
 Brewka, G. (1996).
 \newblock \emph{Artificial intelligence - a modern approach} by stuart russell
@@ -7,10 +13,22 @@ Brewka, G. (1996).
   cliffs, {NJ}.
 \newblock {\em Knowledge Eng. Review}, 11(1):78--79.
 
+\bibitem[Culberson and Schaeffer, 1996]{culberson1996searching}
+Culberson, J. and Schaeffer, J. (1996).
+\newblock Searching with pattern databases.
+\newblock {\em Advances in Artifical Intelligence}, pages 402--416.
+
 \bibitem[Culberson and Schaeffer, 1998]{DBLP:journals/ci/CulbersonS98}
 Culberson, J.~C. and Schaeffer, J. (1998).
 \newblock Pattern databases.
 \newblock {\em Computational Intelligence}, 14(3):318--334.
+
+\bibitem[Felner, 2015]{felner2015early}
+Felner, A. (2015).
+\newblock Early work on optimization-based heuristics for the sliding tile
+  puzzle.
+\newblock In {\em Workshops at the Twenty-Ninth AAAI Conference on Artificial
+  Intelligence}.
 
 \bibitem[Felner et~al., 2011]{DBLP:journals/corr/abs-1107-0050}
 Felner, A., Hanan, S., and Korf, R.~E. (2011).
@@ -21,6 +39,23 @@ Felner, A., Hanan, S., and Korf, R.~E. (2011).
 Felner, A., Korf, R.~E., Meshulam, R., and Holte, R.~C. (2007).
 \newblock Compressed pattern databases.
 \newblock {\em J. Artif. Intell. Res. {(JAIR)}}, 30:213--247.
+
+\bibitem[Hansson et~al., 1985]{hansson1985generating}
+Hansson, O., Meyer, A.~E., and Yung, M.~M. (1985).
+\newblock {\em Generating Admissible Heuristics by Criticizing Solutions to
+  Relaxed Models}.
+\newblock Department of Computer Science, Columbia University.
+
+\bibitem[Hart et~al., 1968]{hart1968formal}
+Hart, P.~E., Nilsson, N.~J., and Raphael, B. (1968).
+\newblock A formal basis for the heuristic determination of minimum cost paths.
+\newblock {\em IEEE transactions on Systems Science and Cybernetics},
+  4(2):100--107.
+
+\bibitem[Korf, 1985]{korf1985depth}
+Korf, R.~E. (1985).
+\newblock Depth-first iterative-deepening: An optimal admissible tree search.
+\newblock {\em Artificial intelligence}, 27(1):97--109.
 
 \bibitem[Korf, 1995]{DBLP:journals/mima/Korf95}
 Korf, R.~E. (1995).

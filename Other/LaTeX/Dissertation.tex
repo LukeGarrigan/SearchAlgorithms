@@ -82,6 +82,7 @@
 FIrstly, I would like to express my sincere gratitude to my advisor Dr. Pierre Chardaire for the patience, guidance, wisdom and brilliance he has provided throughout my final year. I have been extremely lucky to have
 a supervisor who cared so much about my work, and who responded to my questions and queries so
 promptly.
+
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -119,7 +120,7 @@ promptly.
 
 
 
- In computer science a search algorithm is a series of steps that can be used to find a desired state or a path to a particular state. In most scenarios there will be additional constraints that will need to be fulfilled such as the time taken to reach the desired state, memory availability, maximum number of moves. This paper shows experimental results of numerous search algorithms for specific problem domains such as the sliding-tile puzzle, Towers of Hanoi and the Rubik's cube.
+ In computer science a search algorithm is a series of steps that can be used to find a desired state or a path to a particular state. In most scenarios there will be additional constraints that will need to be fulfilled such as the time taken to reach the desired state, memory availability, maximum number of moves. The main difference between informed search and uninformed search is the use of heuristic functions that guide the search towards the goal while avoiding non-promising paths \cite{felner2015early}. Informed search algorithms such as A* \cite{hart1968formal}, IDA* \cite{korf1985depth} are analysed in this paper with various heuristics including Manhattan distance, linear conflict \cite{hansson1985generating} and pattern databases (PDB) \cite{culberson1996searching}. A comparison between informed and uninformed search is made along with an in-depth analysis of different heuristics for specific problem domains such as the sliding-tile puzzle, Towers of Hanoi and the Rubik's cube.
 
  A classic example in the AI literature of pathfinding problems are the sliding-tiles puzzles such as the $3\times3$ 8-puzzle, the $4\times4$ 15-puzzle and the $5\times5$ 24-puzzle. The 8-puzzle consists of a $3\times3$ grid with eight numbered square tiles and one blank. The blank is used to slide other tiles in which are horizontally or vertically adjacent into that position in an attempt to reach the goal state. The objective is to rearrange the tiles from some random configuration to a specified goal configuration. The number of possible solvable states for the 8-puzzle is $9!/2=181440$ so can be solved by means of brute-force search. However for the 15-puzzle with $16!/2\approx1.05\times10^{13}$ and 25-puzzle with $25!/2\approx7.76\times10^{24}$ a more sophisticated informed search is required.
  
@@ -135,6 +136,17 @@ promptly.
 
 
 \section{Preliminaries}
+
+\section{Design}
+
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=0.8\textwidth]{classDiagram}
+	\captionsetup{justification=centering}
+	\caption{Class Diagram}
+\end{figure}
+
+
 \subsection{Solvability Of Tile Games}
 Problem domains may have constraints that can preclude parts of the search space. For example, although the fifteen puzzle has $ 16! \approx 10^{13} $ possible positions, only one half of them can be reached from the goal. \citep{DBLP:journals/ci/CulbersonS98}. 
 
@@ -178,9 +190,9 @@ Brute-force search is a general problem-solving technique that consists of syste
 \subsection{Completeness and Optimality}
  Often in search the input may be an implicit representation of an infinite graph. Given these conditions, a search algorithm is characterised as being complete if it is guaranteed to find a goal state provided one exists. Breadth-first search is complete and when applied to infinite graphs it will eventually find the solution. Depth-first search is not complete and may get lost in parts of the graph that do not contain a goal state.
 \subsection{Breadth-First Search}
-Breadth-first search expands the nodes in a tree in the order of their given distance from the root, so it expands all the neighbouring nodes before going to the next level of the tree. The algorithm doesn't trawl to the deeper levels of the tree without first expanding the lower levels thus ensures the finding of the shortest path. The amount of time used by breadth-first search is linear to the number of nodes expanded, since each node can be generated in constant time, and is a function of the branching factor $b$ and the solution depth $d$. Since the number of nodes at level $d$ is $b^d$, the total number of nodes generated in the worst case is $O(b^d)$. \citep{DBLP:journals/mima/Korf95}.
+Breadth-first search expands the nodes in a tree in the order of their given distance from the root, so it expands all the neighbouring nodes before going to the next level of the tree. The algorithm doesn't trawl to the deeper levels of the tree without first expanding the lower levels thus ensures the finding of the shortest path. The amount of time used by breadth-first search is linear to the number of nodes expanded, since each node can be generated in constant time, and is a function of the branching factor $b$ and the solution depth $d$. Since the number of nodes at level $d$ is $b^d$, the total number of nodes generated in the worst case is $O(b^d)$. \citep{DBLP:journals/mima/Korf95}. The space requirement of breadth-first search is its largest deficiency. The 8-tile has a search space of $9!/2=181,400$ states with a maximum number of 31 moves to solve. In terms of practicality, with larger problem states such as the 15-tile puzzle a breadth-first search will exhaust the available memory rather quickly with its $16!/2 = 10,461,394,944,000$ states and a maximum number of 80 moves to solve.
 
-The initial algorithm implemented to solve the 8-puzzle was the breadth-first search as it guarantees to find the solution in minimal steps. The space requirement of breadth-first search is its largest deficiency. The 8-tile has a search space of $9!/2=181,400$ states with a maximum number of 31 moves to solve. In terms of practicality, with larger problem states such as the 15-tile puzzle a breadth-first search will exhaust the available memory rather quickly with its $16!/2 = 10,461,394,944,000$ states and a maximum number of 80 moves to solve.
+BFS begins by declaring an empty set $s$ which stores all the states that have been expanded. A queue $q$ is then initialised which stores states to be expanded. The initial state is added to both $q$ and $s$, $q$ is then repeatedly looped through until a solution is found or $q$ is empty meaning there are no possible solutions. The $currentState$ is dequeued from $q$, checked against the goal state and returned if a match. Otherwise, each possible move from $currentState$ is found and added to $q$ to be expanded see Algorithm~\ref{BFS}.
 	\begin{algorithm}
 	\caption{Breadth-First Search}\label{BFS}
 	\begin{algorithmic}[1]
@@ -189,7 +201,7 @@ The initial algorithm implemented to solve the 8-puzzle was the breadth-first se
 		\State $q \gets \textit{empty queue}$
 		\State $q.add(state)$
 		\State $q.enqueue(state)$
-		\While{$q.size() > 0$}
+		\While{$q \textbf{ is not } empty$}
 		\State $currentState \gets q.dequeue()$
 		\If {$currentState = goal$}
 		\State \textbf{return} $current$
@@ -208,221 +220,6 @@ The initial algorithm implemented to solve the 8-puzzle was the breadth-first se
 
 
 
-Table 1 shows the results of the 8-puzzle using breadth-first search. The tests were performed on all $9!/2=181440$ states, an initial BFS was executed from the goal configuration and each state along with the number of moves required was stored. States were split up into testing lists dependent on the number of moves as shown by column 1 and 2. Tests were then executed using breadth-first search on each state, column 3 displays the average number of nodes expanded before finding the goal state, column 4 is the average time taken to solve a given state and column 5 shows the total time taken to solve all states in the specific testing list.
-\begin{table}[ht]
-	\caption{Breadth-First Search Analysis: 8-puzzle}
-	\begin{center}
-		\begin{tabular}{crrrr} \hline
-			Min Moves & No. States & Avg Nodes Expanded & Avg. Time(ms) & Total Time(ms) \\ \hline
-			0-4  & 31 & 747.19$\pm$435.76 & 0.5483 & 18 \\
-			5-9 & 389 &4249.35$\pm$4277.99& 1.0668 & 432.0 \\ 
-		    10-14 & 4347 &  23257.75$\pm$20745.99& 5.7888 & 25164  \\ 
-	    	15-19 & 33042& 58446.06$\pm$35484.49 & 17.7823 & 587563 \\ 
-	    	20-24 & 102326& 114724.84$\pm$36410.64 & 41.0058 & 4195959  \\ 
-	    	25-29 & 41082& 162772.14$\pm$15654.31 & 60.0550 & 2467181 \\ 
-		    30+ & 223& 180524.70$\pm$548.90 & 67.3542 & 15006\\ \hline
-		\end{tabular}
-	\end{center}
-\end{table}
-
-\begin{table}[ht]
-	\caption{Breadth-First Search Analysis: 8-puzzle (10000 Random States)}
-	\begin{center}
-		\begin{tabular}{crr} \hline
-			Average Moves & Avg Nodes Expanded & Avg. Time(ms)\\ \hline
-		21.7142$\pm$0.065 & 89201.4297 & 29.7373\\ \hline
-		\end{tabular}
-	\end{center}
-\end{table}
-\begin{figure}[!ht]
-	\begin{subfigure}[t]{0.5\textwidth}
-		\begin{tikzpicture}
-		\begin{axis}[
-			width=\textwidth,
-		ymin=0, ymax=25000,
-		minor y tick num = 3,
-		area style,
-		xlabel = No. Moves,
-		ylabel = No. States,
-		]
-		\addplot+[ybar interval,mark=no] plot coordinates { 	
-			(1,2)
-			(2,4)
-			(3,8)
-			(4,16)
-			(5,20)
-			(6,39)	
-			(7,62)
-			(8,116)
-			(9,152)
-			(10,286)
-			(11,396)
-			(12,748)
-			(13,1024)
-			(14,1893)
-			(15,2512)
-			(16,4485)
-			(17,5639)
-			(18,9529)
-			(19,10878)
-			(20,16993)
-			(21,17110)
-			(22,23952)
-			(23,20224)
-			(24,24047)
-			(25,15578)
-			(26,14650)
-			(27,6274)
-			(28,3910)
-			(29,760)
-			(30,221)
-			(31,2)		 };
-		\end{axis}
-		\end{tikzpicture}
-		\end{subfigure}
-	    \begin{subfigure}[t]{0.5\textwidth}
-			\begin{tikzpicture}
-			\begin{axis}[
-			width=\textwidth,
-			ymin=0, ymax=1175494,
-			minor y tick num = 3,
-			area style,
-			xlabel = No. Moves,
-			ylabel = Summed Time(ms),
-			]
-			\addplot+[ybar interval,mark=no] plot coordinates{
-				(1,0)
-				(2,0)
-				(3,0)
-				(4,0)
-				(5,2)
-				(6,3)	
-				(7,8)
-				(8,19)
-				(9,30)
-				(10,61)
-				(11,108)
-				(12,251)
-				(13,587)
-				(14,1554)
-				(15,3358)
-				(16,9354)
-				(17,19800)
-				(18,49859)
-				(19,98138)
-				(20,209503)
-				(21,330907)
-				(22,708861)
-				(23,784197)
-				(24,1065494)
-				(25,862847)
-				(26,867818)
-				(27,396454)
-				(28,248861)
-				(29,50164)
-				(30,14541)
-				(31,133)
-			};
-			\end{axis}
-			\end{tikzpicture}
-		\end{subfigure}%
-	
-		\caption{A representation of the number of states that require a specific amount of moves to be solved optimally in the 8-tile and the summed time taken for all these states to be solved}
-\end{figure}
-
-
-\begin{figure}[!ht]
-	 \centering
-	\begin{subfigure}[t]{0.5\textwidth}
-		\begin{tikzpicture}
-		\begin{axis}[
-		width=\textwidth,
-		xlabel = No. Moves,
-		ylabel = Average Time(ms),
-		]
-		\addplot[error bars/.cd, y dir=both, y explicit, ] coordinates{
-			(2,0)
-			(3,0)
-			(4,0)
-			(5,0.0625)
-			(6,0.07)	
-			(7,0.12903)
-			(8,0.16379)
-			(9,0.19737)
-			(10,0.21329)
-			(11,0.27273)
-			(12,0.33556)
-			(13,0.57324)
-			(14,0.82092)
-			(15,1.33678)
-			(16,2.08562)
-			(17,3.51188)
-			(18,5.23234)
-			(19,9.0217)
-			(20,12.32878)
-			(21,19.33998)
-			(22,29.59507)
-			(23,38.77556)
-			(24,44.30881)
-			(25,55.38882)
-			(26,59.60288)
-			(27,63.18999)
-			(28,63.64731)
-			(29,66.00526)
-			(30,65.79638)
-			(31,66.5)
-	};
-		\end{axis}
-	\end{tikzpicture}
-	\end{subfigure}%
-	\begin{subfigure}[t]{0.5\textwidth}
-		\begin{tikzpicture}
-		\begin{axis}[
-		width=\textwidth,
-		xlabel = No. Moves,
-		ylabel = Mean Nodes Expanded,
-		]
-		\addplot[error bars/.cd, y dir=both, y explicit, ] coordinates{
-			(1,3.5)
-			(2,8.25)
-			(3,15.625)
-			(4,25)
-			(5,46.9)
-			(6,79.87179)	
-			(7,142.03226)
-			(8,222.75)
-			(9,396.56579)
-			(10,607.36364)
-			(11,1033.95707)
-			(12,1580.87032)
-			(13,2689.3877)
-			(14,4068.70417)
-			(15,6816.66521)
-			(16,10077.94314)
-			(17,16304.61352)
-			(18,23252.76262)
-			(19,35532.59423)
-			(20,47973.72595)
-			(21,68096.92613)
-			(22,86105.56809)
-			(23,111406.96737)
-			(24,129960.55254)
-			(25,151666.94146)
-			(26,163973.55021)
-			(27,174731.22792)
-			(28,178683.9913)
-			(29,180883.49474)
-			(30,181336.30769)
-			(31,181439.5)
-		};
-		\end{axis}
-		\end{tikzpicture}
-	\end{subfigure}
-	\caption{8-tile analysis using breadth-first search to display how the minimum number of moves required to reach the goal state affects the time(ms) and the number of nodes expanded}
-\end{figure} 
-
-
-
 
 
 
@@ -431,10 +228,11 @@ Table 1 shows the results of the 8-puzzle using breadth-first search. The tests 
 \subsection{Depth-First Search}
 Depth-first search (DFS) addresses the limitations of breadth-first by always generating next a child of the deepest unexpanded node. Breadth-first search manages the list as a first-in first-out queue, whereas depth-first search treats the list as a last-in first-out stack. Depth-first search is implemented recursively, with the recursion stack taking the place of an explicit node stack. Given a starting state, depth-first search stores all the unvisited children of that state in a stack. It then removes the top state from the stack and adds all of the removed states children to the stack. Depth first search generates a long sequence of moves, only ever reconsidering a move when it reaches the end of a stack, this can become a serious problem given a graph of significant size and there's only one solution, as it may end up exploring the entire graph on a single DFS path only to find the solution after looking at each node. Worse, if the graph is infinite the search might not terminate.
 
+DFS begins by declaring an empty set $visted$ which stores all the states that stores expanded states. The state is checked against the goal and returned if a match. All possible moves from the current state are looped through and recursively call the function to repeat the process see Algorithm~\ref{dfs}.
 \begin{algorithm}
 	\caption{DFS}\label{dfs}
 	\begin{algorithmic}[1]
-		\State $visited \gets emptySet$
+		\State $visited \gets empty set$
 		\Procedure{DFS}{$state$}
 		\If{$state = goal$}
 		\State \textbf{return} state
@@ -454,7 +252,10 @@ Depth-first search is not the preferred algorithm for solving the sliding-tile p
 
   
 \subsection{Depth-First Search Iterative Deepening}
-Depth-First Iterative-Deepening (DFID) is an extension of depth-first search, it combines breadth-first search's completeness and depth-first search's space efficiency. DFID has a maximum depth; searching all possibilities up to the specific depth and if it doesn't find the goal state it increases the depth increases. DFID performs depth-first search to depth one, then starts over and executes a depth-first search to depth two and continues deeper and deeper until a solution is found. The complexity of DFID is only O(d) where d is the depth, this is because at a given point it is executing only a depth-first search and saving only a stack of nodes. DFID ensures that the shortest path to the goal state will be found as does breadth-first search. \citep{DBLP:conf/otm/MeissnerB11}.
+Depth-First Iterative-Deepening (DFID) is an extension of depth-first search, it combines breadth-first search's completeness and depth-first search's space efficiency. DFID has a maximum depth; searching all possibilities up to the specific depth and if it doesn't find the goal state it increases the depth increases. DFID performs depth-first search to depth one, then starts over and executes a depth-first search to depth two and continues deeper and deeper until a solution is found. The complexity of DFID is only O(d) where d is the depth, this is because at a given point it is executing only a depth-first search and saving only a stack of nodes. DFID ensures that the shortest path to the goal state will be found as does breadth-first search \citep{DBLP:conf/otm/MeissnerB11}.
+
+DFID begins by looping from 0 to the maximum depth of the problem domain. A function is then called with the current state and the specified depth which returns $found$ if the goal state has been discovered or $null$ otherwise. The function depth-limited depth-first search $DLS$ is called, the state is checked against the goal state provided the depth is 0 as the previous depths have already been checked. If the depth is greater than zero each possible move is found and used in a recursive call of $DLS$ with a decremented depth see Algorithm~\ref{DFID}. 
+
 \makeatletter
 \def\BState{\State\hskip-\ALG@thistlm}
 \makeatother
@@ -462,9 +263,9 @@ Depth-First Iterative-Deepening (DFID) is an extension of depth-first search, it
 
 
 	\begin{algorithm}
-	\caption{Iterative Deepening Depth-First Search}\label{Solvable}
+	\caption{Depth-First Iterative Deepening}\label{DFID}
 	\begin{algorithmic}[1]
-		\Procedure{iddfs}{state}
+		\Procedure{DFID}{state}
 		\For{$depth \gets 0, \infty$}
 		\State$ found \gets DLS(state, depth)$
 		\If{$found \not= null$}
@@ -482,7 +283,7 @@ Depth-First Iterative-Deepening (DFID) is an extension of depth-first search, it
 		\For{$neighbour \textbf{ in } neighbours(state)$}	
 		\State $found \gets DLS(neighbour, depth-1)$
 		\If{$found \not= null$}
-		\State$return found$
+		\State \textbf{return} $found$
 		\EndIf
 		\EndFor
 		\EndIf 
@@ -566,7 +367,7 @@ and its goal location and summing these values for all tiles. Manhattan distance
 
 
 \subsubsection{Linear Conflict Heuristic}
-Linear Conflict heuristic is an improvement to the Manhattan distance, it applies when two tiles are positioned in their desired row or column but but are reversed relative to
+Linear Conflict heuristic is an improvement to the Manhattan distance, it applies when two tiles are positioned in their desired row or column but are reversed relative to
 their goal positions, meaning a given tile must move out of the row or column in order to let the other pass. If there is a linear conflict then an extra two moves will be added to the total sum as the tile which must move, has to transition out of the row or column and then back into its desired position. These two extra moves are not included in the Manhattan distance so can be added to the total without violating admissibility.
 
 
@@ -588,6 +389,9 @@ A* search is a combination of lowest-cost-first and best-first searches that con
 
 The A* algorithm uses $cost(p)$, the cost of the path found, as well as the heuristic function $h(p)$, the estimated path cost from the end of $p$ to the goal. As A* uses admissible heuristic it will always find solutions in the order of their cost. \citep{DBLP:journals/ker/Brewka96}.  A* uses breadth-first traversal thus uses large chunks of memory in comparison to applications that use depth-first traversal. The performance of A* is also heavily reliant on the accuracy of the heuristic.
 
+A* begins by declaring two empty sets: $closedSet$ stores states that have already been visited; $openSet$ contains states to be visited. The initial state is added to the $openSet$, similar to BFS the $openSet$ is iterated through until it finds a goal state or there are no more states to explore, implying no solutions. The most promising state is retrieved from the $openSet$ (the state with the lowest $F$ score) and assigned to $currentState$. This state is then removed from the $openSet$ and added to the $closedSet$. The $currentState$ is checked to see whether it matches the goal state and returned if so. From the $currentState$ all the possible moves are found and denoted as $neighbours$, each $neighbour$ is checked against the $closedSet$ to make sure the state hasn't already been expanded. The $neighbour$ is then checked against the $openSet$ and if the $openSet$ contains $neighbour$ the $G$ values are compared to check which version of the state has the best route from the starting position see Algorithm~\ref{Astar}.
+
+
 	\begin{algorithm}
 	\caption{A*}\label{Astar}
 	\begin{algorithmic}[1]
@@ -601,12 +405,7 @@ The A* algorithm uses $cost(p)$, the cost of the path found, as well as the heur
 		\State $openSet \gets \textit{empty set}$
 		\State $openSet.add(startState)$
 		\While{$openSet \textbf{ is not } empty$}
-		\State $currentState \gets null$
-		\For{$state \textbf{ in } openSet$}
-		\If{$f(state) < f(currentState)$}
-		\State $currentState \gets state$
-		\EndIf
-		\EndFor
+		\State $currentState \gets state\   \textbf{in}\ openSet\ with\ lowest\ f\ value$
 		\State $openSet.remove(currentState)$
 		\State $closedSet.add(currentState)$
 		\If {$currentState = goal$}
@@ -629,8 +428,6 @@ The A* algorithm uses $cost(p)$, the cost of the path found, as well as the heur
 	\end{algorithmic}
 \end{algorithm}
 
-The implementation for the A* algorithm works by initially declaring an empty $OPENSET$ and an empty $CLOSEDSET$ which are both  $ArrayList$s of the $State$ object. The commencing $State$ is added to the $OPENSET$, the $OPENSET$ is then looped through to find the $State$ with the smallest $F$ value, which is assigned to the $winner$ variable. The $currentState$ is then assigned to the State which contains that smallest $F$ value, this is then checked against the $GOAL$ state to check whether it is the solution. If it isn't a goal state it is removed from the $OPENSET$ and added to the $CLOSEDSET$ because we don't want to expand the same $State$ again.
-The neighbours for the $currentState$ are then found and looped through. If the neighbour is not in the $CLOSEDSET$ it hasn't been expanded, the $G$ value is assigned to the neighbour which is just the $currentStates$'s $G+1$, as in the sliding tile puzzle a tile can only move one position at a time. It then checks whether the neighbour is in the $OPENSET$ as there's a chance we got to this neighbour more optimally than the previous path, if so it reassigns the values. The $F$ value is then calculated for the neighbour by adding the $G$ and the $H$ value, the program then repeats the process.
 
 
 \subsubsection{Manhattan Distance and Linear Conflict}
@@ -687,10 +484,10 @@ The memory used by Depth-first iterative deepening is linear with respect to the
 
 
 \subsection{Iterative Deepening A*}
-Iterative-deepening-A* (IDA*) eradicates the memory complication of A* by using depth-first traversal, without sacrificing solution optimality at the cost of increasing the time taken. Each iteration of A* is a complete depth-first search that keeps track of the cost, $f(n) = g(n) = h(n)$, of each node generated. If an expanded node's cost generated exceeds a threshold for that iteration, its path is cut off and the search backtracks before continuing. IDA* ranks states the same way as A*: The expected cost of a state is the cost of reaching said state plus the heuristic's estimate of the cost of reaching the nearest goal state. The maximum expected cost is assigned to the heuristic cost of the starting state, states which have a lowest cost than the starting state are traversed and states with a higher expected cost are discarded. 
+Iterative-deepening A* (IDA*) eradicates the memory complication of A* by using depth-first traversal, without sacrificing solution optimality at the cost of increasing the time taken. Each iteration of A* is a complete depth-first search that keeps track of the cost, $f(n) = g(n) = h(n)$, of each node generated. If an expanded node's cost generated exceeds a threshold for that iteration, its path is cut off and the search backtracks before continuing. IDA* ranks states the same way as A*: The expected cost of a state is the cost of reaching said state plus the heuristic's estimate of the cost of reaching the nearest goal state. The maximum expected cost is assigned to the heuristic cost of the starting state, states which have a lower cost than the starting state are traversed and states with a higher expected cost are discarded. 
 
 
-If IDA* has searched all states lower than the current maximum without finding the goal state then it increases the maximum to the lowest value of the discarded states and begins the search again. The goal state is admissible, the current maximum cost will never be higher than the lowest cost solution, thus IDA* with an admissible heuristic will always find the lowest cost solution.  IDA* searches many nodes multiple times thus is slower than A*. Hence, A* should be used on smaller applications that aren't going to have memory issues.
+If IDA* has searched all states lower than the current maximum without finding the goal state then it increases the maximum to the lowest value of the discarded states and begins the search again. The goal state is admissible, the current maximum cost will never be higher than the lowest cost solution, thus IDA* with an admissible heuristic will always find the lowest cost solution.  IDA* searches many nodes multiple times thus is slower than A*. Hence, A* should be used on smaller applications with lower memory requirements.
 
 	
 \begin{algorithm}
@@ -705,23 +502,23 @@ If IDA* has searched all states lower than the current maximum without finding t
 		\Statex
 		\Procedure{IDAStar}{$state$}
 		\State $bound \gets f(state)$
-		\While{ \textbf{ not } solved}\Comment{Loops until a solution is found}
-		\State $ bound \gets DFS(state, bound)$	\Comment Performs a bounded depth-first search 
+		\While{ \textbf{ not } found}\Comment{Loops until a solution is found}
+		\State $ bound \gets DLS(state, bound)$	\Comment Performs a bounded depth-first search 
 		\EndWhile\label{}
 		\EndProcedure
 		\Statex
 		
-		\Procedure{dfs}{$state, bound$}
+		\Procedure{DLS}{$state, bound$}
 		\If{$f(state) > bound$}
 		\State \textbf{return} $f(state)$
 		\EndIf	
 		
 		\If{$h(state) = 0$} \Comment No more moves needed to reach goal state
-		\State \textbf{return} $solved$
+		\State \textbf{return} $found$
 		\EndIf
 		\State $min \gets \infty$	
 		\For{$neighbour \textbf{ in } neighbours(state)$}	
-		\State $temp \gets DFS(neighbour, bound)$
+		\State $temp \gets DLS(neighbour, bound)$
 		
 		\If{$temp < min}$
 		\State $min \gets temp $
@@ -733,11 +530,9 @@ If IDA* has searched all states lower than the current maximum without finding t
 	\end{algorithmic}
 \end{algorithm}
 
+The IDAStar algorithm is very similar to to DFID; IDAStar iteratively deepens dependent on the $F$ value rather than a fixed depth. The initial $bound$ is assigned to the $F$ score of state, which is also just the $H$ value as $G$ is inherently 0 as no moves have been made to get to this state. A depth-first limited search is then executed to the specified threshold. If the $F$ value of the current state is greater than the $bound$ this is returned and assigned to the new $bound$. If the $H$ estimate of the state is 0, no more moves are required to get to the goal state thus the solution is found. Similar to A* the neighbour with the smallest $F$ value is prioritised see Algorithm~\ref{IDAStar}
 
-The Java implementation of the IDA* algorithm above begins by initially retrieving the $H$ value of the $start$ node as it has already been set during object creation. The code then loops through until a solution is returned from the $depthFirstSearch()$ method that isn't null, thus the goal node. The float $currentCostBound$ is assigned to $nextCostBound$ and used to perform the depth-first search to that threshold, the bound is increased each time. 
 
-The $depthFirstSearch()$ initially checks whether the $current$ State is equal to the goal node and if so returns it, else it will then further loop through it's neighbours. Whilst looping, the $G$ value is set 
-for the neighbours which is the number of moves taken to get there, so it is the parent's $G$ value incremented by one. The heuristic value is then calculated, in this case the linear conflict heuristic and then the sum of the $G$ and the $H$ form the $F$, which is used to determine which of the moves is the best from the $current$ State, and if the $F$ value is lower than the $currentCostBound$ then a recursive call on $depthFirstSearch$ method is called with the neighbour as the argument. 
 \captionof{table}{Iterative Deepening A* Results}
 \begin{center}
 
@@ -883,6 +678,227 @@ When a node is being expanded it is necessary to find its neighbours. Neighbours
 	\captionsetup{justification=centering}
 	\caption{Finding possible moves}
 \end{figure}
+
+
+
+\section{Results}
+\subsection{BFS}
+
+
+Table 1 shows the results of the 8-puzzle using breadth-first search. The tests were performed on all $9!/2=181440$ states, an initial BFS was executed from the goal configuration and each state along with the number of moves required was stored. States were split up into testing lists dependent on the number of moves as shown by column 1 and 2. Tests were then executed using breadth-first search on each state, column 3 displays the average number of nodes expanded before finding the goal state, column 4 is the average time taken to solve a given state and column 5 shows the total time taken to solve all states in the specific testing list.
+\begin{table}[ht]
+	\caption{Breadth-First Search Analysis: 8-puzzle}
+	\begin{center}
+		\begin{tabular}{crrrr} \hline
+			Min Moves & No. States & Avg Nodes Expanded & Avg. Time(ms) & Total Time(ms) \\ \hline
+			0-4  & 31 & 747.19$\pm$435.76 & 0.5483 & 18 \\
+			5-9 & 389 &4249.35$\pm$4277.99& 1.0668 & 432.0 \\ 
+			10-14 & 4347 &  23257.75$\pm$20745.99& 5.7888 & 25164  \\ 
+			15-19 & 33042& 58446.06$\pm$35484.49 & 17.7823 & 587563 \\ 
+			20-24 & 102326& 114724.84$\pm$36410.64 & 41.0058 & 4195959  \\ 
+			25-29 & 41082& 162772.14$\pm$15654.31 & 60.0550 & 2467181 \\ 
+			30+ & 223& 180524.70$\pm$548.90 & 67.3542 & 15006\\ \hline
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\begin{table}[ht]
+	\caption{Breadth-First Search Analysis: 8-puzzle (10000 Random States)}
+	\begin{center}
+		\begin{tabular}{crr} \hline
+			Average Moves & Avg Nodes Expanded & Avg. Time(ms)\\ \hline
+			21.7142$\pm$0.065 & 89201.4297 & 29.7373\\ \hline
+		\end{tabular}
+	\end{center}
+\end{table}
+\begin{figure}[!ht]
+	\begin{subfigure}[t]{0.5\textwidth}
+		\begin{tikzpicture}
+		\begin{axis}[
+		width=\textwidth,
+		ymin=0, ymax=25000,
+		minor y tick num = 3,
+		area style,
+		xlabel = No. Moves,
+		ylabel = No. States,
+		]
+		\addplot+[ybar interval,mark=no] plot coordinates { 	
+			(1,2)
+			(2,4)
+			(3,8)
+			(4,16)
+			(5,20)
+			(6,39)	
+			(7,62)
+			(8,116)
+			(9,152)
+			(10,286)
+			(11,396)
+			(12,748)
+			(13,1024)
+			(14,1893)
+			(15,2512)
+			(16,4485)
+			(17,5639)
+			(18,9529)
+			(19,10878)
+			(20,16993)
+			(21,17110)
+			(22,23952)
+			(23,20224)
+			(24,24047)
+			(25,15578)
+			(26,14650)
+			(27,6274)
+			(28,3910)
+			(29,760)
+			(30,221)
+			(31,2)		 };
+		\end{axis}
+		\end{tikzpicture}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.5\textwidth}
+		\begin{tikzpicture}
+		\begin{axis}[
+		width=\textwidth,
+		ymin=0, ymax=1175494,
+		minor y tick num = 3,
+		area style,
+		xlabel = No. Moves,
+		ylabel = Summed Time(ms),
+		]
+		\addplot+[ybar interval,mark=no] plot coordinates{
+			(1,0)
+			(2,0)
+			(3,0)
+			(4,0)
+			(5,2)
+			(6,3)	
+			(7,8)
+			(8,19)
+			(9,30)
+			(10,61)
+			(11,108)
+			(12,251)
+			(13,587)
+			(14,1554)
+			(15,3358)
+			(16,9354)
+			(17,19800)
+			(18,49859)
+			(19,98138)
+			(20,209503)
+			(21,330907)
+			(22,708861)
+			(23,784197)
+			(24,1065494)
+			(25,862847)
+			(26,867818)
+			(27,396454)
+			(28,248861)
+			(29,50164)
+			(30,14541)
+			(31,133)
+		};
+		\end{axis}
+		\end{tikzpicture}
+	\end{subfigure}%
+	
+	\caption{A representation of the number of states that require a specific amount of moves to be solved optimally in the 8-tile and the summed time taken for all these states to be solved}
+\end{figure}
+
+
+\begin{figure}[!ht]
+	\centering
+	\begin{subfigure}[t]{0.5\textwidth}
+		\begin{tikzpicture}
+		\begin{axis}[
+		width=\textwidth,
+		xlabel = No. Moves,
+		ylabel = Average Time(ms),
+		]
+		\addplot[error bars/.cd, y dir=both, y explicit, ] coordinates{
+			(2,0)
+			(3,0)
+			(4,0)
+			(5,0.0625)
+			(6,0.07)	
+			(7,0.12903)
+			(8,0.16379)
+			(9,0.19737)
+			(10,0.21329)
+			(11,0.27273)
+			(12,0.33556)
+			(13,0.57324)
+			(14,0.82092)
+			(15,1.33678)
+			(16,2.08562)
+			(17,3.51188)
+			(18,5.23234)
+			(19,9.0217)
+			(20,12.32878)
+			(21,19.33998)
+			(22,29.59507)
+			(23,38.77556)
+			(24,44.30881)
+			(25,55.38882)
+			(26,59.60288)
+			(27,63.18999)
+			(28,63.64731)
+			(29,66.00526)
+			(30,65.79638)
+			(31,66.5)
+		};
+		\end{axis}
+		\end{tikzpicture}
+	\end{subfigure}%
+	\begin{subfigure}[t]{0.5\textwidth}
+		\begin{tikzpicture}
+		\begin{axis}[
+		width=\textwidth,
+		xlabel = No. Moves,
+		ylabel = Mean Nodes Expanded,
+		]
+		\addplot[error bars/.cd, y dir=both, y explicit, ] coordinates{
+			(1,3.5)
+			(2,8.25)
+			(3,15.625)
+			(4,25)
+			(5,46.9)
+			(6,79.87179)	
+			(7,142.03226)
+			(8,222.75)
+			(9,396.56579)
+			(10,607.36364)
+			(11,1033.95707)
+			(12,1580.87032)
+			(13,2689.3877)
+			(14,4068.70417)
+			(15,6816.66521)
+			(16,10077.94314)
+			(17,16304.61352)
+			(18,23252.76262)
+			(19,35532.59423)
+			(20,47973.72595)
+			(21,68096.92613)
+			(22,86105.56809)
+			(23,111406.96737)
+			(24,129960.55254)
+			(25,151666.94146)
+			(26,163973.55021)
+			(27,174731.22792)
+			(28,178683.9913)
+			(29,180883.49474)
+			(30,181336.30769)
+			(31,181439.5)
+		};
+		\end{axis}
+		\end{tikzpicture}
+	\end{subfigure}
+	\caption{8-tile analysis using breadth-first search to display how the minimum number of moves required to reach the goal state affects the time(ms) and the number of nodes expanded}
+\end{figure} 
+
+
 
 
 

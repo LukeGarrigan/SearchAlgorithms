@@ -3,15 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package slidingtileproject;
+package slidingtileproject.SearchAlgorithms;
+
+import slidingtileproject.State;
 
 /**
  *
  * @author Luke
  */
-public interface HeuristicFunction {
-
-    public int calculateHeuristic(State state);
-
-    public int calculateSingleHeuristic(State next);
+public interface SearchAlgorithm {
+    
+    public State resolve(State start, State goal);
+    
 }
