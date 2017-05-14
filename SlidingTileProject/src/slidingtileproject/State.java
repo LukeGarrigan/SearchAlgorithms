@@ -21,6 +21,7 @@ public class State {
     private int zeroPosition;
     private int movedPosition;
     private int[] heuristicArray;
+    private int nodesExpanded;
 
     public State(int[] state, int g, int h, State previousState, String direction) {
         this.state = state;
@@ -59,6 +60,14 @@ public class State {
         return position;
     }
 
+    public int getNodesExpanded() {
+        return nodesExpanded;
+    }
+
+    public void setNodesExpanded(int nodesExpanded) {
+        this.nodesExpanded = nodesExpanded;
+    }
+
     public int[] getHeuristicArray() {
         return heuristicArray;
     }
@@ -91,10 +100,6 @@ public class State {
         return f;
     }
 
-    public State getPreviousState() {
-        return previousState;
-    }
-
     public String getDirection() {
         return this.direction;
     }
@@ -111,9 +116,7 @@ public class State {
         return this.state;
     }
 
-    public int getFScore() {
-        return this.f;
-    }
+
 
     public void setState(int[] state) {
         this.state = state;
@@ -156,68 +159,65 @@ public class State {
             int temp = left[zeroPosition];
             left[zeroPosition] = left[zeroPosition - 1];
             left[zeroPosition - 1] = temp;
-            State newState = new State(left, 0, h, this, "left");
+            State newState = new State(left, g + 1, h, this, "left");
             newState.setMovedPosition(zeroPosition);
             newState.setZeroPosition(zeroPosition - 1);
 
-            int[] newHeuristicArray = new int[state.length];
-            System.arraycopy(heuristicArray, 0, newHeuristicArray, 0, newHeuristicArray.length);
-            newState.setHeuristicArray(newHeuristicArray);
+            //int[] newHeuristicArray = new int[state.length];
+            //System.arraycopy(heuristicArray, 0, newHeuristicArray, 0, newHeuristicArray.length);
+            //newState.setHeuristicArray(newHeuristicArray);
             neighbours.add(newState);
 
         }
-        if (zeroPosition % dimensions != dimensions-1 && !direction.equals("left")) {
+        if (zeroPosition % dimensions != dimensions - 1 && !direction.equals("left")) {
             int[] right = new int[state.length];
             System.arraycopy(state, 0, right, 0, right.length);
 
             int temp = right[zeroPosition];
             right[zeroPosition] = right[zeroPosition + 1];
             right[zeroPosition + 1] = temp;
-            State newState = new State(right, 0, h, this, "right");
+            State newState = new State(right, g + 1, h, this, "right");
             newState.setMovedPosition(zeroPosition);
             newState.setZeroPosition(zeroPosition + 1);
 
-            int[] newHeuristicArray = new int[state.length];
-            System.arraycopy(heuristicArray, 0, newHeuristicArray, 0, newHeuristicArray.length);
-            newState.setHeuristicArray(newHeuristicArray);
-
+            // int[] newHeuristicArray = new int[state.length];
+            // System.arraycopy(heuristicArray, 0, newHeuristicArray, 0, newHeuristicArray.length);
+            //  newState.setHeuristicArray(newHeuristicArray);
             neighbours.add(newState);
 
         }
         // GOING UP
-        if (zeroPosition > dimensions-1 && !direction.equals("down")) {
+        if (zeroPosition > dimensions - 1 && !direction.equals("down")) {
 
             int[] up = new int[state.length];
             System.arraycopy(state, 0, up, 0, up.length);
             int temp = up[zeroPosition];
             up[zeroPosition] = up[zeroPosition - dimensions];
             up[zeroPosition - dimensions] = temp;
-            State newState = new State(up, 0, h, this, "up");
+            State newState = new State(up, g + 1, h, this, "up");
             newState.setMovedPosition(zeroPosition);
             newState.setZeroPosition(zeroPosition - dimensions);
 
-            int[] newHeuristicArray = new int[state.length];
-            System.arraycopy(heuristicArray, 0, newHeuristicArray, 0, newHeuristicArray.length);
-            newState.setHeuristicArray(newHeuristicArray);
-
+            // int[] newHeuristicArray = new int[state.length];
+            // System.arraycopy(heuristicArray, 0, newHeuristicArray, 0, newHeuristicArray.length);
+            // newState.setHeuristicArray(newHeuristicArray);
             neighbours.add(newState);
 
         }
         // GOING DOWN
-        if (zeroPosition < (state.length-dimensions) && !direction.equals("up")) {
+        if (zeroPosition < (state.length - dimensions) && !direction.equals("up")) {
             int[] down = new int[state.length];
             System.arraycopy(state, 0, down, 0, down.length);
             int temp = down[zeroPosition];
             down[zeroPosition] = down[zeroPosition + dimensions];
             down[zeroPosition + dimensions] = temp;
-            State newState = new State(down, 0, h, this, "down");
+            State newState = new State(down, g + 1, h, this, "down");
             newState.setMovedPosition(zeroPosition);
             newState.setZeroPosition(zeroPosition + dimensions);
 
-            int[] newHeuristicArray = new int[state.length];
-            System.arraycopy(heuristicArray, 0, newHeuristicArray, 0, newHeuristicArray.length);
-            newState.setHeuristicArray(newHeuristicArray);
-
+            // int[] newHeuristicArray = new int[state.length];
+            // System.arraycopy(heuristicArray, 0, newHeuristicArray, 0, newHeuristicArray.length);
+            // newState.setHeuristicArray(newHeuristicArray);
             neighbours.add(newState);
         }
         // }
@@ -285,7 +285,7 @@ public class State {
 
     @Override
     public int hashCode() {
-        return state.hashCode();
+        return Arrays.hashCode(state);
     }
 
     public void printHeuristicArray() {

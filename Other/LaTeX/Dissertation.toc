@@ -27,4 +27,5 @@
 \contentsline {subsection}{\numberline {9.1}Initial Implementation}{26}{subsection.9.1}
 \contentsline {section}{\numberline {10}Results}{27}{section.10}
 \contentsline {subsection}{\numberline {10.1}BFS}{27}{subsection.10.1}
-\contentsline {section}{References}{30}{section*.19}
+\contentsline {subsection}{\numberline {10.2}AStar}{27}{subsection.10.2}
+\contentsline {section}{References}{31}{section*.21}

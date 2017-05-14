@@ -5,6 +5,7 @@
  */
 package slidingtileproject;
 
+import java.io.IOException;
 import slidingtileproject.Experiments.RandomStates;
 import slidingtileproject.Heuristics.SequenceAlign;
 import slidingtileproject.Heuristics.HeuristicFunction;
@@ -14,6 +15,8 @@ import slidingtileproject.SearchAlgorithms.IterativeDeepeningAStar;
 import slidingtileproject.SearchAlgorithms.SearchAlgorithm;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Set;
+import slidingtileproject.Experiments.Testing;
 import slidingtileproject.SearchAlgorithms.AStar;
 import slidingtileproject.SearchAlgorithms.BFS;
 
@@ -26,7 +29,7 @@ public class SlidingTileProject {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // TODO code application logic here
 
         int[] twentyFiveMoves = new int[]{5, 1, 3, 4, 7, 2, 8, 12, 9, 6, 10, 0, 13, 14, 15, 11};
@@ -40,6 +43,7 @@ public class SlidingTileProject {
         int[] hundredSixtyOneAccordingToMan = {10, 13, 15, 11, 3, 7, 5, 1, 8, 0, 14, 4, 9, 2, 12, 6};
         HeuristicFunction h = new Manhattan();
         HeuristicFunction l = new LinearConflict();
+        /*
         HeuristicFunction s = new SequenceAlign();
         int[] g = new int[]{1, 2, 3, 4, 5, 6, 7, 8,
             9, 10, 11, 12, 13, 14, 15, 0};
@@ -49,19 +53,57 @@ public class SlidingTileProject {
         int[] fourtyMoves = new int[]{6, 7, 0, 11, 1, 5, 10, 4, 14, 13, 15, 2, 9, 8, 3, 12};
         RandomStates r = new RandomStates();
         ArrayList<int[]> testStates = r.RandomizeArray(fourtyMoves, 5);
+         */
+        SearchAlgorithm ida = new IterativeDeepeningAStar(h);
 
-        SearchAlgorithm ida = new IterativeDeepeningAStar(l);
-
-        SearchAlgorithm a = new AStar(l);
+        SearchAlgorithm a = new AStar(h);
         SearchAlgorithm b = new BFS();
         int[] goal8tile = {1, 2, 3, 4, 5, 6, 7, 8, 0};
-        int[] test8tile = {1, 4, 3, 5, 8, 7, 0, 6, 2};
+        int[] test8tile = {5, 8, 0, 4, 3, 2, 1, 6, 7};
 
         State gg = new State(goal8tile, 0, 0, null, "null");
         State t = new State(test8tile, 0, 0, null, "null");
-        System.out.println(a.resolve(t, gg).getG());
-        System.out.println(b.resolve(t, gg).getG());
-        /*
+        State astarr = a.resolve(t, gg);
+        System.out.println(astarr.getG());
+        State bfss = b.resolve(t, gg);
+        System.out.println(bfss.getG());
+
+        System.out.println("A Star");
+        while (astarr.getPrevious() != null) {
+            astarr = astarr.getPrevious();
+            System.out.println(Arrays.toString(astarr.getState()));
+        }
+
+        System.out.println("BFS");
+        while (bfss.getPrevious() != null) {
+            bfss = bfss.getPrevious();
+            System.out.println(Arrays.toString(bfss.getState()));
+        }
+
+        RandomStates r = new RandomStates();
+        Testing testObject = new Testing(a);
+        Set<State> allPossibleStates = testObject.createTestsBFS(gg);
+        ArrayList<State> testStates = r.RandomizeArray(goal8tile, 10000);
+        int move = 31;
+        int totalTesting = 0;
+        ArrayList<State> one = new ArrayList<>();
+        for (State s : testStates) {
+            int moves = s.getG();
+            //if (moves == move) {
+            //s.resetFields();
+            s.setDirection("null");
+            s.setG(0);
+            s.setPreviousState(null);
+            one.add(s);
+            //}
+        }
+        System.out.println(Arrays.toString(gg.getState()));
+        totalTesting += one.size();
+        System.out.println("Testing size: " + one.size());
+        testObject.testing(one, gg, move);
+    }
+
+    /*
         for (int[] testState : testStates) {
             System.out.println(Arrays.toString(testState));
             State st = new State(testState, 0, 0, null, "null");
@@ -78,7 +120,5 @@ public class SlidingTileProject {
             System.out.println("");
 
         }
-         */
-
-    }
+     */
 }

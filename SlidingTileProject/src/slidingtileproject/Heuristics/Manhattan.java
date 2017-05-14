@@ -19,14 +19,15 @@ public class Manhattan implements HeuristicFunction {
         // Expected row and col depend on size of puzz nxn
         int[] puzz = state.getState();
         int total = 0;
+        int dimension = (int) Math.sqrt(puzz.length);
         int[] heuristicArray = new int[puzz.length];
         for (int j = 0; j < puzz.length; j++) {
             int tileValue = puzz[j];
             if (tileValue != 0) {
-                int expectedRow = (tileValue - 1) / 4;
-                int expectedCol = (tileValue - 1) % 4;
-                int numRow = j / 4;
-                int numCol = j % 4;
+                int expectedRow = (tileValue - 1) / dimension;
+                int expectedCol = (tileValue - 1) % dimension;
+                int numRow = j / dimension;
+                int numCol = j % dimension;
                 int currentHeuristic = Math.abs(expectedRow - numRow)
                         + Math.abs(expectedCol - numCol);
 

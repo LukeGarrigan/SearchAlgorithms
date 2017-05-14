@@ -898,9 +898,107 @@ Table 1 shows the results of the 8-puzzle using breadth-first search. The tests 
 	\caption{8-tile analysis using breadth-first search to display how the minimum number of moves required to reach the goal state affects the time(ms) and the number of nodes expanded}
 \end{figure} 
 
+\subsection{AStar}
 
+\begin{figure}[!ht]
+	\centering
+	\begin{subfigure}[t]{0.5\textwidth}
+		\begin{tikzpicture}
+		\begin{axis}[
+		width=\textwidth,
+		xlabel = No. Moves,
+		ylabel = Average Time(ms),
+		]
+		\addplot[error bars/.cd, y dir=both, y explicit, ] coordinates{
+			(2,0)
+			(3,0)
+			(4,0)
+			(5,0)
+			(6,0)	
+			(7,0)
+			(8,0)
+			(9,0.00658)
+			(10,0.00699)
+			(11,0.01515)
+			(12,0.01872)
+			(13,0.02246)
+			(14,0.03117)
+			(15,0.05454)
+			(16,0.08361)
+			(17,0.13515)
+			(18,0.21052)
+			(19,0.35999)
+			(20,0.56906)
+			(21,1.07873)
+			(22,1.76144)
+			(23,3.55662)
+			(24,6.26918)
+			(25,13.28245)
+			(26,23.95968)
+			(27,53.01833)
+			(28,93.68286)
+			(29,203.16579)
+			(30,320.31674)
+			(31,232)
+		};
+		\end{axis}
+		\end{tikzpicture}
+	\end{subfigure}%
+	\begin{subfigure}[t]{0.5\textwidth}
+		\begin{tikzpicture}
+		\begin{axis}[
+		width=\textwidth,
+		xlabel = No. Moves,
+		ylabel = Mean Nodes Expanded,
+		]
+		\addplot[error bars/.cd, y dir=both, y explicit, ] coordinates{
+			(1,2)
+			(2,3)
+			(3,4)
+			(4,5)
+			(5,6.15)
+			(6,7.4359)	
+			(7,9.04839)
+			(8,10.2931)
+			(9,12.48684)
+			(10,15.34266)
+			(11,19.79545)
+			(12,25.60963)
+			(13,35.62988)
+			(14,46.79345)
+			(15,67.2711)
+			(16,87.57547)
+			(17,125.84622)
+			(18,163.32039)
+			(19,235.00414)
+			(20,306.49632)
+			(21,441.65073)
+			(22,577.32536)
+			(23,840.73507)
+			(24,1107.93692)
+			(25,1616.53916)
+			(26,2129.70076)
+			(27,3127.82898)
+			(28,4065.00639)
+			(29,6103.83026)
+			(30,7995.22172)
+			(31,7282)
+		};
+		\end{axis}
+		\end{tikzpicture}
+	\end{subfigure}
+	\caption{8-tile analysis using A star search to display how the minimum number of moves required to reach the goal state affects the time(ms) and the number of nodes expanded}
+\end{figure} 
 
-
+\begin{table}[ht]
+	\caption{A*: 8-puzzle (10000 Random States)}
+	\begin{center}
+		\begin{tabular}{crr} \hline
+			Average Moves & Avg Nodes Expanded & Avg. Time(ms)\\ \hline
+			21.7142$\pm$0.065 & 958.989 & 9.8062\\ \hline
+		\end{tabular}
+	\end{center}
+\end{table}
 
 \clearpage
 \bibliography{bibfile}

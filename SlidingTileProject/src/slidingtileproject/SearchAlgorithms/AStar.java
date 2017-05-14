@@ -33,10 +33,10 @@ public class AStar implements SearchAlgorithm {
         start.setG(0);
         int li = heuristic.calculateHeuristic(start);
         start.setH(li);
-        start.setF(start.getH());
-
+        start.setF(li);
+        int nodesExpanded = 0;
         while (!open.isEmpty()) {
-            int currentF = 100;
+            int currentF = Integer.MAX_VALUE;
             State currentState = null;
             for (State s : open) {
                 // if the f values are the same it takes, deeper node has favor
@@ -45,13 +45,14 @@ public class AStar implements SearchAlgorithm {
                     currentF = s.getF();
                 }
             }
+            nodesExpanded++;
             open.remove(currentState);
             closed.add(currentState);
             if (currentState.equals(goal)) {
+                currentState.setNodesExpanded(nodesExpanded);
                 return currentState;
             }
             for (State neighbour : currentState.findNeighbours()) {
-                neighbour.setG(currentState.getG() + 1);
                 int lis = heuristic.calculateHeuristic(neighbour);
                 neighbour.setH(lis);
                 neighbour.setF(neighbour.getH() + neighbour.getG());
@@ -68,7 +69,6 @@ public class AStar implements SearchAlgorithm {
                     }
                 }
             }
-
         }
         return null;
     }
