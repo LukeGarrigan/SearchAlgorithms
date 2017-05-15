@@ -1,6 +1,5 @@
-\contentsline {table}{\numberline {1}{\ignorespaces Breadth-First Search Analysis: 8-Tile\relax }}{8}{table.caption.7}
-\contentsline {table}{\numberline {2}{\ignorespaces Depth-First Search Analysis: 8-Tile\relax }}{9}{table.caption.8}
-\contentsline {table}{\numberline {3}{\ignorespaces Depth-First Iterative Deepening: 8-Tile\relax }}{11}{table.caption.9}
-\contentsline {table}{\numberline {4}{\ignorespaces Manhattan Distance Vs. Linear Conflict - A*\relax }}{18}{table.4}
-\contentsline {table}{\numberline {5}{\ignorespaces Manhattan Distance Vs Linear Conflict Values\relax }}{19}{table.caption.12}
-\contentsline {table}{\numberline {6}{\ignorespaces Iterative Deepening A* Results\relax }}{22}{table.6}
+\contentsline {table}{\numberline {1}{\ignorespaces Depth-First Iterative Deepening: 8-Tile\relax }}{11}{table.caption.6}
+\contentsline {table}{\numberline {2}{\ignorespaces Breadth-First Search Analysis: 8-puzzle (10000 Random States)\relax }}{26}{table.caption.15}
+\contentsline {table}{\numberline {3}{\ignorespaces Breadth-First Search Analysis: 8-puzzle\relax }}{27}{table.caption.17}
+\contentsline {table}{\numberline {4}{\ignorespaces A*: 8-puzzle (10000 Random States)\relax }}{28}{table.caption.20}
+\contentsline {table}{\numberline {5}{\ignorespaces Iterative Deepening A* Results\relax }}{29}{table.5}

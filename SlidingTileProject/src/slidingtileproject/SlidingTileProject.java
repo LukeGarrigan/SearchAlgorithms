@@ -19,6 +19,7 @@ import java.util.Set;
 import slidingtileproject.Experiments.Testing;
 import slidingtileproject.SearchAlgorithms.AStar;
 import slidingtileproject.SearchAlgorithms.BFS;
+import slidingtileproject.SearchAlgorithms.DFID;
 
 /**
  *
@@ -56,8 +57,9 @@ public class SlidingTileProject {
          */
         SearchAlgorithm ida = new IterativeDeepeningAStar(h);
 
-        SearchAlgorithm a = new AStar(h);
+        SearchAlgorithm a = new AStar(l);
         SearchAlgorithm b = new BFS();
+        SearchAlgorithm dfid = new DFID();
         int[] goal8tile = {1, 2, 3, 4, 5, 6, 7, 8, 0};
         int[] test8tile = {5, 8, 0, 4, 3, 2, 1, 6, 7};
 
@@ -80,30 +82,29 @@ public class SlidingTileProject {
             System.out.println(Arrays.toString(bfss.getState()));
         }
 
-        RandomStates r = new RandomStates();
-        Testing testObject = new Testing(a);
-        Set<State> allPossibleStates = testObject.createTestsBFS(gg);
-        ArrayList<State> testStates = r.RandomizeArray(goal8tile, 10000);
-        int move = 31;
-        int totalTesting = 0;
-        ArrayList<State> one = new ArrayList<>();
-        for (State s : testStates) {
-            int moves = s.getG();
-            //if (moves == move) {
-            //s.resetFields();
-            s.setDirection("null");
-            s.setG(0);
-            s.setPreviousState(null);
-            one.add(s);
-            //}
-        }
-        System.out.println(Arrays.toString(gg.getState()));
-        totalTesting += one.size();
-        System.out.println("Testing size: " + one.size());
-        testObject.testing(one, gg, move);
-    }
+        for (int i = 18; i < 32; i++) {
+            //RandomStates r = new RandomStates();
+            Testing testObject = new Testing(dfid);
+            Set<State> allPossibleStates = testObject.createTestsBFS(gg);
+            // ArrayList<State> testStates = r.RandomizeArray(goal8tile, 10);
+            //int move = 31;
+            ArrayList<State> one = new ArrayList<>();
+            for (State s : allPossibleStates) {
+                int moves = s.getG();
+                if (moves == i) {
+                    //s.resetFields();
+                    s.setDirection("null");
+                    s.setG(0);
+                    s.setPreviousState(null);
+                    one.add(s);
+                    //}
+                }
+            }
+            System.out.println("Testing size: " + one.size());
+            testObject.testing(one, gg, i);
 
-    /*
+        }
+        /*
         for (int[] testState : testStates) {
             System.out.println(Arrays.toString(testState));
             State st = new State(testState, 0, 0, null, "null");
@@ -120,5 +121,6 @@ public class SlidingTileProject {
             System.out.println("");
 
         }
-     */
+         */
+    }
 }

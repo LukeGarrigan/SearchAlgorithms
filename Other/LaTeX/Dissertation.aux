@@ -24,95 +24,117 @@
 \citation{hansson1985generating}
 \citation{culberson1996searching}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{5}{section.1}}
-\citation{DBLP:journals/ci/CulbersonS98}
+\citation{DBLP:journals/mima/Korf95}
 \@writefile{toc}{\contentsline {section}{\numberline {2}Relevant Literature}{6}{section.2}}
 \@writefile{toc}{\contentsline {section}{\numberline {3}Preliminaries}{6}{section.3}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Design}{6}{section.4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Solvability Of Tile Games}{6}{subsection.4.1}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Brute-Force Search}{6}{section.5}}
-\citation{DBLP:journals/mima/Korf95}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Class Diagram\relax }}{7}{figure.caption.4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Completeness and Optimality}{7}{subsection.5.1}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Is Current State Solvable\relax }}{8}{algorithm.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Uninformed Search}{6}{section.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Completeness and Optimality}{6}{subsection.4.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Breadth-First Search}{6}{subsection.4.2}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Breadth-First Search\relax }}{7}{algorithm.1}}
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{Solvable}{{1}{8}{Is Current State Solvable\relax }{algorithm.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Breadth-First Search}{8}{subsection.5.2}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces Breadth-First Search\relax }}{9}{algorithm.2}}
-\newlabel{BFS}{{2}{9}{Breadth-First Search\relax }{algorithm.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Depth-First Search}{9}{subsection.5.3}}
+\newlabel{BFS}{{1}{7}{Breadth-First Search\relax }{algorithm.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Depth-First Search}{8}{subsection.4.3}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces DFS\relax }}{8}{algorithm.2}}
+\newlabel{dfs}{{2}{8}{DFS\relax }{algorithm.2}{}}
 \citation{DBLP:conf/otm/MeissnerB11}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {3}{\ignorespaces DFS\relax }}{10}{algorithm.3}}
-\newlabel{dfs}{{3}{10}{DFS\relax }{algorithm.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Depth-First Search Iterative Deepening}{10}{subsection.5.4}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {4}{\ignorespaces Depth-First Iterative Deepening\relax }}{11}{algorithm.4}}
-\newlabel{DFID}{{4}{11}{Depth-First Iterative Deepening\relax }{algorithm.4}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Depth-First Iterative Deepening: 8-Tile\relax }}{12}{table.caption.5}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Evaluation Of Brute-Force Searches}{12}{subsection.5.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Depth-Limited Search}{9}{subsection.4.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Depth-First Search Iterative Deepening}{9}{subsection.4.5}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {3}{\ignorespaces Depth-First Iterative Deepening\relax }}{10}{algorithm.3}}
+\newlabel{DFID}{{3}{10}{Depth-First Iterative Deepening\relax }{algorithm.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Evaluation Of Uninformed Searches}{10}{subsection.4.6}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Informed Search}{11}{section.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Heuristic Search}{11}{subsection.5.1}}
+\newlabel{sec1}{{5.1}{11}{Heuristic Search}{subsection.5.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.1}Admissible Heuristics}{11}{subsubsection.5.1.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.2}Consistent Heuristics}{11}{subsubsection.5.1.2}}
 \citation{DBLP:conf/ccgrid/LinnertSB14}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Heuristic Search}{13}{section.6}}
-\newlabel{sec1}{{6}{13}{Heuristic Search}{section.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Admissible Heuristics}{13}{subsection.6.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Consistent Heuristics}{13}{subsection.6.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Heuristic Evaluation Functions}{13}{subsection.6.3}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.1}Manhattan Distance}{13}{subsubsection.6.3.1}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Consistent Heuristics Diagram\relax }}{14}{figure.caption.6}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.2}Linear Conflict Heuristic}{14}{subsubsection.6.3.2}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {5}{\ignorespaces Manhattan Distance\relax }}{15}{algorithm.5}}
-\newlabel{Manhattan Distance}{{5}{15}{Manhattan Distance\relax }{algorithm.5}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Calculating Linear Conflict\relax }}{15}{figure.caption.7}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}A* Algorithm}{15}{subsection.6.4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Consistent Heuristics Diagram\relax }}{12}{figure.caption.4}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.3}Manhattan Distance}{12}{subsubsection.5.1.3}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.4}Linear-Conflict Heuristic}{12}{subsubsection.5.1.4}}
+\citation{hansson1992criticizing}
+\citation{hansson1992criticizing}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {4}{\ignorespaces Manhattan Distance\relax }}{13}{algorithm.4}}
+\newlabel{Manhattan Distance}{{4}{13}{Manhattan Distance\relax }{algorithm.4}{}}
 \citation{DBLP:journals/ker/Brewka96}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.4.1}Manhattan Distance and Linear Conflict}{16}{subsubsection.6.4.1}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {6}{\ignorespaces A*\relax }}{17}{algorithm.6}}
-\newlabel{Astar}{{6}{17}{A*\relax }{algorithm.6}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Manhattan Distance Vs. Linear Conflict - A*\relax }}{18}{table.2}}
-\@writefile{toc}{\contentsline {section}{\numberline {7}Fifteen Tile Puzzle}{18}{section.7}}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Manhattan Distance Vs Linear Conflict Values\relax }}{19}{table.caption.8}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Iterative Deepening A*}{19}{subsection.7.1}}
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Iterative Deepening A* Results\relax }}{20}{table.4}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {7}{\ignorespaces Iterative Deepening A Star\relax }}{21}{algorithm.7}}
-\newlabel{IDAStar}{{7}{21}{Iterative Deepening A Star\relax }{algorithm.7}{}}
-\newlabel{}{{9}{21}{Iterative Deepening A Star\relax }{algorithm.7}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Logarithmic Comparison Of IDA* Fifteen Tile\relax }}{22}{figure.caption.9}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {5}{\ignorespaces Linear Conflict\relax }}{14}{algorithm.5}}
+\newlabel{Linear Conflict}{{5}{14}{Linear Conflict\relax }{algorithm.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}A* Algorithm}{14}{subsection.5.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Calculating Linear Conflict\relax }}{15}{figure.caption.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Iterative Deepening A*}{15}{subsection.5.3}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {6}{\ignorespaces A*\relax }}{16}{algorithm.6}}
+\newlabel{Astar}{{6}{16}{A*\relax }{algorithm.6}{}}
 \citation{DBLP:journals/ai/KorfRE01}
 \citation{DBLP:journals/jair/FelnerKMH07}
-\@writefile{toc}{\contentsline {section}{\numberline {8}Pattern Databases}{23}{section.8}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Puzzle Parity\relax }}{23}{figure.caption.10}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.1}Non-Additive Pattern Databases}{23}{subsection.8.1}}
-\citation{DBLP:journals/corr/abs-1107-0050}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Fringe Database Pattern For Fifteen Tile\relax }}{24}{figure.caption.11}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {8.1.1}Non-Additive Pattern Database Limitations}{24}{subsubsection.8.1.1}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Fringe Database Pattern For The Twenty-five Tile\relax }}{25}{figure.caption.12}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.2}Statically-Partitioned Additive Database Heuristics}{25}{subsection.8.2}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces 6-6-3 Partioning\relax }}{26}{figure.caption.13}}
-\@writefile{toc}{\contentsline {section}{\numberline {9}Program Architecture}{26}{section.9}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.1}Initial Implementation}{26}{subsection.9.1}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Finding possible moves\relax }}{27}{figure.caption.14}}
-\@writefile{toc}{\contentsline {section}{\numberline {10}Results}{27}{section.10}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.1}BFS}{27}{subsection.10.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.2}AStar}{27}{subsection.10.2}}
-\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Breadth-First Search Analysis: 8-puzzle\relax }}{28}{table.caption.15}}
-\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Breadth-First Search Analysis: 8-puzzle (10000 Random States)\relax }}{28}{table.caption.16}}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces A representation of the number of states that require a specific amount of moves to be solved optimally in the 8-tile and the summed time taken for all these states to be solved\relax }}{28}{figure.caption.17}}
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces 8-tile analysis using breadth-first search to display how the minimum number of moves required to reach the goal state affects the time(ms) and the number of nodes expanded\relax }}{29}{figure.caption.18}}
-\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces 8-tile analysis using A star search to display how the minimum number of moves required to reach the goal state affects the time(ms) and the number of nodes expanded\relax }}{29}{figure.caption.19}}
-\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces A*: 8-puzzle (10000 Random States)\relax }}{30}{table.caption.20}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {7}{\ignorespaces Iterative Deepening A Star\relax }}{18}{algorithm.7}}
+\newlabel{IDAStar}{{7}{18}{Iterative Deepening A Star\relax }{algorithm.7}{}}
+\newlabel{}{{9}{18}{Iterative Deepening A Star\relax }{algorithm.7}{}}
+\citation{felner2004additive}
+\citation{culberson1998pattern}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Pattern Databases}{19}{section.6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Non-Additive Pattern Databases}{19}{subsection.6.1}}
+\newlabel{Section:nonadditive}{{6.1}{19}{Non-Additive Pattern Databases}{subsection.6.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Fringe and Corner patterns for 15 \relax }}{20}{figure.caption.6}}
+\newlabel{fig:fringe}{{3}{20}{Fringe and Corner patterns for 15 \relax }{figure.caption.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Statically-Partitioned Additive Database Heuristics}{20}{subsection.6.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces 6-6-3 Partioning\relax }}{21}{figure.caption.7}}
+\newlabel{fig:partitioning}{{4}{21}{6-6-3 Partioning\relax }{figure.caption.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Design}{21}{section.7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Implementation}{21}{subsection.7.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.1}Representing the state}{22}{subsubsection.7.1.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Implementation}{22}{subsection.7.2}}
+\citation{gamma1995design}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Class Diagram\relax }}{23}{figure.caption.8}}
+\citation{DBLP:journals/ci/CulbersonS98}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Finding possible moves\relax }}{24}{figure.caption.9}}
+\newlabel{figure:classDiagram}{{6}{24}{Finding possible moves\relax }{figure.caption.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Experimental Results}{24}{section.8}}
+\newlabel{Experimental Results}{{8}{24}{Experimental Results}{section.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.1}Preliminaries}{24}{subsection.8.1}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {8}{\ignorespaces Is Current State Solvable\relax }}{25}{algorithm.8}}
+\newlabel{Solvable}{{8}{25}{Is Current State Solvable\relax }{algorithm.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.2}8-Puzzle}{25}{subsection.8.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {8.2.1}BFS}{26}{subsubsection.8.2.1}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Breadth-First Search Analysis: 8-puzzle (10000 Random States)\relax }}{26}{table.caption.10}}
+\newlabel{table:bfsRandom}{{1}{26}{Breadth-First Search Analysis: 8-puzzle (10000 Random States)\relax }{table.caption.10}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {8.2.2}DFID}{26}{subsubsection.8.2.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces A representation of the number of states that require a specific amount of moves to be solved optimally in the 8-tile and the summed time taken for all these states to be solved\relax }}{27}{figure.caption.11}}
+\newlabel{figure:figss}{{7}{27}{A representation of the number of states that require a specific amount of moves to be solved optimally in the 8-tile and the summed time taken for all these states to be solved\relax }{figure.caption.11}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces 8-tile analysis using breadth-first search to display how the minimum number of moves required to reach the goal state affects the time(ms) and the number of nodes expanded\relax }}{27}{figure.caption.13}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {8.2.3}A*}{27}{subsubsection.8.2.3}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Breadth-First Search Analysis: 8-puzzle\relax }}{28}{table.caption.12}}
+\newlabel{table:kysymys}{{2}{28}{Breadth-First Search Analysis: 8-puzzle\relax }{table.caption.12}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces 8-tile analysis using DFID to display how the minimum number of moves required to reach the goal state affects the time(ms) and the number of nodes expanded\relax }}{28}{figure.caption.14}}
+\newlabel{fig:dfidres}{{9}{28}{8-tile analysis using DFID to display how the minimum number of moves required to reach the goal state affects the time(ms) and the number of nodes expanded\relax }{figure.caption.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Depth-First Iterative Deepening: 8-Tile\relax }}{29}{table.caption.15}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces 8-tile analysis using A star search to display how the minimum number of moves required to reach the goal state affects the time(ms) and the number of nodes expanded\relax }}{29}{figure.caption.16}}
+\newlabel{Figure:astar}{{10}{29}{8-tile analysis using A star search to display how the minimum number of moves required to reach the goal state affects the time(ms) and the number of nodes expanded\relax }{figure.caption.16}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {8.2.4}Manhattan Distance and Linear Conflict}{29}{subsubsection.8.2.4}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces A*: 8-puzzle (10000 Random States)\relax }}{30}{table.caption.17}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.3}15-Puzzle}{30}{subsection.8.3}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {8.3.1}IDA*}{31}{subsubsection.8.3.1}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Iterative Deepening A* Results\relax }}{31}{table.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.4}Statically-Partioned Additive Database Heuristics}{31}{subsection.8.4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Logarithmic Comparison Of IDA* Fifteen Tile\relax }}{32}{figure.caption.18}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.5}Tower Of Hanoi}{32}{subsection.8.5}}
 \bibdata{bibfile}
-\bibcite{DBLP:journals/aicom/BorrajoFKLLRS14}{{1}{2014}{{Borrajo et~al.}}{{}}}
-\bibcite{DBLP:journals/ker/Brewka96}{{2}{1996}{{Brewka}}{{}}}
-\bibcite{culberson1996searching}{{3}{1996}{{Culberson and Schaeffer}}{{}}}
-\bibcite{DBLP:journals/ci/CulbersonS98}{{4}{1998}{{Culberson and Schaeffer}}{{}}}
+\bibcite{DBLP:journals/ker/Brewka96}{{1}{1996}{{Brewka}}{{}}}
+\bibcite{culberson1996searching}{{2}{1996}{{Culberson and Schaeffer}}{{}}}
+\bibcite{culberson1998pattern}{{3}{1998a}{{Culberson and Schaeffer}}{{}}}
+\bibcite{DBLP:journals/ci/CulbersonS98}{{4}{1998b}{{Culberson and Schaeffer}}{{}}}
 \bibcite{felner2015early}{{5}{2015}{{Felner}}{{}}}
 \bibcite{DBLP:journals/corr/abs-1107-0050}{{6}{2011}{{Felner et~al.}}{{}}}
-\bibcite{DBLP:journals/jair/FelnerKMH07}{{7}{2007}{{Felner et~al.}}{{}}}
-\bibcite{hansson1985generating}{{8}{1985}{{Hansson et~al.}}{{}}}
-\bibcite{hart1968formal}{{9}{1968}{{Hart et~al.}}{{}}}
-\bibcite{korf1985depth}{{10}{1985}{{Korf}}{{}}}
-\bibcite{DBLP:journals/mima/Korf95}{{11}{1995}{{Korf}}{{}}}
-\@writefile{toc}{\contentsline {section}{References}{31}{section*.21}}
-\bibcite{DBLP:journals/ai/KorfRE01}{{12}{2001}{{Korf et~al.}}{{}}}
-\bibcite{DBLP:conf/ccgrid/LinnertSB14}{{13}{2014}{{Linnert et~al.}}{{}}}
-\bibcite{DBLP:conf/otm/MeissnerB11}{{14}{2011}{{Meissner and Brzykcy}}{{}}}
-\global\@namedef{scr@dte@section@lastmaxnumwidth}{16.32927pt}
-\global\@namedef{scr@dte@subsection@lastmaxnumwidth}{25.79993pt}
+\bibcite{felner2004additive}{{7}{2004}{{Felner et~al.}}{{}}}
+\bibcite{DBLP:journals/jair/FelnerKMH07}{{8}{2007}{{Felner et~al.}}{{}}}
+\bibcite{gamma1995design}{{9}{1995}{{Gamma}}{{}}}
+\bibcite{hansson1992criticizing}{{10}{1992}{{Hansson et~al.}}{{}}}
+\bibcite{hansson1985generating}{{11}{1985}{{Hansson et~al.}}{{}}}
+\bibcite{hart1968formal}{{12}{1968}{{Hart et~al.}}{{}}}
+\@writefile{toc}{\contentsline {section}{References}{33}{section*.19}}
+\bibcite{korf1985depth}{{13}{1985}{{Korf}}{{}}}
+\bibcite{DBLP:journals/mima/Korf95}{{14}{1995}{{Korf}}{{}}}
+\bibcite{DBLP:journals/ai/KorfRE01}{{15}{2001}{{Korf et~al.}}{{}}}
+\bibcite{DBLP:conf/ccgrid/LinnertSB14}{{16}{2014}{{Linnert et~al.}}{{}}}
+\bibcite{DBLP:conf/otm/MeissnerB11}{{17}{2011}{{Meissner and Brzykcy}}{{}}}
+\global\@namedef{scr@dte@section@lastmaxnumwidth}{10.32458pt}
+\global\@namedef{scr@dte@subsection@lastmaxnumwidth}{19.79993pt}
 \global\@namedef{scr@dte@subsubsection@lastmaxnumwidth}{28.79993pt}

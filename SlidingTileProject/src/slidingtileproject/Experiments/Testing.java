@@ -87,15 +87,15 @@ public class Testing {
         System.out.println("Standard Deviation Time: " + stdTime);
 
         System.out.println("\nTotal Nodes: " + totalExpanded);
-        double sampleMean = totalExpanded / (double) states.size();
+        long sampleMean = totalExpanded / states.size();
         System.out.println("Mean Nodes: " + sampleMean);
         double sumOfSquares = 0;
         for (Double i : nodesExpanded) {
             i = Math.pow(i - sampleMean, 2);
             sumOfSquares += i;
         }
-        double variance = sumOfSquares / states.size() - 1;
-        double std = Math.sqrt(variance);
+        long variance = (long) (sumOfSquares / states.size() - 1);
+        long std = (long) Math.sqrt(variance);
         System.out.println("Standard Deviation Nodes: " + std);
 
         double sumOfMovesSquared = 0;
@@ -111,8 +111,8 @@ public class Testing {
         System.out.println("Standard Deviation Moves: " + stdMoves);
 
         // writing to a csv file
-        /*
-        FileWriter fw = new FileWriter("outputastar.csv", true);
+        
+        FileWriter fw = new FileWriter("dfid.csv", true);
         DecimalFormat df = new DecimalFormat("#.#####");
         df.format(0.912385);
         BufferedWriter bw = new BufferedWriter(fw);
@@ -124,6 +124,6 @@ public class Testing {
                     .append(df.format(std)).append("\n");
             out.println(s.toString());
         }
-         */
+        
     }
 }

@@ -1,11 +1,5 @@
 \begin{thebibliography}{}
 
-\bibitem[Borrajo et~al., 2014]{DBLP:journals/aicom/BorrajoFKLLRS14}
-Borrajo, D., Felner, A., Korf, R.~E., Likhachev, M., {Linares L{\'{o}}pez}, C.,
-  Ruml, W., and Sturtevant, N.~R. (2014).
-\newblock The fifth annual symposium on combinatorial search.
-\newblock {\em {AI} Commun.}, 27(4):327--328.
-
 \bibitem[Brewka, 1996]{DBLP:journals/ker/Brewka96}
 Brewka, G. (1996).
 \newblock \emph{Artificial intelligence - a modern approach} by stuart russell
@@ -18,8 +12,13 @@ Culberson, J. and Schaeffer, J. (1996).
 \newblock Searching with pattern databases.
 \newblock {\em Advances in Artifical Intelligence}, pages 402--416.
 
-\bibitem[Culberson and Schaeffer, 1998]{DBLP:journals/ci/CulbersonS98}
-Culberson, J.~C. and Schaeffer, J. (1998).
+\bibitem[Culberson and Schaeffer, 1998a]{culberson1998pattern}
+Culberson, J.~C. and Schaeffer, J. (1998a).
+\newblock Pattern databases.
+\newblock {\em Computational Intelligence}, 14(3):318--334.
+
+\bibitem[Culberson and Schaeffer, 1998b]{DBLP:journals/ci/CulbersonS98}
+Culberson, J.~C. and Schaeffer, J. (1998b).
 \newblock Pattern databases.
 \newblock {\em Computational Intelligence}, 14(3):318--334.
 
@@ -35,10 +34,26 @@ Felner, A., Hanan, S., and Korf, R.~E. (2011).
 \newblock Additive pattern database heuristics.
 \newblock {\em CoRR}, abs/1107.0050.
 
+\bibitem[Felner et~al., 2004]{felner2004additive}
+Felner, A., Korf, R.~E., and Hanan, S. (2004).
+\newblock Additive pattern database heuristics.
+\newblock {\em J. Artif. Intell. Res.(JAIR)}, 22:279--318.
+
 \bibitem[Felner et~al., 2007]{DBLP:journals/jair/FelnerKMH07}
 Felner, A., Korf, R.~E., Meshulam, R., and Holte, R.~C. (2007).
 \newblock Compressed pattern databases.
 \newblock {\em J. Artif. Intell. Res. {(JAIR)}}, 30:213--247.
+
+\bibitem[Gamma, 1995]{gamma1995design}
+Gamma, E. (1995).
+\newblock {\em Design patterns: elements of reusable object-oriented software}.
+\newblock Pearson Education India.
+
+\bibitem[Hansson et~al., 1992]{hansson1992criticizing}
+Hansson, O., Mayer, A., and Yung, M. (1992).
+\newblock Criticizing solutions to relaxed models yields powerful admissible
+  heuristics.
+\newblock {\em Information Sciences}, 63(3):207--227.
 
 \bibitem[Hansson et~al., 1985]{hansson1985generating}
 Hansson, O., Meyer, A.~E., and Yung, M.~M. (1985).
