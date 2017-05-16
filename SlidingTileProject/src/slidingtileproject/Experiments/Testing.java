@@ -112,7 +112,7 @@ public class Testing {
 
         // writing to a csv file
         
-        FileWriter fw = new FileWriter("dfid.csv", true);
+        FileWriter fw = new FileWriter("blar.csv", true);
         DecimalFormat df = new DecimalFormat("#.#####");
         df.format(0.912385);
         BufferedWriter bw = new BufferedWriter(fw);
@@ -124,6 +124,6 @@ public class Testing {
                     .append(df.format(std)).append("\n");
             out.println(s.toString());
         }
-        
+        System.out.println("\n\n");
     }
 }

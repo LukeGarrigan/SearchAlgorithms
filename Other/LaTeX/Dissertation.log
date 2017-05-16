@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2016.10.3)  15 MAY 2017 19:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2016.10.3)  16 MAY 2017 20:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1357,21 +1357,21 @@ Document Style - pseudocode environments for use with the `algorithmicx' style
 ) (./Dissertation.aux)
 \openout1 = `Dissertation.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
-LaTeX Font Info:    Try loading font information for T1+ptm on input line 115.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 116.
+LaTeX Font Info:    ... okay on input line 116.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 116.
+LaTeX Font Info:    ... okay on input line 116.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 116.
+LaTeX Font Info:    ... okay on input line 116.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 116.
+LaTeX Font Info:    ... okay on input line 116.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 116.
+LaTeX Font Info:    ... okay on input line 116.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 116.
+LaTeX Font Info:    ... okay on input line 116.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 116.
+LaTeX Font Info:    ... okay on input line 116.
+LaTeX Font Info:    Try loading font information for T1+ptm on input line 116.
  (c:/texlive/2016/texmf-dist/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 )
@@ -1448,7 +1448,7 @@ Package scrpage2 Warning: seems you are using a very small headheight.
 (scrpage2)                A better solution would be to use typearea package.
 
 \AtBeginShipoutBox=\box75
-Package hyperref Info: Link coloring OFF on input line 115.
+Package hyperref Info: Link coloring OFF on input line 116.
 (c:/texlive/2016/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 
@@ -1457,9 +1457,9 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count305
 )
-LaTeX Info: Redefining \ref on input line 115.
-LaTeX Info: Redefining \pageref on input line 115.
-LaTeX Info: Redefining \nameref on input line 115.
+LaTeX Info: Redefining \ref on input line 116.
+LaTeX Info: Redefining \pageref on input line 116.
+LaTeX Info: Redefining \nameref on input line 116.
 
 (./Dissertation.out) (./Dissertation.out)
 \@outlinefile=\write4
@@ -1472,7 +1472,7 @@ Package caption Info: threeparttable package is loaded.
 Package caption Info: End \AtBeginDocument code.
 
 ABD: EverySelectfont initializing macros
-LaTeX Info: Redefining \selectfont on input line 115.
+LaTeX Info: Redefining \selectfont on input line 116.
 
 (c:/texlive/2016/texmf-dist/tex/latex/beamer/translator/dicts/translator-basic-
 dictionary/translator-basic-dictionary-English.dict
@@ -1519,12 +1519,12 @@ ABD: EveryShipout initializing macros
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <24.88> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 115.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 116.
 
-<uealogo.png, id=155, 112.9821pt x 53.4798pt>
+<uealogo.png, id=212, 112.9821pt x 53.4798pt>
 File: uealogo.png Graphic file (type png)
  <use uealogo.png>
-Package pdftex.def Info: uealogo.png used on input line 115.
+Package pdftex.def Info: uealogo.png used on input line 116.
 (pdftex.def)             Requested size: 85.35826pt x 40.40596pt.
  [1
 
@@ -1532,59 +1532,59 @@ Package pdftex.def Info: uealogo.png used on input line 115.
 
 {c:/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <c:/texlive/texm
 f-local/tex/base/cmpreport/uealogo.png>]
-LaTeX Font Info:    Try loading font information for T1+phv on input line 115.
+LaTeX Font Info:    Try loading font information for T1+phv on input line 116.
 
 (c:/texlive/2016/texmf-dist/tex/latex/psnfss/t1phv.fd
 File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
 )
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 10.79993pt on input line 115.
+(Font)              scaled to size 10.79993pt on input line 116.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <12> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 115.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 116.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 10.79993pt on input line 115.
+(Font)              scaled to size 10.79993pt on input line 116.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <17.28> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 115.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 116.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 15.55188pt on input line 115.
+(Font)              scaled to size 15.55188pt on input line 116.
  [2
 
 ] (./Dissertation.toc
-LaTeX Font Info:    Try loading font information for OT1+ztmcm on input line 5.
+LaTeX Font Info:    Try loading font information for OT1+ztmcm on input line 3.
 
 
 (c:/texlive/2016/texmf-dist/tex/latex/psnfss/ot1ztmcm.fd
 File: ot1ztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OML+ztmcm on input line 5.
+LaTeX Font Info:    Try loading font information for OML+ztmcm on input line 3.
 
 
 (c:/texlive/2016/texmf-dist/tex/latex/psnfss/omlztmcm.fd
 File: omlztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OMS+ztmcm on input line 5.
+LaTeX Font Info:    Try loading font information for OMS+ztmcm on input line 3.
 
 
 (c:/texlive/2016/texmf-dist/tex/latex/psnfss/omsztmcm.fd
 File: omsztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OMX+ztmcm on input line 5.
+LaTeX Font Info:    Try loading font information for OMX+ztmcm on input line 3.
 
 
 (c:/texlive/2016/texmf-dist/tex/latex/psnfss/omxztmcm.fd
 File: omxztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMX/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 5.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 3.
 
 (c:/texlive/2016/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 5.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 3.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 5.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 3.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 5.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 3.
 
 Overfull \vbox (0.72502pt too high) has occurred while \output is active []
 
@@ -1604,7 +1604,7 @@ Overfull \vbox (0.72502pt too high) has occurred while \output is active []
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
 ick labels; missing features). Consider writing \pgfplotsset{compat=1.14} into 
 your preamble.
- on input line 115.
+ on input line 116.
 
 \c__siunitx_mathsf_int=\count307
 \c__siunitx_mathtt_int=\count308
@@ -1614,19 +1614,14 @@ Overfull \vbox (0.72502pt too high) has occurred while \output is active []
 
 [5]
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 148.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 138.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 12.9599pt on input line 148.
+(Font)              scaled to size 12.9599pt on input line 138.
 
 Overfull \vbox (0.72502pt too high) has occurred while \output is active []
 
 
 [6]
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 155.
-LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 155.
-
 Overfull \vbox (0.72502pt too high) has occurred while \output is active []
 
 
@@ -1634,48 +1629,125 @@ Overfull \vbox (0.72502pt too high) has occurred while \output is active []
 Overfull \vbox (0.72502pt too high) has occurred while \output is active []
 
 
-[8]
-Overfull \vbox (0.72502pt too high) has occurred while \output is active []
-
-
-[9]
-Overfull \vbox (0.72502pt too high) has occurred while \output is active []
-
-
-[10]
-Overfull \vbox (0.72502pt too high) has occurred while \output is active []
-
-
-[11] <consistent.jpg, id=282, 401.5pt x 401.5pt>
+[8] <consistent.jpg, id=338, 401.5pt x 401.5pt>
 File: consistent.jpg Graphic file (type jpg)
  <use consistent.jpg>
-Package pdftex.def Info: consistent.jpg used on input line 281.
+Package pdftex.def Info: consistent.jpg used on input line 192.
 (pdftex.def)             Requested size: 167.29893pt x 167.29941pt.
 
 Overfull \vbox (0.72502pt too high) has occurred while \output is active []
 
 
-[12 <./consistent.jpg>]
-Overfull \vbox (0.72502pt too high) has occurred while \output is active []
-
-
-[13] <linear.jpg, id=305, 505.89pt x 171.64125pt>
+[9]
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
+put line 216.
+LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 216.
+ <linear.jpg, id=349, 505.89pt x 171.64125pt>
 File: linear.jpg Graphic file (type jpg)
  <use linear.jpg>
-Package pdftex.def Info: linear.jpg used on input line 355.
+Package pdftex.def Info: linear.jpg used on input line 244.
 (pdftex.def)             Requested size: 376.4258pt x 127.71704pt.
 
 Overfull \vbox (0.72502pt too high) has occurred while \output is active []
 
 
-[14]
-Overfull \hbox (3.02553pt too wide) in paragraph at lines 367--368
+[10 <./consistent.jpg>]
+Overfull \vbox (0.72502pt too high) has occurred while \output is active []
+
+
+[11]
+Overfull \vbox (0.72502pt too high) has occurred while \output is active []
+
+
+[12 <./linear.jpg>]
+Overfull \vbox (0.72502pt too high) has occurred while \output is active []
+
+
+[13] <fringe.jpg, id=389, 200.75pt x 200.75pt>
+File: fringe.jpg Graphic file (type jpg)
+ <use fringe.jpg>
+Package pdftex.def Info: fringe.jpg used on input line 293.
+(pdftex.def)             Requested size: 112.92888pt x 112.93077pt.
+
+<corner.jpg, id=390, 200.75pt x 200.75pt>
+File: corner.jpg Graphic file (type jpg)
+ <use corner.jpg>
+Package pdftex.def Info: corner.jpg used on input line 297.
+(pdftex.def)             Requested size: 112.92888pt x 112.93077pt.
+
+Overfull \hbox (17.221pt too wide) in paragraph at lines 314--315
+\T1/ptm/m/n/12 dynamically-partitioned ad-di-tive pat-tern databases. In or-der
+ to cre-ate a statically-partitioned
+ []
+
+
+Overfull \vbox (0.72502pt too high) has occurred while \output is active []
+
+
+[14 <./fringe.jpg> <./corner.jpg>] <15tile.jpg, id=397, 602.25pt x 271.0125pt>
+File: 15tile.jpg Graphic file (type jpg)
+
+<use 15tile.jpg>
+Package pdftex.def Info: 15tile.jpg used on input line 321.
+(pdftex.def)             Requested size: 376.4258pt x 169.39893pt.
+
+Overfull \vbox (0.72502pt too high) has occurred while \output is active []
+
+
+[15]
+Overfull \vbox (0.72502pt too high) has occurred while \output is active []
+
+
+[16 <./15tile.jpg>]
+Overfull \vbox (0.72502pt too high) has occurred while \output is active []
+
+
+[17] <tile_indexes.jpg, id=417, 519.12253pt x 231.06042pt>
+File: tile_indexes.jpg Graphic file (type jpg)
+
+<use tile_indexes.jpg>
+Package pdftex.def Info: tile_indexes.jpg used on input line 362.
+(pdftex.def)             Requested size: 209.12686pt x 93.08183pt.
+
+Overfull \vbox (0.72502pt too high) has occurred while \output is active []
+
+
+[18 <./tile_indexes.jpg>]
+Overfull \vbox (0.72502pt too high) has occurred while \output is active []
+
+
+[19]
+Overfull \vbox (0.72502pt too high) has occurred while \output is active []
+
+
+[20]
+Overfull \vbox (0.72502pt too high) has occurred while \output is active []
+
+
+[21]
+Overfull \vbox (0.72502pt too high) has occurred while \output is active []
+
+
+[22] <heuristic_array.jpg, id=455, 1243.8583pt x 302.31253pt>
+File: heuristic_array.jpg Graphic file (type jpg)
+
+<use heuristic_array.jpg>
+Package pdftex.def Info: heuristic_array.jpg used on input line 523.
+(pdftex.def)             Requested size: 460.08163pt x 111.81697pt.
+
+Overfull \hbox (41.82791pt too wide) in paragraph at lines 523--525
+ [][] 
+ []
+
+
+Overfull \hbox (3.02553pt too wide) in paragraph at lines 562--563
 \T1/ptm/m/n/12 checked to see whether it matches the goal state and re-turned i
 f so. From the $\OML/ztmcm/m/it/12 currentState$
  []
 
 
-Overfull \hbox (4.3703pt too wide) in paragraph at lines 367--368
+Overfull \hbox (4.3703pt too wide) in paragraph at lines 562--563
 \T1/ptm/m/n/12 against the $\OML/ztmcm/m/it/12 closedSet$ \T1/ptm/m/n/12 to mak
 e sure the state hasn't al-ready been ex-panded. The $\OML/ztmcm/m/it/12 neighb
 our$
@@ -1685,61 +1757,30 @@ our$
 Overfull \vbox (0.72502pt too high) has occurred while \output is active []
 
 
-[15 <./linear.jpg>]
+[23 <./heuristic_array.jpg>]
 Overfull \vbox (0.72502pt too high) has occurred while \output is active []
 
 
-[16]
+[24]
 Overfull \vbox (0.72502pt too high) has occurred while \output is active []
 
 
-[17]
+[25]
 Overfull \vbox (0.72502pt too high) has occurred while \output is active []
 
 
-[18]
+[26]
 Overfull \vbox (0.72502pt too high) has occurred while \output is active []
 
 
-[19] <fringe.jpg, id=355, 200.75pt x 200.75pt>
-File: fringe.jpg Graphic file (type jpg)
- <use fringe.jpg>
-Package pdftex.def Info: fringe.jpg used on input line 489.
-(pdftex.def)             Requested size: 112.92888pt x 112.93077pt.
-
-<corner.jpg, id=356, 200.75pt x 200.75pt>
-File: corner.jpg Graphic file (type jpg)
- <use corner.jpg>
-Package pdftex.def Info: corner.jpg used on input line 493.
-(pdftex.def)             Requested size: 112.92888pt x 112.93077pt.
-
-Overfull \hbox (17.221pt too wide) in paragraph at lines 510--511
-\T1/ptm/m/n/12 dynamically-partitioned ad-di-tive pat-tern databases. In or-der
- to cre-ate a statically-partitioned
- []
-
-
-Overfull \vbox (0.72502pt too high) has occurred while \output is active []
-
-
-[20 <./fringe.jpg> <./corner.jpg>] <15tile.jpg, id=362, 602.25pt x 271.0125pt>
-File: 15tile.jpg Graphic file (type jpg)
-
-<use 15tile.jpg>
-Package pdftex.def Info: 15tile.jpg used on input line 517.
-(pdftex.def)             Requested size: 376.4258pt x 169.39893pt.
-
-Overfull \vbox (0.72502pt too high) has occurred while \output is active []
-
-
-[21 <./15tile.jpg>] <classDiagram.jpg, id=372, 559.33969pt x 615.80063pt>
+[27] <classDiagram.jpg, id=484, 559.33969pt x 615.80063pt>
 File: classDiagram.jpg Graphic file (type jpg)
 
 <use classDiagram.jpg>
-Package pdftex.def Info: classDiagram.jpg used on input line 536.
+Package pdftex.def Info: classDiagram.jpg used on input line 651.
 (pdftex.def)             Requested size: 460.08163pt x 506.53836pt.
 
-Overfull \hbox (41.82791pt too wide) in paragraph at lines 536--538
+Overfull \hbox (41.82791pt too wide) in paragraph at lines 651--653
  [][] 
  []
 
@@ -1750,100 +1791,100 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 Overfull \vbox (0.72502pt too high) has occurred while \output is active []
 
 
-[22]
+[28]
 Overfull \vbox (0.72502pt too high) has occurred while \output is active []
 
 
-[23 <./classDiagram.jpg>] <moves.jpg, id=385, 401.5pt x 258.9675pt>
+[29 <./classDiagram.jpg>] <moves.jpg, id=498, 401.5pt x 258.9675pt>
 File: moves.jpg Graphic file (type jpg)
 
 <use moves.jpg>
-Package pdftex.def Info: moves.jpg used on input line 549.
+Package pdftex.def Info: moves.jpg used on input line 670.
 (pdftex.def)             Requested size: 209.12686pt x 134.8891pt.
 
 Overfull \vbox (0.72502pt too high) has occurred while \output is active []
 
 
-[24 <./moves.jpg>]
-Overfull \vbox (0.72502pt too high) has occurred while \output is active []
-
-
-[25]
-Overfull \hbox (2.28003pt too wide) in paragraph at lines 618--709
-[][] [] 
- []
-
-
-Overfull \vbox (0.72502pt too high) has occurred while \output is active []
-
-
-[26]
-Overfull \vbox (0.72502pt too high) has occurred while \output is active []
-
-
-[27]
-Overfull \vbox (0.72502pt too high) has occurred while \output is active []
-
-
-[28]
-Overfull \vbox (0.72502pt too high) has occurred while \output is active []
-
-
-[29]
-Overfull \vbox (0.72502pt too high) has occurred while \output is active []
-
-
-[30]
-
-Package caption Warning: \captionsetup{type*=...} or \captionof
-(caption)                outside box or environment on input line 1019.
-See the caption package documentation for explanation.
-
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1019.
-See the caption package documentation for explanation.
-
-
-Overfull \hbox (2.28003pt too wide) in paragraph at lines 1048--1079
-[][] [] 
- []
-
-
+[30 <./moves.jpg>]
 Overfull \vbox (0.72502pt too high) has occurred while \output is active []
 
 
 [31]
+Overfull \hbox (2.28003pt too wide) in paragraph at lines 742--833
+[][] [] 
+ []
+
+
 Overfull \vbox (0.72502pt too high) has occurred while \output is active []
 
 
-[32] (./Dissertation.bbl
+[32]
 Overfull \vbox (0.72502pt too high) has occurred while \output is active []
 
 
-[33
+[33]
+Overfull \vbox (0.72502pt too high) has occurred while \output is active []
+
+
+[34]
+Overfull \vbox (0.72502pt too high) has occurred while \output is active []
+
+
+[35]
+Overfull \vbox (0.72502pt too high) has occurred while \output is active []
+
+
+[36]
+
+Package caption Warning: \captionsetup{type*=...} or \captionof
+(caption)                outside box or environment on input line 1143.
+See the caption package documentation for explanation.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 1143.
+See the caption package documentation for explanation.
+
+
+Overfull \hbox (2.28003pt too wide) in paragraph at lines 1172--1203
+[][] [] 
+ []
+
+
+Overfull \vbox (0.72502pt too high) has occurred while \output is active []
+
+
+[37]
+Overfull \vbox (0.72502pt too high) has occurred while \output is active []
+
+
+[38] (./Dissertation.bbl
+Overfull \vbox (0.72502pt too high) has occurred while \output is active []
+
+
+[39
 
 ])
 Overfull \vbox (0.72502pt too high) has occurred while \output is active []
 
 
-[34]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1100.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1100.
+[40]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1225.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1225.
  (./Dissertation.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1100.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1100.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1225.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1225.
 
 Package rerunfilecheck Info: File `Dissertation.out' has not changed.
-(rerunfilecheck)             Checksum: FD75A22DE13182D7B2E7DD90C1F59430;2512.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1100.
+(rerunfilecheck)             Checksum: EF484001390A92826AB0220737D6ACC3;3551.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1225.
  ) 
 Here is how much of TeX's memory you used:
- 44564 strings out of 493013
- 1021978 string characters out of 6136993
- 1275773 words of memory out of 5000000
- 47329 multiletter control sequences out of 15000+600000
- 70307 words of font info for 90 fonts, out of 8000000 for 9000
+ 44618 strings out of 493013
+ 1022904 string characters out of 6136993
+ 1270773 words of memory out of 5000000
+ 47354 multiletter control sequences out of 15000+600000
+ 71085 words of font info for 93 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  80i,14n,103p,10410b,2145s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/texlive/2016/texm
@@ -1855,10 +1896,10 @@ c:/texlive/2016/texmf-dist/fonts/type1/urw/symbol/usyr.pfb><c:/texlive/2016/tex
 mf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2016/texmf-dist/fonts/type
 1/urw/times/utmr8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Dissertation.pdf (34 pages, 521730 bytes).
+Output written on Dissertation.pdf (40 pages, 660021 bytes).
 PDF statistics:
- 517 PDF objects out of 1000 (max. 8388607)
- 457 compressed objects within 5 object streams
- 116 named destinations out of 1000 (max. 500000)
- 349 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 634 PDF objects out of 1000 (max. 8388607)
+ 565 compressed objects within 6 object streams
+ 140 named destinations out of 1000 (max. 500000)
+ 471 words of extra memory for PDF output out of 10000 (max. 10000000)
 

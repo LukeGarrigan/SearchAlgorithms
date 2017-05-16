@@ -17,6 +17,9 @@ public class Manhattan implements HeuristicFunction {
     @Override
     public int calculateHeuristic(State state) {
         // Expected row and col depend on size of puzz nxn
+        if (state.getG() > 1) {
+            return calculateSingleHeuristic(state);
+        }
         int[] puzz = state.getState();
         int total = 0;
         int dimension = (int) Math.sqrt(puzz.length);
@@ -50,13 +53,16 @@ public class Manhattan implements HeuristicFunction {
         int[] heuristics = s.getHeuristicArray();
         int movedPosition = s.getMovedPosition();
         int movedTile = s.getState()[movedPosition];
+        int[] puzz = s.getState();
+        int dimension = (int) Math.sqrt(puzz.length);
+
         int zeroPosition = s.getZero();
         // Calculates the heuristic for just the tile that was moved
-        int expectedRow = (movedTile - 1) / 4;
-        int expectedCol = (movedTile - 1) % 4;
-        int numRow = movedPosition / 4;
-        int numCol = movedPosition % 4;
-        int heuristic = (int) s.getH();
+        int expectedRow = (movedTile - 1) / dimension;
+        int expectedCol = (movedTile - 1) % dimension;
+        int numRow = movedPosition / dimension;
+        int numCol = movedPosition % dimension;
+        int heuristic = s.getH();
 
         int temp = heuristic - heuristics[zeroPosition];
 
@@ -65,9 +71,7 @@ public class Manhattan implements HeuristicFunction {
         heuristics[movedPosition] = newHeuristicValue;
         heuristics[zeroPosition] = 0;
         int total1 = temp + newHeuristicValue;
-        //for (int i = 0; i < heuristics.length; i++) {
-        //    total1 += heuristics[i];
-        // }
+
 
         s.setHeuristicArray(heuristics);
         return total1;

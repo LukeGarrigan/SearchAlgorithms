@@ -1,12 +1,12 @@
-\contentsline {figure}{\numberline {1}{\ignorespaces Consistent Heuristics Diagram\relax }}{12}{figure.caption.7}
-\contentsline {figure}{\numberline {2}{\ignorespaces Calculating Linear Conflict\relax }}{15}{figure.caption.8}
-\contentsline {figure}{\numberline {3}{\ignorespaces Puzzle Parity\relax }}{19}{figure.caption.9}
-\contentsline {figure}{\numberline {4}{\ignorespaces Fringe Database Pattern For Fifteen Tile\relax }}{20}{figure.caption.10}
-\contentsline {figure}{\numberline {5}{\ignorespaces Fringe Database Pattern For The Twenty-five Tile\relax }}{21}{figure.caption.11}
-\contentsline {figure}{\numberline {6}{\ignorespaces 6-6-3 Partioning\relax }}{22}{figure.caption.12}
-\contentsline {figure}{\numberline {7}{\ignorespaces Class Diagram\relax }}{23}{figure.caption.13}
-\contentsline {figure}{\numberline {8}{\ignorespaces Finding possible moves\relax }}{24}{figure.caption.14}
-\contentsline {figure}{\numberline {9}{\ignorespaces A representation of the number of states that require a specific amount of moves to be solved optimally in the 8-tile and the summed time taken for all these states to be solved\relax }}{26}{figure.caption.16}
-\contentsline {figure}{\numberline {10}{\ignorespaces 8-tile analysis using breadth-first search to display how the minimum number of moves required to reach the goal state affects the time(ms) and the number of nodes expanded\relax }}{27}{figure.caption.18}
-\contentsline {figure}{\numberline {11}{\ignorespaces 8-tile analysis using A star search to display how the minimum number of moves required to reach the goal state affects the time(ms) and the number of nodes expanded\relax }}{28}{figure.caption.19}
-\contentsline {figure}{\numberline {12}{\ignorespaces Logarithmic Comparison Of IDA* Fifteen Tile\relax }}{30}{figure.caption.21}
+\contentsline {figure}{\numberline {1}{\ignorespaces Consistent Heuristics Diagram\relax }}{12}{figure.caption.6}
+\contentsline {figure}{\numberline {2}{\ignorespaces Calculating Linear Conflict\relax }}{14}{figure.caption.7}
+\contentsline {figure}{\numberline {3}{\ignorespaces Fringe and Corner patterns for 15 \relax }}{20}{figure.caption.8}
+\contentsline {figure}{\numberline {4}{\ignorespaces 6-6-3 Partioning\relax }}{22}{figure.caption.9}
+\contentsline {figure}{\numberline {5}{\ignorespaces Class Diagram\relax }}{25}{figure.caption.10}
+\contentsline {figure}{\numberline {6}{\ignorespaces Class Diagram\relax }}{26}{figure.caption.11}
+\contentsline {figure}{\numberline {7}{\ignorespaces Finding possible moves\relax }}{27}{figure.caption.12}
+\contentsline {figure}{\numberline {8}{\ignorespaces A representation of the number of states that require a specific amount of moves to be solved optimally in the 8-tile and the summed time taken for all these states to be solved\relax }}{30}{figure.caption.14}
+\contentsline {figure}{\numberline {9}{\ignorespaces 8-tile analysis using breadth-first search to display how the minimum number of moves required to reach the goal state affects the time(ms) and the number of nodes expanded\relax }}{31}{figure.caption.16}
+\contentsline {figure}{\numberline {10}{\ignorespaces 8-tile analysis using DFID to display how the minimum number of moves required to reach the goal state affects the time(ms) and the number of nodes expanded\relax }}{32}{figure.caption.17}
+\contentsline {figure}{\numberline {11}{\ignorespaces 8-tile analysis using A star search to display how the minimum number of moves required to reach the goal state affects the time(ms) and the number of nodes expanded\relax }}{33}{figure.caption.19}
+\contentsline {figure}{\numberline {12}{\ignorespaces Logarithmic Comparison Of IDA* Fifteen Tile\relax }}{35}{figure.caption.21}

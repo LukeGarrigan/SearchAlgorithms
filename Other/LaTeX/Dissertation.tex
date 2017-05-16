@@ -75,6 +75,7 @@
 \summary{
 
 
+
 }
 
 \acknowledgements{
@@ -132,140 +133,48 @@ promptly.
  
 
 
-\section{Relevant Literature}
-
-
-\section{Preliminaries}
-
-
-
-
-
-
-
-\section{Uninformed Search}
+\section{Relevant Literature And Context}
+The following review discusses a complete definition and overview of the search algorithms implemented in the project, discussing their strengths and weaknesses and their applicability to the sliding-tile puzzle. 
+\subsection{Uninformed Search}
 Uninformed or brute-force search is a general problem-solving technique that consists of systematically enumerating all the possible states for a given solution and checking to see whether that given state satisfies the problem's statement. All that is required to execute a brute-force is some legal operators, an initial state and an acknowledged goal state. Uninformed search generates the search tree without using any domain specific knowledge
-\subsection{Completeness and Optimality}
+\subsubsection{Completeness and Optimality}
  Often in search the input may be an implicit representation of an infinite graph. Given these conditions, a search algorithm is characterised as being complete if it is guaranteed to find a goal state provided one exists. Breadth-first search is complete and when applied to infinite graphs it will eventually find the solution. Depth-first search is not complete and may get lost in parts of the graph that do not contain a goal state.
-\subsection{Breadth-First Search}
-Breadth-first search expands the nodes in a tree in the order of their given distance from the root, so it expands all the neighbouring nodes before going to the next level of the tree. The algorithm doesn't trawl to the deeper levels of the tree without first expanding the lower levels thus ensures the finding of the shortest path. The amount of time used by breadth-first search is linear to the number of nodes expanded, since each node can be generated in constant time, and is a function of the branching factor $b$ and the solution depth $d$. Since the number of nodes at level $d$ is $b^d$, the total number of nodes generated in the worst case is $O(b^d)$. \citep{DBLP:journals/mima/Korf95}. The space requirement of breadth-first search is its largest deficiency. The 8-tile has a search space of $9!/2=181,400$ states with a maximum number of 31 moves to solve. In terms of practicality, with larger problem states such as the 15-tile puzzle a breadth-first search will exhaust the available memory rather quickly with its $16!/2 = 10,461,394,944,000$ states and a maximum number of 80 moves to solve.
-
-BFS begins by declaring an empty set $s$ which stores all the states that have been expanded. A queue $q$ is then initialised which stores states to be expanded. The initial state is added to both $q$ and $s$, $q$ is then repeatedly looped through until a solution is found or $q$ is empty meaning there are no possible solutions. The $currentState$ is dequeued from $q$, checked against the goal state and returned if a match. Otherwise, each possible move from $currentState$ is found and added to $q$ to be expanded see Algorithm~\ref{BFS}.
-	\begin{algorithm}
-	\caption{Breadth-First Search}\label{BFS}
-	\begin{algorithmic}[1]
-		\Procedure{BFS}{$state$}
-		\State $s \gets \textit{empty set}$
-		\State $q \gets \textit{empty queue}$
-		\State $q.add(state)$
-		\State $q.enqueue(state)$
-		\While{$q \textbf{ is not } empty$}
-		\State $currentState \gets q.dequeue()$
-		\If {$currentState = goal$}
-		\State \textbf{return} $current$
-		\EndIf
-		\For{$neighbour \textbf{ in } neighbours(currentState)$}	
-		\If{$neighbour \text{ is not in } s$}
-		\State $s.add(neighbour)$
-		\State $q.enqueue(neighbour)$
-		\EndIf
-		
-		\EndFor
-		\EndWhile
-		\EndProcedure
-	\end{algorithmic}
-\end{algorithm}
+\subsubsection{Breadth-First Search}
+Breadth-first search is one of the simplest algorithms for searching a graph, it expands the nodes in a tree in the order of their given distance from the root, so it expands all the neighbouring nodes before going to the next level of the tree. The algorithm doesn't trawl to the deeper levels of the tree without first expanding the lower levels thus ensures the finding of the shortest path. The amount of time used by breadth-first search is linear to the number of nodes expanded, since each node can be generated in constant time, and is a function of the branching factor $b$ and the solution depth $d$. Since the number of nodes at level $d$ is $b^d$, the total number of nodes generated in the worst case is $O(b^d)$. \citep{DBLP:journals/mima/Korf95}. The space requirement of breadth-first search is its largest deficiency. The 8-tile has a search space of $9!/2=181,400$ states with a maximum number of 31 moves to solve. In terms of practicality, with larger problem states such as the 15-tile puzzle a breadth-first search will exhaust the available memory rather quickly with its $16!/2 = 10,461,394,944,000$ states and a maximum number of 80 moves to solve.
 
 
-\subsection{Depth-First Search}
+
+The operations of enqueuing and dequeuing take O.1/ time, and so the total time devoted to queue
+operations is O.V /. Because the procedure scans the adjacency list of each vertex
+only when the vertex is dequeued, it scans each adjacency list at most once. Since
+the sum of the lengths of all the adjacency lists is ‚.E/, the total time spent in
+scanning adjacency lists is O.E/. The overhead for initialization is O.V /, and
+thus the total running time of the BFS procedure is O.V C E/. Thus, breadth-first
+search runs in time linear in the size of the adjacency-list representation of G.
+
+
+\subsubsection{Depth-First Search}
 Depth-first search (DFS) addresses the limitations of breadth-first by always generating next a child of the deepest unexpanded node. Breadth-first search manages the list as a first-in first-out queue, whereas depth-first search treats the list as a last-in first-out stack. Depth-first search is implemented recursively, with the recursion stack taking the place of an explicit node stack. Given a starting state, depth-first search stores all the unvisited children of that state in a stack. It then removes the top state from the stack and adds all of the removed states children to the stack. Depth first search generates a long sequence of moves, only ever reconsidering a move when it reaches the end of a stack, this can become a serious problem given a graph of significant size and there's only one solution, as it may end up exploring the entire graph on a single DFS path only to find the solution after looking at each node. Worse, if the graph is infinite the search might not terminate.
 
-DFS begins by declaring an empty set $visted$ which stores all the states that stores expanded states. The state is checked against the goal and returned if a match. All possible moves from the current state are looped through and recursively call the function to repeat the process see Algorithm~\ref{dfs}.
-\begin{algorithm}
-	\caption{DFS}\label{dfs}
-	\begin{algorithmic}[1]
-		\State $visited \gets empty set$
-		\Procedure{DFS}{$state$}
-		\If{$state = goal$}
-		\State \textbf{return} state
-		\EndIf
-		\For{$neighbour \textbf{ in } neighbours(state)$}
-		\If{$neighbour \textbf{ not in } visited$}
-		\State	$DFS(neighbour)$
-		\EndIf
-		\EndFor
-		\State $visited.add(state)$
-		\EndProcedure
-	\end{algorithmic}
-\end{algorithm}
 
 
-Depth-first search is not the preferred algorithm for solving the sliding-tile puzzle in the minimum number of moves, it would be more preferred in an implementation which has goals in every path. The algorithm was implemented regardless to analyse whether the results match expectation. Table 2 displays the results of the depth-first search implementation, there is no real noticeable pattern in the data apart from they are consistently inconsistent. The results prove that the algorithm doesn't find the goal state in the minimum number of moves which further confirms that DFS should not be used in the sliding-tile problem. 
-
-\subsection{Depth-Limited Search}
+\subsubsection{Depth-Limited Search}
 Depth-Limited search is DFS with a cut-off depth, this prevents the search from running forever provided the limit isn't set to infinite. The algorithm is not complete as the solution depth could be greater than the cut-off depth and it is not optimal. The algorithm is second procedure shown in Algorithm~\ref{DFID}.
 
 
   
-\subsection{Depth-First Search Iterative Deepening}
+\subsubsection{Depth-First Search Iterative Deepening}
 Depth-First Iterative-Deepening (DFID) is an extension of depth-first search, it combines breadth-first search's completeness and depth-first search's space efficiency. DFID has a maximum depth by using DLS; searching all possibilities up to the specific depth and if it doesn't find the goal state it increases the depth increases. DFID performs depth-first search to depth one, then starts over and executes a depth-first search to depth two and continues deeper and deeper until a solution is found. The complexity of DFID is only O(d) where d is the depth, this is because at a given point it is executing only a depth-first search and saving only a stack of nodes. DFID ensures that the shortest path to the goal state will be found as does breadth-first search \citep{DBLP:conf/otm/MeissnerB11}.
 
-DFID begins by looping from 0 to the maximum depth of the problem domain. A function is then called with the current state and the specified depth which returns $found$ if the goal state has been discovered or $null$ otherwise. The function depth-limited depth-first search $DLS$ is called, the state is checked against the goal state provided the depth is 0 as the previous depths have already been checked. If the depth is greater than zero each possible move is found and used in a recursive call of $DLS$ with a decremented depth see Algorithm~\ref{DFID}. 
-
-\makeatletter
-\def\BState{\State\hskip-\ALG@thistlm}
-\makeatother
-
-
-
-	\begin{algorithm}
-	\caption{Depth-First Iterative Deepening}\label{DFID}
-	\begin{algorithmic}[1]
-		\Procedure{DFID}{state}
-		\For{$depth \gets 0, \infty$}
-		\State$ found \gets DLS(state, depth)$
-		\If{$found \not= null$}
-		\State \textbf{return} $found$
-		\EndIf
-		\EndFor
-		\EndProcedure
-		
-		\Procedure{dls}{state, depth}
-		\If{$depth =0 \textbf{ and } state = goal$ }
-		\State \textbf{return} $found$
-		\EndIf
-		
-		\If{$depth > 0$}
-		\For{$neighbour \textbf{ in } neighbours(state)$}	
-		\State $found \gets DLS(neighbour, depth-1)$
-		\If{$found \not= null$}
-		\State \textbf{return} $found$
-		\EndIf
-		\EndFor
-		\EndIf 
-		\State \textbf{return} $null$
-		\EndProcedure
-	\end{algorithmic}	
-\end{algorithm}	
 
 
 
 
-\subsection{Evaluation Of Uninformed Searches}
-Althought DFS memory requirement is linear and it has less time and space complexity to BFS, often DFS induces the possibility of traversing down the left-most path forever, it is also not guaranteed to find the solution.
-
-Depth-first iterative deepening is beneficial as it avoids infinite cycling, it obtains the same result as BFS whilst saving memory, however it is very slow as it has to repeatedly expand nodes it has already visited. DFID is only really beneficial when the solution depth is known, else it would have to trawl through all possibilities up to the solution depth and then through all possibilities at the solution depth until it reaches the goal. It is unlikely for the sliding-tile puzzle that the user knows the solution depth, thus implies ample execution time to find the goal state. Theoretically DFID could be used on much more difficult problems which have a larger search space, such as the 15 or 25 tile, but the time taken to find the solution outweighs any benefits. 
-
-Breadth-first search is very fast when considering the 8-tile puzzle as the search space is small, however it uses too much memory to be useful with larger problems such as the 15-tile puzzle. If there are multiple solutions, it will find the solution with the least steps.
-
-
-\section{Informed Search}
-Uninformed search often expands states that pursue a direction alternative to the goal path, which can lead to searches taking an extensive amount of time and/or space. Informed search attempts to minimise this by producing intelligent choices for each selected state. This implies the use of a heuristic function which evaluates the likelihood that a given nodes is on the solution path.
 
 
 
-\subsection{Heuristic Search} \label{sec1}
- A heuristic is a function that ranks possible moves at each branching step to decide which branch to follow. The goal of a heuristic is to produce a fast estimation of the cost from the current state to the desired state, the closer the estimation is to the actual cost the more accurate the heuristic function. In the context of the sliding-tile puzzle, to find best move from a set configuration the heuristic function is executed on each of the child states, the child state with the smallest heuristic value is chosen.
+\subsection{Informed Search}
+Uninformed search often expands states that pursue a direction alternative to the goal path, which can lead to searches taking an extensive amount of time and/or space. Informed search attempts to minimise this by producing intelligent choices for each selected state. This implies the use of a heuristic function which evaluates the likelihood that a given nodes is on the solution path. A heuristic is a function that ranks possible moves at each branching step to decide which branch to follow. The goal of a heuristic is to produce a fast estimation of the cost from the current state to the desired state, the closer the estimation is to the actual cost the more accurate the heuristic function. In the context of the sliding-tile puzzle, to find best move from a set configuration the heuristic function is executed on each of the child states, the child state with the smallest heuristic value is chosen.
  
 
 
@@ -287,40 +196,18 @@ A heuristic function is said to be admissible if it never overestimates the cost
 
 \subsubsection{Manhattan Distance}
 Manhattan distance is the classic heuristic function for the sliding-tile puzzles, for each tile in the puzzle the Manhattan distance counts the number of grid units between its current location
-and its goal location and summing these values for all tiles. Manhattan distance is a lower bound on actual solution length, because every tile must move at least its Manhattan distance, and each move only moves one tile. The Manhattan distance is a lower bound for the number of moves required to solve an occurrence of the sliding-tile puzzle, since every tile must move at least as many times as its distance to its goal position. \citep{DBLP:conf/ccgrid/LinnertSB14}.
+and its goal location and summing these values for all tiles. Manhattan distance is a lower bound on actual solution length, because every tile must move at least its Manhattan distance, and each move only moves one tile. The Manhattan distance is a lower bound for the number of moves required to solve an occurrence of the sliding-tile puzzle, since every tile must move at least as many times as its distance to its goal position. \citep{DBLP:conf/ccgrid/LinnertSB14}. 
+
+$$h(n)= \sum_{all\ tiles}^{}distance(tile, goal\ position)$$
 
 
 
 	
-\begin{algorithm}
-	\caption{Manhattan Distance}\label{Manhattan Distance}
-	\begin{algorithmic}[1]
-		\Procedure{ManDist}{$state$}	\Comment{The current puzzle configuration }
-		\State$total\gets 0$
-		\State$puzzleLength\gets state.size()$
-		\State$dimensions\gets \sqrt{puzzleLength}$
-		\For{$i\gets 1, puzzleLength$}	\Comment{Loops through each tile of the puzzle}
-		\State $tileValue\gets state[i]$
-		\State $expectedRow\gets (tileValue -1)\div dimensions$
-		\State $expectedCol\gets (tileValue -1)\mod dimensions$
-		\State $rowNum \gets i\div dimensions$
-		\State $rowNum\gets i \bmod dimensions$
-		\State $total\gets total \texttt{+} \mid{expectedRow-rowNum}\mid\texttt{+}\mid{expectedCol-colNum}\mid$
-		\EndFor
-		\State \textbf{return} $total$\Comment{The heuristic is the total}
-		\EndProcedure
-	\end{algorithmic}
-\end{algorithm}
-
 
 
 \subsubsection{Linear-Conflict Heuristic}
 Linear-conflict heuristic is an improvement to the Manhattan distance, it applies when two tiles are positioned in their desired row or column but are reversed relative to
 their goal positions, meaning a given tile must move out of the row or column in order to let the other pass. If there is a linear conflict then an extra two moves will be added to the total sum as the tile which must move, has to transition out of the row or column and then back into its desired position. These two extra moves are not included in the Manhattan distance so can be added to the total without violating admissibility see Algorithm \ref{Linear Conflict} 
-
-The Linear-Conflict heuristic was implemented by table lookup with one entry for each permutation of a row or column, storying the corresponding linear conflict. Even for the 15-puzzle, there are only 24 permutations of 4 tiles in a row or column. So the cost of the linear-conflict implementation is only a small number of table-lookups. \cite{hansson1992criticizing} implementation showed that on average each calculation of the linear-conflict caused the search program for the fifteen puzzle to be only 5 \% slower in examining each node, and this was more than compensated for their dramatic decrease in the number of nodes that needed to be examined when using the linear-conflict heuristic.
-
-Figure 2 displays a visual example the Linear-conflict heuristic. The initial state shows the first row to be reversed meaning values 1,2 and 3 are positioned 3,2 and 1. The $max$ (maximum value in the row or column) is compared to 3, as 3 is greater than -1 $max$ is now 3. For value 2 it is not larger than the current $max$ 3 meaning a linear conflict thus 2 is added to the total, value 1 is also not larger than 3 so another two is added to the total heuristic value.
 
 
 \begin{algorithm}
@@ -359,113 +246,28 @@ Figure 2 displays a visual example the Linear-conflict heuristic. The initial st
 
 
 
-\subsection{A* Algorithm}
+\subsubsection{A* Algorithm}
 A* search is a combination of lowest-cost-first and best-first searches that considers both path cost and heuristic information in its selection of which path to expand. For each path on the frontier, A* uses a heuristic function. This allows A* search to ensure the prioritisation of states in which are more likely to result in a low-cost goal state. The calculation of the heuristic value is dependent on the problem that is being solved. For example, for problems which aim to reach a location the Euclidean distance between the state and the goal is often used as the heuristic. 
 
 The A* algorithm uses $cost(p)$, the cost of the path found, as well as the heuristic function $h(p)$, the estimated path cost from the end of $p$ to the goal. As A* uses admissible heuristic it will always find solutions in the order of their cost. \citep{DBLP:journals/ker/Brewka96}.  A* uses breadth-first traversal thus uses large chunks of memory in comparison to applications that use depth-first traversal. The performance of A* is also heavily reliant on the accuracy of the heuristic.
 
-A* begins by declaring two empty sets: $closedSet$ stores states that have already been visited; $openSet$ contains states to be visited. The initial state is added to the $openSet$, similar to BFS the $openSet$ is iterated through until it finds a goal state or there are no more states to explore, implying no solutions. The most promising state is retrieved from the $openSet$ (the state with the lowest $F$ score) and assigned to $currentState$. This state is then removed from the $openSet$ and added to the $closedSet$. The $currentState$ is checked to see whether it matches the goal state and returned if so. From the $currentState$ all the possible moves are found and denoted as $neighbours$, each $neighbour$ is checked against the $closedSet$ to make sure the state hasn't already been expanded. The $neighbour$ is then checked against the $openSet$ and if the $openSet$ contains $neighbour$ the $G$ values are compared to check which version of the state has the best route from the starting position see Algorithm~\ref{Astar}.
-
-
-	\begin{algorithm}
-	\caption{A*}\label{Astar}
-	\begin{algorithmic}[1]
-		\State $g(state)$ \Comment The cost to reach the current state
-		\State $h(state)$ \Comment Estimated cost of the cheapest path from state to goal
-		\State $f(state) \gets g(state)+h(state)$
-		\State $neighbours(state)$ \Comment Expands possible moves from current state ordered by g + h
-		
-		\Procedure{AStar}{$startState$}
-		\State $closedSet \gets \textit{empty set}$
-		\State $openSet \gets \textit{empty set}$
-		\State $openSet.add(startState)$
-		\While{$openSet \textbf{ is not } empty$}
-		\State $currentState \gets state\   \textbf{in}\ openSet\ with\ lowest\ f\ value$
-		\State $openSet.remove(currentState)$
-		\State $closedSet.add(currentState)$
-		\If {$currentState = goal$}
-		\State \textbf{return} $currentState$
-		\EndIf
-		\For{$neighbour \textbf{ in } neighbours(currentState)$}	
-		\If{$neighbour \textbf{ not in } closedSet$}
-		\If{$neighbour \textbf{ in } openSet$}
-		\If{$g(currentState) < g(neighbour)$} 
-		\State$g(neighbour) \gets g(currentState)$
-		\EndIf	
-		\Else
-		\State $openSet.add(neighbour)$	
-		\EndIf
-		\EndIf
-		
-		\EndFor
-		\EndWhile
-		\EndProcedure
-	\end{algorithmic}
-\end{algorithm}
 
 
 
 
 
-\subsection{Iterative Deepening A*}
+\subsubsection{Iterative Deepening A*}
 Iterative-deepening A* (IDA*) eradicates the memory complication of A* by using depth-first traversal, without sacrificing solution optimality at the cost of increasing the time taken. Each iteration of A* is a complete depth-first search that keeps track of the cost, $f(n) = g(n) = h(n)$, of each node generated. If an expanded node's cost generated exceeds a threshold for that iteration, its path is cut off and the search backtracks before continuing. IDA* ranks states the same way as A*: The expected cost of a state is the cost of reaching said state plus the heuristic's estimate of the cost of reaching the nearest goal state. The maximum expected cost is assigned to the heuristic cost of the starting state, states which have a lower cost than the starting state are traversed and states with a higher expected cost are discarded. 
 
 
 If IDA* has searched all states lower than the current maximum without finding the goal state then it increases the maximum to the lowest value of the discarded states and begins the search again. The goal state is admissible, the current maximum cost will never be higher than the lowest cost solution, thus IDA* with an admissible heuristic will always find the lowest cost solution.  IDA* searches many nodes multiple times thus is slower than A*. Hence, A* should be used on smaller applications with lower memory requirements.
 
-	
-\begin{algorithm}
-	\caption{Iterative Deepening A Star}\label{IDAStar}
-	\begin{algorithmic}[1]
-		
-		\State $state$ \Comment The current puzzle configuration
-		\State $g(state)$ \Comment The cost to reach the current state
-		\State $h(state)$ \Comment Estimated cost of the cheapest path from state to goal
-		\State $f(state) \gets g(state)+h(state)$
-		\State $neighbours(state)$ \Comment Expands possible moves from current state ordered by g + h
-		\Statex
-		\Procedure{IDAStar}{$state$}
-		\State $bound \gets f(state)$
-		\While{ \textbf{ not } found}\Comment{Loops until a solution is found}
-		\State $ bound \gets DLS(state, bound)$	\Comment Performs a bounded depth-first search 
-		\EndWhile\label{}
-		\EndProcedure
-		\Statex
-		
-		\Procedure{DLS}{$state, bound$}
-		\If{$f(state) > bound$}
-		\State \textbf{return} $f(state)$
-		\EndIf	
-		
-		\If{$h(state) = 0$} \Comment No more moves needed to reach goal state
-		\State \textbf{return} $found$
-		\EndIf
-		\State $min \gets \infty$	
-		\For{$neighbour \textbf{ in } neighbours(state)$}	
-		\State $temp \gets DLS(neighbour, bound)$
-		
-		\If{$temp < min}$
-		\State $min \gets temp $
-		\EndIf
-		\EndFor
-		\State \textbf{return} $min$\Comment{Returns the smallest of the neighbours}
-		\EndProcedure
-		
-	\end{algorithmic}
-\end{algorithm}
-
-The IDAStar algorithm is very similar to to DFID; IDAStar iteratively deepens dependent on the $F$ value rather than a fixed depth. The initial $bound$ is assigned to the $F$ score of state, which is also just the $H$ value as $G$ is inherently 0 as no moves have been made to get to this state. A depth-first limited search is then executed to the specified threshold. If the $F$ value of the current state is greater than the $bound$ this is returned and assigned to the new $bound$. If the $H$ estimate of the state is 0, no more moves are required to get to the goal state thus the solution is found. Similar to A* the neighbour with the smallest $F$ value is prioritised see Algorithm~\ref{IDAStar}
-
-
-
 
 The time complexity of IDA* is measured by the number of nodes expanded, provided each node can be expanded and its successors evaluated in constant time, the asymptotic time complexity of IDA* is the total nodes expanded. Otherwise it is the product of the total number of nodes and the time taken to expand each. Provided the heuristic is consistent (see 4.2), IDA* must expand all nodes with the $f$ value less than or equal to $c$ which  is the cost of an optimal solution $f(n) \leq c$. On the final iteration of IDA* the cost threshold is equal to $c$, the cost of an optimal solution.\citep{DBLP:journals/ai/KorfRE01}.
-
-
-\section{Pattern Databases}
+\subsection{Pattern Databases}
 A Pattern Database (PDB) stores a collection of solutions to sub-problems that must be achieved to solve the overall problem. They then used as admissible heuristics implemented as lookup tables that store the lengths of optimal solutions for sub-problem instances. \citep{DBLP:journals/jair/FelnerKMH07}.
 
-\subsection{Non-Additive Pattern Databases}\label{Section:nonadditive}
+\subsubsection{Non-Additive Pattern Databases}\label{Section:nonadditive}
 For any configuration of the sliding tile puzzle, the minimum number of moves required to solve a subset of the tiles is evidently a lower bound on the number of moves needed to solve the puzzle \cite{felner2004additive}.
 
 
@@ -506,10 +308,10 @@ The major issue is space required to store all possible states. When considering
 
 
 
-\subsection{Statically-Partitioned Additive Database Heuristics}
+\subsubsection{Statically-Partitioned Additive Database Heuristics}
 Rather than taking the maximum of the two pattern databases a better option would be to sum the values without violating admissibility and tightening the lower bound. There are two methods to do this: statically-partitioned additive pattern databases and dynamically-partitioned additive pattern databases. In order to create a statically-partitioned additive database for the sliding tile puzzle, the tiles were partitioned into disjoint groups, meaning each tile is placed in a specified group and only appears in that group. The same method as explained in \ref{Section:nonadditive} for finding all the states was computed for each subset; a breadth-first search from the goal state with all possible configurations of each tile in the disjoint groups and the number of moves required to get to the goal state. For a particular state in the search, for each position of the tiles an index was computed for the corresponding row in the database, then retrieved the number of moves required to solve the tiles in that group and added this value to each value of the other disjoint groups. The summed total of these values will always be equal to or larger than the Manhattan distance of the state as it considers the interactions between tiles within a given subset.	
 
-Non-additive pattern databases include all the moves required to solve a pattern, including non-labelled tiles. Therefore, two PDB values cannot be added together as an admissible heuristic as moves counted in one PDB could move tiles in the other, meaning the same move would be counted twice. Whereas additive database only the moves in a particular group are counted so the sum can be taken off the pattern values.
+Non-additive pattern databases include all the moves required to solve a pattern, including non-labelled tiles. Therefore, two PDB values cannot be added together as an admissible heuristic as moves counted in one PDB could move tiles in the other, meaning the same move would be counted twice. Whereas only the moves in a particular group are counted in additive databases, so the sum can be taken off the pattern values.
 
 
 \begin{figure}[ht]
@@ -519,26 +321,343 @@ Non-additive pattern databases include all the moves required to solve a pattern
 	\caption{6-6-3 Partioning}
 	\label{fig:partitioning}
 \end{figure}
+
+
+\subsection{Summary}
+
+\subsubsection{Evaluation Of Uninformed Searches}
+Althought DFS memory requirement is linear and it has less time and space complexity to BFS, often DFS induces the possibility of traversing down the left-most path forever, it is also not guaranteed to find the solution.
+
+Depth-first iterative deepening is beneficial as it avoids infinite cycling, it obtains the same result as BFS whilst saving memory, however it is very slow as it has to repeatedly expand nodes it has already visited. DFID is only really beneficial when the solution depth is known, else it would have to trawl through all possibilities up to the solution depth and then through all possibilities at the solution depth until it reaches the goal. It is unlikely for the sliding-tile puzzle that the user knows the solution depth, thus implies ample execution time to find the goal state. Theoretically DFID could be used on much more difficult problems which have a larger search space, such as the 15 or 25 tile, but the time taken to find the solution outweighs any benefits. 
+
+Breadth-first search is very fast when considering the 8-tile puzzle as the search space is small, however it uses too much memory to be useful with larger problems such as the 15-tile puzzle. If there are multiple solutions, it will find the solution with the least steps.
+
+\subsubsection{Evaluation of Informed Searches}
+Provided the heuristic function is admissible both informed search algorithms will find the optimal path to the goal state. The main drawback of the A* algorithm is its memory requirements; it must store all the visited states in the open set. Although the algorithm runs successfully on small problems such as the eight puzzle, it exhausts available memory rather quickly for the fifteen puzzle, Section \ref{Experimental Results} displays the testing results of this memory usage for random states. 
+
+IDA* on the other hand eliminates the memory constraints of A*, by performing a series of depth-first searches and not needing to store the open set. IDA* was chosen for solving larger search spaces, tested using a number of different heuristics. 
+
+
+
+
 \section{Design}
-
-
-\subsection{Implementation}
+This section describes the design of the program and specifically the various search algorithms and the appropriate steps required based on the literature review. Pseudo code for each algorithm has also been constructed to form a structure for the implementation.
+\subsection{Class Diagram}
 Figure \ref{figure:classDiagram} shows a shortened version of the implementation, other algorithms also included in the program are DFS and DFID. Other classes used to construct testing states were not included in the diagram for simplicity, these classes include \textit{RandomStates} which given a particular puzzle returns random solvable states and \textit{Testing} which is used primarily for testing algorithms and determining the number of nodes they expand, the time taken to solve the problem, number of moves and many other statistical values, used extensively in Section \ref{Experimental Results}
-\subsubsection{Representing the state}
+
+
+\subsection{Representing the state}
 The first step to solving the sliding tile puzzle is determining the best way to store a particular state. There were three elements that needed to be considered: the order of the tiles, the dimensions of the puzzle and the position of the blank. Puzzle configurations were stored using an array, the blank tile was represented by a 0 and the dimensions of the puzzle can be found from the length of the array (square root of the length, provided the state has an equal height and width). The positioning of the blank is important as it is needed for finding legal moves; every tile must push into the blank and computing the position of the blank each iteration would be costly.
 
 Additional fields including the parent state were stored for the ability to traverse the path the algorithm took back to the initial state, the direction that each state took is also stored. Each state contains a heuristic array which is the same length as the puzzle state, each position in the heuristic array represents the number of estimated moves for that given tile to reach its goal state. It would be costly to continually compute the heuristic estimate of every tile in the current configuration: the heuristic array is filled by an initial heuristic calculation and then each state after only computes the heuristic for the previously moved tiles. Figure \ref{figure:classDiagram} shows the class diagram of project.
 
 The State class also contains the number of moves from the starting state $g$, the heuristic value $h$ and $f$ or ($h+g$).
 
+\subsection{Finding legal moves}
+In order to find legal moves for the sliding puzzle, two variables must be known: the position of the blank and the dimensions of the puzzle. As shown above by representing the state, the zero value for a given state is stored and the dimensions can be easily computed. For a given state in the sliding-tile puzzle, there are 2-4 legal moves: when the blank is in a corner there are two legal moves, if the blank is against an edge but not in the corner there are three legal moves, and if the blank is surrounded by tiles in all directions there are four legal moves. The blank can move left, right, up or down, there are a elements to consider here: the blank cannot go up if its in the top row, cannot go left if its in the left-most column, right if its in the right-most column and down if its in the bottom row. In order to construct this algorithm it helped to visualise the puzzles based by their index rather than their labelled value. Figure \ref{figure:index} displays the 8 and 15-puzzle with their index representation. 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=.5\textwidth]{tile_indexes}
+	\captionsetup{justification=centering}
+	\caption{Sliding Tile Index Representation}
+	\label{figure:index}
+\end{figure}
+Algorithm \ref{neighbouring_nodes} shows a procedure finding the neighbouring nodes of a particular state. Firstly, an empty list is initialised as we know there are a minimum of two possible moves from every state in the puzzle. Each possible move is tested, checking whether the empty tiles positioning satisfies the constraints, if so then a new state is built with the updated values and added to the list. Once all possible moves have been tried the list of neighbouring nodes is returned to the search algorithm.
+
+
+	
+\begin{algorithm}
+	\caption{Finding Neighbouring States}\label{neighbouring_nodes}
+	\begin{algorithmic}[1]
+		\Procedure{findNeighbours}{$state$}	\Comment{The current puzzle configuration }
+		\State$neighbours\gets empty list$
+		\State$dimensions\gets 	dimensions\ of\ state$ \Comment{3 for 3x3, 4 for 4x4}
+			\If{zeroPosition \% dimensions != 0} \Comment{left move}
+			\State $left \gets updated\ state$	\Comment{copy of state, changing zero and other tile}
+			\State $neighbours.add(left)$
+			\EndIf
+			\If{zeroPosition \% dimensions != dimensions -1} \Comment{right move}
+			\State $right \gets updated\ state$
+			\State $neighbours.add(right)$
+			\EndIf
+			\If{zeroPosition > dimensions -1}	\Comment{up move}
+			\State $up \gets updated\ state$
+			\State $neighbours.add(up)$
+			\EndIf
+			\If{zeroPosition < size(state) - dimensions} \Comment{Down move}
+			\State $down \gets updated\ state$
+			\State $neighbours.add(down)$
+			\EndIf
+			
+		\State \textbf{return} $neighbours$\Comment{Returns the list of neighbours}	
+		\EndProcedure
+	\end{algorithmic}
+\end{algorithm}
+
+
+
+
+
+
+
+
+\subsection{Algorithm Design}
+
+\subsection{BFS}
+
+BFS begins by declaring an empty set $s$ which stores all the states that have been expanded. A queue $q$ is then initialised which stores states to be expanded. The initial state is added to both $q$ and $s$, $q$ is then repeatedly looped through until a solution is found or $q$ is empty meaning there are no possible solutions. The $currentState$ is dequeued from $q$, checked against the goal state and returned if a match. Otherwise, each possible move from $currentState$ is found and added to $q$ to be expanded see Algorithm~\ref{BFS}.
+\begin{algorithm}
+	\caption{Breadth-First Search}\label{BFS}
+	\begin{algorithmic}[1]
+		\Procedure{BFS}{$state$}
+		\State $s \gets \textit{empty set}$
+		\State $q \gets \textit{empty queue}$
+		\State $s.add(state)$
+		\State $q.enqueue(state)$
+		\While{$q \textbf{ is not } empty$}
+		\State $currentState \gets q.dequeue()$
+		\If {$currentState = goal$}
+		\State \textbf{return} $current$
+		\EndIf
+		\For{$neighbour \textbf{ in } neighbours(currentState)$}	
+		\If{$neighbour \text{ is not in } s$}
+		\State $s.add(neighbour)$
+		\State $q.enqueue(neighbour)$
+		\EndIf
+		
+		\EndFor
+		\EndWhile
+		\EndProcedure
+	\end{algorithmic}
+\end{algorithm}
+
+
+\subsection{DFS}
+
+DFS begins by declaring an empty set $visted$ which stores all the states that stores expanded states. The state is checked against the goal and returned if a match. All possible moves from the current state are looped through and recursively call the function to repeat the process see Algorithm~\ref{dfs}.
+\begin{algorithm}
+	\caption{DFS}\label{dfs}
+	\begin{algorithmic}[1]
+		\State $visited \gets empty set$
+		\Procedure{DFS}{$state$}
+		\If{$state = goal$}
+		\State \textbf{return} state
+		\EndIf
+		\For{$neighbour \textbf{ in } neighbours(state)$}
+		\If{$neighbour \textbf{ not in } visited$}
+		\State	$DFS(neighbour)$
+		\EndIf
+		\EndFor
+		\State $visited.add(state)$
+		\EndProcedure
+	\end{algorithmic}
+\end{algorithm}
+
+
+\subsection{DFID}
+
+DFID begins by looping from 0 to the maximum depth of the problem domain. A function is then called with the current state and the specified depth which returns $found$ if the goal state has been discovered or $null$ otherwise. The function depth-limited depth-first search $DLS$ is called, the state is checked against the goal state provided the depth is 0 as the previous depths have already been checked. If the depth is greater than zero each possible move is found and used in a recursive call of $DLS$ with a decremented depth see Algorithm~\ref{DFID}. 
+
+
+\begin{algorithm}
+	\caption{Depth-First Iterative Deepening}\label{DFID}
+	\begin{algorithmic}[1]
+		\Procedure{DFID}{state}
+		\For{$depth \gets 0, \infty$}
+		\State$ found \gets DLS(state, depth)$
+		\If{$found \not= null$}
+		\State \textbf{return} $found$
+		\EndIf
+		\EndFor
+		\EndProcedure
+		
+		\Procedure{dls}{state, depth}
+		\If{$depth =0 \textbf{ and } state = goal$ }
+		\State \textbf{return} $found$
+		\EndIf
+		
+		\If{$depth > 0$}
+		\For{$neighbour \textbf{ in } neighbours(state)$}	
+		\State $found \gets DLS(neighbour, depth-1)$
+		\If{$found \not= null$}
+		\State \textbf{return} $found$
+		\EndIf
+		\EndFor
+		\EndIf 
+		\State \textbf{return} $null$
+		\EndProcedure
+	\end{algorithmic}	
+\end{algorithm}	
+
+\subsection{Manhattan Distance}
+Algorithm \ref{Manhattan Distance} shows the pseudocode of the Manhattan distance for computing the heuristic for each tile in the current state. For each tile it computes the expected row and expected column (goal row/column), then the actual row and column. The absolute difference of the expected row and actual row and the absolute difference of the  expected column and actual column are added together which gives the estimate for that single tile, this is then added to the total. Once all calculations have been performed on each tile, the total is then returned and used as the heuristic estimate.
+
+\begin{algorithm}
+	\caption{Manhattan Distance}\label{Manhattan Distance}
+	\begin{algorithmic}[1]
+		\State$dimensions$ \Comment{The dimensions of the puzzle e.g 3 for 3x3 and 4 for 4x4}
+		\Procedure{ManDist}{$state$}	\Comment{The current puzzle configuration }
+		\State$total\gets 0$
+		\For{$i\gets 1, puzzleLength$}	\Comment{Loops through each tile of the puzzle}
+		\State $tileValue\gets state[i]$
+		\State $expectedRow\gets (tileValue -1)\div dimensions$
+		\State $expectedCol\gets (tileValue -1)\mod dimensions$
+		\State $rowNum \gets i\div dimensions$
+		\State $colNum\gets i \bmod dimensions$
+		\State $total\gets total \texttt{+} \mid{expectedRow-rowNum}\mid\texttt{+}\mid{expectedCol-colNum}\mid$
+		\EndFor
+		\State \textbf{return} $total$\Comment{The heuristic is the total}
+		\EndProcedure
+	\end{algorithmic}
+\end{algorithm}
+
+
+As mentioned previously computing the Manhattan distance for every state is generally cheap, however it can be improved. A heuristic array can be created, where each element in the array will store its corresponding lower-bound estimate on the number of moves required to get to their goal position. Figure \ref{fig:heuristic_array} presents an example of a heuristic array, the blank tile is not added to the heuristic function so is defined as 0. On the far left is the current state with configuration: $[1,2,15,0,9,4,10,7,14,13,3,12,8,5,6,11]$ which has a corresponding heuristic array: $[0,0,3,0,1,3,2,1,2,2,2,0,5,3,3,2]$ where each element represents the number of moves to the goal position, this example is assuming the goal state is: $[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0]$. It is clear that when a move has been made only two tiles need to change, but only one of these needs to compute the Manhattan distance. The tile that has moved into the blank must now update its heuristic estimate in the heuristic array accordingly, by computing a Manhattan distance given its new position. However, the blank tile must update the heuristic array with 0 for its new position. Figure \ref{fig:heuristic_array} shows the blank moving down and swapping with tile value 7, the far right puzzle labelled \textit{Updated Heuristic Array} shows the two elements that have been updated: $heuristicArray[3]=0$ is now $updatedHeuristicArray[7]$ and $heuristicArray[7]=1$ is now $updatedHeuristicArray[3]=2$. To get the overall heuristic estimate all elements in the heuristic array must be added together. The same rules apply, compute the entire heuristic estimate once and store the value, and then every calculation after the heuristic of the tile being moved in the blank is taken away and the new heuristic is added. Algorithm \ref{Manhattan Distance2} shows this process in more detail.
+
+
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=1.1\textwidth]{heuristic_array}
+	\captionsetup{justification=centering}
+	\caption{A representation of a heuristic array}
+	\label{fig:heuristic_array}
+\end{figure}
+
+
+
+\begin{algorithm}
+	\caption{Single Manhattan Distance}\label{Manhattan Distance2}
+	\begin{algorithmic}[1]
+		\State $heuristicArray$ \Comment{Array where each element has its respected tiles Heuristic value}
+		\State $heuristicTotal$ \Comment{The sum of all elements in the heuristic array}
+		\State$dimensions$ \Comment{The dimensions of the puzzle e.g 3 for 3x3 and 4 for 4x4}
+		\State $movedPosition$ \Comment{The position of the tile that previously swapped with the blank}
+		\State $zeroPosition$ \Comment{The current position of the blank tile}
+		\Procedure{SingleManDist}{$state$}	\Comment{The current puzzle configuration }
+		\State $tileValue\gets state[i]$
+		\State $expectedRow\gets (tileValue -1)\div dimensions$
+		\State $expectedCol\gets (tileValue -1)\mod dimensions$
+		\State $rowNum \gets i\div dimensions$
+		\State $colNum\gets i \bmod dimensions$
+		\State $tempTotal \gets heuristicTotal \texttt{-} heuristics[zeroPosition]$ 
+		\State $newHeuristicValue\gets \mid{expectedRow-rowNum}\mid\texttt{+}\mid{expectedCol-colNum}\mid$
+		\State $heuristics[movedPosition]\gets newHeuristicValue$
+		\State $heuristics[zeroPosition]\gets 0$
+		\State $total \gets tempTotal\texttt{+}newHeuristicValue$
+		\State \textbf{return} $total$\Comment{The heuristic estimate of the state is the total}
+		\EndProcedure
+	\end{algorithmic}
+\end{algorithm}
+
+
+
+\subsection{Linear-Conflict}
+The Linear-Conflict heuristic was implemented by table lookup with one entry for each permutation of a row or column, storing the corresponding linear conflict. Even for the 15-puzzle, there are only 24 permutations of 4 tiles in a row or column. So the cost of the linear-conflict implementation is only a small number of table-lookups. \cite{hansson1992criticizing} implementation showed that on average each calculation of the linear-conflict caused the search program for the fifteen puzzle to be only 5\% slower in examining each node, and this was more than compensated for their dramatic decrease in the number of nodes that needed to be examined when using the linear-conflict heuristic.
+
+
+\subsection{A*}
+A* begins by declaring two empty sets: $closedSet$ stores states that have already been visited; $openSet$ contains states to be visited. The initial state is added to the $openSet$, similar to BFS the $openSet$ is iterated through until it finds a goal state or there are no more states to explore, implying no solutions. The most promising state is retrieved from the $openSet$ (the state with the lowest $F$ score) and assigned to $currentState$. This state is then removed from the $openSet$ and added to the $closedSet$. The $currentState$ is checked to see whether it matches the goal state and returned if so. From the $currentState$ all the possible moves are found and denoted as $neighbours$, each $neighbour$ is checked against the $closedSet$ to make sure the state hasn't already been expanded. The $neighbour$ is then checked against the $openSet$ and if the $openSet$ contains $neighbour$ the $G$ values are compared to check which version of the state has the best route from the starting position see Algorithm~\ref{Astar}.
+
+\begin{algorithm}
+	\caption{A*}\label{Astar}
+	\begin{algorithmic}[1]
+		\State $g(state)$ \Comment The cost to reach the current state
+		\State $h(state)$ \Comment Estimated cost of the cheapest path from state to goal
+		\State $f(state) \gets g(state)+h(state)$
+		\State $neighbours(state)$ \Comment Expands possible moves from current state ordered by g + h
+		
+		\Procedure{AStar}{$startState$}
+		\State $closedSet \gets \textit{empty set}$
+		\State $openSet \gets \textit{empty set}$
+		\State $openSet.add(startState)$
+		\While{$openSet \textbf{ is not } empty$}
+		\State $currentState \gets state\   \textbf{in}\ openSet\ with\ lowest\ f\ value$
+		\State $openSet.remove(currentState)$
+		\State $closedSet.add(currentState)$
+		\If {$currentState = goal$}
+		\State \textbf{return} $currentState$
+		\EndIf
+		\For{$neighbour \textbf{ in } neighbours(currentState)$}	
+		\If{$neighbour \textbf{ not in } closedSet$}
+		\If{$neighbour \textbf{ in } openSet$}
+		\If{$g(currentState) < g(neighbour)$} 
+		\State$g(neighbour) \gets g(currentState)$
+		\EndIf	
+		\Else
+		\State $openSet.add(neighbour)$	
+		\EndIf
+		\EndIf
+		
+		\EndFor
+		\EndWhile
+		\EndProcedure
+	\end{algorithmic}
+\end{algorithm}
+
+
+\subsection{IDA*}
+
+The IDAStar algorithm is very similar to to DFID; IDAStar iteratively deepens dependent on the $F$ value rather than a fixed depth. The initial $bound$ is assigned to the $F$ score of state, which is also just the $H$ value as $G$ is inherently 0 as no moves have been made to get to this state. A depth-first limited search is then executed to the specified threshold. If the $F$ value of the current state is greater than the $bound$ this is returned and assigned to the new $bound$. If the $H$ estimate of the state is 0, no more moves are required to get to the goal state thus the solution is found. Similar to A* the neighbour with the smallest $F$ value is prioritised see Algorithm \ref{IDAStar}.	
+\begin{algorithm}
+	\caption{Iterative Deepening A Star}\label{IDAStar}
+	\begin{algorithmic}[1]
+		
+		\State $state$ \Comment The current puzzle configuration
+		\State $g(state)$ \Comment The cost to reach the current state
+		\State $h(state)$ \Comment Estimated cost of the cheapest path from state to goal
+		\State $f(state) \gets g(state)+h(state)$
+		\State $neighbours(state)$ \Comment Expands possible moves from current state ordered by g + h
+		\Statex
+		\Procedure{IDAStar}{$state$}
+		\State $bound \gets f(state)$
+		\While{ \textbf{ not } found}\Comment{Loops until a solution is found}
+		\State $ bound \gets DLS(state, bound)$	\Comment Performs a bounded depth-first search 
+		\EndWhile\label{}
+		\EndProcedure
+		\Statex
+		
+		\Procedure{DLS}{$state, bound$}
+		\If{$f(state) > bound$}
+		\State \textbf{return} $f(state)$
+		\EndIf	
+		
+		\If{$h(state) = 0$} \Comment No more moves needed to reach goal state
+		\State \textbf{return} $found$
+		\EndIf
+		\State $min \gets \infty$	
+		\For{$neighbour \textbf{ in } neighbours(state)$}	
+		\State $temp \gets DLS(neighbour, bound)$
+		
+		\If{$temp < min}$
+		\State $min \gets temp $
+		\EndIf
+		\EndFor
+		\State \textbf{return} $min$\Comment{Returns the smallest of the neighbours}
+		\EndProcedure
+		
+	\end{algorithmic}
+\end{algorithm}
+
+\subsection{Design of Java Application}
+The Java application will run by initially providing the user with two possible inputs: initial/starting state and goal state (optional). The user will then be able to choose which algorithm they would like to use to solve the problem and which heuristic (provided an informed algorithm). Upon completion, the path from the initial state to the goal state will be displayed along with various statistics: time taken, nodes expanded, no. moves and memory used. Initial preprocessing will be done to ensure that the states provided are actually solvable by checking the parity and the length of each state. The program is generic, so can be used to solve any puzzle provided the initial state, goal state and legal moves have been issued.
+
+\subsubsection{Swing}
+Swing is a set of program components for Java that enable the possibility of creating graphical user interfaces (GUI) components. Swing was used to allow for a more user-friendly program and display a frame for the results to placed. Also a visual representation of how the program solved the puzzle state will be displayed.
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=1.1\textwidth]{classDiagram}
 	\captionsetup{justification=centering}
 	\caption{Class Diagram}
 \end{figure}
+\section{Implementation}
+This section covers the main aspects of the implementation of the project, icluding details on how the algorithms were implemented, as well as the methods used and the implementation details of these methods.
 
-\subsection{Implementation}
+
+
+
+
+\subsection{Structure}
 
 When a node is being expanded it is necessary to find its neighbours. Neighbours for the sliding-tile puzzle represent the possible moves from the current configuration, each state has a minimum of 2 neighbours and a maximum of 4. Figure 1 shows the possible moves from current state and how the direction variable would be stored ready for output; movements are relative to the blank meaning the variable is represented by the direction the blank moves. The \textit{findNeighbours()} method returns a list of the current state's child nodes. 
 
@@ -553,13 +672,10 @@ The strategy or policy pattern is a behavioural design pattern that enables beha
 \end{figure}
 
 
-
-
-\section{Experimental Results}\label{Experimental Results}
-To further explore the algorithms discussed a series of experiments were executed to analyse their performance to make an empirical comparison. 
-
-\subsection{Preliminaries}
- In order to generate testing states it is important to ensure that the state is solvable. Problem domains may have constraints that can preclude parts of the search space. For example, although the eight puzzle has $9!$ possible positions, only one half of them can be reached from the goal. \citep{DBLP:journals/ci/CulbersonS98}. To determine whether a sliding-tile puzzle is solvable we must calculate the sum of the inversions.
+\subsection{Experimental Plan}
+The experiments in this paper vary dependent on the size of the problem domain; a complete experiment was performed on the 8-puzzle, testing each and every possible state in terms of time, expanded nodes, and number of moves taken to reach the goal state.
+\subsubsection{Preliminaries}
+In order to generate testing states it is important to ensure that the state is solvable. Problem domains may have constraints that can preclude parts of the search space. For example, although the eight puzzle has $9!$ possible positions, only one half of them can be reached from the goal. \citep{DBLP:journals/ci/CulbersonS98}. To determine whether a sliding-tile puzzle is solvable we must calculate the sum of the inversions.
 An inversion is when a tile precedes another tile with a smaller number. 
 Algorithm~\ref{Solvable} was used to create testing states for the sliding-tile puzzle, states with randomised permutations were constructed and then checked to see if they were solvable, once a total of 10000 solvable test cases were created the search algorithms were then experimented with.
 \begin{algorithm}
@@ -589,6 +705,12 @@ Algorithm~\ref{Solvable} was used to create testing states for the sliding-tile 
 		\EndProcedure
 	\end{algorithmic}	
 \end{algorithm}	
+
+
+\section{Experimental Results}\label{Experimental Results}
+To further explore the algorithms discussed a series of experiments were executed to analyse their performance to make an empirical comparison. 
+
+
 
 
 \subsection{8-Puzzle}
@@ -1084,14 +1206,15 @@ The memory used by Depth-first iterative deepening is linear with respect to the
 \subsection{Statically-Partioned Additive Database Heuristics}
 The 6-6-3 partitioning  was initially implemented many papers state that it is the best compromise between speed and memory to other possible solutions, Figure \ref{fig:partitioning} displays the used partitioning. The first two images display the fifteen tile with the subsets comprising of 6 tiles, $2\times(16!/(16-6)!)= 11531520$ states to be stored, the final subset requires $16!/(16-3)!=3360$ states stored that's a total of $11534880$ states to that were stored. To get these disjoint groups a BFS was used once and the states was serialised into 3 separate files. When testing, a table lookup was performed and the states were stored into the data structure for testing.
 
-\subsection{Tower Of Hanoi}
+\subsection{Tower of Hanoi}
+
+\section{Conclusion and Evaluation}
 \clearpage
 \bibliography{bibfile}
 
 
 \appendix
 \clearpage
-
 
 
 

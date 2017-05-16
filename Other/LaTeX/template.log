@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2016.10.3)  3 NOV 2016 21:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2016.10.3)  16 MAY 2017 19:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -758,7 +758,7 @@ Package: subcaption 2016/05/22 v1.1-161 Sub-captions (AR)
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'cmpfigure' with sig. 'o m' on line 208.
+. Defining environment 'cmpfigure' with sig. 'o m' on line 210.
 .................................................
 
 (c:/texlive/2016/texmf-dist/tex/latex/etoolbox/etoolbox.sty
@@ -1514,44 +1514,98 @@ Overfull \vbox (0.72502pt too high) has occurred while \output is active []
 Overfull \vbox (0.72502pt too high) has occurred while \output is active []
 
 
-[10] <coolcat.jpg, id=143, 963.6pt x 1284.8pt>
-File: coolcat.jpg Graphic file (type jpg)
- <use coolcat.jpg>
-Package pdftex.def Info: coolcat.jpg used on input line 316.
-(pdftex.def)             Requested size: 125.47739pt x 167.28471pt.
-File: coolcat.jpg Graphic file (type jpg)
+[10]
 
-<use coolcat.jpg>
-Package pdftex.def Info: coolcat.jpg used on input line 329.
-(pdftex.def)             Requested size: 81.9761pt x 109.29477pt.
- <bossycat.jpg, id=147, 1284.8pt x 851.18pt>
-File: bossycat.jpg Graphic file (type jpg)
+LaTeX Warning: File `coolcat.jpg' not found on input line 316.
 
-<use bossycat.jpg>
-Package pdftex.def Info: bossycat.jpg used on input line 335.
-(pdftex.def)             Requested size: 164.79915pt x 109.17665pt.
- <frowningcat.jpg, id=148, 1284.8pt x 856.19875pt>
-File: frowningcat.jpg Graphic file (type jpg)
 
-<use frowningcat.jpg>
-Package pdftex.def Info: frowningcat.jpg used on input line 341.
-(pdftex.def)             Requested size: 163.95224pt x 109.2586pt.
+! Package pdftex.def Error: File `coolcat.jpg' not found.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.316 ...raphics[width=0.3\textwidth]{coolcat.jpg}
+                                                  
+Using draft setting for this image.
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: File `coolcat' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.329 ...degraphics[width=0.98\textwidth]{coolcat}
+                                                  
+I could not locate the file with any of these extensions:
+.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: File `bossycat' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.335 ...egraphics[width=0.99\textwidth]{bossycat}
+                                                  
+I could not locate the file with any of these extensions:
+.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: File `frowningcat' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.341 ...aphics[width=0.98\textwidth]{frowningcat}
+                                                  
+I could not locate the file with any of these extensions:
+.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
 
 Overfull \hbox (1.43758pt too wide) in paragraph at lines 327--346
 [][] [][] 
  []
 
-<scaredbabycat.jpg, id=149, 856.19875pt x 1284.8pt>
-File: scaredbabycat.jpg Graphic file (type jpg)
- <use scaredbabycat.jpg>
-Package pdftex.def Info: scaredbabycat.jpg used on input line 349.
-(pdftex.def)             Requested size: 127.71283pt x 191.63344pt.
 
-<tiredcat.jpg, id=150, 1284.8pt x 854.19125pt>
-File: tiredcat.jpg Graphic file (type jpg)
- <use tiredcat.jpg>
-Package pdftex.def Info: tiredcat.jpg used on input line 355.
-(pdftex.def)             Requested size: 288.59608pt x 191.87192pt.
+! LaTeX Error: File `scaredbabycat' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.349 ...ics[width=0.985\textwidth]{scaredbabycat}
+                                                  
+I could not locate the file with any of these extensions:
+.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: File `tiredcat' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.355 ...cludegraphics[width=\textwidth]{tiredcat}
+                                                  
+I could not locate the file with any of these extensions:
+.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
 
 Overfull \hbox (2.28001pt too wide) in paragraph at lines 347--360
 [][] [] 
@@ -1564,11 +1618,6 @@ Overfull \vbox (0.72502pt too high) has occurred while \output is active []
 [11
 
 
- <./coolcat.jpg>]
-Overfull \vbox (0.72502pt too high) has occurred while \output is active []
-
-
-[12 <./bossycat.jpg> <./frowningcat.jpg> <./scaredbabycat.jpg> <./tiredcat.jpg>
 ]
 Overfull \hbox (11.5358pt too wide) in paragraph at lines 425--426
 [][]\T1/pcr/m/n/12 \ganttlink{elem0}{elem2} \T1/ptm/m/n/12 cre-ates a link from
@@ -1592,10 +1641,14 @@ lem1, etc.[]
 LaTeX Warning: Float too large for page by 19.85594pt on input line 472.
 
 
-Package natbib Warning: Citation `pgfgantt' on page 13 undefined on input line 
+Package natbib Warning: Citation `pgfgantt' on page 12 undefined on input line 
 473.
 
 
+Overfull \vbox (0.72502pt too high) has occurred while \output is active []
+
+
+[12]
 Overfull \vbox (0.72502pt too high) has occurred while \output is active []
 
 
@@ -1603,11 +1656,7 @@ Overfull \vbox (0.72502pt too high) has occurred while \output is active []
 Overfull \vbox (0.72502pt too high) has occurred while \output is active []
 
 
-[14]
-Overfull \vbox (0.72502pt too high) has occurred while \output is active []
-
-
-[15] (./template.bbl
+[14] (./template.bbl
 
 Package natbib Warning: Empty `thebibliography' environment on input line 3.
 
@@ -1615,7 +1664,7 @@ Package natbib Warning: Empty `thebibliography' environment on input line 3.
 Overfull \vbox (0.72502pt too high) has occurred while \output is active []
 
 
-[16
+[15
 
 ]
 Overfull \hbox (7.74628pt too wide) in paragraph at lines 514--514
@@ -1630,7 +1679,7 @@ Package natbib Warning: There were undefined citations.
 Overfull \vbox (0.72502pt too high) has occurred while \output is active []
 
 
-[17
+[16
 
 ]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 516.
@@ -1643,10 +1692,10 @@ Package rerunfilecheck Info: File `template.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 516.
  ) 
 Here is how much of TeX's memory you used:
- 33131 strings out of 493013
- 666608 string characters out of 6136993
- 791013 words of memory out of 5000000
- 36118 multiletter control sequences out of 15000+600000
+ 33121 strings out of 493013
+ 666268 string characters out of 6136993
+ 792813 words of memory out of 5000000
+ 36098 multiletter control sequences out of 15000+600000
  79749 words of font info for 110 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  80i,17n,71p,10406b,1062s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1659,10 +1708,10 @@ c:/texlive/2016/texmf-dist/fonts/type1/urw/symbol/usyr.pfb><c:/texlive/2016/tex
 mf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2016/texmf-dist/fonts/type
 1/urw/times/utmr8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on template.pdf (17 pages, 1662459 bytes).
+Output written on template.pdf (16 pages, 142524 bytes).
 PDF statistics:
- 233 PDF objects out of 1000 (max. 8388607)
- 194 compressed objects within 2 object streams
- 46 named destinations out of 1000 (max. 500000)
- 113 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 224 PDF objects out of 1000 (max. 8388607)
+ 191 compressed objects within 2 object streams
+ 45 named destinations out of 1000 (max. 500000)
+ 88 words of extra memory for PDF output out of 10000 (max. 10000000)
 

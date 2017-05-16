@@ -16,20 +16,17 @@ import slidingtileproject.State;
  *
  * @author Luke
  */
-public class IterativeDeepeningAStar implements SearchAlgorithm {
+public class IDAStar implements SearchAlgorithm {
 
     private HeuristicFunction heuristic;
-    static int[] GOAL = new int[]{1, 2, 3, 4, 5, 6, 7, 8,
-        9, 10, 11, 12, 13, 14, 15, 0};
-
     // gets created when IDAStar is invoked
 
-    public IterativeDeepeningAStar(HeuristicFunction heuristic) {
+    public IDAStar(HeuristicFunction heuristic) {
         this.heuristic = heuristic;
     }
 
-    private State depthFirstSearch(State current, int currentCostBound) {
-        if (Arrays.equals(current.getState(), GOAL)) {
+    private State depthFirstSearch(State current, State goal, int currentCostBound) {
+        if (current.equals(goal)) {
             return current;
         }
 
@@ -39,7 +36,7 @@ public class IterativeDeepeningAStar implements SearchAlgorithm {
             next.setH(li);
             int value = next.getG() + next.getH();
             if (value <= currentCostBound) {
-                State result = depthFirstSearch(next, currentCostBound);
+                State result = depthFirstSearch(next, goal, currentCostBound);
                 if (result != null) {
                     return result;
                 }
@@ -53,10 +50,10 @@ public class IterativeDeepeningAStar implements SearchAlgorithm {
         // should already have heuristic because the initial state
         int nextCostBound = start.getH();
         State solution = null;
-
+        
         while (solution == null) {
             int currentCostBound = nextCostBound;
-            solution = depthFirstSearch(start, currentCostBound);
+            solution = depthFirstSearch(start, goal, currentCostBound);
             nextCostBound += 2;
         }
         return solution;
@@ -92,6 +89,5 @@ public class IterativeDeepeningAStar implements SearchAlgorithm {
         }
         return min;
     }
-
 
 }

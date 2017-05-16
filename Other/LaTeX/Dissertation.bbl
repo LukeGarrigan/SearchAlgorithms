@@ -7,6 +7,11 @@ Brewka, G. (1996).
   cliffs, {NJ}.
 \newblock {\em Knowledge Eng. Review}, 11(1):78--79.
 
+\bibitem[Cormen, 2009]{cormen2009introduction}
+Cormen, T.~H. (2009).
+\newblock {\em Introduction to algorithms}.
+\newblock MIT press.
+
 \bibitem[Culberson and Schaeffer, 1996]{culberson1996searching}
 Culberson, J. and Schaeffer, J. (1996).
 \newblock Searching with pattern databases.
@@ -28,11 +33,6 @@ Felner, A. (2015).
   puzzle.
 \newblock In {\em Workshops at the Twenty-Ninth AAAI Conference on Artificial
   Intelligence}.
-
-\bibitem[Felner et~al., 2011]{DBLP:journals/corr/abs-1107-0050}
-Felner, A., Hanan, S., and Korf, R.~E. (2011).
-\newblock Additive pattern database heuristics.
-\newblock {\em CoRR}, abs/1107.0050.
 
 \bibitem[Felner et~al., 2004]{felner2004additive}
 Felner, A., Korf, R.~E., and Hanan, S. (2004).
