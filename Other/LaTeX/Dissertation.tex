@@ -134,7 +134,7 @@ promptly.
 
 
 \section{Relevant Literature And Context}
-The following review discusses a complete definition and overview of the search algorithms implemented in the project, discussing their strengths and weaknesses and their applicability to the sliding-tile puzzle. 
+The following review discusses a complete definition and overview of the search algorithms implemented in the project, discussing their strengths, weaknesses and their applicability to the sliding-tile puzzle. 
 \subsection{Uninformed Search}
 Uninformed or brute-force search is a general problem-solving technique that consists of systematically enumerating all the possible states for a given solution and checking to see whether that given state satisfies the problem's statement. All that is required to execute a brute-force is some legal operators, an initial state and an acknowledged goal state. Uninformed search generates the search tree without using any domain specific knowledge
 \subsubsection{Completeness and Optimality}
@@ -144,13 +144,6 @@ Breadth-first search is one of the simplest algorithms for searching a graph, it
 
 
 
-The operations of enqueuing and dequeuing take O.1/ time, and so the total time devoted to queue
-operations is O.V /. Because the procedure scans the adjacency list of each vertex
-only when the vertex is dequeued, it scans each adjacency list at most once. Since
-the sum of the lengths of all the adjacency lists is ‚.E/, the total time spent in
-scanning adjacency lists is O.E/. The overhead for initialization is O.V /, and
-thus the total running time of the BFS procedure is O.V C E/. Thus, breadth-first
-search runs in time linear in the size of the adjacency-list representation of G.
 
 
 \subsubsection{Depth-First Search}
@@ -341,7 +334,7 @@ IDA* on the other hand eliminates the memory constraints of A*, by performing a 
 
 
 \section{Design}
-This section describes the design of the program and specifically the various search algorithms and the appropriate steps required based on the literature review. Pseudo code for each algorithm has also been constructed to form a structure for the implementation.
+This section describes the design of the program and specifically the various search algorithms and the appropriate tested and requirements specification based on literature. Pseudo code for each algorithm has also been constructed to form a baseline for the implementation.
 \subsection{Class Diagram}
 Figure \ref{figure:classDiagram} shows a shortened version of the implementation, other algorithms also included in the program are DFS and DFID. Other classes used to construct testing states were not included in the diagram for simplicity, these classes include \textit{RandomStates} which given a particular puzzle returns random solvable states and \textit{Testing} which is used primarily for testing algorithms and determining the number of nodes they expand, the time taken to solve the problem, number of moves and many other statistical values, used extensively in Section \ref{Experimental Results}
 
@@ -354,7 +347,7 @@ Additional fields including the parent state were stored for the ability to trav
 The State class also contains the number of moves from the starting state $g$, the heuristic value $h$ and $f$ or ($h+g$).
 
 \subsection{Finding legal moves}
-In order to find legal moves for the sliding puzzle, two variables must be known: the position of the blank and the dimensions of the puzzle. As shown above by representing the state, the zero value for a given state is stored and the dimensions can be easily computed. For a given state in the sliding-tile puzzle, there are 2-4 legal moves: when the blank is in a corner there are two legal moves, if the blank is against an edge but not in the corner there are three legal moves, and if the blank is surrounded by tiles in all directions there are four legal moves. The blank can move left, right, up or down, there are a elements to consider here: the blank cannot go up if its in the top row, cannot go left if its in the left-most column, right if its in the right-most column and down if its in the bottom row. In order to construct this algorithm it helped to visualise the puzzles based by their index rather than their labelled value. Figure \ref{figure:index} displays the 8 and 15-puzzle with their index representation. 
+In order to find legal moves for the sliding puzzle, two variables must be known: the position of the blank and the dimensions of the puzzle. As shown above by representing the state, the zero value for a given state is stored and the dimensions can be easily computed. For a given state in the sliding-tile puzzle, there are 2-4 legal moves: when the blank is in a corner there are two legal moves, if the blank is against an edge but not in the corner there are three legal moves, and if the blank is surrounded by tiles in all directions there are four legal moves. The blank can move left, right, up or down, there are a constraints to consider here: the blank cannot go up if its in the top row, cannot go left if its in the left-most column, right if its in the right-most column and down if its in the bottom row. In order to construct this algorithm it helped to visualise the puzzles based by their index rather than their labelled value. Figure \ref{figure:index} displays the 8 and 15-puzzle with their index representation. 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=.5\textwidth]{tile_indexes}
@@ -362,7 +355,7 @@ In order to find legal moves for the sliding puzzle, two variables must be known
 	\caption{Sliding Tile Index Representation}
 	\label{figure:index}
 \end{figure}
-Algorithm \ref{neighbouring_nodes} shows a procedure finding the neighbouring nodes of a particular state. Firstly, an empty list is initialised as we know there are a minimum of two possible moves from every state in the puzzle. Each possible move is tested, checking whether the empty tiles positioning satisfies the constraints, if so then a new state is built with the updated values and added to the list. Once all possible moves have been tried the list of neighbouring nodes is returned to the search algorithm.
+Algorithm \ref{neighbouring_nodes} shows a procedure for finding the neighbouring nodes of a particular state. Firstly, an empty list is initialised as we know there are a minimum of two possible moves from every state in the puzzle. Each possible move is tested, checking whether the empty tiles positioning satisfies the constraints, if so then a new state is built with the updated values and added to the list. Once all possible moves have been tried the list of neighbouring nodes is returned to the search algorithm.
 
 
 	
@@ -673,7 +666,7 @@ The strategy or policy pattern is a behavioural design pattern that enables beha
 
 
 \subsection{Experimental Plan}
-The experiments in this paper vary dependent on the size of the problem domain; a complete experiment was performed on the 8-puzzle, testing each and every possible state in terms of time, expanded nodes, and number of moves taken to reach the goal state.
+The experiments in this paper vary dependent on the size of the problem domain; a complete experiment was performed on the 8-puzzle, testing each and every possible state in terms of time, expanded nodes, and number of moves taken to reach the goal state. Numerous experiments were carried out on the 15-puzzle and the 25-puzzle. 
 \subsubsection{Preliminaries}
 In order to generate testing states it is important to ensure that the state is solvable. Problem domains may have constraints that can preclude parts of the search space. For example, although the eight puzzle has $9!$ possible positions, only one half of them can be reached from the goal. \citep{DBLP:journals/ci/CulbersonS98}. To determine whether a sliding-tile puzzle is solvable we must calculate the sum of the inversions.
 An inversion is when a tile precedes another tile with a smaller number. 
@@ -708,13 +701,13 @@ Algorithm~\ref{Solvable} was used to create testing states for the sliding-tile 
 
 
 \section{Experimental Results}\label{Experimental Results}
-To further explore the algorithms discussed a series of experiments were executed to analyse their performance to make an empirical comparison. 
+To further explore the algorithms discussed a series of experiments were executed to analyse their performance to make an empirical comparison with varying algorithms and heuristics.. 
 
 
 
 
 \subsection{8-Puzzle}
-The initial puzzle tested was the 8-puzzle as its small number of solvable states allows for the use of unintelligent search and gives rise to the opportunity of comparison to intelligent search; the 15-puzzle has too large a search space to make a credible comparison. 
+The initial puzzle tested was the 8-puzzle as its small number of solvable states allows for the use of unintelligent search and gives rise to the opportunity of comparison to intelligent search; the 15-puzzle has too large a search space to make a credible comparison.
 
 
 
@@ -996,18 +989,6 @@ Although DFID maintains the advantage of requiring a comparable supply of memory
 \end{figure} 
 
 
-\begin{table}[ht]
-	\caption{Depth-First Iterative Deepening: 8-Tile}
-	\begin{center}
-		\begin{tabular}{crrr} \hline
-			Min Moves & Moves & Nodes Expanded &Time(ms)  \\ \hline
-			5  & 5 & 56 & 0.9521 \\
-			10 & 10  &6392&  16.777216 \\ 
-			15 & 15 & 3350884& 2902.4583  \\ \hline
-			
-		\end{tabular}
-	\end{center}
-\end{table}
 
 
 
@@ -1117,12 +1098,322 @@ A* was the first informed search to be tested using both the Manhattan distance 
 \end{table}
 
 
+\subsection{IDA*}
+
+\begin{figure}[!ht]
+	\centering
+	\begin{subfigure}[t]{0.5\textwidth}
+		\begin{tikzpicture}
+		\begin{axis}[
+		width=\textwidth,
+		xlabel = No. Moves,
+		ylabel = Average Time(ms),
+		]
+		\addplot[error bars/.cd, y dir=both, y explicit, ] coordinates{
+			(2,0)
+			(3,0)
+			(4,0)
+			(5,0)
+			(6,0)	
+			(7,0)
+			(8,0)
+			(9,0.00658)
+			(10,0.00699)
+			(11,0.00758)
+			(12,0.00267)
+			(13,0.00879)
+			(14,0.01955)
+			(15,0.01592)
+			(16,0.0223)
+			(17,0.03299)
+			(18,0.04198)
+			(19,0.0615)
+			(20,0.07886)
+			(21,0.1121)
+			(22,0.14512)
+			(23,0.21405)
+			(24,0.28727)
+			(25,0.42842)
+			(26,0.58015)
+			(27,0.88157)
+			(28,1.18875)
+			(29,1.89079)
+			(30,2.61086)
+			(31,2)
+		};
+		\end{axis}
+		\end{tikzpicture}
+	\end{subfigure}%
+	\begin{subfigure}[t]{0.5\textwidth}
+		\begin{tikzpicture}
+		\begin{axis}[
+		width=\textwidth,
+		xlabel = No. Moves,
+		ylabel = Mean Nodes Expanded,
+		]
+		\addplot[error bars/.cd, y dir=both, y explicit, ] coordinates{
+			(1 ,5)
+			(2,	17)
+			(3,	50)
+			(4,	130)
+			(5,	278)
+			(6,	568)
+			(7,	1165)
+			(8,	2392)
+			(9,	4621)
+			(10,	9085)
+			(11,	18024)
+			(12,	37834)
+			(13,	78844)
+			(14,	174824)
+			(15,	374457)
+			(16,	834054)
+			(17,	1764316)
+			(18,	3739848)
+			(19,	7438010)
+			(20,	14647998)
+			(21,	26925154)
+			(22,	48015280)
+			(23,	79138028)
+			(24,	124456189)
+			(25,	180000593)
+			(26,	242514898)
+			(27,	300538593)
+			(28,	343083212)
+			(29,	368597617)
+			(30,	376971187)
+			(31,	379383741)
+			
+			
+			
+			
+		};
+		\end{axis}
+		\end{tikzpicture}
+	\end{subfigure}
+	\caption{8-tile analysis using IDA* search to display how the minimum number of moves required to reach the goal state affects the time(ms) and the number of nodes expanded}
+	\label{Figure:astar}
+\end{figure} 
+
+
+
+
+\subsection{Comparing results for 8-puzzle}
+
+\begin{figure}[!ht]
+	
+	\begin{subfigure}[t]{.6\textwidth}
+		\begin{tikzpicture}
+		\begin{axis}[
+		width=\textwidth,
+		axis lines = left,
+		xlabel = Min Moves,
+	     legend pos=north west,
+		]
+
+
+
+			% nodes expanded for 
+			%BFS
+			\addplot coordinates{	(1,3.5)
+			(2,8.25)
+			(3,15.625)
+			(4,25)
+			(5,46.9)
+			(6,79.87179)	
+			(7,142.03226)
+			(8,222.75)
+			(9,396.56579)
+			(10,607.36364)
+			(11,1033.95707)
+			(12,1580.87032)
+			(13,2689.3877)
+			(14,4068.70417)
+			(15,6816.66521)
+			(16,10077.94314)
+			(17,16304.61352)
+			(18,23252.76262)
+			(19,35532.59423)
+			(20,47973.72595)
+			(21,68096.92613)
+			(22,86105.56809)
+			(23,111406.96737)
+			(24,129960.55254)
+			(25,151666.94146)
+			(26,163973.55021)
+			(27,174731.22792)
+			(28,178683.9913)
+			(29,180883.49474)
+			(30,181336.30769)
+			(31,181439.5)
+			\addlegendentry{$BFS$}
+		};
+			% A*
+			\addplot coordinates{
+			(1,2)(2,3)(3,4)(4,5)(5,6.15)(6,7.4359)(7,9.04839)(8,10.2931)(9,12.48684)(10,15.34266)(11,19.79545)(12,25.60963)(13,35.62988)(14,46.79345)(15,67.2711)(16,87.57547)(17,125.84622)(18,163.32039)(19,235.00414)(20,306.49632)(21,441.65073)(22,577.32536)(23,840.73507)(24,1107.93692)(25,1616.53916)(26,2129.70076)(27,3127.82898)(28,4065.00639)(29,6103.83026)(30,7995.22172)(31,7282)
+		};
+		\addlegendentry{$A*$}
+				
+	
+	
+		
+		\end{axis}
+		\end{tikzpicture}
+
+	\end{subfigure}
+		\caption{States expanded A* and BFS}
+\end{figure}
+
+
+
+\begin{figure}[!ht]
+	
+	\begin{subfigure}[t]{.6\textwidth}
+		\begin{tikzpicture}
+		\begin{axis}[
+		width=\textwidth,
+		axis lines = left,
+		xlabel = Min Moves,
+		legend pos=north west,
+		]
+			
+		% nodes expanded for 
+		
+		
+		%BFS
+	
+		% A*
+		\addplot coordinates{(2,0)
+	(3,0)
+	(4,0)
+	(5,0)
+	(6,0)	
+	(7,0)
+	(8,0)
+	(9,0.00658)
+	(10,0.00699)
+	(11,0.01515)
+	(12,0.01872)
+	(13,0.02246)
+	(14,0.03117)
+	(15,0.05454)
+	(16,0.08361)
+	(17,0.13515)
+	(18,0.21052)
+	(19,0.35999)
+	(20,0.56906)
+	(21,1.07873)
+	(22,1.76144)
+	(23,3.55662)
+	(24,6.26918)
+	(25,13.28245)
+	(26,23.95968)
+	(27,53.01833)
+	(28,93.68286)
+	(29,203.16579)
+	(30,320.31674)
+	(31,232)};
+		\addlegendentry{$A*$}
+	
+		%IDA*
+		\addplot coordinates{
+			(2,0)
+			(3,0)
+			(4,0)
+			(5,0)
+			(6,0)	
+			(7,0)
+			(8,0)
+			(9,0.00658)
+			(10,0.00699)
+			(11,0.00758)
+			(12,0.00267)
+			(13,0.00879)
+			(14,0.01955)
+			(15,0.01592)
+			(16,0.0223)
+			(17,0.03299)
+			(18,0.04198)
+			(19,0.0615)
+			(20,0.07886)
+			(21,0.1121)
+			(22,0.14512)
+			(23,0.21405)
+			(24,0.28727)
+			(25,0.42842)
+			(26,0.58015)
+			(27,0.88157)
+			(28,1.18875)
+			(29,1.89079)
+			(30,2.61086)
+			(31,2)
+		};
+		\addlegendentry{$IDA*$}
+		
+		%bfs
+		\addplot coordinates{
+		(2,0)
+		(3,0)
+		(4,0)
+		(5,0.0625)
+		(6,0.07)	
+		(7,0.12903)
+		(8,0.16379)
+		(9,0.19737)
+		(10,0.21329)
+		(11,0.27273)
+		(12,0.33556)
+		(13,0.57324)
+		(14,0.82092)
+		(15,1.33678)
+		(16,2.08562)
+		(17,3.51188)
+		(18,5.23234)
+		(19,9.0217)
+		(20,12.32878)
+		(21,19.33998)
+		(22,29.59507)
+		(23,38.77556)
+		(24,44.30881)
+		(25,55.38882)
+		(26,59.60288)
+		(27,63.18999)
+		(28,63.64731)
+		(29,66.00526)
+		(30,65.79638)
+		(31,66.5)};
+		\addlegendentry{$BFS$}
+		\end{axis}
+		\end{tikzpicture}
+		
+	\end{subfigure}
+	\caption{Comparing Time}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \subsubsection{Manhattan Distance and Linear Conflict}
 Tests displayed in Table 4 show that A* search with the linear conflict heuristic improves the performance of A* with Manhattan distance for the 8-tile puzzle. On average A* with linear conflict would take around 1ms longer than A* with Manhattan distance, until the number of moves required to solve the puzzle were greater than 25, as this showed a substantial decline in time when comparing the linear conflict to the Manhattan heuristic. This implies that the performance of linear conflict exceeds the performance of Manhattan distance when the state space grows, so the more difficult the puzzle the greater the gap in performance between the two heuristics becomes.
 
 As the state space grows exponentially according to the depth the growth is smaller for the A* with linear conflict, this is because the heuristic is a more accurate representation of the displacement of the tiles, thus the H value is always larger than or equal to the H value of the Manhattan Distance. Table 5 shows the difference in H value for 10 calculations of both algorithms and how the linear conflict is nearly always larger than the Manhattan distance.
 
 Table 4 shows the exponential growth by the number of states the algorithm expanded. The average number of States for the Manhattan distance heuristic from 5 to 30 moves is 972.5, whereas linear conflict's average is 651.
+
 
 
 
@@ -1165,41 +1456,6 @@ The memory used by Depth-first iterative deepening is linear with respect to the
 \end{center}
 
 
-\begin{figure}[!ht]
-	
-	\begin{subfigure}[t]{.5\textwidth}
-		\begin{tikzpicture}
-		\begin{axis}[
-		width=\textwidth,
-		axis lines = left,
-		xlabel = Min Moves,
-		]
-		\addplot coordinates{(5,2.5849)(10,3.7)(15,4.5849)(20,9.8439)(25,13.347)(30,16.481)(35,17.8207)(40,15.899)(45,21.234)(50,23.708)(55,23.122)(60,26.382217)};
-		
-		\addplot
-		coordinates{(5,2.5849)(10,3.459)(15,4)(20,9.5849)(25,14.62626)(30,17.72892)(35,18.881)(40,16.7589)(45,23.7596)(50,25.10958)(55,24.81606)(60,29.15162)};
-		
-		\end{axis}
-		\end{tikzpicture}
-		\caption{Log Of The States Expanded}
-	\end{subfigure}
-	\begin{subfigure}[t]{.5\textwidth}
-		\begin{tikzpicture}
-		\begin{axis}[
-		width=\textwidth,
-		axis lines = left,
-		xlabel = Min Moves,
-		]
-		\addplot coordinates{(5,1.1961)(10,1.2479)(15,1.492622)(20,3.507059)(25,4.456708)(30,6.874392)(35,7.7511)(40,6.303)(45,10.773)(50,13.161)(55,12.60577)(60,15.91465)};
-		
-		\addplot
-		coordinates{(5,1.2666)(10,1.2472)(15,1.3265)(20,3.01)(25,5.232)(30,7.31795)(35,8.16505)(40,6.912089)(45,12.79603)(50,14.0653)(55,13.76405)(60,18.08073)};
-		\end{axis}
-		\end{tikzpicture}
-		\caption{Log Of The Time}
-	\end{subfigure}
-	\caption{Logarithmic Comparison Of IDA* Fifteen Tile}
-\end{figure}
 
 
 

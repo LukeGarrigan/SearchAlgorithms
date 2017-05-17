@@ -18,6 +18,7 @@ import slidingtileproject.State;
  */
 public class IDAStar implements SearchAlgorithm {
 
+    private int nodesExpanded = 0;
     private HeuristicFunction heuristic;
     // gets created when IDAStar is invoked
 
@@ -26,12 +27,13 @@ public class IDAStar implements SearchAlgorithm {
     }
 
     private State depthFirstSearch(State current, State goal, int currentCostBound) {
+        nodesExpanded++;
         if (current.equals(goal)) {
+            current.setNodesExpanded(nodesExpanded);
             return current;
         }
 
         for (State next : current.findNeighbours()) {
-            next.setG(current.getG() + 1);
             int li = heuristic.calculateHeuristic(next);
             next.setH(li);
             int value = next.getG() + next.getH();
@@ -50,7 +52,7 @@ public class IDAStar implements SearchAlgorithm {
         // should already have heuristic because the initial state
         int nextCostBound = start.getH();
         State solution = null;
-        
+
         while (solution == null) {
             int currentCostBound = nextCostBound;
             solution = depthFirstSearch(start, goal, currentCostBound);

@@ -61,9 +61,15 @@ public class Testing {
         ArrayList<Double> times = new ArrayList<>();
         double totalTime = 0;
         double totalMoves = 0;
+        Runtime runtime = Runtime.getRuntime();
+        long usedMemoryBefore = (runtime.totalMemory() - runtime.freeMemory())/1000000;
+        long totalMemoryUsed =0;
         for (State s : states) {
             double initialTime = System.currentTimeMillis();
+            long usedMemoryAfter = (runtime.totalMemory() - runtime.freeMemory())/1000000;
+            totalMemoryUsed+=usedMemoryAfter;
             State expanded = searchAlgorithm.resolve(s, goalState);
+
             double endTime = System.currentTimeMillis();
             double elapsedTime = endTime - initialTime;
             totalTime += elapsedTime;
@@ -73,6 +79,13 @@ public class Testing {
             numberMoves.add((double) expanded.getG());
             times.add((double) elapsedTime);
         }
+        System.out.println("Used Memory before(MB): " + usedMemoryBefore);
+        
+        long averageMemory = totalMemoryUsed/states.size();
+       // long memoryIncrease = usedMemoryAfter-usedMemoryBefore;
+        System.out.println("Average memory (MB): " + averageMemory);
+       // System.out.println("Memory Increased(MB): " + memoryIncrease);
+
         double averageTime = totalTime / states.size();
 
         System.out.println("\nTotal Time: " + totalTime);
@@ -111,8 +124,7 @@ public class Testing {
         System.out.println("Standard Deviation Moves: " + stdMoves);
 
         // writing to a csv file
-        
-        FileWriter fw = new FileWriter("blar.csv", true);
+        FileWriter fw = new FileWriter("astar2.csv", true);
         DecimalFormat df = new DecimalFormat("#.#####");
         df.format(0.912385);
         BufferedWriter bw = new BufferedWriter(fw);
@@ -121,7 +133,7 @@ public class Testing {
             s.append(move).append(",").append(df.format(totalTime)).append(",").append(df.format(averageTime)).append(",")
                     .append(df.format(stdTime)).append(",").append(df.format(totalExpanded))
                     .append(",").append(df.format(sampleMean)).append(",")
-                    .append(df.format(std)).append("\n");
+                    .append(df.format(std)).append(",").append(usedMemoryBefore).append(",").append(averageMemory).append("\n");
             out.println(s.toString());
         }
         System.out.println("\n\n");

@@ -64,7 +64,7 @@ public class SlidingTileProject {
         
         // CODE FOR 8 TILE COMPLETE TESTS
         
-        for (int i = 10; i < 32; i++) {
+        for (int i = 0; i < 32; i++) {
             //RandomStates r = new RandomStates();
             Testing testObject = new Testing(astar);
             Set<State> allPossibleStates = testObject.createTestsBFS(gg);
